@@ -1,6 +1,6 @@
 # About @tkoyama010
 
-FEM  library  #getfem commiter & translator 🇯🇵
-📝qiita.com/tkoyama010
-📝note.com/tkoyama
-❤ScipyJapan2020(scipyjapan.scipy.org)
+FEM  library  #getfem commiter & translator :jp:
+:pencil: qiita.com/tkoyama010
+:pencil: note.com/tkoyama
+:heart: ScipyJapan2020(scipyjapan.scipy.org)
