@@ -12,6 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     name: generate
+    if: contains(github.event.head_commit.message, 'Generate profile summary cards') == false
     steps:
       - uses: actions/checkout@v2
       - uses: vn7n24fzkq/github-profile-summary-cards@release
