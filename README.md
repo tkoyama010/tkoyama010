@@ -1,20 +1,14 @@
-<br>
-</br>
 Hi! My name is Tetsuo Koyama. I'm CAE software engineer in Japan. I'm interested in scientific computing and visualization with computer graphics. I'm writing a self-published book. The title is "Getting Started with GetFEM". This book is a Japanese translation of the Python interface tutorial from GetFEM, an open source finite element method library.
-
 <br>
 </br>
-
 ![](https:///badge/OS-Linux-informational?style=flat&logo=linux&logoColor=white&color=2bbc8a)
 ![](https://img.shields.io/badge/Code-Python-informational?style=flat&logo=python&logoColor=white&color=2bbc8a)
 ![](https://img.shields.io/badge/Code-C++-informational?style=flat&logo=c%2B%2B&logoColor=white&color=2bbc8a)
 ![](https://img.shields.io/badge/Shell-Bash-informational?style=flat&logo=gnu-bash&logoColor=white&color=2bbc8a)
 ![](https://img.shields.io/badge/Tools-Docker-informational?style=flat&logo=docker&logoColor=white&color=2bbc8a)
 ![](https://img.shields.io/badge/Editors-Vim-informational?style=flat&logoColor=white&color=2bbc8a)
-
 <br>
 </br>
-
 [![](https://raw.githubusercontent.com/tkoyama010/tkoyama010/master/profile-summary-card-output/vue/0-profile-details.svg)](https://github.com/vn7n24fzkq/github-profile-summary-cards)
 [![](https://raw.githubusercontent.com/tkoyama010/tkoyama010/master/profile-summary-card-output/vue/1-repos-per-language.svg)](https://github.com/vn7n24fzkq/github-profile-summary-cards)
 [![](https://raw.githubusercontent.com/tkoyama010/tkoyama010/master/profile-summary-card-output/vue/2-most-commit-language.svg)](https://github.com/vn7n24fzkq/github-profile-summary-cards)
