@@ -32,55 +32,104 @@
 ![height=1000](https://s2.booth.pm/11310e3f-8ea5-4a2e-921b-350dbd11b9c3/i/1727985/518a6acb-ae4b-40a1-9a1c-2ae04e9497fc_base_resized.jpg)
 
 ---
-[drag=100 20, drop=0 0]
-## Why PyVista?
-
-[drag=100 10, drop=0 20]
-Pythonic interface to VTK’s Python-C++ bindings
-
-[drag=50 70, drop=0 30]
-
-[drag=50 70, drop=50 30]
+# Why PyVista?
 
 ---
 [drag=100 20, drop=0 0]
-## Why PyVista?
+## Pythonic interface to VTK's Python-C++ bindings
 
-[drag=100 10, drop=0 20]
-Filtering/plotting tools built for interactivity
-
-[drag=50 70, drop=0 30]
-
-[drag=50 70, drop=50 30]
-
----
-[drag=100 20, drop=0 0]
-## Why PyVista?
-
-[drag=100 10, drop=0 20]
-Direct access to common VTK filters
-
-[drag=50 70, drop=0 30]
-
-[drag=50 70, drop=50 30]
-
----
-[drag=100 20, drop=0 0]
-## Why PyVista?
-
-[drag=100 10, drop=0 20]
-Intuitive plotting routines with ```matplotlib``` similar syntax
-
-[drag=50 70, drop=0 30]
-
-[drag=50 70, drop=50 30]
-
----
-[drag=100 20, drop=0 0]
-## Shrink filter
-
-[drag=45 70, drop=5 20, fit=0.5]
-@code[python](test_shrink.py)
+[drag=50 70, drop=0 20]
 
 [drag=50 70, drop=50 20]
-![height=1000](shrink.png)
+
+---
+[drag=100 20, drop=0 0]
+## Filtering/plotting tools built for interactivity
+
+[drag=45 70, drop=5 20, fit=0.7]
+@code[python](opencae2020B13/test_widget_box.py)
+
+[drag=50 70, drop=50 20]
+![](https://pyvista-doc.readthedocs.io/ja/latest/_images/box-clip.gif)
+
+---
+[drag=100 20, drop=0 0]
+## Direct access to common VTK filters
+
+[drag=45 80, drop=5 20, fit=0.7]
+@code[python](opencae2020B13/test_clip_box.py)
+
+[drag=50 70, drop=50 20]
+![height=1000](opencae2020B13/clip_box.png)
+
+---
+[drag=100 20, drop=0 0]
+## Intuitive plotting routines with ```matplotlib``` similar syntax
+
+[drag=45 80, drop=5 20, fit=0.7]
+@code[python](opencae2020B13/test_multi_renderers.py)
+
+[drag=50 70, drop=50 20]
+![height=1000](opencae2020B13/multi_renderers.png)
+
+---
+# What's new?
+
+---
+[drag=100 20, drop=0 0]
+## @emoji[scissors] Shrink filter
+
+[drag=45 70, drop=5 20, fit=0.7]
+@code[python](opencae2020B13/test_shrink.py)
+
+[drag=50 70, drop=50 20]
+![height=1000](opencae2020B13/shrink.png)
+
+---
+[drag=100 20, drop=0 0]
+## @emoji[camera] Camera object
+
+[drag=45 70, drop=5 20, fit=0.7]
+@code[python](opencae2020B13/test_camera_zoom.py)
+
+[drag=50 70, drop=50 20]
+![height=1000](opencae2020B13/test_camera.png)
+
+---
+[drag=100 20, drop=0 0]
+## @emoji[camera] Camera object
+
+[drag=45 70, drop=5 20, fit=0.7]
+@code[python](opencae2020B13/test_camera_zoom.py)
+
+[drag=50 70, drop=50 20]
+![height=1000](opencae2020B13/test_camera_zoom.png)
+
+---
+[drag=100 20, drop=0 0]
+## @emoji[camera] Camera object
+
+[drag=45 70, drop=5 20, fit=0.7]
+@code[python](opencae2020B13/test_camera_up.py)
+
+[drag=50 70, drop=50 20]
+![height=1000](opencae2020B13/test_camera_up.png)
+
+---
+[drag=100 20, drop=0 0]
+## Conclusion
+
+[drag=100 80, drop=0 20]
+### Why PyVista?
+- Pythonic interface to VTK's Python-C++ bindings
+- Filtering/plotting tools built for interactivity
+- Direct access to common VTK filters
+- Intuitive plotting routines with ```matplotlib``` similar syntax
+
+### What's new?
+- @emoji[scissors] Shrink filter
+- @emoji[camera] Camera object
+
+---
+[drag=80 90, drop=10 5]
+![height=2000](opencae2020B13/contributions01.png)
