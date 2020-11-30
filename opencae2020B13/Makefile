@@ -9,5 +9,6 @@ run:
 	python test_multi_renderers.py
 	python test_shrink.py
 	python test_widget_box.py
+	python test_bunny.py
 black:
 	black -l 40 .

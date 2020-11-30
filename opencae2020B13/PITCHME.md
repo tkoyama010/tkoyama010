@@ -38,9 +38,11 @@
 [drag=100 20, drop=0 0]
 ## Pythonic interface to VTK's Python-C++ bindings
 
-[drag=50 70, drop=0 20]
+[drag=45 70, drop=5 20, fit=0.7]
+@code[python](opencae2020B13/test_bunny.py)
 
 [drag=50 70, drop=50 20]
+![height=1000](opencae2020B13/bunny.png)
 
 ---
 [drag=100 20, drop=0 0]
