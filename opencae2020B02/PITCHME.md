@@ -66,5 +66,26 @@ $E=10000 N/mm^2$, $\nu = 0.0$
 [drag=100 20, drop=0 0, set=align-center]
 ## Creating a Model
 
-[drag=90 70, drop=5 20, set=align-left]
+---
+[drag=100 20, drop=0 0, set=align-center]
+## Mesh generation
+
+[drag=45 70, drop=5 20, set=align-left, fit=0.7]
+```python
+import getfem as gf
+import numpy as np
+
+
+L = 10.0
+b = 1.0
+h = 1.0
+
+meshs = []
+for case, x, y in zip(cases, xs, ys):
+    X = np.arange(x + 1) * L / x
+    Y = np.arange(y + 1) * h / y
+    mesh = gf.Mesh("cartesian", X, Y)
+```
+[drag=50 70, drop=50 20]
+![height=700](https://getfem-examples.readthedocs.io/en/latest/_images/cantilever_13_0.png)
 
