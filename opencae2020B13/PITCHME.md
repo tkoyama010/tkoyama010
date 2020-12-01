@@ -1,6 +1,6 @@
 [drag=100 100, drop=center]
 
-# **PyVista Contribution 2020**
+# PyVista Contribution 2020
 ## Tetsuo Koyama
 
 ---
