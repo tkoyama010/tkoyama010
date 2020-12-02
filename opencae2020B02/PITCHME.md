@@ -64,10 +64,6 @@ $E=10000 N/mm^2$, $\nu = 0.0$
 
 ---
 [drag=100 20, drop=0 0, set=align-center]
-## Creating a Model
-
----
-[drag=100 20, drop=0 0, set=align-center]
 ## Mesh generation
 
 [drag=45 70, drop=5 20, set=align-left, fit=0.7]
@@ -89,3 +85,116 @@ for case, x, y in zip(cases, xs, ys):
 [drag=50 70, drop=50 20]
 ![height=700](https://getfem-examples.readthedocs.io/en/latest/_images/cantilever_13_0.png)
 
+---
+[drag=100 20, drop=0 0, set=align-center]
+## Definition of finite elements methods and integration method
+
+[drag=45 70, drop=5 20, set=align-left, fit=0.7]
+```python
+fems = []
+# fem_names is the array of finite element method name.
+for fem_name in fem_names:
+    fems.append(gf.Fem("FEM_PRODUCT(" + fem_name + "," + fem_name + ")"))
+
+mfus = []
+for mesh, fem in zip(meshs, fems):
+    mfu = gf.MeshFem(mesh, 2)
+    mfu.set_fem(fem)
+    mfus.append(mfu)
+
+ims = []
+# im_names is the array of integral method name.
+for im_name in im_names:
+    ims.append(gf.Integ("IM_PRODUCT(" + im_name + ", " + method + ")"))
+
+mims = []
+for mesh, im in zip(meshs, ims):
+    mim = gf.MeshIm(mesh, im)
+    mims.append(mim)
+```
+
+---
+[drag=100 20, drop=0 0, set=align-center]
+## Model definition
+
+[drag=45 70, drop=5 20, set=align-left, fit=0.7]
+```python
+mds = []
+for mfu in mfus:
+    md = gf.Model("real")
+    md.add_fem_variable("u", mfu)
+    mds.append(md)
+
+E = 10000 # N/mm2
+Nu = 0.0
+
+for md in mds:
+    md.add_initialized_data("E", E)
+    md.add_initialized_data("Nu", Nu)
+```
+
+---
+[drag=100 20, drop=0 0, set=align-center]
+## Linearized elasticity bricks pstrain
+
+[drag=45 70, drop=5 20, set=align-left, fit=0.7]
+```python
+for md, mim in zip(mds, mims):
+    md.add_isotropic_linearized_elasticity_brick_pstrain(mim, "u", "E", "Nu")
+```
+---
+[drag=100 20, drop=0 0, set=align-center]
+## Boundary condition at the left and right side of the beam
+
+[drag=45 70, drop=5 20, set=align-left, fit=0.7]
+```python
+for (md, mim, mfu, fem) in zip(mds, mims, mfus, fems):
+    if fem.is_lagrange():
+        md.add_Dirichlet_condition_with_simplification("u", LEFT_BOUND)
+    else:
+        md.add_Dirichlet_condition_with_multipliers(mim, "u", mfu, LEFT_BOUND)
+
+F = 1.0 # N/mm2
+for (md, mfu, mim) in zip(mds, mfus, mims):
+    md.add_initialized_data("F", [0, F / (b * h)])
+    md.add_source_term_brick(mim, "u", "F", RIGHT_BOUND)
+```
+
+---
+[drag=100 20, drop=0 0, set=align-center]
+## Model solve
+
+[drag=45 70, drop=5 20, set=align-left, fit=0.7]
+```python
+for md in mds:
+    md.solve()
+
+for md, mfu, case in zip(mds, mfus, cases):
+    u = md.variable("u")
+```
+
+---
+[drag=50 20, drop=0 0, set=align-center]
+### API of Exporting Mesh, MeshFem object to XML VTK format
+
+[drag=45 40, drop=5 20, set=align-left, fit=0.7]
+There are essentially four ways to view the result of GetFEM computations:
+- Scilab, Octave or Matlab, with the interface. 
+- The open-source Paraview or PyVista or any other Legacy VTK file viewer.
+- The open-source OpenDX program.
+- The open-source Gmsh program.
+- **The open-source Paraview or PyVista or any other XML VTK file viewer.**
+
+[drag=45 30, drop=5 60, set=align-left, fit=0.7]
+```python
+Mesh.export_to_vtu(self, string filename, ... [," ascii" ][," quality" ])
+MeshFem.export_to_vtu(self, string filename, ... [," ascii" ][," quality" ])
+Slice.export_to_vtu(self, string filename, ... [,’ ascii’ ][,’ quality’ ])
+```
+[drag=50 20, drop=50 0, set=align-center]
+### What's New in GetFEM 5.4
+
+[drag=45 40, drop=50 20, set=align-left, fit=0.7]
+- The use of Python 3 instead of Python 2.7 by default
+- Support for Lumped Mass Matrix
+- Support for Houbolt method
