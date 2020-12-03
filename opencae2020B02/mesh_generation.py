@@ -2,9 +2,9 @@ import getfem as gf
 import numpy as np
 
 
-L = 10.0
-b = 1.0
-h = 1.0
+L = 10.0 # mm
+b = 1.0 # mm
+h = 1.0 # mm
 
 meshs = []
 for case, x, y in zip(cases, xs, ys):
