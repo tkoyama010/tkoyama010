@@ -1,7 +1,4 @@
 all:
 	make black
-	make run
-run:
-	python demo_tripod.py
 black:
-	black .
+	black -l 40 .

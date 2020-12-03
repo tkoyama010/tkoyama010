@@ -35,21 +35,24 @@
 [drag=100 20, drop=0 0]
 ## What is GetFEM?
 
-[drag=45 70, drop=5 20, fit=0.3]
-@code[python](opencae2020B02/demo_tripod.py)
+[drag=45 10, drop=5 20]
+### Structure of library
 
-[drag=20 10, drop=30 20]
-![height=500](https://upload.wikimedia.org/wikipedia/commons/f/f8/Python_logo_and_wordmark.svg)
+[drag=45 60, drop=5 30]
+![height=500](https://getfem.readthedocs.io/en/latest/_images/getfem_structure1.png)
 
-[drag=50 70, drop=50 20]
+[drag=50 10, drop=50 20]
+### Screenshot of example
+
+[drag=50 60, drop=50 30]
 ![height=500](https://getfem.readthedocs.io/ja/latest/_images/tripod.png)
 
 ---
-# Cantilever problem
+## Cantilever problem
 
 ---
 [drag=100 20, drop=0 0, set=align-center]
-## Parameter
+### Parameter of cantilever problem
 
 [drag=45 70, drop=5 20, set=align-left]
 - Geometory Condition
@@ -64,58 +67,31 @@ $E=10000 N/mm^2$, $\nu = 0.0$
 
 ---
 [drag=100 20, drop=0 0, set=align-center]
-## Mesh generation
+### Mesh generation
 
 [drag=45 70, drop=5 20, set=align-left, fit=0.7]
-```python
-import getfem as gf
-import numpy as np
+@code[python](opencae2020B02/mesh_generation.py)
 
-
-L = 10.0
-b = 1.0
-h = 1.0
-
-meshs = []
-for case, x, y in zip(cases, xs, ys):
-    X = np.arange(x + 1) * L / x
-    Y = np.arange(y + 1) * h / y
-    mesh = gf.Mesh("cartesian", X, Y)
-```
 [drag=50 70, drop=50 20]
 ![height=700](https://getfem-examples.readthedocs.io/en/latest/_images/cantilever_13_0.png)
 
 ---
 [drag=100 20, drop=0 0, set=align-center]
-## Definition of finite elements methods and integration method
+### Definition of finite elements methods
 
 [drag=45 70, drop=5 20, set=align-left, fit=0.7]
-```python
-fems = []
-# fem_names is the array of finite element method name.
-for fem_name in fem_names:
-    fems.append(gf.Fem("FEM_PRODUCT(" + fem_name + "," + fem_name + ")"))
-
-mfus = []
-for mesh, fem in zip(meshs, fems):
-    mfu = gf.MeshFem(mesh, 2)
-    mfu.set_fem(fem)
-    mfus.append(mfu)
-
-ims = []
-# im_names is the array of integral method name.
-for im_name in im_names:
-    ims.append(gf.Integ("IM_PRODUCT(" + im_name + ", " + method + ")"))
-
-mims = []
-for mesh, im in zip(meshs, ims):
-    mim = gf.MeshIm(mesh, im)
-    mims.append(mim)
-```
+@code[python](opencae2020B02/definition_of_finite_elements_methods.py)
 
 ---
 [drag=100 20, drop=0 0, set=align-center]
-## Model definition
+### Definition of integration method
+
+[drag=45 70, drop=5 20, set=align-left, fit=0.7]
+@code[python](opencae2020B02/definition_of_integration_methods.py)
+
+---
+[drag=100 20, drop=0 0, set=align-center]
+### Model definition
 
 [drag=45 70, drop=5 20, set=align-left, fit=0.7]
 ```python
@@ -135,7 +111,7 @@ for md in mds:
 
 ---
 [drag=100 20, drop=0 0, set=align-center]
-## Linearized elasticity bricks pstrain
+### Linearized elasticity bricks pstrain
 
 [drag=45 70, drop=5 20, set=align-left, fit=0.7]
 ```python
@@ -144,7 +120,7 @@ for md, mim in zip(mds, mims):
 ```
 ---
 [drag=100 20, drop=0 0, set=align-center]
-## Boundary condition at the left and right side of the beam
+### Boundary condition at the left and right side of the beam
 
 [drag=45 70, drop=5 20, set=align-left, fit=0.7]
 ```python
@@ -162,7 +138,7 @@ for (md, mfu, mim) in zip(mds, mfus, mims):
 
 ---
 [drag=100 20, drop=0 0, set=align-center]
-## Model solve
+### Model solve
 
 [drag=45 70, drop=5 20, set=align-left, fit=0.7]
 ```python
@@ -172,29 +148,3 @@ for md in mds:
 for md, mfu, case in zip(mds, mfus, cases):
     u = md.variable("u")
 ```
-
----
-[drag=50 20, drop=0 0, set=align-center]
-### API of Exporting Mesh, MeshFem object to XML VTK format
-
-[drag=45 40, drop=5 20, set=align-left, fit=0.7]
-There are essentially four ways to view the result of GetFEM computations:
-- Scilab, Octave or Matlab, with the interface. 
-- The open-source Paraview or PyVista or any other Legacy VTK file viewer.
-- The open-source OpenDX program.
-- The open-source Gmsh program.
-- **The open-source Paraview or PyVista or any other XML VTK file viewer.**
-
-[drag=45 30, drop=5 60, set=align-left, fit=0.7]
-```python
-Mesh.export_to_vtu(self, string filename, ... [," ascii" ][," quality" ])
-MeshFem.export_to_vtu(self, string filename, ... [," ascii" ][," quality" ])
-Slice.export_to_vtu(self, string filename, ... [,’ ascii’ ][,’ quality’ ])
-```
-[drag=50 20, drop=50 0, set=align-center]
-### What's New in GetFEM 5.4
-
-[drag=45 40, drop=50 20, set=align-left, fit=0.7]
-- The use of Python 3 instead of Python 2.7 by default
-- Support for Lumped Mass Matrix
-- Support for Houbolt method
