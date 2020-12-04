@@ -4,9 +4,11 @@ pv.set_plot_theme("document")
 mesh = (
     pv.Cube().triangulate().subdivide(3)
 )
+
 clipped_mesh = mesh.clip_box(
     [0, 1, 0, 1, 0, 1]
 )
+
 p = pv.Plotter(shape=(1, 2))
 p.subplot(0, 0)
 p.add_text("Before Clip")
