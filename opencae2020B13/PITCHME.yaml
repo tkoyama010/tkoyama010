@@ -1,0 +1,11 @@
+# GitPitch 4.0 Slide Deck
+gitpitch : 4.0
+
+# Custom CSS Style Rules (Optional)
+theme-override: assets/css/PITCHME.css
+
+# Slide Deck Metadata
+title : "GitPitch Quickstart"
+description : "Experience and experiment with the exciting new features at the heart of GitPitch 4.0."
+thumbnail : assets/img/gitpitch-40-splash.png
+
