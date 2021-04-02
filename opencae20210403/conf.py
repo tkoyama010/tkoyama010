@@ -5,17 +5,17 @@ import os
 
 # -- Project information -----------------------------------------------------
 project = "sphinx-revealjs"
-copyright = "2018, Kazuya Takei"
-author = "Kazuya Takei"
+copyright = "2021, Tetsuo Koyama"
+author = "Tetsuo Koyama"
 version = ""
-release = "2018.10"
+release = "2021.04"
 
 # -- General configuration ---------------------------------------------------
 extensions = ["sphinx_revealjs", "sphinxcontrib.gtagjs"]
 templates_path = ["_templates"]
 source_suffix = ".rst"
 master_doc = "index"
-language = None
+language = "jp"
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 pygments_style = None
 
@@ -63,7 +63,7 @@ latex_documents = [
         master_doc,
         "sphinx-revealjs.tex",
         "sphinx-revealjs Documentation",
-        "Kazuya Takei",
+        "Tetsuo Koyama",
         "manual",
     ),
 ]
