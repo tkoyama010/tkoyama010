@@ -2,7 +2,7 @@
 PyVista Contribution 2021 Jan-Mar
 =================================
 
-.. PyVista Contribution 2021 Jan-Marというタイトルで発表させていただきます．
+.. PyVista Contribution 2021 Jan-Marというタイトルでトークをさせていただきます. よろしくお願いいたします.
 
 .. toctree::
    :glob:
@@ -13,26 +13,53 @@ PyVista Contribution 2021 Jan-Mar
 :Author: @tkoyama010
 :Based version: 1.0.0
 
-Overview
-========
+Who am I?
+=========
 
-What is this?
--------------
+.. まずは自己紹介をさせてください. tkoyama010というアカウントでOSS活動しています. TwitterアカウントとGitHubアカウントは同じです. フォローよろしくお願いたします. 私は有限要素法のソフトウェア実装とコンピューターグラフィックスによる視覚化に興味があります. GitHubでのOSS活動の他に技術同人誌としてGetFEMというライブラリの本を執筆しています. Twitterの固定ツイートからリンクが辿れるようになっていますのでご興味のある方はそちらをご覧ください. 本日はPythonの可視化ライブラリPyVistaについてお話します.
 
-.. このプレゼンでは @tkoyama010 が2021年1月から3月までに行った貢献について説明します．
+Why PyVista?
+============
+
+Pythonic interface to VTK’s Python-C++ bindings
+-----------------------------------------------
+
+.. このライブラリの最大の目標はVTKにPythonicなインタフェースを提供することです. VTKは世界中の商用アプリケーション,研究開発,先進的な可視化アプリケーションの基盤として使われている信頼性のある可視化ライブラリです. しかし,例えばこのstanford bunnyを使用してOBJファイルのロードとプロットを行う場合,vtk モジュールだけを使用すると大量のコードが必要になります。 PyVistaを使用して,同じobjファイルをロードしたりプロットすることができます: メッシュオブジェクトはよりPython的で,コードはずっと単純です. ガベージコレクションは自動的に処理され,ユーザがVTKプロットウィンドウを閉じた後にレンダラはクリーンアップされます.
+
+Filtering/plotting tools built for interactivity
+------------------------------------------------
+
+.. また,PyVistaには,クリッピング,スライス,および閾値などのフィルタを制御するためにレンダリングシーンに追加できるいくつかのウィジェットがあります. 具体的には,ボックス,プレーン,およびラインまたはスライダバーの位置を制御するウィジェットがあり,これらはすべてカスタムコールバック関数を使用して高度にカスタマイズできます. こちらに示した例はボックスウィジェットです.
+
+Direct access to common VTK filters
+-----------------------------------
+
+.. VTKには様々なフィルタが実装されています. 通常それらのフィルタを使用するには大量のコードが必要ですがPyVistaでは簡単にアクセスすることができます. こちらはclip_boxというフィルタを使用した例です. このフィルタは境界によって定義された境界ボックスによってデータセットをクリップします. 修正前の立方体meshとクリップ後のメッシュclipped_meshを比較すると正しくフィルタが処理されていることを確認できます.
+
+Intuitive plotting routines with matplotlib similar syntax
+----------------------------------------------------------
+
+.. こちらはmatplotlibのようなsubplot機能を使用してVTKの各描画を行ったものです. このような仕様のおかげでmatplotlibを使ったことのあるユーザーであれば直感的に使用することが可能です. matplotlibでは3次元の描画は困難があるためCAEの描画を行う際にはPyVistaを使用することをおすすめします.
+
+New Contributions
+=================
+
+.. 最後に @tkoyama010 が2021年1月から3月までに行った貢献を4つご紹介します．
 
 Contribution to PyVista by @tkoyama010 in 2021 Jan-Mar
 
-Contributions
--------------
+✨ Add Pyramid function (#1102)
+-------------------------------
 
-.. 今回はこちらの貢献をしました
+.. 1つ目はPyramid関数です.
 
-* 📷 Add camera object (#945)
-* ✨ Add Pyramid function (#1102)
-* ✨ Add extrude_rotate filter (#1126)
-* 🐛 Resolve #1206 (#1207)
-* 🩹 plot_over_line should fail if scalar name does not exist (#1214)
-* 🚩 Resolve #1047 (#1177)
-* 🐛 Fix unremovable interactive scalar bar (#1198)
-* ✨ Add plot_over_circular_arc (#1218)
+
+✨ Add extrude_rotate filter (#1126)
+------------------------------------
+
+🚩 Resolve #1047 (#1177)
+------------------------
+
+✨ Add plot_over_circular_arc (#1218)
+-------------------------------------
+
