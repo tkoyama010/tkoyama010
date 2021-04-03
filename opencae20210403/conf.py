@@ -11,12 +11,19 @@ version = ""
 release = "2021.04"
 
 # -- General configuration ---------------------------------------------------
-extensions = ["sphinx_revealjs", "sphinxcontrib.gtagjs"]
+extensions = [
+    "sphinx_revealjs",
+    "sphinxcontrib.gtagjs",
+]
 templates_path = ["_templates"]
 source_suffix = ".rst"
 master_doc = "index"
 language = "jp"
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
+exclude_patterns = [
+    "_build",
+    "Thumbs.db",
+    ".DS_Store",
+]
 pygments_style = None
 
 # -- Options for HTML output -------------------------------------------------
@@ -28,7 +35,9 @@ html_static_path = ["_static"]
 
 # -- Options for Reveal.js output ---------------------------------------------
 revealjs_static_path = ["_static"]
-revealjs_google_fonts = ["M PLUS 1p",]
+revealjs_google_fonts = [
+    "M PLUS 1p",
+]
 revealjs_style_theme = "black"
 revealjs_script_conf = """
     {
@@ -70,7 +79,13 @@ latex_documents = [
 
 # -- Options for manual page output ------------------------------------------
 man_pages = [
-    (master_doc, "sphinx-revealjs", "sphinx-revealjs Documentation", [author], 1)
+    (
+        master_doc,
+        "sphinx-revealjs",
+        "sphinx-revealjs Documentation",
+        [author],
+        1,
+    )
 ]
 
 # -- Options for Texinfo output ----------------------------------------------
@@ -92,4 +107,6 @@ epub_exclude_files = ["search.html"]
 
 # -- Options for extensions --------------------------------------------------
 if "GTAGJS_IDS" in os.environ:
-    gtagjs_ids = os.environ["GTAGJS_IDS"].split(",")
+    gtagjs_ids = os.environ["GTAGJS_IDS"].split(
+        ","
+    )

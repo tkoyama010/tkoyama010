@@ -1,11 +1,11 @@
 [drag=100 100, drop=center]
 
-# PyVista Contribution 2020
+# PyVista Contribution 2021 Jan-Mar
 ## @tkoyama010
 
 Note:
 
-PyVista Contribution 2020というタイトルでトークをさせていただきます.
+PyVista Contribution 2021 Jan-Marというタイトルでトークをさせていただきます.
 よろしくお願いいたします.
 
 ---
@@ -45,24 +45,27 @@ TwitterアカウントとGitHubアカウントは同じです.
 私は有限要素法のソフトウェア実装とコンピューターグラフィックスによる視覚化に興味があります.
 GitHubでのOSS活動の他に技術同人誌としてGetFEMというライブラリの本を執筆しています.
 Twitterの固定ツイートからリンクが辿れるようになっていますのでご興味のある方はそちらをご覧ください.
-今回，シンポジウムでは2つのセッションでトークをします.
-2回目はVTKのPythonの可視化ライブラリPyVistaについてお話します.
+最近，PyVistaという可視化ライブラリのOSSの開発に開発者チームとして参加しています．
+今回はそれについてお話します．
 
 ---
 # なぜPyVistaか？
+
+Note:
+まずはPyVistaが何を目指しているのかご説明します．
 
 ---
 [drag=100 20, drop=0 0]
 ## VTKへのPythonicなインタフェース
 
 [drag=45 80, drop=5 20, fit=0.5]
-@code[python](opencae2020B13/test_bunny_org.py)
+@code[python](opencae20210403/test_bunny_org.py)
 
 [drag=50 70, drop=50 20]
-![height=1000](opencae2020B13/bunny.png)
+![height=1000](opencae20210403/bunny.png)
 
 [drag=15 10, drop=35 85]
-↓つづく
+つづく
 
 Note:
 
@@ -75,10 +78,10 @@ VTKは世界中の商用アプリケーション,研究開発,先進的な可視
 ## VTKへのPythonicなインタフェース
 
 [drag=45 70, drop=5 20, fit=0.5]
-@code[python](opencae2020B13/test_bunny.py)
+@code[python](opencae20210403/test_bunny.py)
 
 [drag=50 70, drop=50 20]
-![height=1000](opencae2020B13/bunny.png)
+![height=1000](opencae20210403/bunny.png)
 
 Note:
 
@@ -92,7 +95,7 @@ PyVistaを使わずにvtkモジュールを直接使用するとユーザーは�
 ## 対話型のプロットツール
 
 [drag=45 70, drop=5 20, fit=0.5]
-@code[python](opencae2020B13/test_widget_box.py)
+@code[python](opencae20210403/test_widget_box.py)
 
 [drag=50 70, drop=50 20]
 ![](https://pyvista-doc.readthedocs.io/ja/latest/_images/box-clip.gif)
@@ -108,11 +111,11 @@ Note:
 ## VTKフィルタへのアクセス
 
 [drag=45 70, drop=5 20, fit=0.5]
-@code[python](opencae2020B13/test_clip_box.py)
+@code[python](opencae20210403/test_clip_box.py)
 @[8-10]()
 
 [drag=50 70, drop=50 20]
-![height=1000](opencae2020B13/clip_box.png)
+![height=1000](opencae20210403/clip_box.png)
 
 Note:
 
@@ -127,10 +130,10 @@ VTKには様々なフィルタが実装されています.
 ## ```matplotlib``` のようなプロット
 
 [drag=45 90, drop=5 10, fit=0.5]
-@code[python](opencae2020B13/test_multi_renderers.py)
+@code[python](opencae20210403/test_multi_renderers.py)
 
 [drag=50 70, drop=50 20]
-![height=1000](opencae2020B13/multi_renderers.png)
+![height=1000](opencae20210403/multi_renderers.png)
 
 Note:
 
@@ -139,123 +142,121 @@ Note:
 matplotlibでは3次元の描画は困難があるためCAEの描画を行う際にはPyVistaを使用することをおすすめします.
 
 ---
-# 今年追加した機能
+# 1月から3月までに追加した機能
 
 Note:
 
-最後に今年追加した機能を2つご紹介します.
+最後に1月から3月までに追加した機能を3つご紹介します.
+以下のスライドでは左がPythonの全ソース，右がそれによりプロットできる図となります.
 
 ---
 [drag=100 20, drop=0 0]
-## @emoji[scissors] Shrinkフィルタ
+## ジオメトリオブジェクト
 
 [drag=45 70, drop=5 20, fit=0.5]
-@code[python](opencae2020B13/test_shrink.py)
+@code[python](opencae20210403/test_geometric_objects.py)
 
 [drag=50 70, drop=50 20]
-![height=1000](opencae2020B13/shrink.png)
+![height=1000](opencae20210403/geometric_objects.png)
+
 
 Note:
-
-1つ目はShrinkフィルタです.
-このフィルタはメッシュを縮めることにより各メッシュ要素を独立して表示する機能です.
-CAEの現場ではメッシュ作成の際に要素のつながりが不自然ではないかの確認に使用されます.
-このメソッドに関する議論は梗概のプルリクエストで行われていますのでご興味のある方はそちらのご確認をお願いいたします.
+PyVistaには，単純なジオメトリオブジェクトを生成する関数がいくつかあります．
+既存のジオメトリオブジェクトにはここにプロットした円柱・矢印・球・平面・線分・ボックスなどがあります．
 
 ---
 [drag=100 20, drop=0 0]
-## @emoji[scissors] Shrinkフィルタ
-
-[drag=45 10, drop=5 20, fit=0.5, set=align-left]
-メソッド
-
-[drag=45 30, drop=5 30, fit=0.5]
-```python
-def shrink(dataset, shrink_factor=1.0, progress_bar=False):
-    if not (0.0 <= shrink_factor <= 1.0):
-        raise ValueError("'shrink_factor' ...")
-    alg = vtk.vtkShrinkFilter()
-    alg.SetInputData(dataset)
-    alg.SetShrinkFactor(shrink_factor)
-    _update_alg(alg, progress_bar, 'Shrinking Mesh')
-    output = pyvista.wrap(alg.GetOutput())
-    if isinstance(dataset, vtk.vtkPolyData):
-        return output.extract_surface()
-```
-
-[drag=45 10, drop=5 20, fit=0.5, set=align-left]
-テストコード
-
-[drag=45 30, drop=5 60, fit=0.5]
-```python
-def test_shrink():
-    mesh = pyvista.Sphere()
-    shrunk = mesh.shrink(shrink_factor=0.8)
-    assert shrunk.n_cells == mesh.n_cells
-    assert shrunk.area < mesh.area
-```
-
-[drag=50 70, drop=50 20]
-![height=1000](opencae2020B13/shrink.png)
-
-Note:
-
-こちらが,追加したメソッドとテストコードですメソッドはDataSetFilterクラスに追加されています.
-このクラスに追加したメソッドが呼び出されると対象のDataSetオブジェクトが引数datasetに渡されそれに対してフィルタ処理を行います.
-また,PyVistaはテストにpytestを使用しています.
-pytestはPythonのテストライブラリで接頭辞にtestがツイている関数をテストとして実行します.
-今回のテストではシュリンク前とシュリンク後セルの数が等しく,シュリンク前のメッシュの面積がシュリンク後よりも大きいことを確認しました.
-この機能は2020年11月08日のVersion 0.27.0 でリリースされました.
-
----
-[drag=100 20, drop=0 0]
-## @emoji[camera] Cameraオブジェクト
+## 四角錐・円弧ジオメトリ作成機能
 
 [drag=45 70, drop=5 20, fit=0.5]
-@code[python](opencae2020B13/test_camera_zoom.py)
+@code[python](opencae20210403/test_pyramid.py)
 
 [drag=50 70, drop=50 20]
-![height=1000](opencae2020B13/test_camera.png)
+![height=1000](opencae20210403/pyramid.png)
 
 Note:
 
-2つ目は現在開発中の機能です.
-そのため梗概には載っておりません.
-PyVistaに新たにcameraオブジェクトを追加することにしました.
-これはvtkCameraオブジェクトのラッパークラスであり描画の視点位置と視線方向を制御するクラスです.
-こちらは飛行機のメッシュをプロットした例です.
+今回新しく四角錐・円弧ジオメトリ作成機能を追加しました.
+Pyramid関数は5点で定義される角錐を作成します．
+角錐の点．最初の4つの点が四角形の面上の反時計回りの4つの点になり，最後の点が頂点になるように，点が順序付けられます．
+CircularArcFromNormal関数は中心とベクトルを指定することで円弧を作成します．
 
 ---
 [drag=100 20, drop=0 0]
-## @emoji[camera] Cameraオブジェクト
+## 押出し回転機能
 
 [drag=45 70, drop=5 20, fit=0.5]
-@code[python](opencae2020B13/test_camera_zoom.py)
-@[10]()
+@code[python](opencae20210403/test_extrude_rotate.py)
 
 [drag=50 70, drop=50 20]
-![height=1000](opencae2020B13/test_camera_zoom.png)
+![height=1000](opencae20210403/extrude_rotate.png)
 
 Note:
-
-例えば、こちらのようにzoomを行うとカメラがズームされます.
+また，2つ目の機能追加としてジオメトリを使用した押出し回転機能も追加しました．
+この機能では，フリーエッジとフリーラインから面を作成し，頂点からラインを作成して，ポリゴンデータを押出します．
+たとえば，線分をスイープすると円柱シェルが作成され，円をスイープするとトーラスが作成されます．
+このフィルタは，円柱，ボトル，ワイングラスなどの軸対称オブジェクトのモデリングに使用できます．
+または，スプリングやコルク抜きなどの移動/回転対称オブジェクトなども作成できます．
 
 ---
 [drag=100 20, drop=0 0]
-## @emoji[camera] Cameraオブジェクト
+## 線上のサンプリング値プロット機能
 
 [drag=45 70, drop=5 20, fit=0.5]
-@code[python](opencae2020B13/test_camera_up.py)
-@[10]()
+@code[python](opencae20210403/test_plot_over_line1.py)
 
 [drag=50 70, drop=50 20]
-![height=1000](opencae2020B13/test_camera_up.png)
+![height=1000](opencae20210403/plot_over_line1.png)
 
 Note:
+さらに，PyVistaでは既存の機能として線上のサンプリング値プロット機能があります．
+この機能は，こちらに示すようなコンター図があった場合，ユーザーが指定した線に沿ってデータセットをサンプリングし，プロットします．
+右の図はPyVistaに用意されているデータ例です．
+A点とB点の間で指定した線に沿ってデータをサンプリングします．
 
-例えば、こちらのようにupを行うとカメラの描画方向のベクトルが更新されます.
-現在、こちらの機能は12月31日リリース予定のVersion0.28.0の主要機能として開発中です.
-Version0.28.0のマイルストーンからこちらのプルリクエストの議論を確認することができます.
+---
+[drag=100 20, drop=0 0]
+## 線上のサンプリング値プロット機能
+
+[drag=45 70, drop=5 20, fit=0.5]
+@code[python](opencae20210403/test_plot_over_line2.py)
+
+[drag=50 70, drop=50 20]
+![height=1000](opencae20210403/plot_over_line2.png)
+
+Note:
+先程ご説明した線のジオメトリオブジェクトを使用したメソッドsample_over_lineを使用してデータをサンプリングしています．
+取得したデータはnumpy配列で返されるためmatplotlibで右図のように可視化することができます．
+
+---
+[drag=100 20, drop=0 0]
+## 円弧上のサンプリング値プロット機能
+
+[drag=45 80, drop=5 20, fit=0.5]
+@code[python](opencae20210403/test_plot_over_circular_arc1.py)
+
+[drag=50 70, drop=50 20]
+![height=1000](opencae20210403/plot_over_circular_arc1.png)
+
+Note:
+同様のことを先程説明した円弧のジオメトリックオブジェクトを使用して行います．
+こちらが3つ目の機能です．
+右の図はPyVistaに用意されている別のデータ例です．
+A点とB点の間で指定した円弧に沿ってデータをサンプリングします．
+
+---
+[drag=100 20, drop=0 0]
+## 円弧上のサンプリング値プロット機能
+
+[drag=45 70, drop=5 20, fit=0.5]
+@code[python](opencae20210403/test_plot_over_circular_arc2.py)
+
+[drag=50 70, drop=50 20]
+![height=1000](opencae20210403/plot_over_circular_arc2.png)
+
+Note:
+先程ご説明した円弧のジオメトリオブジェクトを使用したメソッドsample_over_circular_arc_normalを使用してデータをサンプリングしています．
+取得したデータはnumpy配列で返されるためmatplotlibで右図のように可視化することができます．
 
 ---
 [drag=100 20, drop=0 0]
@@ -269,11 +270,11 @@ Version0.28.0のマイルストーンからこちらのプルリクエストの�
 - ```matplotlib``` のようなプロット
 
 ### 追加機能
-- @emoji[scissors] Shrink フィルタ
-- @emoji[camera] Camera オブジェクト
+- 円弧ジオメトリ作成機能
+- 押出し回転機能
+- 円弧上のサンプリング値プロット機能
 
 Note:
-
 まとめです.
 PyVistaの利点として
 - VTKへのPythonicなインタフェース
@@ -282,9 +283,5 @@ PyVistaの利点として
 - ```matplotlib``` のようなプロット
 を説明しました.
 
-また今年追加したまたは追加ている機能としてShrinkフィルタとCameraオブジェクトを追加しました.
-今年からPyVistaへのコントリビューションを開始したためまだあまり貢献できていませんが、今後コミット量を増やしていきたいとかんがえています.
-
----
-[drag=80 90, drop=10 5]
-![height=2000](opencae2020B13/contributions01.png)
+また今年追加した3つの機能について説明をしました.
+PyVistaにご興味のある方はご使用・ご感想をお待ちしております．

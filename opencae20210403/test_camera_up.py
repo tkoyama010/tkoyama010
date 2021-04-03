@@ -8,6 +8,4 @@ plotter.add_mesh(
     mesh, color="tan", show_edges=True
 )
 plotter.camera.up([0, 1, 0])
-plotter.show(
-    screenshot="test_camera_up.png"
-)
+plotter.show(screenshot="test_camera_up.png")

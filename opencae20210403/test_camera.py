@@ -7,6 +7,4 @@ plotter = pv.Plotter(off_screen=True)
 plotter.add_mesh(
     mesh, color="tan", show_edges=True
 )
-plotter.show(
-    screenshot="test_camera.png"
-)
+plotter.show(screenshot="test_camera.png")

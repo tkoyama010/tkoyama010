@@ -8,6 +8,4 @@ plotter.add_mesh(
     mesh, color="tan", show_edges=True
 )
 plotter.camera.zoom(5)
-plotter.show(
-    screenshot="test_camera_zoom.png"
-)
+plotter.show(screenshot="test_camera_zoom.png")
