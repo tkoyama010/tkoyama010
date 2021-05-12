@@ -1,6 +1,15 @@
 Hi! My name is Tetsuo Koyama. I'm CAE software engineer in Japan. I'm interested in scientific computing and visualization with computer graphics. I'm writing a self-published book. The title is "Getting Started with GetFEM". This book is a Japanese translation of the Python interface tutorial from GetFEM, an open source finite element method library. I am a commiter of GetFEM and developer team of [PyVista](https://github.com/orgs/pyvista/people).
-<br>
-</br>
+
+[<img align="left" alt="tkoyama010.com" width="16px" src="https://raw.githubusercontent.com/iconic/open-iconic/master/svg/globe.svg" />](https://note.com/tkoyama)
+[<img align="left" alt="tkoyama010 | Twitter" width="16px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/twitter.svg" />](https://twitter.com/tkoyama010)
+[<img align="left" alt="codeSTACKr | LinkedIn" width="16px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" />](https://linkedin.com/in/tetsuo-koyama-022540190)
+[<img align="left" alt="tkoyama010 | Youtube" width="16px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/youtube.svg" />](https://www.youtube.com/channel/UC6vSvx6nR2WyHVkIyrx4wYQ)
+[<img align="left" alt="tkoyama010 | Qiita" width="16px" src="https://cdn.jsdelivr.net/npm/simple-icons@3.6.1/icons/qiita.svg" />](https://qiita.com/tkoyama010)
+[<img align="left" alt="tkoyama010 | Podcast" width="16px" src="https://cdn.jsdelivr.net/npm/simple-icons@3.6.1/icons/googlepodcasts.svg" />](https://podcasts.google.com/feed/aHR0cHM6Ly9yYWRpb3RhbGsuanAvcnNzL2M5NTA2NTU3YWU5MDk0NzE?sa=X&ved=2ahUKEwjj0pvG3dTrAhVvEqYKHWvwApQQ9sEGegQIARAC)
+[<img align="left" alt="tkoyama010.com" width="16px" src="https://raw.githubusercontent.com/iconic/open-iconic/master/svg/book.svg" />](https://tkoyama010.booth.pm/)
+[<img align="left" alt="tkoyama010 | instagram" width="16px" src="https://cdn.jsdelivr.net/npm/simple-icons@3.6.1/icons/instagram.svg" />](https://www.instagram.com/tkoyama010/)
+[<img align="left" alt="tkoyama010 | facebook" width="16px" src="https://cdn.jsdelivr.net/npm/simple-icons@3.6.1/icons/facebook.svg" />](https://www.facebook.com/tetsuo.koyama.94/)
+
 ![](https:///badge/OS-Linux-informational?style=flat&logo=linux&logoColor=white&color=2bbc8a)
 ![](https://img.shields.io/badge/Code-Python-informational?style=flat&logo=python&logoColor=white&color=2bbc8a)
 ![](https://img.shields.io/badge/Code-C++-informational?style=flat&logo=c%2B%2B&logoColor=white&color=2bbc8a)
@@ -13,13 +22,26 @@ Hi! My name is Tetsuo Koyama. I'm CAE software engineer in Japan. I'm interested
 [![](https://raw.githubusercontent.com/tkoyama010/tkoyama010/master/profile-summary-card-output/vue/1-repos-per-language.svg)](https://github.com/vn7n24fzkq/github-profile-summary-cards)
 [![](https://raw.githubusercontent.com/tkoyama010/tkoyama010/master/profile-summary-card-output/vue/2-most-commit-language.svg)](https://github.com/vn7n24fzkq/github-profile-summary-cards)
 [![](https://raw.githubusercontent.com/tkoyama010/tkoyama010/master/profile-summary-card-output/vue/3-stats.svg)](https://github.com/vn7n24fzkq/github-profile-summary-cards)
+<!--
+**hrntsm/hrntsm** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
-[<img align="left" alt="tkoyama010.com" width="16px" src="https://raw.githubusercontent.com/iconic/open-iconic/master/svg/globe.svg" />](https://note.com/tkoyama)
-[<img align="left" alt="tkoyama010 | Twitter" width="16px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/twitter.svg" />](https://twitter.com/tkoyama010)
-[<img align="left" alt="codeSTACKr | LinkedIn" width="16px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" />](https://linkedin.com/in/tetsuo-koyama-022540190)
-[<img align="left" alt="tkoyama010 | Youtube" width="16px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/youtube.svg" />](https://www.youtube.com/channel/UC6vSvx6nR2WyHVkIyrx4wYQ)
-[<img align="left" alt="tkoyama010 | Qiita" width="16px" src="https://cdn.jsdelivr.net/npm/simple-icons@3.6.1/icons/qiita.svg" />](https://qiita.com/tkoyama010)
-[<img align="left" alt="tkoyama010 | Podcast" width="16px" src="https://cdn.jsdelivr.net/npm/simple-icons@3.6.1/icons/googlepodcasts.svg" />](https://podcasts.google.com/feed/aHR0cHM6Ly9yYWRpb3RhbGsuanAvcnNzL2M5NTA2NTU3YWU5MDk0NzE?sa=X&ved=2ahUKEwjj0pvG3dTrAhVvEqYKHWvwApQQ9sEGegQIARAC)
-[<img align="left" alt="tkoyama010.com" width="16px" src="https://raw.githubusercontent.com/iconic/open-iconic/master/svg/book.svg" />](https://tkoyama010.booth.pm/)
-[<img align="left" alt="tkoyama010 | instagram" width="16px" src="https://cdn.jsdelivr.net/npm/simple-icons@3.6.1/icons/instagram.svg" />](https://www.instagram.com/tkoyama010/)
-[<img align="left" alt="tkoyama010 | facebook" width="16px" src="https://cdn.jsdelivr.net/npm/simple-icons@3.6.1/icons/facebook.svg" />](https://www.facebook.com/tetsuo.koyama.94/)
+Here are some ideas to get you started:
+
+- 🔭 I’m currently working on ...
+- 🌱 I’m currently learning ...
+- 👯 I’m looking to collaborate on ...
+- 🤔 I’m looking for help with ...
+- 💬 Ask me about ...
+- 📫 How to reach me: ...
+- 😄 Pronouns: ...
+- ⚡ Fun fact: ...
+-->
+
+<br>
+</br>
+<a href="https://github.com/anuraghazra/github-readme-stats">
+  <img align="left" src="https://github-readme-stats.vercel.app/api?username=tkoyama010&count_private=true&show_icons=true&theme=buefy" />
+</a>
+<a href="https://github.com/anuraghazra/github-readme-stats">
+  <img align="left" src="https://github-readme-stats.vercel.app/api/top-langs/?username=tkoyama010&theme=buefy" />
+</a>
