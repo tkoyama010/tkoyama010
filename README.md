@@ -1,5 +1,48 @@
 Hi! My name is Tetsuo Koyama. I'm CAE software engineer in Japan. I'm interested in scientific computing and visualization with computer graphics. I'm writing a self-published book. The title is "Getting Started with GetFEM". This book is a Japanese translation of the Python interface tutorial from GetFEM, an open source finite element method library. I am a commiter of GetFEM and developer team of [PyVista](https://github.com/orgs/pyvista/people).
 
+![](https://komarev.com/ghpvc/?username=tkoyama010)
+
+![Metrics](https://metrics.lecoq.io/tkoyama010?template=classic&config.timezone=Asia%2FTokyo)
+
+<!-- Like のバッジ -->
+<a href="https://zenn.dev/tkoyama010">
+  <img src="https://zenn.badge.nikaera.com/s/tkoyama010/likes?style=plastic" alt="tkoyama010 likes" />
+</a>
+
+<!-- Articles のバッジ -->
+<a href="https://zenn.dev/tkoyama010/articles">
+  <img src="https://zenn.badge.nikaera.com/s/tkoyama010/articles?style=plastic" alt="tkoyama010 articles" />
+</a>
+
+<!-- Followers のバッジ -->
+<a href="https://zenn.dev/tkoyama010/followers">
+  <img src="https://zenn.badge.nikaera.com/s/tkoyama010/followers?style=plastic" alt="tkoyama010 followers" />
+</a>
+
+<!-- Books のバッジ -->
+<a href="https://zenn.dev/tkoyama010/books">
+  <img src="https://zenn.badge.nikaera.com/s/tkoyama010/books?style=plastic" alt="tkoyama010 books" />
+</a>
+
+<!-- Scraps のバッジ -->
+<a href="https://zenn.dev/tkoyama010/scraps">
+  <img src="https://zenn.badge.nikaera.com/s/tkoyama010/scraps?style=plastic" alt="tkoyama010 scraps" />
+</a>
+
+[![My Qiita posts](https://qiita-badge.apiapi.app/s/tkoyama010/posts.svg)](http://qiita.com/tkoyama010)
+[![My Qiita contributions](https://qiita-badge.apiapi.app/s/tkoyama010/contributions.svg)](http://qiita.com/tkoyama010)
+[![My Qiita followers](https://qiita-badge.apiapi.app/s/tkoyama010/followers.svg)](http://qiita.com/tkoyama010)
+
+[![trophy](https://github-profile-trophy.vercel.app/?username=tkoyama010)](https://github.com/ryo-ma/github-profile-trophy)
+
+
+<a href="https://github.com/tkoyama010/github-readme-stats">
+  <img align="left" src="https://github-readme-stats.vercel.app/api?username=tkoyama010&count_private=true&show_icons=true" />
+</a>
+<a href="https://github.com/tkoyama010/github-readme-stats">
+  <img align="left" src="https://github-readme-stats.vercel.app/api/top-langs/?username=tkoyama010" />
+</a>
+
 [<img align="left" alt="tkoyama010.com" width="16px" src="https://raw.githubusercontent.com/iconic/open-iconic/master/svg/globe.svg" />](https://note.com/tkoyama)
 [<img align="left" alt="tkoyama010 | Twitter" width="16px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/twitter.svg" />](https://twitter.com/tkoyama010)
 [<img align="left" alt="codeSTACKr | LinkedIn" width="16px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" />](https://linkedin.com/in/tetsuo-koyama-022540190)
