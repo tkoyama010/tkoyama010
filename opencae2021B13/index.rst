@@ -90,3 +90,59 @@ CoFEAプロジェクトについて
 ==============
 
 .. image:: https://cofea-ja.readthedocs.io/ja/latest/_images/hex-comparison.png
+
+
+初期化
+======
+
+.. literalinclude:: tuning_fork.py
+   :language: python
+   :lines: 6-12
+
+モデルのパラメータ
+==================
+
+.. literalinclude:: tuning_fork.py
+   :language: python
+   :lines: 20-29
+
+メッシュ生成その1
+=================
+
+.. literalinclude:: tuning_fork.py
+   :language: python
+   :lines: 35-84
+
+メッシュ生成その2
+=================
+
+.. literalinclude:: tuning_fork.py
+   :language: python
+   :lines: 92-96
+
+有限要素法と積分法の定義
+========================
+
+.. literalinclude:: tuning_fork.py
+   :language: python
+   :lines: 105-119
+
+質量行列と剛性行列のアセンブリング
+==================================
+
+.. literalinclude:: tuning_fork.py
+   :language: python
+   :lines: 125-140
+
+固有値解析を解く
+================
+
+.. literalinclude:: tuning_fork.py
+   :language: python
+   :lines: 156-209
+
+まとめ
+======
+
+- CoFEAプロジェクトについて説明した。
+- CoFEAプロジェクトにGetFEMの結果を追加した。
