@@ -56,16 +56,42 @@ PySPHの解析事例
    重力加速度は、g=9.80665m/s2としました。
    また、時間増分量 :math:`1.2 \times 10^{-5} s`としました。
 
-.. 今回のスクリプトを実行するのはとても簡単です。
-   Ubuntu20.04でこちらのコマンドを実行してpysphをインストールしてください。
+解析の実行方法
+==============
+
+.. code-block:: bash
+
+   $ sudo apt-get install python-pysph # pysphのインストール
+   $ git clone git@github.com:tkoyama010/pysph.git # 今回のスクリプトのチェックアウト
+   $ cd pysph
+   $ git checkout feat/milk-crown
+   $ cd ../
+   $ python3 ./pysph/pysph/examples/milk_crown.py # スクリプトの実行
+   $ pysph dump_vtk milk_crown_output # vtkへの出力
+
+.. 今回のスクリプトを実行するためのコマンドです。
+   環境はUbuntu20.04を使用しました。
    次にこちらのコマンドで私がフォークしたリポジトリをチェックアウトしてpysphを実行してください。
-   チェックアウトしたらスクリプトを実行すると結果のフォルダが作成されます。
-   こちらのコマンドでvtkファイルに出力することができます。
+   そしてpysphをインストールしてください。
+   スクリプトを実行すると結果のフォルダmilk_crown_outputが作成されます。
+   dump_vtkコマンドでvtkファイルが同じディレクトリに出力されます。
+
+結果の可視化
+============
+
+.. raw:: html
+
+
+    <div align="center">
+    <iframe width="840" height="472.5"
+        src="https://www.youtube.com/embed/1OEsr0S0gBE"
+        frameborder="0" allowfullscreen>
+    </iframe>
+    </div>
 
 .. Paraviewで可視化した結果がこちらになります。
    液滴が水面に落下し、その衝撃で水面が円筒状に上昇していることがわかります。
    しかし、上昇した水面の先端部においてクラウン状の水面形状が発生しているところまでは確認できませんでした。
    考えられる理由としては今回の計算では気体部分を真空と過程しており気圧がかかっていないことがあげられます。
    流体の専門の方には常識なのかもしれませんが、液体の背景にこのようにチェッカーの板を配置することで液体の動きがよく分かることに今回気が付きました。
-
-.. 以上です。ご清聴ありがとうございました。
+   以上です。ご清聴ありがとうございました。
