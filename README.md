@@ -1,4 +1,4 @@
-Hi! My name is Tetsuo Koyama. I'm CAE software engineer in Japan. I'm interested in scientific computing and visualization with computer graphics. I'm writing a self-published book. The title is "Getting Started with GetFEM". This book is a Japanese translation of the Python interface tutorial from GetFEM, an open source finite element method library. I am a commiter of GetFEM and developer team of [PyVista](https://github.com/orgs/pyvista/people).
+Hi! My name is Tetsuo Koyama. I'm CAE software engineer in Japan. I'm interested in scientific computing and visualization with computer graphics. I'm writing a book. The title is [Pythonによる有限要素法 実装ノート](https://www.amazon.co.jp/dp/B09SPMYZN4). I am a commiter of GetFEM and developer team of [PyVista](https://github.com/orgs/pyvista/people).
 
 <p>
   <a href="https://twitter.com/intent/follow?screen_name=tkoyama010">
