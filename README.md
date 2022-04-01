@@ -10,6 +10,7 @@ Hi! My name is Tetsuo Koyama. I'm CAE software engineer in Japan. I'm interested
   </a>
 </p>
 
+![](./profile-3d-contrib/profile-green-animate.svg)
 
 ![](https://komarev.com/ghpvc/?username=tkoyama010)
 
