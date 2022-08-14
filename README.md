@@ -79,7 +79,7 @@ Hi! My name is Tetsuo Koyama. I'm CAE software engineer in Japan. I'm interested
 [<img align="left" alt="tkoyama010 | Youtube" width="16px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/youtube.svg" />](https://www.youtube.com/channel/UC6vSvx6nR2WyHVkIyrx4wYQ)
 [<img align="left" alt="tkoyama010 | Qiita" width="16px" src="https://cdn.jsdelivr.net/npm/simple-icons@3.6.1/icons/qiita.svg" />](https://qiita.com/tkoyama010)
 [<img align="left" alt="tkoyama010 | Podcast" width="16px" src="https://cdn.jsdelivr.net/npm/simple-icons@3.6.1/icons/googlepodcasts.svg" />](https://podcasts.google.com/feed/aHR0cHM6Ly9yYWRpb3RhbGsuanAvcnNzL2M5NTA2NTU3YWU5MDk0NzE?sa=X&ved=2ahUKEwjj0pvG3dTrAhVvEqYKHWvwApQQ9sEGegQIARAC)
-[<img align="left" alt="tkoyama010.com" width="16px" src="https://raw.githubusercontent.com/iconic/open-iconic/master/svg/book.svg" />](https://tkoyama010.booth.pm/)
+[<img align="left" alt="tkoyama010.com" width="16px" src="https://raw.githubusercontent.com/iconic/open-iconic/master/svg/book.svg" />](https://www.amazon.co.jp/%E5%B0%8F%E5%B1%B1-%E5%93%B2%E5%A4%AE/e/B09T97CZJS)
 [<img align="left" alt="tkoyama010 | instagram" width="16px" src="https://cdn.jsdelivr.net/npm/simple-icons@3.6.1/icons/instagram.svg" />](https://www.instagram.com/tkoyama010/)
 [<img align="left" alt="tkoyama010 | facebook" width="16px" src="https://cdn.jsdelivr.net/npm/simple-icons@3.6.1/icons/facebook.svg" />](https://www.facebook.com/tetsuo.koyama.94/)
 
