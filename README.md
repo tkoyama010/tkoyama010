@@ -6,8 +6,17 @@
   </a>
 </h1>
 
-Hi! My name is Tetsuo Koyama. I'm CAE software engineer in Japan. I'm interested in scientific computing and visualization with computer graphics. I'm writing a self-published book. The title is "Getting Started with GetFEM". This book is a Japanese translation of the Python interface tutorial from GetFEM, an open source finite element method library. I am a commiter of GetFEM and developer team of [PyVista](https://github.com/orgs/pyvista/people).
+Hi! My name is Tetsuo Koyama. I'm CAE software engineer in Japan. I'm interested in scientific computing and visualization with computer graphics. I am a commiter of GetFEM and developer team of [PyVista](https://github.com/orgs/pyvista/people). I published a following book. 
 
+<h1 align="center">
+  <p>
+    <a href="https://www.amazon.co.jp/dp/B09SPMYZN4">
+      <img src="https://user-images.githubusercontent.com/7513610/184529109-768479b3-5dd8-433d-9751-2e5b01c0567f.jpg" title="Amazon">
+    </a>
+  </p>
+</h1>
+
+<h1 align="center">
 <p>
   <a href="https://twitter.com/intent/follow?screen_name=tkoyama010">
     <img src="https://user-images.githubusercontent.com/7629661/87821427-202e0280-c870-11ea-9e38-8c7c74856753.png" width="144" alt="Follow @tkoyama010 on Twitter" title="Follow @tkoyama010 on Twitter">
@@ -17,6 +26,7 @@ Hi! My name is Tetsuo Koyama. I'm CAE software engineer in Japan. I'm interested
     <img src="https://user-images.githubusercontent.com/7629661/87821425-1f956c00-c870-11ea-9871-a76f99739501.png" width="156" alt="Sponsor tkoyama010 on GitHub" title="Sponsor tkoyama010 on GitHub">
   </a>
 </p>
+</h1>
 
 ![](./profile-3d-contrib/profile-green-animate.svg)
 
