@@ -6,15 +6,7 @@
   </a>
 </h1>
 
-Hi! My name is Tetsuo Koyama. I'm CAE software engineer in Japan. I'm interested in scientific computing and visualization with computer graphics. I am a commiter of GetFEM and developer team of [PyVista](https://github.com/orgs/pyvista/people). I published a following book. 
-
-<h1 align="center">
-  <p>
-    <a href="https://www.amazon.co.jp/dp/B09SPMYZN4">
-      <img src="https://user-images.githubusercontent.com/7513610/184529109-768479b3-5dd8-433d-9751-2e5b01c0567f.jpg" title="Amazon">
-    </a>
-  </p>
-</h1>
+Hi! My name is Tetsuo Koyama. I'm CAE software engineer in Japan. I'm interested in scientific computing and visualization with computer graphics. I am a commiter of GetFEM and developer team of [PyVista](https://github.com/orgs/pyvista/people).
 
 <h1 align="center">
 <p>
@@ -118,3 +110,12 @@ Here are some ideas to get you started:
 <a href="https://github.com/anuraghazra/github-readme-stats">
   <img align="left" src="https://github-readme-stats.vercel.app/api/top-langs/?username=tkoyama010&theme=buefy" />
 </a>
+<br>
+</br>
+<h1 align="center">
+  <p>
+    <a href="https://www.amazon.co.jp/dp/B09SPMYZN4">
+      <img src="https://user-images.githubusercontent.com/7513610/184529109-768479b3-5dd8-433d-9751-2e5b01c0567f.jpg" title="Amazon">
+    </a>
+  </p>
+</h1>
