@@ -6,7 +6,7 @@
   </a>
 </h1>
 
-Hi! My name is Tetsuo Koyama. I'm CAE software engineer in Japan. I'm interested in scientific computing and visualization with computer graphics. I am a commiter of GetFEM and developer team of [PyVista](https://github.com/orgs/pyvista/people).
+Hi! My name is Tetsuo Koyama. I'm a CAE software engineer in Japan. I'm interested in scientific computing and visualization with computer graphics. I am a committer of GetFEM and the developer team of [PyVista](https://github.com/orgs/pyvista/people).
 
 <h1 align="center">
 <p>
