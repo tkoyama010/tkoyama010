@@ -2,78 +2,32 @@
 
 <h1 align="center">
   <a href="https://git.io/typing-svg">
-    <img src="https://readme-typing-svg.herokuapp.com/?lines=Hello,+there!+👋;This+is+Tetsuo+Koyama's+GitHub+Profile...;Nice+to+meet+you!&center=true&size=25">
+    <img src="https://readme-typing-svg.herokuapp.com/?lines=Hello,+there!+;This+is+Tetsuo+Koyama's+GitHub+Profile...;Nice+to+meet+you!&center=true&size=25">
   </a>
 </h1>
 
-Hi! My name is Tetsuo Koyama. I'm a CAE software engineer in Japan. I'm interested in scientific computing and visualization with computer graphics. I am a committer of GetFEM and the developer team of [PyVista](https://github.com/orgs/pyvista/people).
+Hi! My name is Tetsuo Koyama. I'm a CAE software engineer in Japan.
+I'm interested in scientific computing and visualization with computer graphics.
+I am on the developer team of [PyVista](https://github.com/orgs/pyvista/people).
+I also contribute to the development of [GetFEM](https://github.com/getfem-doc/getfem).
 
-<h1 align="center">
-<p>
-  <a href="https://twitter.com/intent/follow?screen_name=tkoyama010">
-    <img src="https://user-images.githubusercontent.com/7629661/87821427-202e0280-c870-11ea-9e38-8c7c74856753.png" width="144" alt="Follow @tkoyama010 on Twitter" title="Follow @tkoyama010 on Twitter">
-  </a>
+- [PyVista: 3D plotting and mesh analysis through a streamlined interface for the Visualization Toolkit (VTK)](https://github.com/pyvista/pyvista)
+- [GetFEM: Open source library of Finite Element Method](https://github.com/getfem-doc/getfem)
 
-  <a href="https://github.com/sponsors/tkoyama010">
-    <img src="https://user-images.githubusercontent.com/7629661/87821425-1f956c00-c870-11ea-9871-a76f99739501.png" width="156" alt="Sponsor tkoyama010 on GitHub" title="Sponsor tkoyama010 on GitHub">
-  </a>
-</p>
-</h1>
+I am as passionate about translating open source Japanese documentation as I am about open source development.
+This is to help people like me who have a handicap in English.
+I have found a great group of people with whom I collaborate on open source development, but I do 100% of the Japanese translation work.
 
-![](./profile-3d-contrib/profile-green-animate.svg)
+- [PyVista日本語ドキュメント](https://pyvista.github.io/pyvista-docs-dev-ja/)
+- [GetFEM日本語ドキュメント](https://getfem.readthedocs.io/ja/latest/)
 
-![](https://komarev.com/ghpvc/?username=tkoyama010)
+I also wrote Scientific Python programming books using GetFEM and PyVista and wrote about the community in technical magazines.
 
-![Metrics](https://metrics.lecoq.io/tkoyama010?template=classic&config.timezone=Asia%2FTokyo)
-
-<!-- Like のバッジ -->
-<a href="https://zenn.dev/tkoyama010">
-  <img src="https://zenn.badge.nikaera.com/s/tkoyama010/likes?style=plastic" alt="tkoyama010 likes" />
-</a>
-
-<!-- Articles のバッジ -->
-<a href="https://zenn.dev/tkoyama010/articles">
-  <img src="https://zenn.badge.nikaera.com/s/tkoyama010/articles?style=plastic" alt="tkoyama010 articles" />
-</a>
-
-<!-- Followers のバッジ -->
-<a href="https://zenn.dev/tkoyama010/followers">
-  <img src="https://zenn.badge.nikaera.com/s/tkoyama010/followers?style=plastic" alt="tkoyama010 followers" />
-</a>
-
-<!-- Books のバッジ -->
-<a href="https://zenn.dev/tkoyama010/books">
-  <img src="https://zenn.badge.nikaera.com/s/tkoyama010/books?style=plastic" alt="tkoyama010 books" />
-</a>
-
-<!-- Scraps のバッジ -->
-<a href="https://zenn.dev/tkoyama010/scraps">
-  <img src="https://zenn.badge.nikaera.com/s/tkoyama010/scraps?style=plastic" alt="tkoyama010 scraps" />
-</a>
-
-[![My Qiita posts](https://qiita-badge.apiapi.app/s/tkoyama010/posts.svg)](http://qiita.com/tkoyama010)
-[![My Qiita contributions](https://qiita-badge.apiapi.app/s/tkoyama010/contributions.svg)](http://qiita.com/tkoyama010)
-[![My Qiita followers](https://qiita-badge.apiapi.app/s/tkoyama010/followers.svg)](http://qiita.com/tkoyama010)
-
-[![trophy](https://github-profile-trophy.vercel.app/?username=tkoyama010)](https://github.com/ryo-ma/github-profile-trophy)
+- [Pythonによる有限要素法 実装ノート](https://www.amazon.co.jp/dp/B09SPMYZN4)
+- [SciPy 2023 カンファレンスレポート](https://gihyo.jp/article/2023/08/scipy2023)
+- [SciPy 2022 カンファレンスレポート](https://gihyo.jp/article/2022/09/scipy2022)
 
 
-<a href="https://github.com/tkoyama010/github-readme-stats">
-  <img align="left" src="https://github-readme-stats.vercel.app/api?username=tkoyama010&count_private=true&show_icons=true" />
-</a>
-<a href="https://github.com/tkoyama010/github-readme-stats">
-  <img align="left" src="https://github-readme-stats.vercel.app/api/top-langs/?username=tkoyama010" />
-</a>
-
-[<img align="left" alt="tkoyama010.com" width="16px" src="https://raw.githubusercontent.com/iconic/open-iconic/master/svg/globe.svg" />](https://note.com/tkoyama)
-[<img align="left" alt="tkoyama010 | Twitter" width="16px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/twitter.svg" />](https://twitter.com/tkoyama010)
-[<img align="left" alt="codeSTACKr | LinkedIn" width="16px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" />](https://linkedin.com/in/tetsuo-koyama-022540190)
-[<img align="left" alt="tkoyama010 | Youtube" width="16px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/youtube.svg" />](https://www.youtube.com/channel/UC6vSvx6nR2WyHVkIyrx4wYQ)
-[<img align="left" alt="tkoyama010 | Qiita" width="16px" src="https://cdn.jsdelivr.net/npm/simple-icons@3.6.1/icons/qiita.svg" />](https://qiita.com/tkoyama010)
-[<img align="left" alt="tkoyama010 | Podcast" width="16px" src="https://cdn.jsdelivr.net/npm/simple-icons@3.6.1/icons/googlepodcasts.svg" />](https://podcasts.google.com/feed/aHR0cHM6Ly9yYWRpb3RhbGsuanAvcnNzL2M5NTA2NTU3YWU5MDk0NzE?sa=X&ved=2ahUKEwjj0pvG3dTrAhVvEqYKHWvwApQQ9sEGegQIARAC)
-[<img align="left" alt="tkoyama010.com" width="16px" src="https://raw.githubusercontent.com/iconic/open-iconic/master/svg/book.svg" />](https://www.amazon.co.jp/%E5%B0%8F%E5%B1%B1-%E5%93%B2%E5%A4%AE/e/B09T97CZJS)
-[<img align="left" alt="tkoyama010 | instagram" width="16px" src="https://cdn.jsdelivr.net/npm/simple-icons@3.6.1/icons/instagram.svg" />](https://www.instagram.com/tkoyama010/)
-[<img align="left" alt="tkoyama010 | facebook" width="16px" src="https://cdn.jsdelivr.net/npm/simple-icons@3.6.1/icons/facebook.svg" />](https://www.facebook.com/tetsuo.koyama.94/)
 
 ![](https:///badge/OS-Linux-informational?style=flat&logo=linux&logoColor=white&color=2bbc8a)
 ![](https://img.shields.io/badge/Code-Python-informational?style=flat&logo=python&logoColor=white&color=2bbc8a)
@@ -101,21 +55,3 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
-
-<br>
-</br>
-<a href="https://github.com/anuraghazra/github-readme-stats">
-  <img align="left" src="https://github-readme-stats.vercel.app/api?username=tkoyama010&count_private=true&show_icons=true&theme=buefy" />
-</a>
-<a href="https://github.com/anuraghazra/github-readme-stats">
-  <img align="left" src="https://github-readme-stats.vercel.app/api/top-langs/?username=tkoyama010&theme=buefy" />
-</a>
-<br>
-</br>
-<h1 align="center">
-  <p>
-    <a href="https://www.amazon.co.jp/dp/B09SPMYZN4">
-      <img src="https://user-images.githubusercontent.com/7513610/184529109-768479b3-5dd8-433d-9751-2e5b01c0567f.jpg" title="Amazon">
-    </a>
-  </p>
-</h1>
