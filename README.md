@@ -2,11 +2,30 @@
 
 <h1 align="center">
   <a href="https://git.io/typing-svg">
-    <img src="https://readme-typing-svg.herokuapp.com/?lines=Hello,+there!+👋;This+is+Tetsuo+Koyama's+GitHub+Profile...;Nice+to+meet+you!&center=true&size=25">
+    <img src="https://readme-typing-svg.herokuapp.com/?lines=Hello,+there!+;This+is+Tetsuo+Koyama's+GitHub+Profile...;Nice+to+meet+you!&center=true&size=25">
   </a>
 </h1>
 
-Hi! My name is Tetsuo Koyama. I'm a CAE software engineer in Japan. I'm interested in scientific computing and visualization with computer graphics. I am a committer of GetFEM and the developer team of [PyVista](https://github.com/orgs/pyvista/people).
+Hi! My name is Tetsuo Koyama. I'm a CAE software engineer in Japan.
+I'm interested in scientific computing and visualization with computer graphics.
+I am on the developer team of [PyVista](https://github.com/orgs/pyvista/people).
+I also contribute to the development of [GetFEM](https://github.com/getfem-doc/getfem).
+
+- [PyVista: 3D plotting and mesh analysis through a streamlined interface for the Visualization Toolkit (VTK)](https://github.com/pyvista/pyvista)
+- [GetFEM: Open source library of Finite Element Method](https://github.com/getfem-doc/getfem)
+
+I am as passionate about translating open source Japanese documentation as I am about open source development.
+This is to help people like me who have a handicap in English.
+
+- [PyVista日本語ドキュメント](https://pyvista.github.io/pyvista-docs-dev-ja/)
+- [GetFEM日本語ドキュメント](https://getfem.readthedocs.io/ja/latest/)
+
+I also wrote Scientific Python programming books using GetFEM and PyVista and wrote about the community in technical magazines.
+
+- [Pythonによる有限要素法 実装ノート](https://www.amazon.co.jp/dp/B09SPMYZN4)
+- [SciPy 2023 カンファレンスレポート](https://gihyo.jp/article/2023/08/scipy2023)
+- [SciPy 2022 カンファレンスレポート](https://gihyo.jp/article/2022/09/scipy2022)
+
 
 <h1 align="center">
 <p>
@@ -101,21 +120,3 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
-
-<br>
-</br>
-<a href="https://github.com/anuraghazra/github-readme-stats">
-  <img align="left" src="https://github-readme-stats.vercel.app/api?username=tkoyama010&count_private=true&show_icons=true&theme=buefy" />
-</a>
-<a href="https://github.com/anuraghazra/github-readme-stats">
-  <img align="left" src="https://github-readme-stats.vercel.app/api/top-langs/?username=tkoyama010&theme=buefy" />
-</a>
-<br>
-</br>
-<h1 align="center">
-  <p>
-    <a href="https://www.amazon.co.jp/dp/B09SPMYZN4">
-      <img src="https://user-images.githubusercontent.com/7513610/184529109-768479b3-5dd8-433d-9751-2e5b01c0567f.jpg" title="Amazon">
-    </a>
-  </p>
-</h1>
