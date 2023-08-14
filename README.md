@@ -6,6 +6,10 @@
   </a>
 </h1>
 
+<h3 align="center">Software Developer | Python Enthusiast</h3>
+
+## About me
+
 Hi! My name is Tetsuo Koyama. I'm a CAE software engineer in Japan.
 I'm interested in scientific computing and visualization with computer graphics.
 I am on the developer team of [PyVista](https://github.com/orgs/pyvista/people).
@@ -28,6 +32,7 @@ I also wrote Scientific Python programming books using GetFEM and PyVista and wr
 - [Pythonによる有限要素法 実装ノート](https://www.amazon.co.jp/dp/B09SPMYZN4)
 
 
+## Technologies & Programming Languages
 
 ![](https:///badge/OS-Linux-informational?style=flat&logo=linux&logoColor=white&color=2bbc8a)
 ![](https://img.shields.io/badge/Code-Python-informational?style=flat&logo=python&logoColor=white&color=2bbc8a)
@@ -37,6 +42,9 @@ I also wrote Scientific Python programming books using GetFEM and PyVista and wr
 ![](https://img.shields.io/badge/Editors-Vim-informational?style=flat&logoColor=white&color=2bbc8a)
 <br>
 </br>
+
+## Contributions
+
 [![](https://raw.githubusercontent.com/tkoyama010/tkoyama010/master/profile-summary-card-output/vue/0-profile-details.svg)](https://github.com/vn7n24fzkq/github-profile-summary-cards)
 [![](https://raw.githubusercontent.com/tkoyama010/tkoyama010/master/profile-summary-card-output/vue/1-repos-per-language.svg)](https://github.com/vn7n24fzkq/github-profile-summary-cards)
 [![](https://raw.githubusercontent.com/tkoyama010/tkoyama010/master/profile-summary-card-output/vue/2-most-commit-language.svg)](https://github.com/vn7n24fzkq/github-profile-summary-cards)
