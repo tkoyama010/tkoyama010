@@ -32,6 +32,7 @@ I also wrote Scientific Python programming books using GetFEM and PyVista and wr
 - [SciPy 2022 カンファレンスレポート](https://gihyo.jp/article/2022/09/scipy2022)
 - [Pythonによる有限要素法 実装ノート](https://www.amazon.co.jp/dp/B09SPMYZN4)
 
+
 ## Technologies & Programming Languages
 
 ![](https:///badge/OS-Linux-informational?style=flat&logo=linux&logoColor=white&color=2bbc8a)
