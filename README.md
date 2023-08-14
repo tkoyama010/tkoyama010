@@ -12,7 +12,6 @@
 
 Hi! My name is Tetsuo Koyama. I'm a CAE software engineer in Japan.
 I'm interested in scientific computing and visualization with computer graphics.
-
 I am on the developer team of [PyVista](https://github.com/orgs/pyvista/people).
 I also contribute to the development of [GetFEM](https://github.com/getfem-doc/getfem).
 
