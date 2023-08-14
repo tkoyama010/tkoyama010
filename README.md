@@ -23,9 +23,9 @@ I have found a great group of people with whom I collaborate on open source deve
 
 I also wrote Scientific Python programming books using GetFEM and PyVista and wrote about the community in technical magazines.
 
-- [Pythonによる有限要素法 実装ノート](https://www.amazon.co.jp/dp/B09SPMYZN4)
 - [SciPy 2023 カンファレンスレポート](https://gihyo.jp/article/2023/08/scipy2023)
 - [SciPy 2022 カンファレンスレポート](https://gihyo.jp/article/2022/09/scipy2022)
+- [Pythonによる有限要素法 実装ノート](https://www.amazon.co.jp/dp/B09SPMYZN4)
 
 
 
