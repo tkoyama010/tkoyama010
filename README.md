@@ -31,6 +31,13 @@ I also wrote Scientific Python programming books using GetFEM and PyVista and wr
 - [SciPy 2022 カンファレンスレポート](https://gihyo.jp/article/2022/09/scipy2022)
 - [Pythonによる有限要素法 実装ノート](https://www.amazon.co.jp/dp/B09SPMYZN4)
 
+As a speaker, my talk was featured in a web magazine article as a session to watch in 2019. 
+
+[注目セッション「Introduction to FEM Analysis with Python」― Tetsuo Koyama](https://gihyo.jp/news/report/01/pyconjp2019/0001#sec6)
+
+The video of the lecture also attracted attention and received 15,000 views.
+
+[![pyconjp2019](http://img.youtube.com/vi/6JuB1GiDLQQ/0.jpg)](https://www.youtube.com/watch?v=6JuB1GiDLQQ&t=512s)
 
 ## Technologies & Programming Languages
 
