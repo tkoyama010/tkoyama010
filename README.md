@@ -16,6 +16,11 @@ I also contribute to the development of [GetFEM](https://github.com/getfem-doc/g
 - [PyVista: 3D plotting and mesh analysis through a streamlined interface for the Visualization Toolkit (VTK)](https://github.com/pyvista/pyvista)
 - [GetFEM: Open source library of Finite Element Method](https://github.com/getfem-doc/getfem)
 
+We provide PyVista tutorials in  SciPy2022 and SciPy2023.
+I am a main contributor to the repository used for the tutorials.
+
+- [PyVista Tutorial](https://github.com/pyvista/pyvista-tutorial)
+
 I am as passionate about translating open-source Japanese documentation as I am about open-source development.
 I am the only member of the following documentation Japanese translation project, but it is open to other contributors.
 I am aims to help people like me who have a handicap in English to access our library.
