@@ -44,6 +44,10 @@ The video of the lecture also attracted attention and received 15,000 views.
 
 [![pyconjp2019](http://img.youtube.com/vi/6JuB1GiDLQQ/0.jpg)](https://www.youtube.com/watch?v=6JuB1GiDLQQ&t=512s)
 
+## Publication
+
+[Tetsuo Koyama's Google Scholar.](https://scholar.google.co.jp/citations?user=GJ0Mv00AAAAJ)
+
 ## Technologies & Programming Languages
 
 <div>
