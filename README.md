@@ -8,6 +8,8 @@
 
 ## About me
 
+[![Github](https://img.shields.io/github/followers/tkoyama010?label=Follow&style=social)](https://github.com/tkoyama010)
+
 Hi! My name is Tetsuo Koyama. I'm a CAE software engineer in Japan.
 I'm interested in scientific computing and visualization with computer graphics.
 I am on the developer team of [PyVista](https://github.com/orgs/pyvista/people).
