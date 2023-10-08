@@ -46,6 +46,7 @@ revealjs_script_conf = {
     "hash": True,
     "center": True,
     "transition": "slide",
+    "previewLinks": True,
 }
 revealjs_script_plugins = [
     {
