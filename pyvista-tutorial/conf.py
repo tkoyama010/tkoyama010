@@ -24,6 +24,7 @@ extensions = [
     "sphinxcontrib.oembed",
     "sphinxcontrib.sass",
     "sphinxext.opengraph",
+    "sphinx_design",
 ]
 templates_path = ["_templates"]
 source_suffix = ".rst"
@@ -41,7 +42,6 @@ html_static_path = ["_static"]
 revealjs_static_path = ["_static"]
 revealjs_style_theme = "simple"
 
-# revealjs_style_theme = "custom.css"
 revealjs_script_conf = {
     "controls": True,
     "progress": True,
@@ -66,6 +66,7 @@ revealjs_script_plugins = [
 ]
 revealjs_css_files = [
     "revealjs4/plugin/highlight/zenburn.css",
+    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css",
 ]
 revealjs_notes_from_comments = True
 

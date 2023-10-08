@@ -10,39 +10,35 @@ PyVistaによる3Dビジュアライゼーション
 :Instructor: Tetsuo Koyama
 :Date: 2023-10-26
 
-Overview
+はじめに
 ========
 
-What is this?
--------------
+おまえだれよ？
+--------------
 
-Sphinx extension to build Reveal.js presentation
+* :fab:`twitter` @tkoyama010
+* :fab:`github` @tkoyama010
+* `ARK Information Systems, INC. <https://www.ark-info-sys.co.jp/>`_ 所属
 
-Features
---------
+PyVistaチュートリアル
+---------------------
 
-.. This is reST comment. At default, does not write.
+.. tab-set::
 
-* Convert sections from reStructuredText directly
-* Support customize sections
-* Support using plugins
-* Support Sphinx extensions
-* Select theme from default themes
+   .. tab-item:: JupyterLab
 
-.. .. include:: _sections/standard-usage.rst
-.. .. include:: _sections/rst-to-revealjs.rst
-.. .. include:: _sections/customize-section.rst
-.. .. include:: _sections/interactive-content.rst
-.. .. include:: _sections/using-plugins.rst
+      .. raw:: html
 
-Enjoy writing reST as presentation
-==================================
+         <video width="100%" height="auto" controls autoplay muted>
+           <source src="_static/pyvista_jupyterlab_demo.mp4" type="video/mp4">
+           Your browser does not support the video tag.
+         </video>
 
-Please star!
+   .. tab-item:: IPython
 
-.. raw:: html
+      .. raw:: html
 
-    <!-- Place this tag where you want the button to render. -->
-    <a class="github-button" href="https://github.com/attakei/sphinx-revealjs" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star attakei/sphinx-revealjs on GitHub">Star</a>
-    <!-- Place this tag in your head or just before your close body tag. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+         <video width="100%" height="auto" controls autoplay muted>
+           <source src="_static/pyvista_ipython_demo.mp4" type="video/mp4">
+           Your browser does not support the video tag.
+         </video>
