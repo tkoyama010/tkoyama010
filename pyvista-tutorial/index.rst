@@ -42,3 +42,26 @@ PyVistaによる3Dビジュアライゼーション
            <source src="_static/pyvista_ipython_demo.mp4" type="video/mp4">
            Your browser does not support the video tag.
          </video>
+
+`インストール <https://pyvista.github.io/pyvista-tutorial-ja/getting-started.html>`_
+------------------------------------------------------------------------------------
+
+本日はGoogle Colaboratoryを使用します。
+
+.. raw:: html
+
+    <center>
+      <a target="_blank" href="https://colab.research.google.com/github/pyvista/pyvista-tutorial/blob/gh-pages/notebooks/tutorial/00_intro/a_basic.ipynb">
+        <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/ width="300px">
+      </a>
+    </center>
+
+他の環境をご希望の方はフォーラムで。
+
+.. raw:: html
+
+    <center>
+      <a target="_blank" href="https://github.com/pyvista/pyvista/discussions">
+        <img src="https://img.shields.io/badge/GitHub-Discussions-green?logo=github" alt="Open In Colab"/ width="300px">
+      </a>
+    </center>
