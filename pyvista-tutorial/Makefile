@@ -14,14 +14,14 @@ help:
 .PHONY: help Makefile demo intl
 
 demo:
-	@$(SPHINXBUILD) -b dirrevealjs "$(SOURCEDIR)" "$(BUILDDIR)/demo/ja" $(SPHINXOPTS) $(O) -D language="ja"
-	@$(SPHINXBUILD) -b dirrevealjs "$(SOURCEDIR)" "$(BUILDDIR)/demo/en" $(SPHINXOPTS) $(O)
+	@$(SPHINXBUILD) -b dirrevealjs "$(SOURCEDIR)" "$(BUILDDIR)/demo/en" $(SPHINXOPTS) $(O) -D language="en"
+	@$(SPHINXBUILD) -b dirrevealjs "$(SOURCEDIR)" "$(BUILDDIR)/demo/ja" $(SPHINXOPTS) $(O)
 	./gen-index.py $(BUILDDIR)/demo
 	touch $(BUILDDIR)/demo/.nojekyll
 
 intl:
 	@$(SPHINXBUILD) -M gettext "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
-	sphinx-intl update --language=ja
+	sphinx-intl update --language=en
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
