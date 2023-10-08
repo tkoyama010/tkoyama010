@@ -1,1 +1,6 @@
-sphinx-revealjs
+sphinx-revealjs[screenshot]==2.7.1
+sphinxcontrib-budoux==0.1.5
+sphinxcontrib-gtagjs==0.2.1
+sphinxcontrib-sass==0.3.4
+sphinxext-opengraph==0.8.2
+oEmbedPy==0.4.0
