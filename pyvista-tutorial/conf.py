@@ -17,6 +17,7 @@ release = "2023.10"
 extensions = [
     "sphinx.ext.mathjax",
     "sphinx.ext.todo",
+    "sphinx_design",
     "sphinx_revealjs",
     "sphinx_revealjs.ext.screenshot",
     "sphinxcontrib.budoux",
@@ -24,7 +25,6 @@ extensions = [
     "sphinxcontrib.oembed",
     "sphinxcontrib.sass",
     "sphinxext.opengraph",
-    "sphinx_design",
 ]
 templates_path = ["_templates"]
 source_suffix = ".rst"

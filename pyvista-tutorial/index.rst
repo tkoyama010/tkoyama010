@@ -71,3 +71,37 @@ TA紹介
         <img src="https://img.shields.io/badge/GitHub-Discussions-green?logo=github" alt="Open In Colab"/ width="300px">
       </a>
     </center>
+
+`他のライブラリとの比較 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#how-other-libraries-compare>`_
+----------------------------------------------------------------------------------------------------------------------------------
+
+.. tab-set::
+
+   .. tab-item:: vtk
+
+      .. image:: https://miro.medium.com/max/1400/1*B3aEPDxSvgR6Giyh4I4a2w.jpeg
+         :alt: VTK
+         :width: 75%
+
+
+   .. tab-item:: ParaView
+
+      .. image:: https://www.kitware.com/main/wp-content/uploads/2018/11/ParaView-5.6.png
+         :alt: ParaView
+         :width: 75%
+
+   .. tab-item:: vedo
+
+      .. image:: https://user-images.githubusercontent.com/32848391/80292484-50757180-8757-11ea-841f-2c0c5fe2c3b4.jpg
+         :alt: vedo
+         :width: 75%
+
+   .. tab-item:: Mayavi
+
+      .. image:: https://viscid-hub.github.io/Viscid-docs/docs/dev/_images/mvi-000.png
+         :alt: Mayavi
+         :width: 75%
+
+GeoVista
+PBR
+Mincraft
