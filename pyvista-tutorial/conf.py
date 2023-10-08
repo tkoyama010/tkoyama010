@@ -7,11 +7,11 @@ from urllib.parse import urljoin
 from sphinx_revealjs.themes import get_theme_path
 
 # -- Project information -----------------------------------------------------
-project = "sphinx-revealjs"
-copyright = "2018, Kazuya Takei"
-author = "Kazuya Takei"
+project = "pyvista-tutorial-presentation"
+copyright = "2023, Tetsuo Koyama"
+author = "Tetsuo Koyama"
 version = ""
-release = "2018.10"
+release = "2023.10"
 
 # -- General configuration ---------------------------------------------------
 extensions = [
@@ -39,7 +39,9 @@ html_static_path = ["_static"]
 
 # -- Options for Reveal.js output ---------------------------------------------
 revealjs_static_path = ["_static"]
-revealjs_style_theme = "custom.css"
+revealjs_style_theme = "simple"
+
+# revealjs_style_theme = "custom.css"
 revealjs_script_conf = {
     "controls": True,
     "progress": True,

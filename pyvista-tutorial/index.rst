@@ -3,12 +3,12 @@
 :og:image:alt: Title section for demo presentation
 :og:description: Demo presentation of sphnx-revealjs
 
-===============================
-Introduction of sphinx-revealjs
-===============================
+================
+PyVista tutorial
+================
 
-:Based version: 2.7.1
-:Demo updated: 2022-11-13
+:Instructor: Tetsuo Koyama
+:Date: 2023-10-26
 
 Overview
 ========
@@ -29,11 +29,11 @@ Features
 * Support Sphinx extensions
 * Select theme from default themes
 
-.. include:: _sections/standard-usage.rst
-.. include:: _sections/rst-to-revealjs.rst
-.. include:: _sections/customize-section.rst
-.. include:: _sections/interactive-content.rst
-.. include:: _sections/using-plugins.rst
+.. .. include:: _sections/standard-usage.rst
+.. .. include:: _sections/rst-to-revealjs.rst
+.. .. include:: _sections/customize-section.rst
+.. .. include:: _sections/interactive-content.rst
+.. .. include:: _sections/using-plugins.rst
 
 Enjoy writing reST as presentation
 ==================================
