@@ -30,7 +30,6 @@ templates_path = ["_templates"]
 source_suffix = ".rst"
 master_doc = "index"
 language = "ja"
-locale_dirs = ["_locales"]
 exclude_patterns = [".venv", "_build", "Thumbs.db", ".DS_Store", "_sections"]
 pygments_style = None
 

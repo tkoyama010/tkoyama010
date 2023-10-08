@@ -20,8 +20,8 @@ PyVistaによる3Dビジュアライゼーション
 * :fab:`github` @tkoyama010
 * `ARK Information Systems, INC. <https://www.ark-info-sys.co.jp/>`_ 所属
 
-PyVistaチュートリアル
----------------------
+`PyVistaチュートリアル <https://pyvista.github.io/pyvista-tutorial-ja/index.html>`_
+-----------------------------------------------------------------------------------
 
 .. tab-set::
 
