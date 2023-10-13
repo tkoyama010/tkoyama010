@@ -8,8 +8,7 @@ jobs:
     steps:
       - uses: actions/setup-python@v4
       - uses: actions/checkout@v2
-      - name: Build Documentation
-        run: |
+      - run: |
           cd pyvista-tutorial
           pip install -r requirements.txt
           playwright install
