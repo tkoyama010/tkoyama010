@@ -7,11 +7,14 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Build Documentation
-        run: make revealjs
+        run: |
+            cd pyvista-tutorial
+            make revealjs
+            cd ..
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2.0
         with:
-          publish-dir: doc/_build/revealjs
+          publish-dir: pyvista-tutorial/_build/revealjs
           production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"
