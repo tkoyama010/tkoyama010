@@ -12,6 +12,7 @@ jobs:
         run: |
           cd pyvista-tutorial
           pip install -r requirements.txt
+          playwright install
           make revealjs
           cd ..
       - name: Deploy to Netlify
