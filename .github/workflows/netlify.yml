@@ -8,9 +8,9 @@ jobs:
     steps:
       - name: Build Documentation
         run: |
-            cd pyvista-tutorial
-            make revealjs
-            cd ..
+          cd pyvista-tutorial
+          make revealjs
+          cd ..
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2.0
         with:
