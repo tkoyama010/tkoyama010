@@ -39,15 +39,14 @@ html_theme = "alabaster"
 html_static_path = ["_static"]
 
 # -- Options for Reveal.js output ---------------------------------------------
-revealjs_static_path = ["_static"]
-revealjs_style_theme = "simple"
+revealjs_style_theme = "white"
 
 revealjs_script_conf = {
     "controls": True,
-    "progress": True,
-    "hash": True,
+    "progress": False,
+    "history": True,
     "center": True,
-    "transition": "slide",
+    "transition": "none",
     "previewLinks": True,
 }
 revealjs_script_plugins = [
@@ -64,11 +63,15 @@ revealjs_script_plugins = [
         "src": "revealjs4/plugin/math/math.js",
     },
 ]
+
+revealjs_static_path = html_static_path
+
 revealjs_css_files = [
-    "revealjs4/plugin/highlight/zenburn.css",
-    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css",
+    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css",
+    # "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css",
+    "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css",
+    'slides.css',
 ]
-revealjs_notes_from_comments = True
 
 # -- Options for HTMLHelp output ---------------------------------------------
 htmlhelp_basename = "sphinx-revealjsdoc"

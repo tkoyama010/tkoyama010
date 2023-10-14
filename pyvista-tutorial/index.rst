@@ -122,77 +122,16 @@ TA紹介
 `はじめに <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html>`_
 ========================================================================================
 
-Code highlighting
------------------
-
-.. code-block:: python
-
-   revealjs_script_plugins = [
-       {
-           "name": "RevealHighlight",
-           "src": "revealjs4/plugin/highlight/highlight.js",
-       },
-   ]
-
-These codes are highlighting by ``RevealHighlight`` plugin.
-
-.. revealjs-break::
-
-.. code-block:: rst
-
-   .. code-block:: python
-
-      print("hello world")
-
-You can use ``code-block`` and ``literalinclude`` for code highlighting.
-
-.. revealjs-break::
-
-.. revealjs-code-block:: rst
-   :data-line-numbers: 1|2
-
-   .. revealjs-code-block:: rst
-      :data-line-numbers: 1|2
-
-      print("hello world")
-
-Using ``revealjs-code-block``, line-level highlighting works.
-
-.. revealjs-break::
-
-.. revealjs-literalinclude:: ./conf.py
-   :language: python
-   :lines: 45-58
-   :data-line-numbers: 2-5|6-9|10-13
-
-You can include other file with step-by-step highlighting by ``revealjs-literalinclude``.
-
-.. revealjs-break::
-
-.. code-block:: rst
-
-   .. revealjs-code-block:: python
-      :data-ln-start-from: 47
+`はじめに <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html>`_
+----------------------------------------------------------------------------------------
 
 .. revealjs-code-block:: python
-   :data-ln-start-from: 47
+   :data-line-numbers: 1|2|3|4
 
-   revealjs_script_plugins = [
-       {
-           "name": "RevealHighlight",
-           "src": "revealjs4/plugin/highlight/highlight.js",
-       },
-   ]
-
-You can use ``data-ln-start-from`` for display line numbers from specify value.
-
-.. revealjs-break::
-
-.. revealjs-literalinclude:: ./conf.py
-   :data-ln-start-from: 47
-   :lines: 47-60
-
-``revealjs-literalinclude`` can use it too.
+   print("Hello world!")
+   print("Hello world!")
+   print("Hello world!")
+   print("Hello world!")
 
 `JupyterでPyVistaを使う <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html>`_
 ========================================================================================================
