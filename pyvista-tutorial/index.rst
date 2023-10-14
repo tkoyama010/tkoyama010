@@ -72,6 +72,9 @@ TA紹介
       </a>
     </center>
 
+概要
+====
+
 チュートリアルの概要
 --------------------
 
@@ -116,6 +119,9 @@ TA紹介
 | `action`        | 13:45-14:00     | Show how PyVista is already being used within several projects and can be used for all things visualization.          |
 +-----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------+
 
+付録
+====
+
 `他のライブラリとの比較 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#how-other-libraries-compare>`_
 ----------------------------------------------------------------------------------------------------------------------------------
 
@@ -145,7 +151,3 @@ TA紹介
       .. image:: https://viscid-hub.github.io/Viscid-docs/docs/dev/_images/mvi-000.png
          :alt: Mayavi
          :width: 75%
-
-GeoVista
-PBR
-Mincraft
