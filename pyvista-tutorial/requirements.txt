@@ -7,4 +7,4 @@ sphinxcontrib-gtagjs==0.2.1
 sphinxcontrib-oembed==0.2.2
 sphinxcontrib-sass==0.3.4
 sphinxemoji==0.2.0
-sphinxext-opengraph==0.8.2
+oEmbedPy==0.4.0
