@@ -25,6 +25,7 @@ extensions = [
     "sphinxcontrib.oembed",
     "sphinxcontrib.sass",
     "sphinxext.opengraph",
+    "sphinxemoji.sphinxemoji",
 ]
 templates_path = ["_templates"]
 source_suffix = ".rst"
