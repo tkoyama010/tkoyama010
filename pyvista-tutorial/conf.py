@@ -22,7 +22,6 @@ extensions = [
     "sphinx_revealjs.ext.screenshot",
     "sphinxcontrib.budoux",
     "sphinxcontrib.gtagjs",
-    "sphinxcontrib.oembed",
     "sphinxcontrib.sass",
     "sphinxext.opengraph",
     "sphinxemoji.sphinxemoji",
