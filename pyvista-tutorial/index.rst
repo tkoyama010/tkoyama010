@@ -122,7 +122,6 @@ TA紹介
 `はじめに <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html>`_
 ========================================================================================
 
-
 `JupyterでPyVistaを使う <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html>`_
 ========================================================================================================
 
