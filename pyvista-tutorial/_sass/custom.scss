@@ -1,72 +1,53 @@
-@import "template/mixins";
-@import "template/settings";
-
-// Solarized colors
-$base03:    #002b36;
-$base02:    #073642;
-$base01:    #586e75;
-$base00:    #657b83;
-$base0:     #839496;
-$base1:     #93a1a1;
-$base2:     #eee8d5;
-$base3:     #fdf6e3;
-$yellow:    #b58900;
-$orange:    #cb4b16;
-$red:       #dc322f;
-$magenta:   #d33682;
-$violet:    #6c71c4;
-$blue:      #268bd2;
-$cyan:      #2aa198;
-$green:     #859900;
-
-// Override theme settings (see ../template/settings.scss)
-$mainColor: $base1;
-$headingColor: $base2;
-$headingTextShadow: none;
-$backgroundColor: $base03;
-$linkColor: $blue;
-$linkColorHover: lighten( $linkColor, 20% );
-$selectionBackgroundColor: $magenta;
-$headingFont: 'Noto Sans JP', sans-serif;
-
-// Change text colors against light slide backgrounds
-@include light-bg-text-color(#222);
-
-@import "template/theme";
-
-/**
- * Solarized colors by Ethan Schoonover
- */
-html * {
-	color-profile: sRGB;
-	rendering-intent: auto;
+.reveal section img {
+  border: 0;
+  box-shadow: none;
 }
 
-@import url(https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap);
+@font-face {
+    font-family: "MyYuGothicM";
+    font-weight: normal;
+    src: local("YuGothic-Medium"), /* Postscript name */
+    local("Yu Gothic Medium"), /* for Chrome */
+    local("YuGothic-Regular"); /* Mediumがない場合 */
+}
+@font-face {
+    font-family: "MyYuGothicM";
+    font-weight: bold;
+    src: local("YuGothic-Bold"), /* Postscript name */
+    local("Yu Gothic"); /* for Chrome */
+}
 
 .reveal {
-  .adjust-section-structure {
-    font-size: 0.5em;
-  }
-  .flex-container {
-    display: flex;
-    .half {
-      flex: 1;
-      width: 50%;
-    }
-  }
-  h1, h2, h3 {
-    text-transform: none;
-  }
-  code * {
-    font-family: monospace;
-  }
+    font-family:
+    "Myriad Pro",
+    MyYuGothicM, /* Windows 游ゴシック */
+    YuGothic, /* OS X 游ゴシック */
+    -apple-system, /* iOS San Francisco */
+    BlinkMacSystemFont, /* iOS Chrome San Francisco */
+    "Hiragino Kaku Gothic ProN", /* OS X, iOS ヒラギノ */
+    Meiryo, /* Windows メイリオ */
+    sans-serif;
 }
 
-// For custom effect of fragments
-.fragment.blur {
-  filter: blur(5px);
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+    font-family:
+    "Myriad Pro",
+    MyYuGothicM, /* Windows 游ゴシック */
+    YuGothic, /* OS X 游ゴシック */
+    -apple-system, /* iOS San Francisco */
+    BlinkMacSystemFont, /* iOS Chrome San Francisco */
+    "Hiragino Kaku Gothic ProN", /* OS X, iOS ヒラギノ */
+    Meiryo, /* Windows メイリオ */
+    sans-serif;
+    text-transform: none;
 }
-.fragment.blur.visible {
-  filter: none;
+
+.reveal pre,
+.reveal code {
+    font-family: Inconsolata, Consolas, monospace;
 }
