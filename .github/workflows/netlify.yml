@@ -3,7 +3,7 @@ on:
   push:
   pull_request:
   pull_request_target:
-    types: [opened, reopened]
+    types: [labeled]
 jobs:
   build:
     runs-on: ubuntu-22.04
