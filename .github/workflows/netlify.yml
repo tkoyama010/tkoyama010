@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/setup-python@v4
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - run: |
           cd pyvista-tutorial
           pip install -r requirements.txt
