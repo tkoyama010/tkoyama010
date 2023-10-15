@@ -5,6 +5,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-22.04
+    if: github.repository == 'tkoyama010/tkoyama010'
     steps:
       - uses: actions/setup-python@v4
       - uses: actions/checkout@v2
@@ -16,7 +17,6 @@ jobs:
           cd ..
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2.1
-        if: github.repository == 'tkoyama010/tkoyama010'
         with:
           publish-dir: pyvista-tutorial/_build/revealjs
           production-branch: main
