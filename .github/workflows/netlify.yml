@@ -2,12 +2,14 @@ name: Build and Deploy to Netlify
 on:
   push:
   pull_request:
+  pull_request_target:
+    types: [labeled]
 jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/setup-python@v4
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - run: |
           cd pyvista-tutorial
           pip install -r requirements.txt
@@ -15,7 +17,7 @@ jobs:
           make revealjs
           cd ..
       - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v2.0
+        uses: nwtgck/actions-netlify@v2.1
         with:
           publish-dir: pyvista-tutorial/_build/revealjs
           production-branch: main
