@@ -122,16 +122,18 @@ TA紹介
 `はじめに <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html>`_
 ========================================================================================
 
-`はじめに <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html>`_
-----------------------------------------------------------------------------------------
+`簡単な例 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#brief-examples>`_
+-------------------------------------------------------------------------------------------------------
 
 .. revealjs-code-block:: python
-   :data-line-numbers: 1|2|3|4
+   :data-line-numbers: 1|3|4
 
-   print("Hello world!")
-   print("Hello world!")
-   print("Hello world!")
-   print("Hello world!")
+   from pyvista import examples
+
+   mesh = examples.download_bunny()
+   mesh.plot(cpos='xy')
+
+.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_1_0.png
 
 `JupyterでPyVistaを使う <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html>`_
 ========================================================================================================
