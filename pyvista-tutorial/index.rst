@@ -192,7 +192,7 @@ PyVistaチュートリアル
 --------------------------------------------------------------------------------------------------------------------
 
 .. revealjs-code-block:: python
-   :data-line-numbers: 1-12|1|2|3|5-12|5|6|7|8|9|10|11|12|1-12
+   :data-line-numbers: 1-3|1|2|3|5-12|5|6|7|8|9|10|11|12|1-12
 
    >>> from pyvista import examples
    >>> dataset = examples.download_saddle_surface()
