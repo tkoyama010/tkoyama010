@@ -188,6 +188,25 @@ PyVistaチュートリアル
 `基本的な使い方 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html>`_
 ==============================================================================================
 
+`既存データの活用 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#using-existing-data>`_
+--------------------------------------------------------------------------------------------------------------------
+
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-12|1|2|3|5-12|5|6|7|8|9|10|11|12|1-12
+
+   >>> from pyvista import examples
+   >>> dataset = examples.download_saddle_surface()
+   >>> dataset
+
+   PolyData (..............)
+     N Cells:    5131
+     N Points:   2669
+     N Strips:   0
+     X Bounds:   -2.001e+01, 2.000e+01
+     Y Bounds:   -6.480e-01, 4.024e+01
+     Z Bounds:   -6.093e-01, 1.513e+01
+     N Arrays:   0
+
 `メッシュとは? <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html>`_
 ============================================================================================
 
