@@ -52,7 +52,7 @@ TA紹介
 `インストール <https://pyvista.github.io/pyvista-tutorial-ja/getting-started.html>`_
 ------------------------------------------------------------------------------------
 
-本日はGoogle Colaboratoryを使用します。
+チュートリアルにはGoogle Colaboratoryのリンクが準備されています。
 
 .. raw:: html
 
@@ -62,7 +62,7 @@ TA紹介
       </a>
     </center>
 
-他の環境についてはフォーラムにご質問ください。
+フォーラムにご質問ください。
 
 .. raw:: html
 
@@ -72,8 +72,8 @@ TA紹介
       </a>
     </center>
 
-概要
-====
+PyVistaチュートリアル
+=====================
 
 チュートリアルの概要
 --------------------
@@ -125,6 +125,9 @@ TA紹介
 `簡単な例 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#brief-examples>`_
 -------------------------------------------------------------------------------------------------------
 
+`サーフェスメッシュの読み込みとプロット <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#read-and-plot-a-surface-mesh>`_
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
 .. revealjs-code-block:: python
    :data-line-numbers: 1|3|4
 
@@ -135,26 +138,19 @@ TA紹介
 
 .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_1_0.png
 
-`JupyterでPyVistaを使う <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html>`_
-========================================================================================================
+`色を使った簡単な点群の構築 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#construct-a-simple-point-cloud-with-color>`_
+----------------------------------------------------------------------------------------------------------------------------------------------------
 
-`基本的な使い方 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html>`_
-==============================================================================================
+.. revealjs-code-block:: python
+   :data-line-numbers: 1|2|3|4|5
 
-`メッシュとは? <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html>`_
-============================================================================================
+   import pyvista as pv
+   import numpy as np
+   points = np.random.random((1000, 3))
+   pc = pv.PolyData(points)
+   pc.plot(scalars=points[:, 2], point_size=5.0, cmap='jet')
 
-`プロットオプションとアニメーション <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html>`_
-====================================================================================================================
-
-`フィルタ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html>`_
-==========================================================================================
-
-`PyVistaの活用 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/05_action/index.html>`_
-==============================================================================================
-
-おまけ
-======
+.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_2_0.png
 
 `他のライブラリとの比較 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#how-other-libraries-compare>`_
 ----------------------------------------------------------------------------------------------------------------------------------
@@ -185,3 +181,21 @@ TA紹介
       .. image:: https://viscid-hub.github.io/Viscid-docs/docs/dev/_images/mvi-000.png
          :alt: Mayavi
          :width: 75%
+
+`JupyterでPyVistaを使う <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html>`_
+========================================================================================================
+
+`基本的な使い方 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html>`_
+==============================================================================================
+
+`メッシュとは? <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html>`_
+============================================================================================
+
+`プロットオプションとアニメーション <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html>`_
+====================================================================================================================
+
+`フィルタ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html>`_
+==========================================================================================
+
+`PyVistaの活用 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/05_action/index.html>`_
+==============================================================================================
