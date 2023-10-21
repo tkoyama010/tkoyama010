@@ -53,6 +53,20 @@ TA紹介
            Your browser does not support the video tag.
          </video>
 
+作者紹介
+--------
+
+.. |contrib.rocks| image:: https://contrib.rocks/image?repo=pyvista/pyvista
+   :target: https://github.com/pyvista/pyvista/graphs/contributors
+   :alt: contrib.rocks
+   :width: 80%
+
+|contrib.rocks|
+
+.. _contributors page: https://github.com/pyvista/pyvista/graphs/contributors/
+.. _list of authors: https://docs.pyvista.org/getting-started/authors.html#authors
+.. _contrib rocks: https://contrib.rocks
+
 `インストール <https://pyvista.github.io/pyvista-tutorial-ja/getting-started.html>`_
 ------------------------------------------------------------------------------------
 
@@ -534,6 +548,34 @@ PyVistaチュートリアル
    :alt: the-basics
    :width: 70%
 
+`軸と境界 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html#axes-and-bounds>`_
+----------------------------------------------------------------------------------------------------------
+
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-9|1-2|4|6-7|8-9|1-9
+
+   >>> import pyvista as pv
+   >>> from pyvista import examples
+
+   >>> mesh = examples.load_random_hills()
+
+   >>> p = pv.Plotter()
+   >>> p.add_mesh(mesh)
+   >>> p.show_axes()
+   >>> p.show_bounds()
+
+`軸と境界 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html#axes-and-bounds>`_
+----------------------------------------------------------------------------------------------------------
+
+.. revealjs-code-block:: python
+   :data-line-numbers: 1
+
+   >>> p.show()
+
+.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index-7_00_00.png
+   :alt: the-basics
+   :width: 70%
+
 `フィルタ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html>`_
 ==========================================================================================
 
@@ -634,6 +676,11 @@ PyVistaチュートリアル
 
 `フィルタパイプライン <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html#filter-pipeline>`_
 ----------------------------------------------------------------------------------------------------------------------
+
+#. まず， `threshold` フィルタを空にして， `NaN` 値をすべて消去します．
+#. `elevation` フィルタを使用して，高さに対応するスカラー値を生成します．
+#. `clip` フィルタを使用して，データセットを半分にカットします．
+#. `slice_orthogonal` フィルタを使用して，各軸平面に沿ってスライスを3つ作成します．
 
 `PyVistaの活用 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/05_action/index.html>`_
 ==============================================================================================
