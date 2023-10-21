@@ -242,8 +242,14 @@ PyVistaチュートリアル
 `プロットオプションとアニメーション <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html>`_
 ====================================================================================================================
 
+`基礎編 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html#the-basics>`_
+---------------------------------------------------------------------------------------------------
+
 `フィルタ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html>`_
 ==========================================================================================
+
+`フィルタパイプライン <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html#filter-pipeline>`_
+======================================================================================================================
 
 `PyVistaの活用 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/05_action/index.html>`_
 ==============================================================================================

@@ -20,7 +20,6 @@ extensions = [
     "sphinx_design",
     "sphinx_revealjs",
     "sphinx_revealjs.ext.screenshot",
-    "sphinxcontrib.budoux",
     "sphinxcontrib.gtagjs",
     "sphinxcontrib.sass",
     "sphinxext.opengraph",
@@ -37,15 +36,6 @@ pygments_style = None
 # -- Options for HTML output -------------------------------------------------
 html_theme = "alabaster"
 html_static_path = ["_static"]
-
-# -- Options for budoux output -----------------------------------------------
-
-# Tag to ijnect for splitted texts
-budoux_split_tag = "wbr"
-# Style for splitted-tag
-budoux_split_style = "budoux_split_style", "word-break: keep-all; overflow-wrap: break-word;"
-# Target tags for apply BudouX
-budoux_targets = ["h1", "h2"]
 
 # -- Options for Reveal.js output ---------------------------------------------
 revealjs_style_theme = "white"
