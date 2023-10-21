@@ -179,11 +179,15 @@ PyVistaチュートリアル
    .. tab-item:: Mayavi
 
       .. image:: https://viscid-hub.github.io/Viscid-docs/docs/dev/_images/mvi-000.png
-         :alt: Mayavi
+         :alt: mayavi
          :width: 75%
 
 `JupyterでPyVistaを使う <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html>`_
 ========================================================================================================
+
+   .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/jupyter.png
+      :alt: jupyter
+      :width: 75%
 
 `基本的な使い方 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html>`_
 ==============================================================================================
