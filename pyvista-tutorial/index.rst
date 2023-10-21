@@ -4,7 +4,7 @@
 :og:description: Demo presentation of sphnx-revealjs
 
 =====================================
-PyVistaによる3次元ビジュアライゼーション
+PyVistaによる3Dビジュアライゼーション
 =====================================
 
 :Instructor: Tetsuo Koyama
