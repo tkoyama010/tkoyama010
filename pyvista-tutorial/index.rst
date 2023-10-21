@@ -7,9 +7,9 @@
 
    <br>
 
-=========================================================
-**PyVista** による |br| 3次元ビジュアライ |br| ゼーション
-=========================================================
+======================================================
+**PyVista** による |br| 3Dビジュアライ |br| ゼーション
+======================================================
 
 :Instructor: Tetsuo Koyama
 :Date: 2023-10-26
@@ -133,7 +133,7 @@ PyVistaチュートリアル
 ---------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. revealjs-code-block:: python
-   :data-line-numbers: 1|3|4
+   :data-line-numbers: 1-4|1|3|4
 
    from pyvista import examples
 
@@ -146,7 +146,7 @@ PyVistaチュートリアル
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. revealjs-code-block:: python
-   :data-line-numbers: 1|2|3|4|5
+   :data-line-numbers: 1-5|1|2|3|4|5
 
    import pyvista as pv
    import numpy as np
@@ -290,7 +290,7 @@ PyVistaチュートリアル
 --------------------------------------------------------------------------------------------------------
 
 .. revealjs-code-block:: python
-   :data-line-numbers: 1-14
+   :data-line-numbers: 1-13
 
    >>> mesh = examples.load_hexbeam()
 
@@ -304,11 +304,14 @@ PyVistaチュートリアル
 
    >>> pl.camera_position = [(6.20, 3.00, 7.50),
    >>>                       (0.16, 0.13, 2.65),
-   >>>                       (-0.28, 0.94, -0.21)]
-   >>> pl.show()
 
 `セルとは？ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#what-is-a-cell>`_
 --------------------------------------------------------------------------------------------------------
+
+.. revealjs-code-block:: python
+   :data-line-numbers: 1
+
+   >>> pl.show()
 
 .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_4_01.png
    :alt: what-is-a-cell
@@ -397,6 +400,25 @@ PyVistaチュートリアル
 
 `基礎編 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html#the-basics>`_
 ---------------------------------------------------------------------------------------------------
+
+`add_mesh`
+----------
+
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-8
+
+   >>> import pyvista as pv
+   >>> from pyvista import examples
+
+   >>> mesh = pv.Wavelet()
+
+   >>> p = pv.Plotter()
+   >>> p.add_mesh(mesh)
+   >>> p.show()
+
+.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_1_02.png
+   :alt: the-basics
+   :width: 70%
 
 `シーンの制御 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html#controlling-the-scene>`_
 --------------------------------------------------------------------------------------------------------------------
