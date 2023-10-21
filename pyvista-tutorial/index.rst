@@ -370,6 +370,28 @@ PyVistaチュートリアル
 `スカラーをメッシュに割り当てる <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#assigning-scalars-to-a-mesh>`_
 -----------------------------------------------------------------------------------------------------------------------------------------
 
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-11
+
+   >>> cube = pv.Cube()
+   >>> cube.cell_data['myscalars'] = range(6)
+   >>> 
+   >>> other_cube = cube.copy()
+   >>> other_cube.point_data['myscalars'] = range(8)
+   >>> 
+   >>> pl = pv.Plotter(shape=(1, 2), border_width=1)
+   >>> pl.add_mesh(cube, cmap='coolwarm')
+   >>> pl.subplot(0, 1)
+   >>> pl.add_mesh(other_cube, cmap='coolwarm')
+   >>> pl.show()
+
+`スカラーをメッシュに割り当てる <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#assigning-scalars-to-a-mesh>`_
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_7_0.png
+   :alt: assigning-scalars-to-a-mesh
+   :width: 70%
+
 `プロットオプションと <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html>`_  |br| `アニメーション <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html>`_
 =============================================================================================================================================================================================================
 
