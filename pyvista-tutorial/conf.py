@@ -10,7 +10,7 @@ from sphinx_revealjs.themes import get_theme_path
 project = "pyvista-tutorial-presentation"
 copyright = "2023, Tetsuo Koyama"
 author = "Tetsuo Koyama"
-version = ""
+version = "0.1.dev"
 release = "2023.10"
 
 # -- General configuration ---------------------------------------------------
