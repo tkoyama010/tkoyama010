@@ -507,6 +507,33 @@ PyVistaチュートリアル
 `シーンの制御 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html#controlling-the-scene>`_
 --------------------------------------------------------------------------------------------------------------------
 
+`軸と境界 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html#axes-and-bounds>`_
+----------------------------------------------------------------------------------------------------------
+
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-8|1-2|4|6-7|8|1-8
+
+   >>> import pyvista as pv
+   >>> from pyvista import examples
+
+   >>> mesh = examples.load_random_hills()
+
+   >>> p = pv.Plotter()
+   >>> p.add_mesh(mesh)
+   >>> p.show_axes()
+
+`軸と境界 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html#axes-and-bounds>`_
+----------------------------------------------------------------------------------------------------------
+
+.. revealjs-code-block:: python
+   :data-line-numbers: 1
+
+   >>> p.show()
+
+.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index-6_00_00.png
+   :alt: the-basics
+   :width: 70%
+
 `フィルタ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html>`_
 ==========================================================================================
 
