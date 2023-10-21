@@ -682,5 +682,14 @@ PyVistaチュートリアル
 #. `clip` フィルタを使用して，データセットを半分にカットします．
 #. `slice_orthogonal` フィルタを使用して，各軸平面に沿ってスライスを3つ作成します．
 
+`フィルタパイプライン <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html#filter-pipeline>`_
+----------------------------------------------------------------------------------------------------------------------
+
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-2
+
+   >>> result = dataset.threshold().elevation()
+   ...          .clip(normal="z").slice_orthogonal()
+
 `PyVistaの活用 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/05_action/index.html>`_
 ==============================================================================================
