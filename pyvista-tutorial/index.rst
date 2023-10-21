@@ -690,6 +690,15 @@ PyVistaチュートリアル
 
    >>> result = dataset.threshold().elevation()
    ...          .clip(normal="z").slice_orthogonal()
+   >>> p = pv.Plotter()
+   >>> p.add_mesh(outline, color="k")
+   >>> p.add_mesh(result, scalars="Elevation")
+   >>> p.view_isometric()
+   >>> p.show()
+
+.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_4_02.png
+   :alt: filter-pipeline
+   :width: 70%
 
 `PyVistaの活用 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/05_action/index.html>`_
 ==============================================================================================
