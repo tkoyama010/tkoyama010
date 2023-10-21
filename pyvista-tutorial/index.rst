@@ -301,7 +301,7 @@ PyVistaチュートリアル
    >>> single_cell = mesh.extract_cells(mesh.n_cells - 1)
    >>> pl.add_mesh(single_cell, color='pink', edge_color='blue',
    ...             line_width=5, show_edges=True)
- 
+
    >>> pl.camera_position = [(6.20, 3.00, 7.50),
    >>>                       (0.16, 0.13, 2.65),
    >>>                       (-0.28, 0.94, -0.21)]
@@ -375,10 +375,10 @@ PyVistaチュートリアル
 
    >>> cube = pv.Cube()
    >>> cube.cell_data['myscalars'] = range(6)
-   >>> 
+   >>>
    >>> other_cube = cube.copy()
    >>> other_cube.point_data['myscalars'] = range(8)
-   >>> 
+   >>>
    >>> pl = pv.Plotter(shape=(1, 2), border_width=1)
    >>> pl.add_mesh(cube, cmap='coolwarm')
    >>> pl.subplot(0, 1)
