@@ -165,33 +165,33 @@ PyVistaチュートリアル
 
       .. image:: https://miro.medium.com/max/1400/1*B3aEPDxSvgR6Giyh4I4a2w.jpeg
          :alt: VTK
-         :width: 75%
+         :width: 70%
 
 
    .. tab-item:: ParaView
 
       .. image:: https://www.kitware.com/main/wp-content/uploads/2018/11/ParaView-5.6.png
          :alt: ParaView
-         :width: 75%
+         :width: 70%
 
    .. tab-item:: vedo
 
       .. image:: https://user-images.githubusercontent.com/32848391/80292484-50757180-8757-11ea-841f-2c0c5fe2c3b4.jpg
          :alt: vedo
-         :width: 75%
+         :width: 70%
 
    .. tab-item:: Mayavi
 
       .. image:: https://viscid-hub.github.io/Viscid-docs/docs/dev/_images/mvi-000.png
          :alt: mayavi
-         :width: 75%
+         :width: 70%
 
 `JupyterでPyVistaを使う <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html>`_
 ========================================================================================================
 
 .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/jupyter.png
    :alt: jupyter
-   :width: 75%
+   :width: 70%
 
 `PyVista用Trame Jupyterバックエンド <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html#trame-jupyter-backend-for-pyvista>`_
 ------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -225,6 +225,18 @@ PyVistaチュートリアル
      Z Bounds:   -6.093e-01, 1.513e+01
      N Arrays:   0
 
+`既存データの活用 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#using-existing-data>`_
+--------------------------------------------------------------------------------------------------------------------
+
+.. revealjs-code-block:: python
+   :data-line-numbers: 1
+
+   >>> dataset.plot(color='tan')
+
+.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_2_01.png
+   :alt: using-existing-data
+   :width: 70%
+
 `ファイルから読み込む <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#read-from-a-file>`_
 ---------------------------------------------------------------------------------------------------------------------
 
@@ -255,8 +267,7 @@ PyVistaチュートリアル
 
 .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_6_0.png
    :alt: read-from-a-file
-   :width: 75%
-
+   :width: 70%
 
 `メッシュとは? <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html>`_
 ============================================================================================
@@ -264,11 +275,97 @@ PyVistaチュートリアル
 `ポイントとは？ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#what-is-a-point>`_
 -------------------------------------------------------------------------------------------------------------
 
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-3|1|2|3|1-3
+
+   >>> points = np.random.rand(100, 3)
+   >>> mesh = pv.PolyData(points)
+   >>> mesh.plot(point_size=10, style='points', color='tan')
+
+.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_1_01.png
+   :alt: what-is-a-point
+   :width: 70%
+
 `セルとは？ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#what-is-a-cell>`_
 --------------------------------------------------------------------------------------------------------
 
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-14
+
+   >>> mesh = examples.load_hexbeam()
+
+   >>> pl = pv.Plotter()
+   >>> pl.add_mesh(mesh, show_edges=True, color='white')
+   >>> pl.add_points(mesh.points, color='red', point_size=20)
+
+   >>> single_cell = mesh.extract_cells(mesh.n_cells - 1)
+   >>> pl.add_mesh(single_cell, color='pink', edge_color='blue',
+   ...             line_width=5, show_edges=True)
+ 
+   >>> pl.camera_position = [(6.20, 3.00, 7.50),
+   >>>                       (0.16, 0.13, 2.65),
+   >>>                       (-0.28, 0.94, -0.21)]
+   >>> pl.show()
+
+`セルとは？ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#what-is-a-cell>`_
+--------------------------------------------------------------------------------------------------------
+
+.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_4_01.png
+   :alt: what-is-a-cell
+   :width: 70%
+
 `アトリビュートとは? <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#what-are-attributes>`_
 ----------------------------------------------------------------------------------------------------------------------
+
+- ポイントデータ
+- セルデータ
+- フィールドデータ
+
+`ポイントデータ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#point-data>`_
+--------------------------------------------------------------------------------------------------------
+
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-2
+
+   >>> mesh.point_data['my point values'] = np.arange(mesh.n_points)
+   >>> mesh.plot(scalars='my point values', cpos=cpos, show_edges=True)
+
+.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_5_0.png
+   :alt: point-data
+   :width: 70%
+
+`セルデータ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#cell-data>`_
+---------------------------------------------------------------------------------------------------
+
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-2
+
+   >>> mesh.cell_data['my cell values'] = np.arange(mesh.n_cells)
+   >>> mesh.plot(scalars='my cell values', cpos=cpos, show_edges=True)
+
+.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_6_01.png
+   :alt: cell-data
+   :width: 70%
+
+`セルデータ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#cell-data>`_
+---------------------------------------------------------------------------------------------------
+
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-6
+
+   >>> uni = examples.load_uniform()
+   >>> pl = pv.Plotter(shape=(1, 2), border=False)
+   >>> pl.add_mesh(uni, scalars='Spatial Point Data', show_edges=True)
+   >>> pl.subplot(0, 1)
+   >>> pl.add_mesh(uni, scalars='Spatial Cell Data', show_edges=True)
+   >>> pl.show()
+
+.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index-1_00_001.png
+   :alt: cell-data
+   :width: 70%
+
+`フィールドデータ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#field-data>`_
+----------------------------------------------------------------------------------------------------------
 
 `スカラーをメッシュに割り当てる <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#assigning-scalars-to-a-mesh>`_
 -----------------------------------------------------------------------------------------------------------------------------------------
