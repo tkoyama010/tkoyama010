@@ -3,16 +3,16 @@
 :og:image:alt: Title section for demo presentation
 :og:description: Demo presentation of sphnx-revealjs
 
-====================================================
-PyVistaによる |br| 3次元ビジュアライ |br| ゼーション
-====================================================
-
-:Instructor: Tetsuo Koyama
-:Date: 2023-10-26
-
 .. |br| raw:: html
 
    <br>
+
+=========================================================
+**PyVista** による |br| 3次元ビジュアライ |br| ゼーション
+=========================================================
+
+:Instructor: Tetsuo Koyama
+:Date: 2023-10-26
 
 はじめに
 ========
@@ -243,17 +243,20 @@ PyVistaチュートリアル
 `スカラーをメッシュに割り当てる <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#assigning-scalars-to-a-mesh>`_
 -----------------------------------------------------------------------------------------------------------------------------------------
 
-`プロットオプションとアニメーション <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html>`_
-====================================================================================================================
+`プロットオプションと <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html>`_  |br| `アニメーション <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html>`_
+=============================================================================================================================================================================================================
 
 `基礎編 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html#the-basics>`_
 ---------------------------------------------------------------------------------------------------
+
+`シーンの制御 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html#controlling-the-scene>`_
+--------------------------------------------------------------------------------------------------------------------
 
 `フィルタ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html>`_
 ==========================================================================================
 
 `フィルタパイプライン <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html#filter-pipeline>`_
-======================================================================================================================
+----------------------------------------------------------------------------------------------------------------------
 
 `PyVistaの活用 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/05_action/index.html>`_
 ==============================================================================================
