@@ -189,6 +189,16 @@ PyVistaチュートリアル
       :alt: jupyter
       :width: 75%
 
+`PyVista用Trame Jupyterバックエンド <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html#trame-jupyter-backend-for-pyvista>`_
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+`Trame Jupyter モード <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html#trame-jupyter-modes>`_
+--------------------------------------------------------------------------------------------------------------------------
+
+`Jupyter-Server-Proxy <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html#jupyter-server-proxy>`_
+---------------------------------------------------------------------------------------------------------------------------
+
+
 `基本的な使い方 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html>`_
 ==============================================================================================
 
@@ -210,6 +220,9 @@ PyVistaチュートリアル
      Y Bounds:   -6.480e-01, 4.024e+01
      Z Bounds:   -6.093e-01, 1.513e+01
      N Arrays:   0
+
+`ファイルから読み込む <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#read-from-a-file>`_
+---------------------------------------------------------------------------------------------------------------------
 
 `メッシュとは? <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html>`_
 ============================================================================================
