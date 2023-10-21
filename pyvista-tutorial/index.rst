@@ -398,25 +398,109 @@ PyVistaチュートリアル
 `プロットオプションと <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html>`_  |br| `アニメーション <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html>`_
 =============================================================================================================================================================================================================
 
-`基礎編 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html#the-basics>`_
----------------------------------------------------------------------------------------------------
-
 `add_mesh`
 ----------
 
 .. revealjs-code-block:: python
-   :data-line-numbers: 1-8
-
-   >>> import pyvista as pv
-   >>> from pyvista import examples
+   :data-line-numbers: 1-4|1|2|3|4|1-4
 
    >>> mesh = pv.Wavelet()
-
    >>> p = pv.Plotter()
    >>> p.add_mesh(mesh)
    >>> p.show()
 
 .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_1_02.png
+   :alt: the-basics
+   :width: 70%
+
+`add_mesh`
+----------
+
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-4|1|2|3|4|1-4
+
+   >>> mesh = pv.Wavelet()
+   >>> p = pv.Plotter()
+   >>> p.add_mesh(mesh, cmap='coolwarm')
+   >>> p.show()
+
+.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_2_03.png
+   :alt: the-basics
+   :width: 70%
+
+`add_mesh`
+----------
+
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-5|1|2|3|4|5|1-5
+
+   >>> mesh = examples.download_st_helens().warp_by_scalar()
+
+   >>> p = pv.Plotter()
+   >>> p.add_mesh(mesh, cmap='terrain', opacity="linear")
+   >>> p.show()
+
+.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index-1_00_002.png
+   :alt: the-basics
+   :width: 70%
+
+`add_mesh`
+----------
+
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-15
+
+   >>> kinds = [
+   ...     'tetrahedron',
+   ...     'cube',
+   ...     'octahedron',
+   ...     'dodecahedron',
+   ...     'icosahedron',
+   ... ]
+   >>> centers = [
+   ...     (0, 1, 0),
+   ...     (0, 0, 0),
+   ...     (0, 2, 0),
+   ...     (-1, 0, 0),
+   ...     (-1, 2, 0),
+   ... ]
+
+`add_mesh`
+----------
+
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-11
+
+   >>> solids = [
+   ...     pv.PlatonicSolid(kind, radius=0.4, center=center)
+   ...     for kind, center in zip(kinds, centers)
+   ... ]
+
+`add_mesh`
+----------
+
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-11
+
+   >>> p = pv.Plotter(window_size=[1000, 1000])
+   >>> for ind, solid in enumerate(solids):
+   >>>     p.add_mesh(
+   ...         solid, color='silver', specular=1.0, specular_power=10
+   ...     )
+
+   >>> p.view_vector((5.0, 2, 3))
+   >>> p.add_floor('-z', lighting=True, color='tan', pad=1.0)
+   >>> p.enable_shadows()
+
+`add_mesh`
+----------
+
+.. revealjs-code-block:: python
+   :data-line-numbers: 1
+
+   >>> p.show()
+
+.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index-2_00_00.png
    :alt: the-basics
    :width: 70%
 
