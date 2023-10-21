@@ -189,9 +189,9 @@ PyVistaチュートリアル
 `JupyterでPyVistaを使う <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html>`_
 ========================================================================================================
 
-   .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/jupyter.png
-      :alt: jupyter
-      :width: 75%
+.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/jupyter.png
+   :alt: jupyter
+   :width: 75%
 
 `PyVista用Trame Jupyterバックエンド <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html#trame-jupyter-backend-for-pyvista>`_
 ------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -227,6 +227,36 @@ PyVistaチュートリアル
 
 `ファイルから読み込む <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#read-from-a-file>`_
 ---------------------------------------------------------------------------------------------------------------------
+
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-3|1|2|3|5-13|5|6|7|8|9|10|11|12|13|1-13
+
+   >>> import pyvista as pv
+   >>> dataset = pv.read('ironProt.vtk')
+   >>> dataset
+
+   ImageData (..............)
+     N Cells:      300763
+     N Points:     314432
+     X Bounds:     0.000e+00, 6.700e+01
+     Y Bounds:     0.000e+00, 6.700e+01
+     Z Bounds:     0.000e+00, 6.700e+01
+     Dimensions:   68, 68, 68
+     Spacing:      1.000e+00, 1.000e+00, 1.000e+00
+     N Arrays:     1
+
+`ファイルから読み込む <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#read-from-a-file>`_
+---------------------------------------------------------------------------------------------------------------------
+
+.. revealjs-code-block:: python
+   :data-line-numbers: 1
+
+   >>> dataset.plot(volume=True)
+
+.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_6_0.png
+   :alt: read-from-a-file
+   :width: 75%
+
 
 `メッシュとは? <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html>`_
 ============================================================================================
