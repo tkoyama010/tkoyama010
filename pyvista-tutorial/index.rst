@@ -537,6 +537,107 @@ PyVistaチュートリアル
 `フィルタ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html>`_
 ==========================================================================================
 
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-10
+
+   >>> import pyvista as pv
+   >>> from pyvista import examples
+
+   >>> dataset = examples.load_uniform()
+   >>> dataset.set_active_scalars("Spatial Point Data")
+
+   >>> # Apply a threshold over a data range
+   >>> threshed = dataset.threshold([100, 500])
+
+   >>> outline = dataset.outline()
+
+`フィルタ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html>`_
+------------------------------------------------------------------------------------------
+
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-10
+
+   >>> pl = pv.Plotter()
+   >>> pl.add_mesh(outline, color="k")
+   >>> pl.add_mesh(threshed)
+   >>> pl.camera_position = [-2, 5, 3]
+   >>> pl.show()
+
+.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_2_04.png
+   :alt: filters
+   :width: 70%
+
+`フィルタ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html>`_
+------------------------------------------------------------------------------------------
+
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-99
+
+   >>> import pyvista as pv
+   >>> from pyvista import examples
+
+`フィルタ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html>`_
+------------------------------------------------------------------------------------------
+
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-99
+
+   >>> dataset = examples.load_uniform()
+   >>> outline = dataset.outline()
+   >>> threshed = dataset.threshold([100, 500])
+   >>> contours = dataset.contour()
+   >>> slices = dataset.slice_orthogonal()
+   >>> glyphs = dataset.glyph(
+   ...     factor=1e-3, geom=pv.Sphere(), orient=False
+   >>> )
+
+`フィルタ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html>`_
+------------------------------------------------------------------------------------------
+
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-99
+
+   >>> p = pv.Plotter(shape=(2, 2))
+   >>> # Show the threshold
+   >>> p.add_mesh(outline, color="k")
+   >>> p.add_mesh(threshed, show_scalar_bar=False)
+   >>> p.camera_position = [-2, 5, 3]
+   >>> # Show the contour
+   >>> p.subplot(0, 1)
+   >>> p.add_mesh(outline, color="k")
+   >>> p.add_mesh(contours, show_scalar_bar=False)
+   >>> p.camera_position = [-2, 5, 3]
+
+`フィルタ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html>`_
+------------------------------------------------------------------------------------------
+
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-99
+
+   >>> # Show the slices
+   >>> p.subplot(1, 0)
+   >>> p.add_mesh(outline, color="k")
+   >>> p.add_mesh(slices, show_scalar_bar=False)
+   >>> p.camera_position = [-2, 5, 3]
+   >>> # Show the glyphs
+   >>> p.subplot(1, 1)
+   >>> p.add_mesh(outline, color="k")
+   >>> p.add_mesh(glyphs, show_scalar_bar=False)
+   >>> p.camera_position = [-2, 5, 3]
+
+`フィルタ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html>`_
+------------------------------------------------------------------------------------------
+
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-99
+
+   >>> p.link_views()
+   >>> p.show()
+
+.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index-1_00_003.png
+   :alt: filters
+   :width: 70%
+
 `フィルタパイプライン <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html#filter-pipeline>`_
 ----------------------------------------------------------------------------------------------------------------------
 
