@@ -576,12 +576,6 @@ PyVistaチュートリアル
    >>> import pyvista as pv
    >>> from pyvista import examples
 
-`フィルタ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html>`_
-------------------------------------------------------------------------------------------
-
-.. revealjs-code-block:: python
-   :data-line-numbers: 1-99
-
    >>> dataset = examples.load_uniform()
    >>> outline = dataset.outline()
    >>> threshed = dataset.threshold([100, 500])
