@@ -3,12 +3,16 @@
 :og:image:alt: Title section for demo presentation
 :og:description: Demo presentation of sphnx-revealjs
 
-========================================
-PyVistaによる3次元ビジュアライゼーション
-========================================
+====================================================
+PyVistaによる |br| 3次元ビジュアライ |br| ゼーション
+====================================================
 
 :Instructor: Tetsuo Koyama
 :Date: 2023-10-26
+
+.. |br| raw:: html
+
+   <br>
 
 はじめに
 ========
