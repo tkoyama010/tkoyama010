@@ -41,8 +41,10 @@ html_static_path = ["_static"]
 revealjs_style_theme = "white"
 
 revealjs_script_conf = {
+    "width": 1244,
+    "height": 700,
     "controls": True,
-    "progress": False,
+    "progress": True,
     "history": True,
     "center": True,
     "transition": "none",

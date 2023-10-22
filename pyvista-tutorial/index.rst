@@ -8,7 +8,7 @@
    <br>
 
 ======================================================
-**PyVista** による |br| 3Dビジュアライ |br| ゼーション
+**PyVista** による |br| 3D |br| ビジュアライゼーション
 ======================================================
 
 :Instructor: Tetsuo Koyama
@@ -56,7 +56,7 @@ TA紹介
 `ご質問 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial.html#questions>`_
 ---------------------------------------------------------------------------------
 
-PyVistaについて何か質問があれば，フォーラムに気軽に投稿してください．
+PyVistaについて何か質問があれば， |br| フォーラムに気軽に投稿してください．
 
 .. raw:: html
 
@@ -97,7 +97,7 @@ Google Colab
 
       .. raw:: html
 
-         <video width="100%" height="auto" controls autoplay muted>
+         <video width="70%" height="auto" controls autoplay muted>
            <source src="_static/pyvista_jupyterlab_demo.mp4" type="video/mp4">
            Your browser does not support the video tag.
          </video>
@@ -106,7 +106,7 @@ Google Colab
 
       .. raw:: html
 
-         <video width="100%" height="auto" controls autoplay muted>
+         <video width="70%" height="auto" controls autoplay muted>
            <source src="_static/pyvista_ipython_demo.mp4" type="video/mp4">
            Your browser does not support the video tag.
          </video>
@@ -166,29 +166,42 @@ Google Colab
 `サーフェスメッシュの  <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#read-and-plot-a-surface-mesh>`_ |br| `読み込みとプロット <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#read-and-plot-a-surface-mesh>`_
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-.. revealjs-code-block:: python
-   :data-line-numbers: 1-4|1|3|4
+.. container:: flex-container
 
-   from pyvista import examples
+   .. container:: half
 
-   mesh = examples.download_bunny()
-   mesh.plot(cpos='xy')
+      .. revealjs-code-block:: python
+         :data-line-numbers: 1-4|1|3|4
 
-.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_1_0.png
+         from pyvista import examples
+
+         mesh = examples.download_bunny()
+         mesh.plot(cpos='xy')
+
+   .. container:: half
+
+      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_1_0.png
+
 
 `色を使った簡単な点群の構築 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#construct-a-simple-point-cloud-with-color>`_
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-.. revealjs-code-block:: python
-   :data-line-numbers: 1-5|1|2|3|4|5
+.. container:: flex-container
 
-   import pyvista as pv
-   import numpy as np
-   points = np.random.random((1000, 3))
-   pc = pv.PolyData(points)
-   pc.plot(scalars=points[:, 2], point_size=5.0, cmap='jet')
+   .. container:: half
 
-.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_2_0.png
+       .. revealjs-code-block:: python
+         :data-line-numbers: 1-5|1|2|3|4|5
+
+         import pyvista as pv
+         import numpy as np
+         points = np.random.random((1000, 3))
+         pc = pv.PolyData(points)
+         pc.plot(scalars=points[:, 2], point_size=5.0, cmap='jet')
+
+   .. container:: half
+
+       .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_2_0.png
 
 `他のライブラリとの比較 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#how-other-libraries-compare>`_
 ----------------------------------------------------------------------------------------------------------------------------------
