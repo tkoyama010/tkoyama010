@@ -163,8 +163,8 @@ Google Colab
 `簡単な例 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#brief-examples>`_
 -------------------------------------------------------------------------------------------------------
 
-`サーフェスメッシュの読み込みとプロット <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#read-and-plot-a-surface-mesh>`_
----------------------------------------------------------------------------------------------------------------------------------------------------
+`サーフェスメッシュの  <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#read-and-plot-a-surface-mesh>`_ |br| `読み込みとプロット <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#read-and-plot-a-surface-mesh>`_
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. revealjs-code-block:: python
    :data-line-numbers: 1-4|1|3|4
@@ -220,8 +220,8 @@ Google Colab
          :alt: mayavi
          :width: 70%
 
-`演習 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#exercises>`_
-----------------------------------------------------------------------------------------------
+`はじめに-演習 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#exercises>`_
+-------------------------------------------------------------------------------------------------------
 
 11:10-11:20
 
@@ -270,6 +270,8 @@ Google Colab
 
 `基本的な使い方 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html>`_
 ==============================================================================================
+
+11:40-11:50
 
 `既存データの活用 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#using-existing-data>`_
 --------------------------------------------------------------------------------------------------------------------
@@ -334,15 +336,23 @@ Google Colab
    :alt: read-from-a-file
    :width: 70%
 
+`演習 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#exercises>`_
+----------------------------------------------------------------------------------------------
+
+11:50-12:00
+
 `メッシュとは? <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html>`_
 ============================================================================================
+
+12:00-12:20
 
 `ポイントとは？ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#what-is-a-point>`_
 -------------------------------------------------------------------------------------------------------------
 
 .. revealjs-code-block:: python
-   :data-line-numbers: 1-3|1|2|3|1-3
+   :data-line-numbers: 1-4|1|2|3|4|1-4
 
+   >>> import numpy as np
    >>> points = np.random.rand(100, 3)
    >>> mesh = pv.PolyData(points)
    >>> mesh.plot(point_size=10, style='points', color='tan')
@@ -355,7 +365,7 @@ Google Colab
 --------------------------------------------------------------------------------------------------------
 
 .. revealjs-code-block:: python
-   :data-line-numbers: 1-13
+   :data-line-numbers: 1-14
 
    >>> mesh = examples.load_hexbeam()
 
@@ -369,13 +379,6 @@ Google Colab
 
    >>> pl.camera_position = [(6.20, 3.00, 7.50),
    >>>                       (0.16, 0.13, 2.65),
-
-`セルとは？ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#what-is-a-cell>`_
---------------------------------------------------------------------------------------------------------
-
-.. revealjs-code-block:: python
-   :data-line-numbers: 1
-
    >>> pl.show()
 
 .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_4_01.png
@@ -459,6 +462,16 @@ Google Colab
 .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_7_0.png
    :alt: assigning-scalars-to-a-mesh
    :width: 70%
+
+`メッシュとは? - 演習 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#exercises>`_
+-------------------------------------------------------------------------------------------------------------
+
+12:20-12:30
+
+休憩 |:coffee:|
+===============
+
+12:30-12:45
 
 `プロットオプションと <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html>`_  |br| `アニメーション <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html>`_
 =============================================================================================================================================================================================================
