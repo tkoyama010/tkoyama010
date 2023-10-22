@@ -158,6 +158,8 @@ Google Colab
 `はじめに <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html>`_
 ========================================================================================
 
+11:00-11:10
+
 `簡単な例 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#brief-examples>`_
 -------------------------------------------------------------------------------------------------------
 
@@ -218,22 +220,37 @@ Google Colab
          :alt: mayavi
          :width: 70%
 
+`演習 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#exercises>`_
+----------------------------------------------------------------------------------------------
+
+11:10-11:20
+
 `JupyterでPyVistaを使う <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html>`_
 ========================================================================================================
+
+11:20-11:40
 
 .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/jupyter.png
    :alt: jupyter
    :width: 70%
 
-`PyVista用Trame Jupyterバックエンド <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html#trame-jupyter-backend-for-pyvista>`_
-------------------------------------------------------------------------------------------------------------------------------------------------------
+`vtk.jsでデータを可視化する <https://kitware.github.io/vtk-js/>`_
+-----------------------------------------------------------------
 
-`Trame Jupyter モード <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html#trame-jupyter-modes>`_
---------------------------------------------------------------------------------------------------------------------------
+`Trameでデータを可視化する <https://kitware.github.io/trame/>`_
+---------------------------------------------------------------
 
-`Jupyter-Server-Proxy <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html#jupyter-server-proxy>`_
----------------------------------------------------------------------------------------------------------------------------
+.. raw:: html
 
+    <iframe src="https://player.vimeo.com/video/764741737?muted=1" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+
+`インストール <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html#installation>`_
+-----------------------------------------------------------------------------------------------------------
+
+.. revealjs-code-block:: bash
+   :data-line-numbers: 1-1
+
+    pip install 'jupyterlab>=3' ipywidgets 'pyvista[all,trame]'
 
 `基本的な使い方 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html>`_
 ==============================================================================================
