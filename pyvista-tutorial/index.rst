@@ -36,7 +36,7 @@ TA紹介
 .. |contrib.rocks| image:: https://contrib.rocks/image?repo=pyvista/pyvista
    :target: https://github.com/pyvista/pyvista/graphs/contributors
    :alt: contrib.rocks
-   :width: 80%
+   :width: 60%
 
 |contrib.rocks|
 
@@ -139,7 +139,7 @@ Google Colab
 +--------------------------------------+-----------------+-----------------------------------------------------+
 | **レッスン**                         | **時間**        | **説明**                                            |
 +--------------------------------------+-----------------+-----------------------------------------------------+
-| 休憩 |:coffee:|                      | 12:30-12:45     | 休憩．指を伸ばしてコーヒーを飲む．                  |
+| 休憩 |:coffee:|                      | 12:30-12:45     | 休憩．指を伸ばしてコーヒーを飲みます．              |
 +--------------------------------------+-----------------+-----------------------------------------------------+
 | プロットオプションとアニメーション   | 12:45-13:20     | 魅力的な3Dビジュアリゼーションを作成します．        |
 +--------------------------------------+-----------------+-----------------------------------------------------+
@@ -191,13 +191,19 @@ Google Colab
    .. container:: half
 
        .. revealjs-code-block:: python
-         :data-line-numbers: 1-5|1|2|3|4|5
+         :data-line-numbers: 1-11|1|2|5|6|7-11|1-11
 
          import pyvista as pv
          import numpy as np
+
+
          points = np.random.random((1000, 3))
          pc = pv.PolyData(points)
-         pc.plot(scalars=points[:, 2], point_size=5.0, cmap='jet')
+         pc.plot(
+             scalars=points[:, 2],
+             point_size=5.0,
+             cmap='jet'
+         )
 
    .. container:: half
 
@@ -212,26 +218,26 @@ Google Colab
 
       .. image:: https://miro.medium.com/max/1400/1*B3aEPDxSvgR6Giyh4I4a2w.jpeg
          :alt: VTK
-         :width: 70%
+         :width: 50%
 
 
    .. tab-item:: ParaView
 
       .. image:: https://www.kitware.com/main/wp-content/uploads/2018/11/ParaView-5.6.png
          :alt: ParaView
-         :width: 70%
+         :width: 50%
 
    .. tab-item:: vedo
 
       .. image:: https://user-images.githubusercontent.com/32848391/80292484-50757180-8757-11ea-841f-2c0c5fe2c3b4.jpg
          :alt: vedo
-         :width: 70%
+         :width: 40%
 
    .. tab-item:: Mayavi
 
       .. image:: https://viscid-hub.github.io/Viscid-docs/docs/dev/_images/mvi-000.png
          :alt: mayavi
-         :width: 70%
+         :width: 50%
 
 `はじめに-演習 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#exercises>`_
 -------------------------------------------------------------------------------------------------------
@@ -245,7 +251,7 @@ Google Colab
 
 .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/jupyter.png
    :alt: jupyter
-   :width: 70%
+   :width: 40%
 
 `vtk.jsでデータを可視化する <https://kitware.github.io/vtk-js/>`_
 -----------------------------------------------------------------
