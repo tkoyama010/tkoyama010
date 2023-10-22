@@ -438,45 +438,80 @@ Google Colab
 `ポイントデータ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#point-data>`_
 --------------------------------------------------------------------------------------------------------
 
-.. revealjs-code-block:: python
-   :data-line-numbers: 1-2
+.. container:: flex-container
 
-   >>> mesh.point_data['my point values'] = np.arange(mesh.n_points)
-   >>> mesh.plot(scalars='my point values', cpos=cpos, show_edges=True)
+   .. container:: half
 
-.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_5_0.png
-   :alt: point-data
-   :width: 70%
+      .. revealjs-code-block:: python
+         :data-line-numbers: 1-8
 
-`セルデータ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#cell-data>`_
----------------------------------------------------------------------------------------------------
+         >>> mesh.point_data[
+         ...     'my point values'
+         ... ] = np.arange(mesh.n_points)
+         >>> mesh.plot(
+         ...     scalars='my point values',
+         ...     cpos=cpos,
+         ...     show_edges=True
+         ... )
 
-.. revealjs-code-block:: python
-   :data-line-numbers: 1-2
+   .. container:: half
 
-   >>> mesh.cell_data['my cell values'] = np.arange(mesh.n_cells)
-   >>> mesh.plot(scalars='my cell values', cpos=cpos, show_edges=True)
-
-.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_6_01.png
-   :alt: cell-data
-   :width: 70%
+      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_5_0.png
 
 `セルデータ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#cell-data>`_
 ---------------------------------------------------------------------------------------------------
 
-.. revealjs-code-block:: python
-   :data-line-numbers: 1-6
+.. container:: flex-container
 
-   >>> uni = examples.load_uniform()
-   >>> pl = pv.Plotter(shape=(1, 2), border=False)
-   >>> pl.add_mesh(uni, scalars='Spatial Point Data', show_edges=True)
-   >>> pl.subplot(0, 1)
-   >>> pl.add_mesh(uni, scalars='Spatial Cell Data', show_edges=True)
-   >>> pl.show()
+   .. container:: half
 
-.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index-1_00_001.png
-   :alt: cell-data
-   :width: 70%
+      .. revealjs-code-block:: python
+         :data-line-numbers: 1-8
+
+         >>> mesh.cell_data[
+         ...     'my cell values'
+         ... ] = np.arange(mesh.n_cells)
+         >>> mesh.plot(
+         ...     scalars='my cell values',
+         ...     cpos=cpos,
+         ...     show_edges=True,
+         ... )
+
+   .. container:: half
+
+      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_6_01.png
+
+`セルデータ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#cell-data>`_
+---------------------------------------------------------------------------------------------------
+
+.. container:: flex-container
+
+   .. container:: half
+
+      .. revealjs-code-block:: python
+         :data-line-numbers: 1-17
+
+         >>> uni = examples.load_uniform()
+         >>> pl = pv.Plotter(
+         ...     shape=(1, 2),
+         ...     border=False
+         ... )
+         >>> pl.add_mesh(
+         ...     uni,
+         ...     scalars='Spatial Point Data',
+         ...     show_edges=True
+         ... )
+         >>> pl.subplot(0, 1)
+         >>> pl.add_mesh(
+         ...     uni,
+         ...     scalars='Spatial Cell Data',
+         ...     show_edges=True
+         ... )
+         >>> pl.show()
+
+   .. container:: half
+
+      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index-1_00_001.png
 
 `フィールドデータ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#field-data>`_
 ----------------------------------------------------------------------------------------------------------
@@ -484,27 +519,36 @@ Google Colab
 `スカラーをメッシュに割り当てる <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#assigning-scalars-to-a-mesh>`_
 -----------------------------------------------------------------------------------------------------------------------------------------
 
-.. revealjs-code-block:: python
-   :data-line-numbers: 1-11
+.. container:: flex-container
 
-   >>> cube = pv.Cube()
-   >>> cube.cell_data['myscalars'] = range(6)
+   .. container:: half
 
-   >>> other_cube = cube.copy()
-   >>> other_cube.point_data['myscalars'] = range(8)
+      .. revealjs-code-block:: python
+         :data-line-numbers: 1-19
 
-   >>> pl = pv.Plotter(shape=(1, 2), border_width=1)
-   >>> pl.add_mesh(cube, cmap='coolwarm')
-   >>> pl.subplot(0, 1)
-   >>> pl.add_mesh(other_cube, cmap='coolwarm')
-   >>> pl.show()
+         >>> cube = pv.Cube()
+         >>> cube.cell_data[
+         ...    'myscalars'
+         ... ] = range(6)
 
-`スカラーをメッシュに割り当てる <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#assigning-scalars-to-a-mesh>`_
------------------------------------------------------------------------------------------------------------------------------------------
+         >>> other_cube = cube.copy()
+         >>> other_cube.point_data[
+         ...    'myscalars'
+         ... ] = range(8)
 
-.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_7_0.png
-   :alt: assigning-scalars-to-a-mesh
-   :width: 70%
+         >>> pl = pv.Plotter(
+         ,,,    shape=(1, 2), border_width=1
+         ... )
+         >>> pl.add_mesh(cube, cmap='coolwarm')
+         >>> pl.subplot(0, 1)
+         >>> pl.add_mesh(
+         ...    other_cube, cmap='coolwarm'
+         ... )
+         >>> pl.show()
+
+   .. container:: half
+
+       .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_7_0.png
 
 `メッシュとは? - 演習 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#exercises>`_
 -------------------------------------------------------------------------------------------------------------
