@@ -31,7 +31,11 @@
     display: flex;
     .half {
       flex: 1;
-      width: 60%;
+      width: 50%;
+    }
+    .one-third {
+      flex: 1;
+      width: 30%;
     }
   }
   h1, h2, h3 {

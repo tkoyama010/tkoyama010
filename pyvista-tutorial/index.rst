@@ -270,15 +270,19 @@ Google Colab
 `JupyterでPyVistaを使う <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html>`_
 --------------------------------------------------------------------------------------------------------
 
-.. raw:: html
+.. container:: flex-container
 
-    <center>
+   .. container:: one-third
 
-.. oembed:: https://twitter.com/banesullivan/status/1621535825103126530
+      .. image:: https://discourse.vtk.org/uploads/default/optimized/2X/e/e17639ec07a6819961efd3462ea1987087e2cf9e_2_441x500.jpeg
 
-.. raw:: html
+   .. container:: one-third
 
-    </center>
+      .. image:: https://discourse.vtk.org/uploads/default/optimized/2X/2/2bf11e292cdd7fb03a1819016e0d34a9b82a6ddf_2_441x500.jpeg
+
+   .. container:: one-third
+
+      .. image:: https://discourse.vtk.org/uploads/default/optimized/2X/1/1dcf2d605e57e1d9c161e8a195c8da680184507c_2_441x500.jpeg
 
 `インストール <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html#installation>`_
 -----------------------------------------------------------------------------------------------------------
@@ -295,65 +299,59 @@ Google Colab
 `既存データの活用 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#using-existing-data>`_
 --------------------------------------------------------------------------------------------------------------------
 
-.. revealjs-code-block:: python
-   :data-line-numbers: 1-3|1|2|3|5-12|5|6|7|8|9|10|11|12|1-12
+.. container:: flex-container
 
-   >>> from pyvista import examples
-   >>> dataset = examples.download_saddle_surface()
-   >>> dataset
+   .. container:: half
 
-   PolyData (..............)
-     N Cells:    5131
-     N Points:   2669
-     N Strips:   0
-     X Bounds:   -2.001e+01, 2.000e+01
-     Y Bounds:   -6.480e-01, 4.024e+01
-     Z Bounds:   -6.093e-01, 1.513e+01
-     N Arrays:   0
+      .. revealjs-code-block:: python
+         :data-line-numbers: 1-14|1-3|4|5|6-14|6|7|8|9|10|11|12|13|14|1-14
 
-`既存データの活用 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#using-existing-data>`_
---------------------------------------------------------------------------------------------------------------------
+         >>> from pyvista.examples import (
+         ...     download_saddle_surface
+         ... )
+         >>> dataset = download_saddle_surface()
+         >>> dataset
+         PolyData (..............)
+           N Cells:    5131
+           N Points:   2669
+           N Strips:   0
+           X Bounds:   -2.001e+01, 2.000e+01
+           Y Bounds:   -6.480e-01, 4.024e+01
+           Z Bounds:   -6.093e-01, 1.513e+01
+           N Arrays:   0
+         >>> dataset.plot(color='tan')
 
-.. revealjs-code-block:: python
-   :data-line-numbers: 1
+   .. container:: half
 
-   >>> dataset.plot(color='tan')
-
-.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_2_01.png
-   :alt: using-existing-data
-   :width: 70%
+      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_2_01.png
 
 `ファイルから読み込む <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#read-from-a-file>`_
 ---------------------------------------------------------------------------------------------------------------------
 
-.. revealjs-code-block:: python
-   :data-line-numbers: 1-3|1|2|3|5-13|5|6|7|8|9|10|11|12|13|1-13
+.. container:: flex-container
 
-   >>> import pyvista as pv
-   >>> dataset = pv.read('ironProt.vtk')
-   >>> dataset
+   .. container:: half
 
-   ImageData (..............)
-     N Cells:      300763
-     N Points:     314432
-     X Bounds:     0.000e+00, 6.700e+01
-     Y Bounds:     0.000e+00, 6.700e+01
-     Z Bounds:     0.000e+00, 6.700e+01
-     Dimensions:   68, 68, 68
-     Spacing:      1.000e+00, 1.000e+00, 1.000e+00
-     N Arrays:     1
+      .. revealjs-code-block:: python
+         :data-line-numbers: 1-3|1|2|3|5-13|5|6|7|8|9|10|11|12|13|1-13
 
-`ファイルから読み込む <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#read-from-a-file>`_
----------------------------------------------------------------------------------------------------------------------
+         >>> import pyvista as pv
+         >>> dataset = pv.read('ironProt.vtk')
+         >>> dataset
+         ImageData (..............)
+           N Cells:      300763
+           N Points:     314432
+           X Bounds:     0.000e+00, 6.700e+01
+           Y Bounds:     0.000e+00, 6.700e+01
+           Z Bounds:     0.000e+00, 6.700e+01
+           Dimensions:   68, 68, 68
+           Spacing:      1.000e+00, 1.000e+00,
+           N Arrays:     1
+         >>> dataset.plot(volume=True)
 
-.. revealjs-code-block:: python
-   :data-line-numbers: 1
+   .. container:: half
 
-   >>> dataset.plot(volume=True)
-
-.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_6_0.png
-   :alt: read-from-a-file
-   :width: 70%
+      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_6_0.png
 
 `演習 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#exercises>`_
 ----------------------------------------------------------------------------------------------
