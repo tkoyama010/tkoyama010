@@ -30,8 +30,66 @@ TA紹介
 * :fab:`twitter` @matsu_yarukinai
 * :fab:`github` @matsubaraDaisuke
 
-`PyVistaチュートリアル <https://pyvista.github.io/pyvista-tutorial-ja/index.html>`_
------------------------------------------------------------------------------------
+作者紹介
+--------
+
+.. |contrib.rocks| image:: https://contrib.rocks/image?repo=pyvista/pyvista
+   :target: https://github.com/pyvista/pyvista/graphs/contributors
+   :alt: contrib.rocks
+   :width: 80%
+
+|contrib.rocks|
+
+.. _contributors page: https://github.com/pyvista/pyvista/graphs/contributors/
+.. _list of authors: https://docs.pyvista.org/getting-started/authors.html#authors
+.. _contrib rocks: https://contrib.rocks
+
+`PyVistaチュートリアル <https://pyvista.github.io/pyvista-tutorial-ja/tutorial.html#pyvista-tutorial>`_
+=======================================================================================================
+
+.. button-link:: https://github.com/pyvista/pyvista-tutorial/raw/gh-pages/notebooks.zip
+   :color: primary
+   :shadow:
+
+   Download the Tutorial's Jupyter Notebooks
+
+`ご質問 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial.html#questions>`_
+---------------------------------------------------------------------------------
+
+PyVistaについて何か質問があれば，フォーラムに気軽に投稿してください．
+
+.. raw:: html
+
+    <center>
+      <a target="_blank" href="https://github.com/pyvista/pyvista/discussions">
+        <img src="https://img.shields.io/badge/GitHub-Discussions-green?logo=github" alt="Open In Colab"/ width="300px">
+      </a>
+    </center>
+
+MyBinder
+--------
+
+.. raw:: html
+
+    <center>
+      <a target="_blank" href="https://mybinder.org/v2/gh/pyvista/pyvista-tutorial/gh-pages?urlpath=lab/tree/notebooks">
+        <img src="https://static.mybinder.org/badge_logo.svg" alt="Launch on Binder"/ width="300px">
+      </a>
+    </center>
+
+Google Colab
+------------
+
+.. raw:: html
+
+    <center>
+      <a target="_blank" href="https://colab.research.google.com/github/pyvista/pyvista-tutorial/blob/gh-pages/notebooks/tutorial/00_intro/a_basic.ipynb">
+        <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/ width="300px">
+      </a>
+    </center>
+
+`チュートリアルの概要 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial.html#tutorial-overview>`_
+-------------------------------------------------------------------------------------------------------
 
 .. tab-set::
 
@@ -53,48 +111,8 @@ TA紹介
            Your browser does not support the video tag.
          </video>
 
-作者紹介
---------
-
-.. |contrib.rocks| image:: https://contrib.rocks/image?repo=pyvista/pyvista
-   :target: https://github.com/pyvista/pyvista/graphs/contributors
-   :alt: contrib.rocks
-   :width: 80%
-
-|contrib.rocks|
-
-.. _contributors page: https://github.com/pyvista/pyvista/graphs/contributors/
-.. _list of authors: https://docs.pyvista.org/getting-started/authors.html#authors
-.. _contrib rocks: https://contrib.rocks
-
-`インストール <https://pyvista.github.io/pyvista-tutorial-ja/getting-started.html>`_
-------------------------------------------------------------------------------------
-
-チュートリアルにはGoogle Colaboratoryのリンクが準備されています。
-
-.. raw:: html
-
-    <center>
-      <a target="_blank" href="https://colab.research.google.com/github/pyvista/pyvista-tutorial/blob/gh-pages/notebooks/tutorial/00_intro/a_basic.ipynb">
-        <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/ width="300px">
-      </a>
-    </center>
-
-フォーラムにご質問ください。
-
-.. raw:: html
-
-    <center>
-      <a target="_blank" href="https://github.com/pyvista/pyvista/discussions">
-        <img src="https://img.shields.io/badge/GitHub-Discussions-green?logo=github" alt="Open In Colab"/ width="300px">
-      </a>
-    </center>
-
-PyVistaチュートリアル
-=====================
-
-チュートリアルの概要
---------------------
+`チュートリアルの概要 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial.html#tutorial-overview>`_
+-------------------------------------------------------------------------------------------------------
 
 +--------------------------------------+-----------------+-----------------------------------------------------+
 | **レッスン**                         | **時間**        | **説明**                                            |
@@ -104,8 +122,8 @@ PyVistaチュートリアル
 | JupyterでPyVistaを使う               | 11:20-11:40     | JupyterでPyVistaを使います．                        |
 +--------------------------------------+-----------------+-----------------------------------------------------+
 
-チュートリアルの概要
---------------------
+`チュートリアルの概要 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial.html#tutorial-overview>`_
+-------------------------------------------------------------------------------------------------------
 
 +--------------------------------------+-----------------+-----------------------------------------------------+
 | **レッスン**                         | **時間**        | **説明**                                            |
@@ -115,8 +133,8 @@ PyVistaチュートリアル
 | メッシュとは?                        | 12:00-12:30     | PyVistaのデータ型の基本を学びます．                 |
 +--------------------------------------+-----------------+-----------------------------------------------------+
 
-チュートリアルの概要
---------------------
+`チュートリアルの概要 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial.html#tutorial-overview>`_
+-------------------------------------------------------------------------------------------------------
 
 +--------------------------------------+-----------------+-----------------------------------------------------+
 | **レッスン**                         | **時間**        | **説明**                                            |
@@ -126,8 +144,8 @@ PyVistaチュートリアル
 | プロットオプションとアニメーション   | 12:45-13:20     | 魅力的な3Dビジュアリゼーションを作成します．        |
 +--------------------------------------+-----------------+-----------------------------------------------------+
 
-チュートリアルの概要
---------------------
+`チュートリアルの概要 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial.html#tutorial-overview>`_
+-------------------------------------------------------------------------------------------------------
 
 +--------------------------------------+-----------------+-----------------------------------------------------+
 | **レッスン**                         | **時間**        | **説明**                                            |
