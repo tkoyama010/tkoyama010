@@ -366,41 +366,67 @@ Google Colab
 `ポイントとは？ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#what-is-a-point>`_
 -------------------------------------------------------------------------------------------------------------
 
-.. revealjs-code-block:: python
-   :data-line-numbers: 1-4|1|2|3|4|1-4
+.. container:: flex-container
 
-   >>> import numpy as np
-   >>> points = np.random.rand(100, 3)
-   >>> mesh = pv.PolyData(points)
-   >>> mesh.plot(point_size=10, style='points', color='tan')
+   .. container:: half
 
-.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_1_01.png
-   :alt: what-is-a-point
-   :width: 70%
+      .. revealjs-code-block:: python
+         :data-line-numbers: 1-8|1|2|3|4-8|1-8
+
+         >>> import numpy as np
+         >>> points = np.random.rand(100, 3)
+         >>> mesh = pv.PolyData(points)
+         >>> mesh.plot(
+         ...     point_size=10,
+         ...     style='points',
+         ...     color='tan'
+         ,,, )
+
+   .. container:: half
+
+      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_1_01.png
+         :alt: what-is-a-point
 
 `セルとは？ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#what-is-a-cell>`_
 --------------------------------------------------------------------------------------------------------
 
-.. revealjs-code-block:: python
-   :data-line-numbers: 1-14
+.. container:: flex-container
 
-   >>> mesh = examples.load_hexbeam()
+   .. container:: half
 
-   >>> pl = pv.Plotter()
-   >>> pl.add_mesh(mesh, show_edges=True, color='white')
-   >>> pl.add_points(mesh.points, color='red', point_size=20)
+      .. revealjs-code-block:: python
+         :data-line-numbers: 1-26
 
-   >>> single_cell = mesh.extract_cells(mesh.n_cells - 1)
-   >>> pl.add_mesh(single_cell, color='pink', edge_color='blue',
-   ...             line_width=5, show_edges=True)
+         >>> mesh = examples.load_hexbeam()
 
-   >>> pl.camera_position = [(6.20, 3.00, 7.50),
-   >>>                       (0.16, 0.13, 2.65),
-   >>> pl.show()
+         >>> pl = pv.Plotter()
+         >>> pl.add_mesh(
+         ...     mesh,
+         ...     show_edges=True,
+         ...     color='white'
+         ... )
+         >>> pl.add_points(
+         ...     mesh.points,
+         ...     color='red',
+         ...     point_size=20
+         ... )
 
-.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_4_01.png
-   :alt: what-is-a-cell
-   :width: 70%
+         >>> single_cell = mesh.extract_cells(
+         ...     mesh.n_cells - 1
+         ... )
+         >>> pl.add_mesh(
+         ...     single_cell,
+         ...     color='pink',
+         ...     edge_color='blue',
+         ...     line_width=5,
+         ...     show_edges=True
+         ... )
+
+         >>> pl.show()
+
+   .. container:: half
+
+      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_4_01.png
 
 `アトリビュートとは? <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#what-are-attributes>`_
 ----------------------------------------------------------------------------------------------------------------------
