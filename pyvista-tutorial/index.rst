@@ -237,6 +237,10 @@ Google Colab
 `vtk.jsでデータを可視化する <https://kitware.github.io/vtk-js/>`_
 -----------------------------------------------------------------
 
+.. image:: https://www.kitware.com/main/wp-content/uploads/2021/12/image-1.png
+   :alt: vtkjs
+   :width: 20%
+
 `Trameでデータを可視化する <https://kitware.github.io/trame/>`_
 ---------------------------------------------------------------
 
@@ -244,13 +248,25 @@ Google Colab
 
     <iframe src="https://player.vimeo.com/video/764741737?muted=1" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
+`JupyterでPyVistaを使う <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html>`_
+--------------------------------------------------------------------------------------------------------
+
+.. raw:: html
+
+    <center>
+
+.. oembed:: https://twitter.com/banesullivan/status/1621535825103126530
+
+.. raw:: html
+
+    </center>
+
 `インストール <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html#installation>`_
 -----------------------------------------------------------------------------------------------------------
 
 .. revealjs-code-block:: bash
-   :data-line-numbers: 1-1
 
-    pip install 'jupyterlab>=3' ipywidgets 'pyvista[all,trame]'
+    pip install 'jupyterlab<4.0.0' 'ipywidgets<8.0.0' 'pyvista[all,trame]'
 
 `基本的な使い方 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html>`_
 ==============================================================================================
