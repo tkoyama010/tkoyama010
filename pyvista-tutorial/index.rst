@@ -44,8 +44,10 @@ TA紹介
 .. _list of authors: https://docs.pyvista.org/getting-started/authors.html#authors
 .. _contrib rocks: https://contrib.rocks
 
-`PyVistaチュートリアル <https://pyvista.github.io/pyvista-tutorial-ja/tutorial.html#pyvista-tutorial>`_
-=======================================================================================================
+PyVistaチュートリアル [#]_
+==========================
+
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial.html#pyvista-tutorial
 
 .. button-link:: https://github.com/pyvista/pyvista-tutorial/raw/gh-pages/notebooks.zip
    :color: primary
@@ -53,8 +55,10 @@ TA紹介
 
    Download the Tutorial's Jupyter Notebooks
 
-`ご質問 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial.html#questions>`_
----------------------------------------------------------------------------------
+ご質問 [#]_
+-----------
+
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial.html#questions
 
 PyVistaについて何か質問があれば， |br| フォーラムに気軽に投稿してください．
 
@@ -88,8 +92,10 @@ Google Colab
       </a>
     </center>
 
-`チュートリアルの概要 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial.html#tutorial-overview>`_
--------------------------------------------------------------------------------------------------------
+チュートリアルの概要 [#]_
+-------------------------
+
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial.html#tutorial-overview
 
 .. tab-set::
 
@@ -97,7 +103,7 @@ Google Colab
 
       .. raw:: html
 
-         <video width="70%" height="auto" controls autoplay muted>
+         <video width="50%" height="auto" controls autoplay muted>
            <source src="_static/pyvista_jupyterlab_demo.mp4" type="video/mp4">
            Your browser does not support the video tag.
          </video>
@@ -106,13 +112,12 @@ Google Colab
 
       .. raw:: html
 
-         <video width="70%" height="auto" controls autoplay muted>
+         <video width="50%" height="auto" controls autoplay muted>
            <source src="_static/pyvista_ipython_demo.mp4" type="video/mp4">
            Your browser does not support the video tag.
          </video>
 
-`チュートリアルの概要 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial.html#tutorial-overview>`_
--------------------------------------------------------------------------------------------------------
+.. revealjs-break::
 
 +--------------------------------------+-----------------+-----------------------------------------------------+
 | **レッスン**                         | **時間**        | **説明**                                            |
@@ -122,8 +127,7 @@ Google Colab
 | JupyterでPyVistaを使う               | 11:20-11:40     | JupyterでPyVistaを使います．                        |
 +--------------------------------------+-----------------+-----------------------------------------------------+
 
-`チュートリアルの概要 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial.html#tutorial-overview>`_
--------------------------------------------------------------------------------------------------------
+.. revealjs-break::
 
 +--------------------------------------+-----------------+-----------------------------------------------------+
 | **レッスン**                         | **時間**        | **説明**                                            |
@@ -133,8 +137,7 @@ Google Colab
 | メッシュとは?                        | 12:00-12:30     | PyVistaのデータ型の基本を学びます．                 |
 +--------------------------------------+-----------------+-----------------------------------------------------+
 
-`チュートリアルの概要 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial.html#tutorial-overview>`_
--------------------------------------------------------------------------------------------------------
+.. revealjs-break::
 
 +--------------------------------------+-----------------+-----------------------------------------------------+
 | **レッスン**                         | **時間**        | **説明**                                            |
@@ -144,8 +147,7 @@ Google Colab
 | プロットオプションとアニメーション   | 12:45-13:05     | 魅力的な3Dビジュアリゼーションを作成します．        |
 +--------------------------------------+-----------------+-----------------------------------------------------+
 
-`チュートリアルの概要 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial.html#tutorial-overview>`_
--------------------------------------------------------------------------------------------------------
+.. revealjs-break::
 
 +--------------------------------------+-----------------+-----------------------------------------------------+
 | **レッスン**                         | **時間**        | **説明**                                            |
@@ -155,16 +157,22 @@ Google Colab
 | PyVistaの活用                        | 13:30-14:00     | あらゆる可視化に使用できることを紹介します．        |
 +--------------------------------------+-----------------+-----------------------------------------------------+
 
-`はじめに <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html>`_
-========================================================================================
+はじめに [#]_
+=============
+
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html
 
 11:00-11:10
 
-`簡単な例 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#brief-examples>`_
--------------------------------------------------------------------------------------------------------
+簡単な例 [#]_
+-------------
 
-`サーフェスメッシュの  <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#read-and-plot-a-surface-mesh>`_ |br| `読み込みとプロット <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#read-and-plot-a-surface-mesh>`_
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#brief-examples
+
+サーフェスメッシュの読み込みとプロット [#]_
+-------------------------------------------
+
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#read-and-plot-a-surface-mesh
 
 .. container:: flex-container
 
@@ -183,8 +191,10 @@ Google Colab
       .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_1_0.png
 
 
-`色を使った簡単な点群の構築 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#construct-a-simple-point-cloud-with-color>`_
-----------------------------------------------------------------------------------------------------------------------------------------------------
+色を使った簡単な点群の構築 [#]_
+-------------------------------
+
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#construct-a-simple-point-cloud-with-color
 
 .. container:: flex-container
 
@@ -209,8 +219,10 @@ Google Colab
 
        .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_2_0.png
 
-`他のライブラリとの比較 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#how-other-libraries-compare>`_
-----------------------------------------------------------------------------------------------------------------------------------
+他のライブラリとの比較 [#]_
+---------------------------
+
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#how-other-libraries-compare
 
 .. tab-set::
 
@@ -218,34 +230,38 @@ Google Colab
 
       .. image:: https://miro.medium.com/max/1400/1*B3aEPDxSvgR6Giyh4I4a2w.jpeg
          :alt: VTK
-         :width: 50%
+         :width: 40%
 
 
    .. tab-item:: ParaView
 
       .. image:: https://www.kitware.com/main/wp-content/uploads/2018/11/ParaView-5.6.png
          :alt: ParaView
-         :width: 50%
+         :width: 40%
 
    .. tab-item:: vedo
 
       .. image:: https://user-images.githubusercontent.com/32848391/80292484-50757180-8757-11ea-841f-2c0c5fe2c3b4.jpg
          :alt: vedo
-         :width: 40%
+         :width: 30%
 
    .. tab-item:: Mayavi
 
       .. image:: https://viscid-hub.github.io/Viscid-docs/docs/dev/_images/mvi-000.png
          :alt: mayavi
-         :width: 50%
+         :width: 40%
 
-`はじめに-演習 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#exercises>`_
--------------------------------------------------------------------------------------------------------
+はじめに-演習 [#]_
+------------------
+
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#exercises
 
 11:10-11:20
 
-`JupyterでPyVistaを使う <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html>`_
-========================================================================================================
+JupyterでPyVistaを使う [#]_
+===========================
+
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html
 
 11:20-11:40
 
@@ -253,22 +269,28 @@ Google Colab
    :alt: jupyter
    :width: 40%
 
-`vtk.jsでデータを可視化する <https://kitware.github.io/vtk-js/>`_
------------------------------------------------------------------
+vtk.jsでデータを可視化する [#]_
+-------------------------------
+
+.. [#] https://kitware.github.io/vtk-js/
 
 .. image:: https://www.kitware.com/main/wp-content/uploads/2021/12/image-1.png
    :alt: vtkjs
    :width: 20%
 
-`Trameでデータを可視化する <https://kitware.github.io/trame/>`_
----------------------------------------------------------------
+Trameでデータを可視化する [#]_
+------------------------------
+
+.. [#] https://kitware.github.io/trame/
 
 .. raw:: html
 
     <iframe src="https://player.vimeo.com/video/764741737?muted=1" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
-`JupyterでPyVistaを使う <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html>`_
---------------------------------------------------------------------------------------------------------
+JupyterでPyVistaを使う [#]_
+---------------------------
+
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html
 
 .. container:: flex-container
 
@@ -284,20 +306,26 @@ Google Colab
 
       .. image:: https://discourse.vtk.org/uploads/default/optimized/2X/1/1dcf2d605e57e1d9c161e8a195c8da680184507c_2_441x500.jpeg
 
-`インストール <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html#installation>`_
------------------------------------------------------------------------------------------------------------
+インストール  [#]_
+------------------
+
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html#installation
 
 .. revealjs-code-block:: bash
 
     pip install 'jupyterlab<4.0.0' 'ipywidgets<8.0.0' 'pyvista[all,trame]'
 
-`基本的な使い方 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html>`_
-==============================================================================================
+基本的な使い方 [#]_
+===================
+
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html
 
 11:40-11:50
 
-`既存データの活用 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#using-existing-data>`_
---------------------------------------------------------------------------------------------------------------------
+既存データの活用 [#]_
+---------------------
+
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#using-existing-data
 
 .. container:: flex-container
 
@@ -325,8 +353,10 @@ Google Colab
 
       .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_2_01.png
 
-`ファイルから読み込む <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#read-from-a-file>`_
----------------------------------------------------------------------------------------------------------------------
+ファイルから読み込む [#]_
+-------------------------
+
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#read-from-a-file
 
 .. container:: flex-container
 
@@ -353,8 +383,10 @@ Google Colab
 
       .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_6_0.png
 
-`演習 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#exercises>`_
-----------------------------------------------------------------------------------------------
+基本的な使い方-演習 [#]_
+------------------------
+
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#exercises
 
 11:50-12:00
 
@@ -843,7 +875,7 @@ Google Colab
    .. container:: half
 
       .. revealjs-code-block:: python
-         :data-line-numbers: 1-2
+         :data-line-numbers: 1-7
 
          >>> result = dataset.threshold().elevation()
          ...          .clip(normal="z").slice_orthogonal()

@@ -72,6 +72,7 @@ revealjs_css_files = [
     # "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css",
     "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css",
     'slides.css',
+    'footnotes.css',
 ]
 
 # -- Options for HTMLHelp output ---------------------------------------------
