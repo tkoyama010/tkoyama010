@@ -390,13 +390,17 @@ JupyterでPyVistaを使う [#]_
 
 11:50-12:00
 
-`メッシュとは? <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html>`_
-============================================================================================
+メッシュとは? [#]_
+==================
+
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html
 
 12:00-12:20
 
-`ポイントとは？ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#what-is-a-point>`_
--------------------------------------------------------------------------------------------------------------
+ポイントとは？ [#]_
+-------------------
+
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#what-is-a-point
 
 .. container:: flex-container
 
@@ -419,8 +423,10 @@ JupyterでPyVistaを使う [#]_
       .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_1_01.png
          :alt: what-is-a-point
 
-`セルとは？ <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#what-is-a-cell>`_
---------------------------------------------------------------------------------------------------------
+セルとは？ [#]_
+---------------
+
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#what-is-a-cell
 
 .. container:: flex-container
 
