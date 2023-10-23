@@ -688,8 +688,6 @@ Google Colab
    .. container:: half
 
       .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index-2_00_00.png
-         :alt: the-basics
-         :width: 70%
 
 `シーンの制御 <https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html#controlling-the-scene>`_
 --------------------------------------------------------------------------------------------------------------------
