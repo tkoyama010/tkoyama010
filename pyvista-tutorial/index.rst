@@ -162,7 +162,7 @@ Google Colab
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html
 
-11:00-11:10
+|:clock11:| 11:00-11:10
 
 簡単な例 [#]_
 -------------
@@ -256,14 +256,14 @@ Google Colab
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#exercises
 
-11:10-11:20
+|:clock11:| 11:10-11:20
 
 JupyterでPyVistaを使う [#]_
 ===========================
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html
 
-11:20-11:40
+|:clock1130:| 11:20-11:40
 
 .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/jupyter.png
    :alt: jupyter
@@ -320,7 +320,7 @@ JupyterでPyVistaを使う [#]_
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html
 
-11:40-11:50
+|:clock1130:| 11:40-11:50
 
 既存データの活用 [#]_
 ---------------------
@@ -388,14 +388,14 @@ JupyterでPyVistaを使う [#]_
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#exercises
 
-11:50-12:00
+|:clock12:| 11:50-12:00
 
 メッシュとは? [#]_
 ==================
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html
 
-12:00-12:20
+|:clock12:| 12:00-12:20
 
 ポイントとは？ [#]_
 -------------------
@@ -607,17 +607,17 @@ JupyterでPyVistaを使う [#]_
 休憩 |:coffee:|
 ===============
 
-12:30-12:45
+|:clock1230:| 12:30-12:45
 
 プロットオプションとアニメーション [#]_
 =======================================
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html
 
-12:45-12:55
+|:clock1:| 12:45-12:55
 
-add_mesh
---------
+Plotterオブジェクトにメッシュを追加する
+---------------------------------------
 
 .. container:: flex-container
 
@@ -737,13 +737,18 @@ add_mesh
 
       .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index-2_00_00.png
 
+サブプロット [#]_
+-----------------
+
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html#subplotting
+
 シーンの制御 [#]_
 -----------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html#controlling-the-scene
 
-軸と境界 [#]_
--------------
+軸と境界の表示 [#]_
+-------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html#axes-and-bounds
 
@@ -797,14 +802,14 @@ add_mesh
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html#exercises
 
-12:55-13:05
+|:clock1:| 12:55-13:05
 
 フィルタ [#]_
 =============
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html
 
-13:05-13:15
+|:clock1:| 13:05-13:15
 
 .. container:: flex-container
 
@@ -928,10 +933,12 @@ add_mesh
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html#exercises
 
-13:15-13:30
+|:clock1:| 13:15-13:30
 
 PyVistaの活用 [#]_
 ==================
+
+|:clock130:| 13:30-14:00
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/05_action/index.html
 
