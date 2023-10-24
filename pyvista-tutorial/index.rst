@@ -14,8 +14,10 @@
 :Instructor: Tetsuo Koyama
 :Date: 2023-10-26
 
-はじめに
+自己紹介
 ========
+
+|:clock11:| 11:00-11:05
 
 インストラクター紹介
 --------------------
@@ -32,6 +34,8 @@ TA紹介
 
 PyVistaチュートリアル [#]_
 ==========================
+
+|:clock11:| 11:05-11:10
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial.html#pyvista-tutorial
 
@@ -61,22 +65,22 @@ PyVistaについて何か質問があれば， |br| フォーラムに気軽に�
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial.html#tutorial-overview
 
-.. tab-set::
+.. container:: flex-container
 
-   .. tab-item:: JupyterLab
+   .. container:: half
 
       .. raw:: html
 
-         <video width="50%" height="auto" controls autoplay muted>
+         <video width="100%" height="auto" controls autoplay muted>
            <source src="_static/pyvista_jupyterlab_demo.mp4" type="video/mp4">
            Your browser does not support the video tag.
          </video>
 
-   .. tab-item:: IPython
+   .. container:: half
 
       .. raw:: html
 
-         <video width="50%" height="auto" controls autoplay muted>
+         <video width="100%" height="auto" controls autoplay muted>
            <source src="_static/pyvista_ipython_demo.mp4" type="video/mp4">
            Your browser does not support the video tag.
          </video>
@@ -86,19 +90,9 @@ PyVistaについて何か質問があれば， |br| フォーラムに気軽に�
 +--------------------------------------+-----------------+-----------------------------------------------------+
 | **レッスン**                         | **時間**        | **説明**                                            |
 +--------------------------------------+-----------------+-----------------------------------------------------+
-| はじめに                             | 11:00-11:20     | PyVistaを使って3Dビジュアライゼーションを行います． |
+| はじめに                             | 11:10-11:30     | PyVistaを使って3Dビジュアライゼーションを行います． |
 +--------------------------------------+-----------------+-----------------------------------------------------+
-| JupyterでPyVistaを使う               | 11:20-11:40     | JupyterでPyVistaを使います．                        |
-+--------------------------------------+-----------------+-----------------------------------------------------+
-
-.. revealjs-break::
-
-+--------------------------------------+-----------------+-----------------------------------------------------+
-| **レッスン**                         | **時間**        | **説明**                                            |
-+--------------------------------------+-----------------+-----------------------------------------------------+
-| 基本的な使い方                       | 11:40-12:00     | 3Dデータを読み込んでプロットします．                |
-+--------------------------------------+-----------------+-----------------------------------------------------+
-| メッシュとは?                        | 12:00-12:30     | PyVistaのデータ型の基本を学びます．                 |
+| JupyterでPyVistaを使う               | 11:30-11:50     | JupyterでPyVistaを使います．                        |
 +--------------------------------------+-----------------+-----------------------------------------------------+
 
 .. revealjs-break::
@@ -106,9 +100,9 @@ PyVistaについて何か質問があれば， |br| フォーラムに気軽に�
 +--------------------------------------+-----------------+-----------------------------------------------------+
 | **レッスン**                         | **時間**        | **説明**                                            |
 +--------------------------------------+-----------------+-----------------------------------------------------+
-| 休憩 |:coffee:|                      | 12:30-12:45     | 休憩．指を伸ばしてコーヒーを飲みます．              |
+| 基本的な使い方                       | 11:50-12:10     | 3Dデータを読み込んでプロットします．                |
 +--------------------------------------+-----------------+-----------------------------------------------------+
-| プロットオプションとアニメーション   | 12:45-13:05     | 魅力的な3Dビジュアリゼーションを作成します．        |
+| メッシュとは?                        | 12:10-12:40     | PyVistaのデータ型の基本を学びます．                 |
 +--------------------------------------+-----------------+-----------------------------------------------------+
 
 .. revealjs-break::
@@ -116,9 +110,19 @@ PyVistaについて何か質問があれば， |br| フォーラムに気軽に�
 +--------------------------------------+-----------------+-----------------------------------------------------+
 | **レッスン**                         | **時間**        | **説明**                                            |
 +--------------------------------------+-----------------+-----------------------------------------------------+
-| フィルタ                             | 13:05-13:30     | メッシュの解析と変更を行うためのフィルタAPIのデモ． |
+| 休憩 |:coffee:|                      | 12:40-12:55     | 休憩．指を伸ばしてコーヒーを飲みます．              |
 +--------------------------------------+-----------------+-----------------------------------------------------+
-| PyVistaの活用                        | 13:30-14:00     | あらゆる可視化に使用できることを紹介します．        |
+| プロットオプションとアニメーション   | 12:55-13:15     | 魅力的な3Dビジュアリゼーションを作成します．        |
++--------------------------------------+-----------------+-----------------------------------------------------+
+
+.. revealjs-break::
+
++--------------------------------------+-----------------+-----------------------------------------------------+
+| **レッスン**                         | **時間**        | **説明**                                            |
++--------------------------------------+-----------------+-----------------------------------------------------+
+| フィルタ                             | 13:15-13:40     | メッシュの解析と変更を行うためのフィルタAPIのデモ． |
++--------------------------------------+-----------------+-----------------------------------------------------+
+| PyVistaの活用                        | 13:40-14:00     | あらゆる可視化に使用できることを紹介します．        |
 +--------------------------------------+-----------------+-----------------------------------------------------+
 
 はじめに [#]_
@@ -126,7 +130,7 @@ PyVistaについて何か質問があれば， |br| フォーラムに気軽に�
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html
 
-|:clock11:| 11:00-11:10
+|:clock11:| 11:10-11:15
 
 沿革 [#]_
 ---------
@@ -152,13 +156,42 @@ PyVistaは誰のためのものですか？ [#]_
 
    .. container:: half
 
-      .. revealjs-code-block:: python
-         :data-line-numbers: 1-4|1|3|4
+      .. tab-set::
 
-         from pyvista import examples
+         .. tab-item:: VTK
 
-         mesh = examples.download_bunny()
-         mesh.plot(cpos='xy')
+            .. revealjs-code-block:: python
+               :data-line-numbers: 1-19
+
+               import vtk
+
+               reader = vtk.vtkSTLReader()
+               reader.SetFileName("bunny.stl")
+               mapper = vtk.vtkPolyDataMapper()
+               output_port = reader.GetOutputPort()
+               mapper.SetInputConnection(output_port)
+               actor = vtk.vtkActor()
+               actor.SetMapper(mapper)
+               ren = vtk.vtkRenderer()
+               renWin = vtk.vtkRenderWindow()
+               renWin.AddRenderer(ren)
+               iren = vtk.vtkRenderWindowInteractor()
+               iren.SetRenderWindow(renWin)
+               ren.AddActor(actor)
+               iren.Initialize()
+               renWin.Render()
+               iren.Start()
+               del iren, renWin
+
+         .. tab-item:: PyVista
+
+            .. revealjs-code-block:: python
+               :data-line-numbers: 1-4|1|3|4
+
+               from pyvista import examples
+
+               mesh = examples.download_bunny()
+               mesh.plot(cpos='xy')
 
    .. container:: half
 
@@ -198,39 +231,12 @@ PyVistaは誰のためのものですか？ [#]_
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#how-other-libraries-compare
 
-.. tab-set::
-
-   .. tab-item:: vtk
-
-      .. image:: https://miro.medium.com/max/1400/1*B3aEPDxSvgR6Giyh4I4a2w.jpeg
-         :alt: VTK
-         :width: 40%
-
-
-   .. tab-item:: ParaView
-
-      .. image:: https://www.kitware.com/main/wp-content/uploads/2018/11/ParaView-5.6.png
-         :alt: ParaView
-         :width: 40%
-
-   .. tab-item:: vedo
-
-      .. image:: https://user-images.githubusercontent.com/32848391/80292484-50757180-8757-11ea-841f-2c0c5fe2c3b4.jpg
-         :alt: vedo
-         :width: 30%
-
-   .. tab-item:: Mayavi
-
-      .. image:: https://viscid-hub.github.io/Viscid-docs/docs/dev/_images/mvi-000.png
-         :alt: mayavi
-         :width: 40%
-
 はじめに-演習 [#]_
 ------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#exercises
 
-|:clock11:| 11:10-11:20
+|:clock11:| 11:15-11:30
 
 MyBinder
 --------
@@ -259,7 +265,7 @@ JupyterでPyVistaを使う [#]_
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html
 
-|:clock1130:| 11:20-11:40
+|:clock1130:| 11:30-11:50
 
 .. revealjs-break::
 
@@ -318,7 +324,7 @@ JupyterでPyVistaを使う [#]_
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html
 
-|:clock1130:| 11:40-11:50
+|:clock1130:| 11:50-11:55
 
 既存データの活用 [#]_
 ---------------------
@@ -386,14 +392,14 @@ JupyterでPyVistaを使う [#]_
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#exercises
 
-|:clock12:| 11:50-12:00
+|:clock12:| 11:55-12:10
 
 メッシュとは? [#]_
 ==================
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html
 
-|:clock12:| 12:00-12:20
+|:clock12:| 12:10-12:25
 
 ポイントとは？ [#]_
 -------------------
@@ -600,19 +606,19 @@ JupyterでPyVistaを使う [#]_
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#exercises
 
-12:20-12:30
+12:25-12:40
 
 休憩 |:coffee:|
 ===============
 
-|:clock1230:| 12:30-12:45
+|:clock1230:| 12:40-12:55
 
 プロットオプションとアニメーション [#]_
 =======================================
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html
 
-|:clock1:| 12:45-12:55
+|:clock1:| 12:55-13:00
 
 Plotterオブジェクトにメッシュを追加する
 ---------------------------------------
@@ -797,6 +803,44 @@ Plotterオブジェクトにメッシュを追加する
 
       .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index-4_00_00.png
 
+.. revealjs-break::
+
+.. container:: flex-container
+
+   .. container:: half
+
+      .. revealjs-code-block:: python
+         :data-line-numbers: 1-24
+
+         >>> import pyvista as pv
+         >>>
+         >>> mesh = pv.Wavelet()
+         >>> cntr = mesh.contour()
+         >>> slices = mesh.slice_orthogonal()
+         >>> thresh = mesh.threshold(200)
+         >>>
+         >>> p = pv.Plotter(shape="1|3")
+         >>>
+         >>> p.subplot(1)
+         >>> p.add_mesh(cntr)
+         >>>
+         >>> p.subplot(2)
+         >>> p.add_mesh(slices)
+         >>>
+         >>> p.subplot(3)
+         >>> p.add_mesh(thresh)
+         >>>
+         >>> p.subplot(0)
+         >>> p.add_mesh(mesh)
+         >>>
+         >>> p.link_views()
+         >>> p.view_isometric()
+         >>> p.show()
+
+   .. container:: half
+
+      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index-5_00_00.png
+
 シーンの制御 [#]_
 -----------------
 
@@ -857,14 +901,14 @@ Plotterオブジェクトにメッシュを追加する
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html#exercises
 
-|:clock1:| 12:55-13:05
+|:clock1:| 13:00-13:15
 
 フィルタ [#]_
 =============
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html
 
-|:clock1:| 13:05-13:15
+|:clock1:| 13:15-13:25
 
 threshold [#]_
 --------------
@@ -885,6 +929,16 @@ glyph [#]_
 ----------
 
 .. [#] https://pyvista.github.io/pyvista-docs-dev-ja/api/core/_autosummary/pyvista.DataSetFilters.glyph.html#pyvista.DataSetFilters.glyph
+
+elevation [#]_
+--------------
+
+.. [#] https://pyvista.github.io/pyvista-docs-dev-ja/api/core/_autosummary/pyvista.DataSetFilters.elevation.html#pyvista.DataSetFilters.elevation
+
+clip [#]_
+---------
+
+.. [#] https://pyvista.github.io/pyvista-docs-dev-ja/api/core/_autosummary/pyvista.DataSetFilters.clip.html#pyvista.DataSetFilters.clip
 
 フィルタ
 --------
@@ -1027,12 +1081,12 @@ glyph [#]_
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html#exercises
 
-|:clock1:| 13:15-13:30
+|:clock1:| 13:25-13:40
 
 PyVistaの活用 [#]_
 ==================
 
-|:clock130:| 13:30-14:00
+|:clock130:| 13:40-14:00
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/05_action/index.html
 
