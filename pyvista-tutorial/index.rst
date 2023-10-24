@@ -30,20 +30,6 @@ TA紹介
 * :fab:`twitter` @matsu_yarukinai
 * :fab:`github` @matsubaraDaisuke
 
-作者紹介
---------
-
-.. |contrib.rocks| image:: https://contrib.rocks/image?repo=pyvista/pyvista
-   :target: https://github.com/pyvista/pyvista/graphs/contributors
-   :alt: contrib.rocks
-   :width: 60%
-
-|contrib.rocks|
-
-.. _contributors page: https://github.com/pyvista/pyvista/graphs/contributors/
-.. _list of authors: https://docs.pyvista.org/getting-started/authors.html#authors
-.. _contrib rocks: https://contrib.rocks
-
 PyVistaチュートリアル [#]_
 ==========================
 
@@ -141,6 +127,16 @@ PyVistaについて何か質問があれば， |br| フォーラムに気軽に�
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html
 
 |:clock11:| 11:00-11:10
+
+沿革 [#]_
+---------
+
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#brief-history
+
+PyVistaは誰のためのものですか？ [#]_
+------------------------------------
+
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#who-is-pyvista-for
 
 簡単な例 [#]_
 -------------
