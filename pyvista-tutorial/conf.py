@@ -41,8 +41,10 @@ html_static_path = ["_static"]
 revealjs_style_theme = "white"
 
 revealjs_script_conf = {
+    "width": 1244,
+    "height": 700,
     "controls": True,
-    "progress": False,
+    "progress": True,
     "history": True,
     "center": True,
     "transition": "none",
@@ -70,6 +72,7 @@ revealjs_css_files = [
     # "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css",
     "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css",
     'slides.css',
+    'footnotes.css',
 ]
 
 # -- Options for HTMLHelp output ---------------------------------------------

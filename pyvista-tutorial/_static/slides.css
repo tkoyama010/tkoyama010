@@ -23,3 +23,26 @@
     background-position: 0% 100%;
     background-repeat: no-repeat;
 }
+.reveal {
+  .adjust-section-structure {
+    font-size: 0.5em;
+  }
+  .flex-container {
+    display: flex;
+    .half {
+      flex: 1;
+      width: 50%;
+    }
+    .one-third {
+      flex: 1;
+      width: 30%;
+    }
+  }
+  h1, h2, h3 {
+    text-transform: none;
+  }
+  code * {
+    font-family: monospace;
+    font-size: 0.1em;
+  }
+}
