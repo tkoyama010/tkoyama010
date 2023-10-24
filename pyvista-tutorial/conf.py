@@ -71,8 +71,8 @@ revealjs_css_files = [
     "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css",
     # "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css",
     "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css",
-    'slides.css',
-    'footnotes.css',
+    "slides.css",
+    "footnotes.css",
 ]
 
 # -- Options for HTMLHelp output ---------------------------------------------
@@ -133,6 +133,7 @@ ogp_custom_meta_tags = [
     '<meta name="twitter:card" content="summary_large_image" />',
     '<meta name="twitter:site" content="@attakei" />',
 ]
+
 
 def update_ogp(app, config):
     print(config.ogp_site_url, config.language)

@@ -685,7 +685,7 @@ Plotterオブジェクトにメッシュを追加する
    .. container:: half
 
       .. revealjs-code-block:: python
-         :data-line-numbers: 1-43
+         :data-line-numbers: 1-48
 
          >>> kinds = [
          ...     'tetrahedron',
@@ -694,6 +694,7 @@ Plotterオブジェクトにメッシュを追加する
          ...     'dodecahedron',
          ...     'icosahedron',
          ... ]
+         >>>
          >>> centers = [
          ...     (0, 1, 0),
          ...     (0, 0, 0),
@@ -701,6 +702,7 @@ Plotterオブジェクトにメッシュを追加する
          ...     (-1, 0, 0),
          ...     (-1, 2, 0),
          ... ]
+         >>>
          >>> solids = [
          ...     pv.PlatonicSolid(
          ...         kind,
@@ -711,16 +713,19 @@ Plotterオブジェクトにメッシュを追加する
          ...         kinds, centers
          ...     )
          ... ]
+         >>>
          >>> p = pv.Plotter(
          ...     window_size=[1000, 1000]
          ... )
-         >>> for ind, solid in enumerate(solids):
+         >>>
+         >>> for solid in solids:
          >>>     p.add_mesh(
          ...         solid,
          ...         color='silver',
          ...         specular=1.0,
          ...         specular_power=10,
          ...     )
+         >>>
          >>> p.view_vector((5.0, 2, 3))
          >>> p.add_floor(
          ...     '-z',
@@ -739,6 +744,58 @@ Plotterオブジェクトにメッシュを追加する
 -----------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html#subplotting
+
+.. container:: flex-container
+
+   .. container:: half
+
+      .. revealjs-code-block:: python
+         :data-line-numbers: 5-9
+
+         >>> import pyvista as pv
+         >>>
+         >>> p = pv.Plotter(shape=(1, 2))
+         >>>
+         >>> p.subplot(0, 0)
+         >>> p.add_mesh(pv.Sphere())
+         >>>
+         >>> p.subplot(0, 1)
+         >>> p.add_mesh(pv.Cube())
+         >>>
+         >>> p.show()
+
+   .. container:: half
+
+      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index-3_00_00.png
+
+.. revealjs-break::
+
+.. container:: flex-container
+
+   .. container:: half
+
+      .. revealjs-code-block:: python
+         :data-line-numbers: 1-3,7-11
+
+         >>> mesh = pv.Wavelet()
+         >>> cntr = mesh.contour()
+         >>> slices = mesh.slice_orthogonal()
+         >>>
+         >>> p = pv.Plotter(shape=(1, 2))
+         >>>
+         >>> p.subplot(0, 0)
+         >>> p.add_mesh(cntr)
+         >>>
+         >>> p.subplot(0, 1)
+         >>> p.add_mesh(slices)
+         >>>
+         >>> p.link_views()
+         >>> p.view_isometric()
+         >>> p.show()
+
+   .. container:: half
+
+      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index-4_00_00.png
 
 シーンの制御 [#]_
 -----------------
@@ -816,7 +873,7 @@ Plotterオブジェクトにメッシュを追加する
    .. container:: half
 
       .. revealjs-code-block:: python
-         :data-line-numbers: 1-19
+         :data-line-numbers: 9-11
 
          >>> import pyvista as pv
          >>> from pyvista import examples
@@ -848,7 +905,7 @@ Plotterオブジェクトにメッシュを追加する
    .. container:: half
 
       .. revealjs-code-block:: python
-         :data-line-numbers: 1-99
+         :data-line-numbers: 6-15
 
          >>> import pyvista as pv
          >>> from pyvista import examples
