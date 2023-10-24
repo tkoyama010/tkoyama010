@@ -4,7 +4,7 @@
   </a>
 </h1>
 
-<h3 align="center">Software Developer | Python Enthusiast</h3>
+<h3 align="center">Software Developer | Pythonista</h3>
 
 ## About me
 
