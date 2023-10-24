@@ -70,28 +70,6 @@ PyVistaについて何か質問があれば， |br| フォーラムに気軽に�
       </a>
     </center>
 
-MyBinder
---------
-
-.. raw:: html
-
-    <center>
-      <a target="_blank" href="https://mybinder.org/v2/gh/pyvista/pyvista-tutorial/gh-pages?urlpath=lab/tree/notebooks">
-        <img src="https://static.mybinder.org/badge_logo.svg" alt="Launch on Binder"/ width="300px">
-      </a>
-    </center>
-
-Google Colab
-------------
-
-.. raw:: html
-
-    <center>
-      <a target="_blank" href="https://colab.research.google.com/github/pyvista/pyvista-tutorial/blob/gh-pages/notebooks/tutorial/00_intro/a_basic.ipynb">
-        <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/ width="300px">
-      </a>
-    </center>
-
 チュートリアルの概要 [#]_
 -------------------------
 
@@ -258,12 +236,36 @@ Google Colab
 
 |:clock11:| 11:10-11:20
 
+MyBinder
+--------
+
+.. raw:: html
+
+    <center>
+      <a target="_blank" href="https://mybinder.org/v2/gh/pyvista/pyvista-tutorial/gh-pages?urlpath=lab/tree/notebooks">
+        <img src="https://static.mybinder.org/badge_logo.svg" alt="Launch on Binder"/ width="300px">
+      </a>
+    </center>
+
+Google Colab
+------------
+
+.. raw:: html
+
+    <center>
+      <a target="_blank" href="https://colab.research.google.com/github/pyvista/pyvista-tutorial/blob/gh-pages/notebooks/tutorial/00_intro/a_basic.ipynb">
+        <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/ width="300px">
+      </a>
+    </center>
+
 JupyterでPyVistaを使う [#]_
 ===========================
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html
 
 |:clock1130:| 11:20-11:40
+
+.. revealjs-break::
 
 .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/jupyter.png
    :alt: jupyter
@@ -810,6 +812,8 @@ Plotterオブジェクトにメッシュを追加する
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html
 
 |:clock1:| 13:05-13:15
+
+.. revealjs-break::
 
 .. container:: flex-container
 

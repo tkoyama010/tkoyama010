@@ -134,7 +134,6 @@ ogp_custom_meta_tags = [
     '<meta name="twitter:site" content="@attakei" />',
 ]
 
-
 def update_ogp(app, config):
     print(config.ogp_site_url, config.language)
     config.ogp_site_url = urljoin(config.ogp_site_url, f"{config.language}/")
