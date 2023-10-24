@@ -866,7 +866,28 @@ Plotterオブジェクトにメッシュを追加する
 
 |:clock1:| 13:05-13:15
 
-.. revealjs-break::
+threshold [#]_
+--------------
+
+.. [#] https://pyvista.github.io/pyvista-docs-dev-ja/api/core/_autosummary/pyvista.DataSetFilters.threshold.html#pyvista.DataSetFilters.threshold
+
+contour [#]_
+------------
+
+.. [#] https://pyvista.github.io/pyvista-docs-dev-ja/api/core/_autosummary/pyvista.DataSetFilters.contour.html#pyvista-datasetfilters-contour
+
+slice_orthogonal [#]_
+---------------------
+
+.. [#] https://pyvista.github.io/pyvista-docs-dev-ja/api/core/_autosummary/pyvista.DataSetFilters.slice_orthogonal.html#pyvista.DataSetFilters.slice_orthogonal
+
+glyph [#]_
+----------
+
+.. [#] https://pyvista.github.io/pyvista-docs-dev-ja/api/core/_autosummary/pyvista.DataSetFilters.glyph.html#pyvista.DataSetFilters.glyph
+
+フィルタ
+--------
 
 .. container:: flex-container
 
