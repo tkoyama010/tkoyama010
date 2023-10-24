@@ -906,7 +906,7 @@ Plotterオブジェクトにメッシュを追加する
    .. container:: half
 
       .. revealjs-code-block:: python
-         :data-line-numbers: 1-15
+         :data-line-numbers: 1-7
 
          >>> result = (
          ...     dataset
