@@ -930,9 +930,12 @@ add_mesh
 
 13:15-13:30
 
-PyVistaの活用
-=============
+PyVistaの活用 [#]_
+==================
 
-13:30-14:00
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/05_action/index.html
 
-https://pyvista.github.io/pyvista-tutorial-ja/tutorial/05_action/index.html
+GeoVistaの使用 [#]_
+-------------------
+
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/05_action/a_lesson_geovista.html#using-geovista
