@@ -910,25 +910,25 @@ Plotterオブジェクトにメッシュを追加する
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html#filter-pipeline
 
-#. まず， `threshold` フィルタを空にして， `NaN` 値をすべて消去します．
-#. `elevation` フィルタを使用して，高さに対応するスカラー値を生成します．
-#. `clip` フィルタを使用して，データセットを半分にカットします．
-#. `slice_orthogonal` フィルタを使用して，各軸平面に沿ってスライスを3つ作成します．
-
-.. revealjs-break::
-
 .. container:: flex-container
 
    .. container:: half
 
       .. revealjs-code-block:: python
-         :data-line-numbers: 1-7
+         :data-line-numbers: 1-14
 
          >>> result = (
          ...     dataset
+         ...     # NaN 値をすべて消去します．
          ...     .threshold()
+         ...     # 高さに対応するスカラー値を
+         ...     # 生成します．
          ...     .elevation()
+         ...     # データセットを半分にカット
+         ...     # します．
          ...     .clip(normal="z")
+         ...     # 各軸平面に沿ってスライスを
+         ...     # 3つ作成します．
          ...     .slice_orthogonal()
          ... )
          >>> p = pv.Plotter()
