@@ -186,7 +186,7 @@ PyVistaは誰のためのものですか？ [#]_
          .. tab-item:: PyVista
 
             .. revealjs-code-block:: python
-               :data-line-numbers: 1-4|1|3|4
+               :data-line-numbers: 1-4
 
                from pyvista import examples
 
