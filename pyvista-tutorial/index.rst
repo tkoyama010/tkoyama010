@@ -357,6 +357,32 @@ JupyterでPyVistaを使う [#]_
 
       .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_2_01.png
 
+.. revealjs-break::
+
+.. container:: flex-container
+
+   .. container:: half
+
+      .. revealjs-code-block:: python
+         :data-line-numbers: 1-14
+
+         >>> dataset = examples.download_frog()
+         >>> dataset
+         ImageData (..............)
+           N Cells:      31594185
+           N Points:     31960000
+           X Bounds:     0.000e+00, 4.990e+02
+           Y Bounds:     0.000e+00, 4.690e+02
+           Z Bounds:     0.000e+00, 2.025e+02
+           Dimensions:   500, 470, 136
+           Spacing:      1.000e+00, 1.000e+00, ...
+           N Arrays:     1
+         >>> dataset.plot(color='tan')
+
+   .. container:: half
+
+      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_4_0.png
+
 ファイルから読み込む [#]_
 -------------------------
 
