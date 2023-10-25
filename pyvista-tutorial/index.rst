@@ -236,14 +236,7 @@ PyVistaは誰のためのものですか？ [#]_
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#exercises
 
-|:clock11:| 11:15-11:25
-
-はじめに-解答 [#]_
-------------------
-
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#exercises
-
-|:clock11:| 11:25-11:30
+|:clock11:| 11:15-11:30
 
 MyBinder
 --------
@@ -406,7 +399,7 @@ JupyterでPyVistaを使う [#]_
 基本的な使い方-解答 [#]_ [#]_
 -----------------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#exercises
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#solutions
 
 .. [#] https://pyvista.github.io/pyvista-docs-dev-ja/
 
@@ -631,7 +624,7 @@ JupyterでPyVistaを使う [#]_
 メッシュとは? - 解答 [#]_ [#]_
 ------------------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#exercises
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#solutions
 
 .. [#] https://pyvista.github.io/pyvista-docs-dev-ja/
 
@@ -937,7 +930,7 @@ Plotterオブジェクトにメッシュを追加する
 プロットオプションとアニメーション - 解答 [#]_ [#]_
 ---------------------------------------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html#exercises
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html#solutions
 
 .. [#] https://pyvista.github.io/pyvista-docs-dev-ja/
 
@@ -1128,7 +1121,7 @@ clip [#]_
 フィルタ - 解答 [#]_ [#]_
 -------------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html#exercises
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html#solutions
 
 .. [#] https://pyvista.github.io/pyvista-docs-dev-ja/
 
