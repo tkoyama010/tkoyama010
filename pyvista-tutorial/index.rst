@@ -236,7 +236,14 @@ PyVistaは誰のためのものですか？ [#]_
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#exercises
 
-|:clock11:| 11:15-11:30
+|:clock11:| 11:15-11:25
+
+はじめに-解答 [#]_
+------------------
+
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#exercises
+
+|:clock11:| 11:25-11:30
 
 MyBinder
 --------
@@ -387,12 +394,23 @@ JupyterでPyVistaを使う [#]_
 
       .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_6_0.png
 
-基本的な使い方-演習 [#]_
-------------------------
+基本的な使い方-演習 [#]_ [#]_
+-----------------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#exercises
 
-|:clock12:| 11:45-12:00
+.. [#] https://pyvista.github.io/pyvista-docs-dev-ja/
+
+|:clock12:| 11:45-11:55
+
+基本的な使い方-解答 [#]_ [#]_
+-----------------------------
+
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#exercises
+
+.. [#] https://pyvista.github.io/pyvista-docs-dev-ja/
+
+|:clock12:| 11:55-12:00
 
 メッシュとは? [#]_
 ==================
@@ -601,12 +619,23 @@ JupyterでPyVistaを使う [#]_
 
        .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_7_0.png
 
-メッシュとは? - 演習 [#]_
--------------------------
+メッシュとは? - 演習 [#]_ [#]_
+------------------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#exercises
 
-12:15-12:40
+.. [#] https://pyvista.github.io/pyvista-docs-dev-ja/
+
+|:clock12:| 12:15-12:35
+
+メッシュとは? - 解答 [#]_ [#]_
+------------------------------
+
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#exercises
+
+.. [#] https://pyvista.github.io/pyvista-docs-dev-ja/
+
+|:clock12:| 12:35-12:40
 
 休憩 |:coffee:|
 ===============
@@ -896,12 +925,23 @@ Plotterオブジェクトにメッシュを追加する
 
       .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index-7_00_00.png
 
-プロットオプションとアニメーション - 演習 [#]_
-----------------------------------------------
+プロットオプションとアニメーション - 演習 [#]_ [#]_
+---------------------------------------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html#exercises
 
-|:clock1:| 13:00-13:20
+.. [#] https://pyvista.github.io/pyvista-docs-dev-ja/
+
+|:clock1:| 13:00-13:15
+
+プロットオプションとアニメーション - 解答 [#]_ [#]_
+---------------------------------------------------
+
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html#exercises
+
+.. [#] https://pyvista.github.io/pyvista-docs-dev-ja/
+
+|:clock1:| 13:15-13:20
 
 フィルタ [#]_
 =============
@@ -1076,12 +1116,23 @@ clip [#]_
 
       .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_4_02.png
 
-フィルタ - 演習 [#]_
---------------------
+フィルタ - 演習 [#]_ [#]_
+-------------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html#exercises
 
-|:clock1:| 13:25-13:40
+.. [#] https://pyvista.github.io/pyvista-docs-dev-ja/
+
+|:clock1:| 13:25-13:35
+
+フィルタ - 解答 [#]_ [#]_
+-------------------------
+
+.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html#exercises
+
+.. [#] https://pyvista.github.io/pyvista-docs-dev-ja/
+
+|:clock1:| 13:35-13:40
 
 PyVistaの活用 [#]_
 ==================
