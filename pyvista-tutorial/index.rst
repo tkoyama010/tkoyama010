@@ -24,7 +24,7 @@
 
 * :fab:`twitter` @tkoyama010
 * :fab:`github` @tkoyama010
-* `ARK Information Systems, INC. <https://www.ark-info-sys.co.jp/>`_ 所属
+.. * `ARK Information Systems, INC. <https://www.ark-info-sys.co.jp/>`_ 所属
 
 TA紹介
 ------
