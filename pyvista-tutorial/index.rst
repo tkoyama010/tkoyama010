@@ -457,7 +457,7 @@ JupyterでPyVistaを使う [#]_
          ...     point_size=10,
          ...     style='points',
          ...     color='tan'
-         ,,, )
+         ... )
 
    .. container:: half
 
@@ -625,7 +625,7 @@ JupyterでPyVistaを使う [#]_
          ... ] = range(8)
 
          >>> pl = pv.Plotter(
-         ,,,    shape=(1, 2), border_width=1
+         ...    shape=(1, 2), border_width=1
          ... )
          >>> pl.add_mesh(cube, cmap='coolwarm')
          >>> pl.subplot(0, 1)
