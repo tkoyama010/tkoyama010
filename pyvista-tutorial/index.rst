@@ -457,7 +457,7 @@ JupyterでPyVistaを使う [#]_
          ...     point_size=10,
          ...     style='points',
          ...     color='tan'
-         ,,, )
+         ... )
 
    .. container:: half
 
