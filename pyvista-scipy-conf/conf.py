@@ -19,7 +19,7 @@ extensions = [
     "sphinx.ext.todo",
     "sphinx_design",
     "sphinx_revealjs",
-    "sphinx_revealjs.ext.screenshot",
+#   "sphinx_revealjs.ext.screenshot",
     "sphinxcontrib.gtagjs",
     "sphinxcontrib.sass",
     "sphinxext.opengraph",
@@ -48,7 +48,7 @@ revealjs_script_conf = {
     "history": True,
     "center": True,
     "transition": "none",
-    "previewLinks": True,
+    "previewLinks": False,
 }
 revealjs_script_plugins = [
     {
