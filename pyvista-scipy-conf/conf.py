@@ -48,7 +48,7 @@ revealjs_script_conf = {
     "history": True,
     "center": True,
     "transition": "none",
-    "previewLinks": False,
+    "previewLinks": True,
 }
 revealjs_script_plugins = [
     {
