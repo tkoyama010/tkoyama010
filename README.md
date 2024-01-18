@@ -72,6 +72,7 @@ The video of the lecture also attracted attention and received 15,000 views.
 </div>
 
 ## Contributions
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org)
 
 [![](https://raw.githubusercontent.com/tkoyama010/tkoyama010/master/profile-summary-card-output/vue/0-profile-details.svg)](https://github.com/vn7n24fzkq/github-profile-summary-cards)
 [![](https://raw.githubusercontent.com/tkoyama010/tkoyama010/master/profile-summary-card-output/vue/1-repos-per-language.svg)](https://github.com/vn7n24fzkq/github-profile-summary-cards)
