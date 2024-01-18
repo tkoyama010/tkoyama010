@@ -9,7 +9,7 @@ updates:
       - "maintenance"
       - "dependencies"
     commit-message:
-      prefix: "⬆️"
+      prefix: "chore: "
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
@@ -18,4 +18,4 @@ updates:
       - "maintenance"
       - "dependencies"
     commit-message:
-      prefix: "⬆️"
+      prefix: "chore: "
