@@ -1,36 +1,19 @@
-:orphan:
-:og:image: ./_images/ogp/index.png
-:og:image:alt: Title section for demo presentation
-:og:description: Demo presentation of sphnx-revealjs
-
 .. |br| raw:: html
 
    <br>
 
-======================================================
-**PyVista** による |br| 3D |br| ビジュアライゼーション
-======================================================
+===========================================================
+**Scientific Python** |br| ライブラリ開発ガイド |br| の紹介
+===========================================================
 
-:Instructor: Tetsuo Koyama
+:Speaker: Tetsuo Koyama
 :Date: 2023-10-26
 
 自己紹介
 ========
 
-|:clock11:| 11:00-11:05
-
-インストラクター紹介
---------------------
-
 * :fab:`twitter` @tkoyama010
 * :fab:`github` @tkoyama010
-.. * `ARK Information Systems, INC. <https://www.ark-info-sys.co.jp/>`_ 所属
-
-TA紹介
-------
-
-* :fab:`twitter` @matsu_yarukinai
-* :fab:`github` @matsubaraDaisuke
 
 PyVistaチュートリアル [#]_
 ==========================
