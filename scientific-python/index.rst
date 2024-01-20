@@ -44,9 +44,8 @@
 リポジトリレビュー
 ==================
 
-PythonライブラリのGitHubリポジトリスタイルは |br| 下記で確認できます。
-
-:bdg-link-primary:`https://scientific-python.github.io/repo-review/index.html`
+- 開発リポジトリのスタイルは :bdg-link-primary-line:`repo-review <https://scientific-python.github.io/repo-review/index.html>`  で確認できます。
+- 今回はレビューのルールをもとに開発ガイドを説明します。
 
 リポジトリレビュー: General
 ===========================
