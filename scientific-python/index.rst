@@ -47,8 +47,8 @@
 - 開発リポジトリのスタイルは :bdg-link-primary-line:`repo-review <https://scientific-python.github.io/repo-review/index.html>`  で確認できます。
 - 今回はレビューのチェックリストをもとに開発ガイドを説明します。
 
-リポジトリレビュー: General
-===========================
+General
+-------
 
 * :bdg-link-primary-line:`PY001 <https://learn.scientific-python.org/development/guides/packaging-simple#PY001>` : Has a pyproject.toml
 * :bdg-link-primary-line:`PY002 <https://learn.scientific-python.org/development/guides/packaging-simple#PY002>` : Has a README.(md|rst) file
@@ -58,8 +58,8 @@
 * :bdg-link-primary-line:`PY006 <https://learn.scientific-python.org/development/guides/style#PY006>` : Has pre-commit config
 * :bdg-link-primary-line:`PY007 <https://learn.scientific-python.org/development/guides/tasks#PY007>` : Supports an easy task runner (nox or tox)
 
-リポジトリレビュー: PyProject
-=============================
+PyProject
+---------
 
 * :bdg-link-primary-line:`PP002 <https://learn.scientific-python.org/development/guides/packaging-simple#PP002>` : Has a proper build-system table
 * :bdg-link-primary-line:`PP003 <https://learn.scientific-python.org/development/guides/packaging-classic#PP003>` : Does not list wheel as a build-dep
@@ -76,16 +76,16 @@
 * :bdg-link-primary-line:`PP308 <https://learn.scientific-python.org/development/guides/pytest#PP308>` : Specifies useful pytest summary
 * :bdg-link-primary-line:`PP309 <https://learn.scientific-python.org/development/guides/pytest#PP309>` : Filter warnings specified
 
-リポジトリレビュー: Documentation
-=================================
+Documentation
+-------------
 
 * :bdg-link-primary-line:`RTD100 <https://learn.scientific-python.org/development/guides/docs#RTD100>` : Uses ReadTheDocs (pyproject config)
 * :bdg-link-primary-line:`RTD101 <https://learn.scientific-python.org/development/guides/docs#RTD101>` : You have to set the RTD version number to 2
 * :bdg-link-primary-line:`RTD102 <https://learn.scientific-python.org/development/guides/docs#RTD102>` : You have to set the RTD build image
 * :bdg-link-primary-line:`RTD103 <https://learn.scientific-python.org/development/guides/docs#RTD103>` : You have to set the RTD python version
 
-リポジトリレビュー: GitHub Actions
-==================================
+GitHub Actions
+--------------
 
 * :bdg-link-primary-line:`GH100 <https://learn.scientific-python.org/development/guides/gha-basic#GH100>` : Has GitHub Actions config
 * :bdg-link-primary-line:`GH101 <https://learn.scientific-python.org/development/guides/gha-basic#GH101>` : Has nice names
@@ -100,8 +100,8 @@
 * :bdg-link-primary-line:`GH211 <https://learn.scientific-python.org/development/guides/gha-basic#GH211>` : Do not pin core actions as major versions
 * :bdg-link-primary-line:`GH212 <https://learn.scientific-python.org/development/guides/gha-basic#GH212>` : Require GHA update grouping
 
-リポジトリレビュー: MyPy
-========================
+MyPy
+----
 
 * :bdg-link-primary-line:`MY100 <https://learn.scientific-python.org/development/guides/style#MY100>` : Uses MyPy (pyproject config)
 * :bdg-link-primary-line:`MY101 <https://learn.scientific-python.org/development/guides/style#MY101>` : MyPy strict mode
@@ -111,8 +111,8 @@
 * :bdg-link-primary-line:`MY105 <https://learn.scientific-python.org/development/guides/style#MY105>` : MyPy enables redundant-expr
 * :bdg-link-primary-line:`MY106 <https://learn.scientific-python.org/development/guides/style#MY106>` : MyPy enables truthy-bool
 
-リポジトリレビュー: Pre-commit
-==============================
+Pre-commit
+----------
 
 * :bdg-link-primary-line:`PC100 <https://learn.scientific-python.org/development/guides/style#PC100>` : Has pre-commit-hooks
 * :bdg-link-primary-line:`PC110 <https://learn.scientific-python.org/development/guides/style#PC110>` : Uses black or ruff-format
@@ -128,8 +128,8 @@
 * :bdg-link-primary-line:`PC191 <https://learn.scientific-python.org/development/guides/style#PC191>` : Ruff show fixes if fixes enabled
 * :bdg-link-primary-line:`PC901 <https://learn.scientific-python.org/development/guides/style#PC901>` : Custom pre-commit CI message
 
-リポジトリレビュー: Ruff
-========================
+Ruff
+----
 
 * :bdg-link-primary-line:`RF001 <https://learn.scientific-python.org/development/guides/style#RF001>` : Has Ruff config
 * :bdg-link-primary-line:`RF002 <https://learn.scientific-python.org/development/guides/style#RF002>` : Target version must be set
