@@ -38,7 +38,7 @@
 
       * チュートリアル: ライブラリ開発の基本から始める
       * トピックガイド: ライブラリ開発の推奨ツールとベストプラクティスを学ぶ
-      * このガイドは、科学者や研究ソフトウェアエンジニアのためにScientific Pythonコミュニティによって維持されています。
+      * 科学者や研究ソフトウェアエンジニアのためにScientific Pythonコミュニティによって維持されています。
 
 
 リポジトリレビュー
@@ -94,6 +94,9 @@
 * :bdg-link-primary-line:`GH104 <https://learn.scientific-python.org/development/guides/gha-wheel#GH104>` : Use unique names for upload-artifact
 * :bdg-link-primary-line:`GH200 <https://learn.scientific-python.org/development/guides/gha-basic#GH200>` : Maintained by Dependabot
 * :bdg-link-primary-line:`GH210 <https://learn.scientific-python.org/development/guides/gha-basic#GH210>` : Maintains the GitHub action versions with Dependabot
+
+.. revealjs-break::
+
 * :bdg-link-primary-line:`GH211 <https://learn.scientific-python.org/development/guides/gha-basic#GH211>` : Do not pin core actions as major versions
 * :bdg-link-primary-line:`GH212 <https://learn.scientific-python.org/development/guides/gha-basic#GH212>` : Require GHA update grouping
 
@@ -102,7 +105,7 @@
 
 * :bdg-link-primary-line:`MY100 <https://learn.scientific-python.org/development/guides/style#MY100>` : Uses MyPy (pyproject config)
 * :bdg-link-primary-line:`MY101 <https://learn.scientific-python.org/development/guides/style#MY101>` : MyPy strict mode
-* `MY102`: MyPy show_error_codes deprecated
+* :bdg-link-secondary-line:`MY102` : MyPy show_error_codes deprecated
 * :bdg-link-primary-line:`MY103 <https://learn.scientific-python.org/development/guides/style#MY103>` : MyPy warn unreachable
 * :bdg-link-primary-line:`MY104 <https://learn.scientific-python.org/development/guides/style#MY104>` : MyPy enables ignore-without-code
 * :bdg-link-primary-line:`MY105 <https://learn.scientific-python.org/development/guides/style#MY105>` : MyPy enables redundant-expr
@@ -118,6 +121,9 @@
 * :bdg-link-primary-line:`PC160 <https://learn.scientific-python.org/development/guides/style#PC160>` : Uses codespell
 * :bdg-link-primary-line:`PC170 <https://learn.scientific-python.org/development/guides/style#PC170>` : Uses PyGrep hooks (only needed if RST present)
 * :bdg-link-primary-line:`PC180 <https://learn.scientific-python.org/development/guides/style#PC180>` : Uses prettier
+
+.. revealjs-break::
+
 * :bdg-link-primary-line:`PC190 <https://learn.scientific-python.org/development/guides/style#PC190>` : Uses Ruff
 * :bdg-link-primary-line:`PC191 <https://learn.scientific-python.org/development/guides/style#PC191>` : Ruff show fixes if fixes enabled
 * :bdg-link-primary-line:`PC901 <https://learn.scientific-python.org/development/guides/style#PC901>` : Custom pre-commit CI message
@@ -131,11 +137,14 @@
 * :bdg-link-primary-line:`RF101 <https://learn.scientific-python.org/development/guides/style#RF101>` : Bugbear must be selected
 * :bdg-link-primary-line:`RF102 <https://learn.scientific-python.org/development/guides/style#RF102>` : isort must be selected
 * :bdg-link-primary-line:`RF103 <https://learn.scientific-python.org/development/guides/style#RF103>` : pyupgrade must be selected
-* `RF201`: Avoid using deprecated config settings
-* `RF202`: Use (new) lint config section
+* :bdg-link-secondary-line:`RF201`: Avoid using deprecated config settings
+
+.. revealjs-break::
+
+* :bdg-link-secondary-line:`RF202`: Use (new) lint config section
 
 まとめ
 ======
 
 - 開発リポジトリのスタイルは :bdg-link-primary-line:`repo-review <https://scientific-python.github.io/repo-review/index.html>`  で確認できます。
-- レビューのチェックリストをもとに開発ガイドを読むことで、効率的にベストプラクティスのキャッチアップができます。
+- レビューチェックリストをもとに開発ガイドを読むことで、ベストプラクティスのキャッチアップができます。
