@@ -50,19 +50,10 @@
 リポジトリレビュー: General
 ===========================
 
-.. card::
-    :text-align: left
-
-    :bdg-link-primary-line:`PY001 <https://learn.scientific-python.org/development/guides/packaging-simple#PY001>` : Has a pyproject.toml
-
-    :bdg-link-primary-line:`PY002 <https://learn.scientific-python.org/development/guides/packaging-simple#PY002>` : Has a README.(md|rst) file
-
-    :bdg-link-primary-line:`PY003 <https://learn.scientific-python.org/development/guides/packaging-simple#PY003>` : Has a LICENSE* file
-
-    :bdg-link-primary-line:`PY004 <https://learn.scientific-python.org/development/guides/packaging-simple#PY004>` : Has docs folder
-
-    :bdg-link-primary-line:`PY005 <https://learn.scientific-python.org/development/guides/packaging-simple#PY005>` : Has tests folder
-
-    :bdg-link-primary-line:`PY006 <https://learn.scientific-python.org/development/guides/packaging-simple#PY006>` : Has pre-commit config
-
-    :bdg-link-primary-line:`PY007 <https://learn.scientific-python.org/development/guides/packaging-simple#PY007>` : Supports an easy task runner (nox or tox)
+* :bdg-link-primary-line:`PY001 <https://learn.scientific-python.org/development/guides/packaging-simple#PY001>` : Has a pyproject.toml
+* :bdg-link-primary-line:`PY002 <https://learn.scientific-python.org/development/guides/packaging-simple#PY002>` : Has a README.(md|rst) file
+* :bdg-link-primary-line:`PY003 <https://learn.scientific-python.org/development/guides/packaging-simple#PY003>` : Has a LICENSE* file
+* :bdg-link-primary-line:`PY004 <https://learn.scientific-python.org/development/guides/packaging-simple#PY004>` : Has docs folder
+* :bdg-link-primary-line:`PY005 <https://learn.scientific-python.org/development/guides/packaging-simple#PY005>` : Has tests folder
+* :bdg-link-primary-line:`PY006 <https://learn.scientific-python.org/development/guides/packaging-simple#PY006>` : Has pre-commit config
+* :bdg-link-primary-line:`PY007 <https://learn.scientific-python.org/development/guides/packaging-simple#PY007>` : Supports an easy task runner (nox or tox)
