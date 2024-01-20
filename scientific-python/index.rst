@@ -7,16 +7,15 @@
 =============================================================
 
 :Speaker: Tetsuo Koyama
-:Date: 2023-10-26
+:Date: 2024-01-20
 
 お前誰よ
 ========
 
 * :fab:`twitter` @tkoyama010 :fab:`github` @tkoyama010
 * 研究ソフトウェアエンジニア
-* Scientific Pythonライブラリ `PyVista`_ の開発者。
-
-.. _PyVista: https://github.com/pyvista/pyvista
+* Scientific Pythonライブラリ `PyVista` の開発者。
+* `ARK Information Systems, INC. <https://www.ark-info-sys.co.jp/>`_ 所属
 
 これは何よ
 ==========
@@ -41,15 +40,11 @@
       * トピックガイド: ライブラリ開発の推奨ツールとベストプラクティスを学ぶ
       * このガイドは、科学者や研究ソフトウェアエンジニアのためにScientific Pythonコミュニティによって維持されています。
 
-**Scientific Python** ライブラリ開発ガイド
-==========================================
 
-.. container:: flex-container
+リポジトリレビュー
+==================
 
-   .. container:: half
+* GitHubリポジトリのスタイルは下記で確認できます。
 
-      **新しいプロジェクト**
+:bdg-link-primary:`https://scientific-python.github.io/repo-review/index.html`
 
-   .. container:: half
-
-      **既存プロジェクト**
