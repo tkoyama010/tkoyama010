@@ -57,3 +57,21 @@
 * :bdg-link-primary-line:`PY005 <https://learn.scientific-python.org/development/guides/packaging-simple#PY005>` : Has tests folder
 * :bdg-link-primary-line:`PY006 <https://learn.scientific-python.org/development/guides/style#PY006>` : Has pre-commit config
 * :bdg-link-primary-line:`PY007 <https://learn.scientific-python.org/development/guides/tasks#PY007>` : Supports an easy task runner (nox or tox)
+
+リポジトリレビュー: PyProject
+=============================
+
+* :bdg-link-primary-line:`PP002 <https://learn.scientific-python.org/development/guides/packaging-simple#PP002>` : Has a proper build-system table
+* :bdg-link-primary-line:`PP003 <https://learn.scientific-python.org/development/guides/packaging-classic#PP003>` : Does not list wheel as a build-dep
+* :bdg-link-primary-line:`PP301 <https://learn.scientific-python.org/development/guides/pytest#PP301>` : Has pytest in pyproject
+* :bdg-link-primary-line:`PP302 <https://learn.scientific-python.org/development/guides/pytest#PP302>` : Sets a minimum pytest to at least 6
+* :bdg-link-primary-line:`PP303 <https://learn.scientific-python.org/development/guides/pytest#PP303>` : Sets the test paths
+* :bdg-link-primary-line:`PP304 <https://learn.scientific-python.org/development/guides/pytest#PP304>` : Sets the log level in pytest
+* :bdg-link-primary-line:`PP305 <https://learn.scientific-python.org/development/guides/pytest#PP305>` : Specifies xfail_strict
+
+.. revealjs-break::
+
+* :bdg-link-primary-line:`PP306 <https://learn.scientific-python.org/development/guides/pytest#PP306>` : Specifies strict config
+* :bdg-link-primary-line:`PP307 <https://learn.scientific-python.org/development/guides/pytest#PP307>` : Specifies strict markers
+* :bdg-link-primary-line:`PP308 <https://learn.scientific-python.org/development/guides/pytest#PP308>` : Specifies useful pytest summary
+* :bdg-link-primary-line:`PP309 <https://learn.scientific-python.org/development/guides/pytest#PP309>` : Filter warnings specified
