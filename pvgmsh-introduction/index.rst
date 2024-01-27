@@ -24,8 +24,8 @@ Motivation
 - プリ処理についても、PyVistaはジオメトリの作成機能もある
 - PyVistaには **基本的なDelaunay分割の機能** がある
 
-**pvgmsh** プロジェクト
-=======================
+**pvgmsh** Project
+==================
 
 .. container:: flex-container
 
@@ -43,9 +43,6 @@ Motivation
       - 自身がメッシュ作成を楽しむためのプロジェクト
       - ロゴはGmshのロゴとPythonのリストに使用される鉤括弧を使用した
 
-まとめ
-======
-
-- 
-- 
+Demo
+====
 
