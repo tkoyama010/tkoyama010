@@ -6,12 +6,9 @@
 
 <h3 align="center">Software Developer | Pythonista</h3>
 
-## About me
+## About me [![Github](https://img.shields.io/github/followers/tkoyama010?label=Follow&style=social)](https://github.com/tkoyama010) [![Sponsor](https://img.shields.io/badge/-Sponsor-red?logo=github&style=flat-square)](https://github.com/sponsors/tkoyama010)
 
 <img align="right" src="https://github.com/tkoyama010/tkoyama010/blob/main/pyconjp2019.jpg" alt="PyConJP2019" width=400px />
-
-[![Github](https://img.shields.io/github/followers/tkoyama010?label=Follow&style=social)](https://github.com/tkoyama010)
-[![Sponsor](https://img.shields.io/badge/-Sponsor-red?logo=github&style=flat-square)](https://github.com/sponsors/tkoyama010)
 
 Hi! My name is Tetsuo Koyama. I'm a CAE software engineer in Japan.
 I'm interested in scientific computing and visualization with computer graphics.
