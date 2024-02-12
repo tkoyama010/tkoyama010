@@ -6,6 +6,10 @@
 
 <h3 align="center">Software Developer | Pythonista</h3>
 
+<p align="center">
+<a href="https://tkoyama010.streamlit.app/"><img alt="tkoyama010 examples and documentation" src="https://img.shields.io/static/v1?label=%20&message=Open%20in%20Community%20Cloud&color=pink&logo=streamlit" width=200></a> 
+</p>
+
 ## About me [![Github](https://img.shields.io/github/followers/tkoyama010?label=Follow&style=social)](https://github.com/tkoyama010) [![Sponsor](https://img.shields.io/badge/-Sponsor-red?logo=github?style=for-the-badge)](https://github.com/sponsors/tkoyama010)
 
 <img align="right" src="https://github.com/tkoyama010/tkoyama010/blob/main/pyconjp2019.jpg" alt="PyConJP2019" width=400px />
