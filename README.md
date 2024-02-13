@@ -46,10 +46,6 @@ As a speaker, my talk at PyConJP 2019 was featured in a web magazine article as 
 
 [注目セッション「Introduction to FEM Analysis with Python」― Tetsuo Koyama](https://gihyo.jp/news/report/01/pyconjp2019/0001#sec6)
 
-The video of the lecture also attracted attention and received 15,000 views.
-
-[![pyconjp2019](http://img.youtube.com/vi/6JuB1GiDLQQ/0.jpg)](https://www.youtube.com/watch?v=6JuB1GiDLQQ&t=512s)
-
 ## Publication
 
 [Tetsuo Koyama's Google Scholar.](https://scholar.google.co.jp/citations?user=GJ0Mv00AAAAJ)
@@ -87,7 +83,6 @@ The video of the lecture also attracted attention and received 15,000 views.
 
 ## Contributions
 
-[![](https://raw.githubusercontent.com/tkoyama010/tkoyama010/master/profile-summary-card-output/vue/0-profile-details.svg)](https://github.com/vn7n24fzkq/github-profile-summary-cards)
 [![](https://raw.githubusercontent.com/tkoyama010/tkoyama010/master/profile-summary-card-output/vue/1-repos-per-language.svg)](https://github.com/vn7n24fzkq/github-profile-summary-cards)
 [![](https://raw.githubusercontent.com/tkoyama010/tkoyama010/master/profile-summary-card-output/vue/2-most-commit-language.svg)](https://github.com/vn7n24fzkq/github-profile-summary-cards)
 [![](https://raw.githubusercontent.com/tkoyama010/tkoyama010/master/profile-summary-card-output/vue/3-stats.svg)](https://github.com/vn7n24fzkq/github-profile-summary-cards)
