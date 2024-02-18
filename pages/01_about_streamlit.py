@@ -1,8 +1,5 @@
 from pathlib import Path
+
 import streamlit as st
 
-def read_markdown_file(markdown_file):
-    return Path(markdown_file).read_text()
-
-intro_markdown = read_markdown_file("pages/01_about_streamlit.md")
-st.markdown(intro_markdown, unsafe_allow_html=True)
+st.markdown(Path("pages/01_about_streamlit.md").read_text(), unsafe_allow_html=True)
