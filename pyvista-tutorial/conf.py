@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 # -- Path setup --------------------------------------------------------------
 import os
 from urllib.parse import urljoin

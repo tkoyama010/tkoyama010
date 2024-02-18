@@ -7,7 +7,7 @@
 <h3 align="center">Software Developer | Pythonista</h3>
 
 <p align="center">
-<a href="https://tkoyama010.streamlit.app/"><img alt="tkoyama010 examples and documentation" src="https://img.shields.io/static/v1?label=%20&message=Open%20in%20Community%20Cloud&color=pink&logo=streamlit" width=200></a> 
+<a href="https://tkoyama010.streamlit.app/"><img alt="tkoyama010 examples and documentation" src="https://img.shields.io/static/v1?label=%20&message=Open%20in%20Community%20Cloud&color=pink&logo=streamlit" width=200></a>
 </p>
 
 ## About me [![Github](https://img.shields.io/github/followers/tkoyama010?label=Follow&style=social)](https://github.com/tkoyama010) [![Sponsor](https://img.shields.io/badge/-Sponsor-red?logo=github?style=for-the-badge)](https://github.com/sponsors/tkoyama010)
@@ -22,7 +22,7 @@ I also contribute to the development of [GetFEM](https://github.com/getfem-doc/g
 - [PyVista: 3D plotting and mesh analysis through a streamlined interface for the Visualization Toolkit (VTK)](https://github.com/pyvista/pyvista)
 - [GetFEM: Open source library of Finite Element Method](https://github.com/getfem-doc/getfem)
 
-We provide PyVista tutorials in  SciPy2022 and SciPy2023.
+We provide PyVista tutorials in SciPy2022 and SciPy2023.
 I am a main contributor to the repository used for the tutorials.
 
 - [PyVista Tutorial](https://github.com/pyvista/pyvista-tutorial)
@@ -73,12 +73,12 @@ As a speaker, my talk at PyConJP 2019 was featured in a web magazine article as 
 
 ![VTK](https://img.shields.io/badge/VTK-064f8d.svg?style=for-the-badge)
 ![ParaView](https://img.shields.io/badge/ParaView-999999.svg?style=for-the-badge)
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=white) 
-![Fortran](https://img.shields.io/badge/Fortran-%23734F96.svg?style=for-the-badge&logo=fortran&logoColor=white) 
-![PyPI](https://img.shields.io/badge/pypi-3775A9?style=for-the-badge&logo=pypi&logoColor=white) 
-![Markdown](https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white) 
-![Jupyter](	https://img.shields.io/badge/Jupyter-F37626.svg?&style=for-the-badge&logo=Jupyter&logoColor=white) 
-![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=GitHub%20Pages&logoColor=white) 
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=white)
+![Fortran](https://img.shields.io/badge/Fortran-%23734F96.svg?style=for-the-badge&logo=fortran&logoColor=white)
+![PyPI](https://img.shields.io/badge/pypi-3775A9?style=for-the-badge&logo=pypi&logoColor=white)
+![Markdown](https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white)
+![Jupyter](https://img.shields.io/badge/Jupyter-F37626.svg?&style=for-the-badge&logo=Jupyter&logoColor=white)
+![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=GitHub%20Pages&logoColor=white)
 ![Codecov](https://img.shields.io/badge/Codecov-F01F7A?style=for-the-badge&logo=Codecov&logoColor=white)
 
 ## Contributions
@@ -86,6 +86,7 @@ As a speaker, my talk at PyConJP 2019 was featured in a web magazine article as 
 [![](https://raw.githubusercontent.com/tkoyama010/tkoyama010/master/profile-summary-card-output/vue/1-repos-per-language.svg)](https://github.com/vn7n24fzkq/github-profile-summary-cards)
 [![](https://raw.githubusercontent.com/tkoyama010/tkoyama010/master/profile-summary-card-output/vue/2-most-commit-language.svg)](https://github.com/vn7n24fzkq/github-profile-summary-cards)
 [![](https://raw.githubusercontent.com/tkoyama010/tkoyama010/master/profile-summary-card-output/vue/3-stats.svg)](https://github.com/vn7n24fzkq/github-profile-summary-cards)
+
 <!--
 **hrntsm/hrntsm** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
