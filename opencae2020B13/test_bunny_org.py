@@ -8,9 +8,7 @@ mapper = vtk.vtkPolyDataMapper()
 if vtk.VTK_MAJOR_VERSION <= 5:
     mapper.SetInput(reader.GetOutput())
 else:
-    mapper.SetInputConnection(
-        reader.GetOutputPort()
-    )
+    mapper.SetInputConnection(reader.GetOutputPort())
 
 # create actor
 actor = vtk.vtkActor()

@@ -1,6 +1,7 @@
 [drag=100 100, drop=center]
 
 # GetFEM Contribution 2020
+
 ## @tkoyama010
 
 Note:
@@ -9,10 +10,12 @@ GetFEM Contribution 2020というタイトルでトークをさせていただ�
 よろしくお願いいたします.
 
 ---
+
 [drag=20 20, drop=15 0]
 ![height=200](https://avatars3.githubusercontent.com/u/7513610?s=400&u=3a29937127b197c7181f08901441c800271b5ba0&v=4)
 
 [drag=50 20, drop=35 0]
+
 ## Tetsuo Koyama
 
 [drag=25 5, drop=15 20]
@@ -49,10 +52,13 @@ Twitterの固定ツイートからリンクが辿れるようになっていま�
 1日目の今日は有限要素法ライブラリGetFEMについてお話します.
 
 ---
+
 [drag=100 20, drop=0 0]
+
 ## GetFEMとは?
 
 [drag=45 10, drop=5 20]
+
 ### ライブラリの構造
 
 [drag=45 60, drop=5 30]
@@ -69,8 +75,11 @@ GetFEMは共同開発をベースとしたオープンソースのライブラ�
 今回は簡単な例を通して，このライブラリにより従来の有限要素法プログラムと比較して柔軟なパラスタの実装が可能であることを説明します．
 
 ---
+
 [drag=100 50, drop=0 0]
+
 # 片持はりの問題
+
 [drag=100 20, drop=0 50]
 ![height=100](./opencae2020B02/badge.svg)
 ![height=100](https://cdn.pixabay.com/photo/2016/04/22/14/31/mouse-1345876_960_720.png)
@@ -83,16 +92,19 @@ GetFEMは他にScilab・Matlab・Octave・C++のインターフェースもあ�
 ローカルにインストールせずにこの例を実行したい場合は，梗概にあるこちらのピンクのボタンをクリックすることでJupyterをクラウドで実行できます．
 
 ---
+
 [drag=100 20, drop=0 0, set=align-center]
+
 ### 片持はりの問題のパラメータ
 
 [drag=45 70, drop=5 20, set=align-left]
+
 - 幾何条件
-$L=10mm$
+  $L=10mm$
 - 境界条件
-$P=-1.0 N/mm^2$
+  $P=-1.0 N/mm^2$
 - 材料条件
-$E=10000 N/mm^2$, $\nu = 0.0$
+  $E=10000 N/mm^2$, $\nu = 0.0$
 
 [drag=50 70, drop=50 20]
 ![height=500](http://kentiku-kouzou.jp/kouzourikigaku/katamotitawami/1.png)
@@ -103,16 +115,18 @@ Note:
 ポアソン効果を無視するため，ポアソン比は0.0としています．
 
 ---
+
 [drag=100 20, drop=0 0, set=align-center]
+
 ### 片持はり問題のパラメータ
 
 [drag=100 80, drop=0 20, set=align-center]
-| 要素            | 1x4 メッシュ | 4x2 メッシュ | 4x4 メッシュ | 16x8 メッシュ |
+| 要素 | 1x4 メッシュ | 4x2 メッシュ | 4x4 メッシュ | 16x8 メッシュ |
 | --------------- | ------------ | ------------ | ------------ | ------------- |
-| 2次完全積分要素 | case11       | case12       | case13       | case14        |
-| 1次完全積分要素 | case21       | case22       | case23       | case24        |
-| 1次低減積分要素 | case31       | case32       | case33       | case34        |
-| 1次非適合要素   | case41       | case42       | case43       | case44        |
+| 2次完全積分要素 | case11 | case12 | case13 | case14 |
+| 1次完全積分要素 | case21 | case22 | case23 | case24 |
+| 1次低減積分要素 | case31 | case32 | case33 | case34 |
+| 1次非適合要素 | case41 | case42 | case43 | case44 |
 
 Note:
 
@@ -122,10 +136,13 @@ Note:
 それぞれのケースの操作は同じですので，各オブジェクトの配列を作成してforループで操作をします．
 
 ---
+
 [drag=100 20, drop=0 0, set=align-center]
+
 ### メッシュ生成
 
 [drag=45 70, drop=5 20, set=align-left, fit=0.6]
+
 ```python
 import getfem as gf
 import numpy as np
@@ -154,10 +171,13 @@ xsとysは，長さと高さ方向の配列のメッシュ分割数とします�
 また，作成したメッシュはexport_to_vtkメソッドを使用することでvtkファイルに出力することが可能です．
 
 ---
+
 [drag=100 20, drop=0 0, set=align-center]
+
 ### メッシュ生成
 
 [drag=45 70, drop=5 20, set=align-left, fit=0.6]
+
 ```python
 import pyvista as pv
 
@@ -189,10 +209,13 @@ Note:
 ご興味のある方はぜひご覧ください．
 
 ---
+
 [drag=100 20, drop=0 0, set=align-center]
+
 ### 領域の設定
 
 [drag=95 70, drop=5 20, set=align-left, fit=0.6]
+
 ```python
 TOP_BOUND = 1
 RIGHT_BOUND = 2
@@ -217,18 +240,20 @@ GetFEMのメッシュはメッシュの凸包面で定義をします．
 ここでは,上下左右4面の定義をしておきます．
 
 ---
+
 [drag=100 20, drop=0 0, set=align-center]
+
 ### 有限要素法の定義
 
 [drag=45 70, drop=5 20, set=align-left, fit=0.6]
 @code[python](opencae2020B02/definition_of_finite_elements_methods.py)
 
 [drag=50 80, drop=50 20, set=align-center, fit=0.6]
-| 要素                  | 有限要素法(1次元)             |
+| 要素 | 有限要素法(1次元) |
 | --------------------- | ----------------------------- |
-| **2次**完全積分要素       | FEM_PK(1,2)                   |
-| **1次**完全積分要素       | FEM_PK(1,1)                   |
-| **1次**低減積分要素       | FEM_PK(1,1)                   |
+| **2次**完全積分要素 | FEM_PK(1,2) |
+| **1次**完全積分要素 | FEM_PK(1,1) |
+| **1次**低減積分要素 | FEM_PK(1,1) |
 | **1次非適合**完全積分要素 | FEM_PK_WITH_CUBIC_BUBBLE(1,1) |
 
 Note:
@@ -240,18 +265,20 @@ FEM_PK(1,2)は2次多項式を持つ1次元の単体に対する古典的Lagrang
 GetFEMは1次元の有限要素法を使いFEM_PRODUCTを宣言することで2次の有限要素法を宣言することが可能です．
 
 ---
+
 [drag=100 20, drop=0 0, set=align-center]
+
 ### 積分法の定義
 
 [drag=45 70, drop=5 20, set=align-left, fit=0.6]
 @code[python](opencae2020B02/definition_of_integration_methods.py)
 
 [drag=50 80, drop=50 20, set=align-center, fit=0.6]
-| 要素                  | 積分法(1次元) |
+| 要素 | 積分法(1次元) |
 | --------------------- | ------------- |
-| 2次**完全積分**要素       | IM_GAUSS1D(4) |
-| 1次**完全積分**要素       | IM_GAUSS1D(2) |
-| 1次**低減積分**要素       | IM_GAUSS1D(0) |
+| 2次**完全積分**要素 | IM_GAUSS1D(4) |
+| 1次**完全積分**要素 | IM_GAUSS1D(2) |
+| 1次**低減積分**要素 | IM_GAUSS1D(0) |
 | 1次非適合**完全積分**要素 | IM_GAUSS1D(4) |
 
 Note:
@@ -262,10 +289,13 @@ GetFEM
 このように，GetFEMでは有限要素法を個別に定義可能であり，通常別要素で定義されている有限要素法を共通にすることで簡潔な実装を実現しています．
 
 ---
+
 [drag=100 20, drop=0 0, set=align-center]
+
 ### Modelオブジェクトの定義
 
 [drag=95 70, drop=5 20, set=align-left, fit=0.6]
+
 ```python
 # モデルオブジェクトの作成
 mds = []
@@ -295,10 +325,13 @@ Note:
 そして,add_isotropic_linearized_elasticity_brick_pstrainメソッドでモデルに平面ひずみ要素の項を追加します．
 
 ---
+
 [drag=100 20, drop=0 0, set=align-center]
+
 ### はりの左側と右側の境界条件
 
 [drag=95 70, drop=5 20, set=align-left, fit=0.6]
+
 ```python
 # Dirichlet条件の設定
 for (md, mim, mfu, fem) in zip(mds, mims, mfus, fems):
@@ -321,10 +354,13 @@ Note:
 最後に,左側の領域にDirichlet条件を右側の領域にNeumann条件を設定します．
 
 ---
+
 [drag=100 20, drop=0 0, set=align-center]
+
 ### Modelオブジェクトの求解
 
 [drag=45 70, drop=5 20, set=align-left, fit=0.6]
+
 ```python
 for md in mds:
     md.solve()
@@ -335,12 +371,12 @@ for md in mds:
 FEMの解/理論解
 
 [drag=50 30, drop=50 40, set=align-center, fit=0.5]
-| 要素            | 1x4 メッシュ | 4x2 メッシュ | 4x4 メッシュ | 16x8 メッシュ |
+| 要素 | 1x4 メッシュ | 4x2 メッシュ | 4x4 メッシュ | 16x8 メッシュ |
 | --------------- | ------------ | ------------ | ------------ | ------------- |
-| 2次要素         | 0.999        | 1.000        | 1.000        | 1.006         |
-| 1次完全積分要素 | 0.244        | 0.244        | 0.244        | 0.841         |
-| 1次低減積分要素 | 7.517e+11    | 1.317        | 1.056        | 1.021         |
-| 1次非適合要素   | 0.999        | 1.000        | 1.000        | 1.006         |
+| 2次要素 | 0.999 | 1.000 | 1.000 | 1.006 |
+| 1次完全積分要素 | 0.244 | 0.244 | 0.244 | 0.841 |
+| 1次低減積分要素 | 7.517e+11 | 1.317 | 1.056 | 1.021 |
+| 1次非適合要素 | 0.999 | 1.000 | 1.000 | 1.006 |
 
 Note:
 
@@ -353,16 +389,21 @@ Note:
 この例を通して, GetFEMは汎用的な有限要素法の実装を行うのに適したライブラリであることがご理解いただけると幸いです．
 
 ---
+
 ## GetFEM 5.4 リリース
+
 @tkoyama010 による追加
+
 - PythonインターフェースのデフォルトをPython2.7からPython3に修正
 - 集中質量行列のサポート
 - Houbolt法のサポート
 
 ## 次回リリース
+
 @tkoyama010 による追加
+
 - VTK(XML)ファイルへのエクスポー機能の追加
-etc.
+  etc.
 
 Note:
 
