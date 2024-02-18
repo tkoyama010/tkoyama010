@@ -1,6 +1,7 @@
 [drag=100 100, drop=center]
 
 # PyVista Contribution 2020
+
 ## @tkoyama010
 
 Note:
@@ -9,10 +10,12 @@ PyVista Contribution 2020というタイトルでトークをさせていただ�
 よろしくお願いいたします.
 
 ---
+
 [drag=20 20, drop=15 0]
 ![height=200](https://avatars3.githubusercontent.com/u/7513610?s=400&u=3a29937127b197c7181f08901441c800271b5ba0&v=4)
 
 [drag=50 20, drop=35 0]
+
 ## Tetsuo Koyama
 
 [drag=25 5, drop=15 20]
@@ -49,10 +52,13 @@ Twitterの固定ツイートからリンクが辿れるようになっていま�
 2回目はVTKのPythonの可視化ライブラリPyVistaについてお話します.
 
 ---
+
 # なぜPyVistaか？
 
 ---
+
 [drag=100 20, drop=0 0]
+
 ## VTKへのPythonicなインタフェース
 
 [drag=45 80, drop=5 20, fit=0.5]
@@ -71,7 +77,9 @@ VTKは世界中の商用アプリケーション,研究開発,先進的な可視
 しかし,例えばこのstanford bunnyを使用してOBJファイルのロードとプロットを行う場合,vtk モジュールだけを使用すると大量のコードが必要になります。
 
 ---
+
 [drag=100 20, drop=0 0]
+
 ## VTKへのPythonicなインタフェース
 
 [drag=45 70, drop=5 20, fit=0.5]
@@ -88,7 +96,9 @@ Pyvistaを使用して,同じobjファイルをロードしたりプロットす
 PyVistaを使わずにvtkモジュールを直接使用するとユーザーはこれらの処理を全て自分で記述する必要があります.
 
 ---
+
 [drag=100 20, drop=0 0]
+
 ## 対話型のプロットツール
 
 [drag=45 70, drop=5 20, fit=0.5]
@@ -104,7 +114,9 @@ Note:
 こちらに示した例はボックスウィジェットです.
 
 ---
+
 [drag=100 20, drop=0 0]
+
 ## VTKフィルタへのアクセス
 
 [drag=45 70, drop=5 20, fit=0.5]
@@ -123,8 +135,10 @@ VTKには様々なフィルタが実装されています.
 修正前の立方体meshとクリップ後のメッシュclipped_meshを比較すると正しくフィルタが処理されていることを確認できます.
 
 ---
+
 [drag=100 10, drop=0 0]
-## ```matplotlib``` のようなプロット
+
+## `matplotlib` のようなプロット
 
 [drag=45 90, drop=5 10, fit=0.5]
 @code[python](opencae2020B13/test_multi_renderers.py)
@@ -139,6 +153,7 @@ Note:
 matplotlibでは3次元の描画は困難があるためCAEの描画を行う際にはPyVistaを使用することをおすすめします.
 
 ---
+
 # 今年追加した機能
 
 Note:
@@ -146,7 +161,9 @@ Note:
 最後に今年追加した機能を2つご紹介します.
 
 ---
+
 [drag=100 20, drop=0 0]
+
 ## @emoji[scissors] Shrinkフィルタ
 
 [drag=45 70, drop=5 20, fit=0.5]
@@ -163,13 +180,16 @@ CAEの現場ではメッシュ作成の際に要素のつながりが不自然�
 このメソッドに関する議論は梗概のプルリクエストで行われていますのでご興味のある方はそちらのご確認をお願いいたします.
 
 ---
+
 [drag=100 20, drop=0 0]
+
 ## @emoji[scissors] Shrinkフィルタ
 
 [drag=45 10, drop=5 20, fit=0.5, set=align-left]
 メソッド
 
 [drag=45 30, drop=5 30, fit=0.5]
+
 ```python
 def shrink(dataset, shrink_factor=1.0, progress_bar=False):
     if not (0.0 <= shrink_factor <= 1.0):
@@ -187,6 +207,7 @@ def shrink(dataset, shrink_factor=1.0, progress_bar=False):
 テストコード
 
 [drag=45 30, drop=5 60, fit=0.5]
+
 ```python
 def test_shrink():
     mesh = pyvista.Sphere()
@@ -208,7 +229,9 @@ pytestはPythonのテストライブラリで接頭辞にtestがツイている�
 この機能は2020年11月08日のVersion 0.27.0 でリリースされました.
 
 ---
+
 [drag=100 20, drop=0 0]
+
 ## @emoji[camera] Cameraオブジェクト
 
 [drag=45 70, drop=5 20, fit=0.5]
@@ -226,7 +249,9 @@ PyVistaに新たにcameraオブジェクトを追加することにしました.
 こちらは飛行機のメッシュをプロットした例です.
 
 ---
+
 [drag=100 20, drop=0 0]
+
 ## @emoji[camera] Cameraオブジェクト
 
 [drag=45 70, drop=5 20, fit=0.5]
@@ -241,7 +266,9 @@ Note:
 例えば、こちらのようにzoomを行うとカメラがズームされます.
 
 ---
+
 [drag=100 20, drop=0 0]
+
 ## @emoji[camera] Cameraオブジェクト
 
 [drag=45 70, drop=5 20, fit=0.5]
@@ -258,17 +285,22 @@ Note:
 Version0.28.0のマイルストーンからこちらのプルリクエストの議論を確認することができます.
 
 ---
+
 [drag=100 20, drop=0 0]
+
 ## まとめ
 
 [drag=100 80, drop=0 20]
+
 ### なぜPyVistaか?
+
 - VTKへのPythonicなインタフェース
 - 対話型のプロットツール
 - VTKフィルタへのアクセス
-- ```matplotlib``` のようなプロット
+- `matplotlib` のようなプロット
 
 ### 追加機能
+
 - @emoji[scissors] Shrink フィルタ
 - @emoji[camera] Camera オブジェクト
 
@@ -276,15 +308,17 @@ Note:
 
 まとめです.
 PyVistaの利点として
+
 - VTKへのPythonicなインタフェース
 - 対話型のプロットツール
 - VTKフィルタへのアクセス
-- ```matplotlib``` のようなプロット
-を説明しました.
+- `matplotlib` のようなプロット
+  を説明しました.
 
 また今年追加したまたは追加ている機能としてShrinkフィルタとCameraオブジェクトを追加しました.
 今年からPyVistaへのコントリビューションを開始したためまだあまり貢献できていませんが、今後コミット量を増やしていきたいとかんがえています.
 
 ---
+
 [drag=80 90, drop=10 5]
 ![height=2000](opencae2020B13/contributions01.png)
