@@ -12,8 +12,6 @@
 
 ## About me [![Github](https://img.shields.io/github/followers/tkoyama010?label=Follow&style=social)](https://github.com/tkoyama010) [![Sponsor](https://img.shields.io/badge/-Sponsor-red?logo=github?style=for-the-badge)](https://github.com/sponsors/tkoyama010)
 
-<a rel="me" href="https://mstdn.jp/@tkoyama010"><img src="https://img.shields.io/badge/-MASTODON-%232B90D9?style=for-the-badge&logo=mastodon&logoColor=white"></a>
-
 Hi! My name is Tetsuo Koyama. I'm a CAE software engineer in Japan.
 I'm interested in scientific computing and visualization with computer graphics.
 I am on the developer team of [PyVista](https://github.com/orgs/pyvista/people).
@@ -78,3 +76,18 @@ As a speaker, my talk at PyConJP 2019 was featured in a web magazine article as 
 ![PyPI](https://img.shields.io/badge/pypi-3775A9?style=for-the-badge&logo=pypi&logoColor=white)
 ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=GitHub%20Pages&logoColor=white)
 ![Codecov](https://img.shields.io/badge/Codecov-F01F7A?style=for-the-badge&logo=Codecov&logoColor=white)
+
+#### Find me
+
+<p>
+  <a rel="me" href="https://mstdn.jp/@tkoyama010"><img src="https://img.shields.io/badge/-MASTODON-%232B90D9?style=for-the-badge&logo=mastodon&logoColor=white"></a>
+  <a href="mailto:tkoyama010@gmail.com">
+    <img alt="Gmail" src="https://img.shields.io/badge/Gmail-%23BB001B.svg?&style=for-the-badge&logo=Gmail&logoColor=white" />
+  </a>
+  <a href="https://github.com/tkoyama010">
+    <img alt="Github" src="https://img.shields.io/badge/GitHub-%2312100E.svg?&style=for-the-badge&logo=Github&logoColor=white" />
+  </a>
+  <a href="https://twitter.com/tkoyama010">
+    <img alt="Twitter" src="https://img.shields.io/badge/twitter-%231DA1F2.svg?&style=for-the-badge&logo=twitter&logoColor=white" />
+  </a>
+</p>
