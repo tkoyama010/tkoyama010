@@ -77,7 +77,7 @@ As a speaker, my talk at PyConJP 2019 was featured in a web magazine article as 
 ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=GitHub%20Pages&logoColor=white)
 ![Codecov](https://img.shields.io/badge/Codecov-F01F7A?style=for-the-badge&logo=Codecov&logoColor=white)
 
-#### Find me
+### Find me
 
 <p>
   <a rel="me" href="https://mstdn.jp/@tkoyama010"><img src="https://img.shields.io/badge/-MASTODON-%232B90D9?style=for-the-badge&logo=mastodon&logoColor=white"></a>
