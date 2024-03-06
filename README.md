@@ -75,14 +75,6 @@ As a speaker, my talk at PyConJP 2019 was featured in a web magazine article as 
   <img src="https://raw.githubusercontent.com/gilbarbara/logos/main/logos/fortran.svg" title="Fortran" alt="Fortran" width="40" height="40"/>&nbsp;
 </div>
 
-## Software tools
-
-![Codecov](https://img.shields.io/badge/Codecov-F01F7A?style=for-the-badge&logo=Codecov&logoColor=white)
-![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=GitHub%20Pages&logoColor=white)
-![ParaView](https://img.shields.io/badge/ParaView-999999.svg?style=for-the-badge)
-![PyPI](https://img.shields.io/badge/pypi-3775A9?style=for-the-badge&logo=pypi&logoColor=white)
-![VTK](https://img.shields.io/badge/VTK-064f8d.svg?style=for-the-badge)
-
 ## Find me
 
 <p>
