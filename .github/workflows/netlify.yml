@@ -11,7 +11,7 @@ jobs:
       - uses: actions/setup-python@v5
       - uses: actions/checkout@v4
       - run: |
-          cd pyvista-tutorial
+          cd pvgmsh-introduction
           pip install -r requirements.txt
           playwright install
           make revealjs
@@ -19,7 +19,7 @@ jobs:
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3.0
         with:
-          publish-dir: pyvista-tutorial/_build/revealjs
+          publish-dir: pvgmsh-introduction/_build/revealjs
           production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"
