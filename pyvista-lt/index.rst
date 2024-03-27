@@ -12,28 +12,22 @@
 自己紹介
 ========
 
+- GitHubでtkoyama010というアカウント名で活動しています
+- 科学技術計算の可視化に興味があります
+- **PyVista** というPythonプロジェクトのメンテナをしています
+
 PyVistaとは
 ===========
 
-.. container:: flex-container
+.. raw:: html
 
-   .. container:: half
+   <video width="75%" height="auto" controls autoplay muted>
+     <source src="_static/pyvista_ipython_demo.mp4" type="video/mp4">
+     Your browser does not support the video tag.
+   </video>
 
-      .. raw:: html
-
-         <video width="100%" height="auto" controls autoplay muted>
-           <source src="_static/pyvista_jupyterlab_demo.mp4" type="video/mp4">
-           Your browser does not support the video tag.
-         </video>
-
-   .. container:: half
-
-      .. raw:: html
-
-         <video width="100%" height="auto" controls autoplay muted>
-           <source src="_static/pyvista_ipython_demo.mp4" type="video/mp4">
-           Your browser does not support the video tag.
-         </video>
+今回は **PyVista** で **CG** に入門するというコンセプトでお話をします
+=====================================================================
 
 球を作る
 ========
@@ -47,37 +41,14 @@ PyVistaとは
          import pyvista as pv
 
          mesh = pv.Sphere()
+
          pl = pv.Plotter()
          pl.add_mesh(mesh)
          pl.show()
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-docs-dev-ja/_images/plotting_0_0.png
-
-物理ベースレンダリング(PBR)を実行する
-=====================================
-
-.. container:: flex-container
-
-   .. container:: half
-
-      .. code-block:: python
-
-         import pyvista as pv
-
-         mesh = pv.Sphere()
-         pl.add_mesh(
-            mesh,
-            pbr=True,
-            roughness=0.1,
-            metallic=0.5
-         )
-         pl.show()
-
-   .. container:: half
-
-      .. image:: https://pyvista.github.io/pyvista-docs-dev-ja/_images/plotting_0_0.png
+      .. image:: sphere.png
 
 スカイボックスを追加する
 ========================
@@ -88,11 +59,41 @@ PyVistaとは
 
       .. code-block:: python
 
+         from pyvista.examples import (
+             download_cubemap_park
+         )
+         pl = pv.Plotter()
+         dataset = download_cubemap_park()
+         pl.add_actor(dataset.to_skybox())
+         pl.add_mesh(mesh)
+         pl.show()
+
+   .. container:: half
+
+      .. image:: skybox.png
+
+物理ベースレンダリング(PBR)を実行する
+=====================================
+
+.. container:: flex-container
+
+   .. container:: half
+
+      .. code-block:: python
+
+         pl = pv.Plotter(lighting=None)
          dataset = download_cubemap_park()
          pl.add_actor(dataset.to_skybox())
          pl.set_environment_texture(
              dataset, True
          )
+         pl.add_mesh(
+            mesh,
+            pbr=True,
+            roughness=0.1,
+            metallic=0.5
+         )
+         pl.show()
 
    .. container:: half
 
