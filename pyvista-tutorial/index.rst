@@ -155,42 +155,12 @@ PyVistaは誰のためのものですか？ [#]_
 
    .. container:: half
 
-      .. tab-set::
+      .. code-block:: python
 
-         .. tab-item:: VTK
+         from pyvista import examples
 
-            .. revealjs-code-block:: python
-               :data-line-numbers: 1-100
-
-               import vtk
-
-               reader = vtk.vtkSTLReader()
-               reader.SetFileName("bunny.stl")
-               mapper = vtk.vtkPolyDataMapper()
-               output_port = reader.GetOutputPort()
-               mapper.SetInputConnection(output_port)
-               actor = vtk.vtkActor()
-               actor.SetMapper(mapper)
-               ren = vtk.vtkRenderer()
-               renWin = vtk.vtkRenderWindow()
-               renWin.AddRenderer(ren)
-               iren = vtk.vtkRenderWindowInteractor()
-               iren.SetRenderWindow(renWin)
-               ren.AddActor(actor)
-               iren.Initialize()
-               renWin.Render()
-               iren.Start()
-               del iren, renWin
-
-         .. tab-item:: PyVista
-
-            .. revealjs-code-block:: python
-               :data-line-numbers: 1-100
-
-               from pyvista import examples
-
-               mesh = examples.download_bunny()
-               mesh.plot(cpos='xy')
+         mesh = examples.download_bunny()
+         mesh.plot(cpos='xy')
 
    .. container:: half
 
@@ -206,8 +176,7 @@ PyVistaは誰のためのものですか？ [#]_
 
    .. container:: half
 
-       .. revealjs-code-block:: python
-         :data-line-numbers: 1-100
+       .. code-block:: python
 
          import pyvista as pv
          import numpy as np
@@ -334,8 +303,7 @@ JupyterでPyVistaを使う [#]_
 
    .. container:: half
 
-      .. revealjs-code-block:: python
-         :data-line-numbers: 1-100
+      .. code-block:: python
 
          >>> from pyvista.examples import (
          ...     download_saddle_surface
@@ -362,8 +330,7 @@ JupyterでPyVistaを使う [#]_
 
    .. container:: half
 
-      .. revealjs-code-block:: python
-         :data-line-numbers: 1-100
+      .. code-block:: python
 
          >>> dataset = examples.download_frog()
          >>> dataset
@@ -391,8 +358,7 @@ JupyterでPyVistaを使う [#]_
 
    .. container:: half
 
-      .. revealjs-code-block:: python
-         :data-line-numbers: 1-100
+      .. code-block:: python
 
          >>> import pyvista as pv
          >>> dataset = pv.read('ironProt.vtk')
@@ -446,8 +412,7 @@ JupyterでPyVistaを使う [#]_
 
    .. container:: half
 
-      .. revealjs-code-block:: python
-         :data-line-numbers: 1-100
+      .. code-block:: python
 
          >>> import numpy as np
          >>> points = np.random.rand(100, 3)
@@ -472,8 +437,7 @@ JupyterでPyVistaを使う [#]_
 
    .. container:: half
 
-      .. revealjs-code-block:: python
-         :data-line-numbers: 1-100
+      .. code-block:: python
 
          >>> mesh = examples.load_hexbeam()
 
@@ -524,8 +488,7 @@ JupyterでPyVistaを使う [#]_
 
    .. container:: half
 
-      .. revealjs-code-block:: python
-         :data-line-numbers: 1-100
+      .. code-block:: python
 
          >>> mesh.point_data[
          ...     'my point values'
@@ -549,8 +512,7 @@ JupyterでPyVistaを使う [#]_
 
    .. container:: half
 
-      .. revealjs-code-block:: python
-         :data-line-numbers: 1-100
+      .. code-block:: python
 
          >>> mesh.cell_data[
          ...     'my cell values'
@@ -571,8 +533,7 @@ JupyterでPyVistaを使う [#]_
 
    .. container:: half
 
-      .. revealjs-code-block:: python
-         :data-line-numbers: 1-100
+      .. code-block:: python
 
          >>> uni = examples.load_uniform()
          >>> pl = pv.Plotter(
@@ -610,8 +571,7 @@ JupyterでPyVistaを使う [#]_
 
    .. container:: half
 
-      .. revealjs-code-block:: python
-         :data-line-numbers: 1-100
+      .. code-block:: python
 
          >>> cube = pv.Cube()
          >>> cube.cell_data[
@@ -674,8 +634,7 @@ Plotterオブジェクトにメッシュを追加する
 
    .. container:: half
 
-      .. revealjs-code-block:: python
-         :data-line-numbers: 1-100
+      .. code-block:: python
 
          >>> mesh = pv.Wavelet()
          >>> p = pv.Plotter()
@@ -692,8 +651,7 @@ Plotterオブジェクトにメッシュを追加する
 
    .. container:: half
 
-      .. revealjs-code-block:: python
-         :data-line-numbers: 1-100
+      .. code-block:: python
 
          >>> mesh = pv.Wavelet()
          >>> p = pv.Plotter()
@@ -710,8 +668,7 @@ Plotterオブジェクトにメッシュを追加する
 
    .. container:: half
 
-      .. revealjs-code-block:: python
-         :data-line-numbers: 1-100
+      .. code-block:: python
 
          >>> from pyvista.examples import (
          ...     download_st_helens
@@ -737,8 +694,7 @@ Plotterオブジェクトにメッシュを追加する
 
    .. container:: half
 
-      .. revealjs-code-block:: python
-         :data-line-numbers: 1-100
+      .. code-block:: python
 
          >>> kinds = [
          ...     'tetrahedron',
@@ -802,8 +758,7 @@ Plotterオブジェクトにメッシュを追加する
 
    .. container:: half
 
-      .. revealjs-code-block:: python
-         :data-line-numbers: 1-100
+      .. code-block:: python
 
          >>> import pyvista as pv
          >>>
@@ -827,8 +782,7 @@ Plotterオブジェクトにメッシュを追加する
 
    .. container:: half
 
-      .. revealjs-code-block:: python
-         :data-line-numbers: 1-100
+      .. code-block:: python
 
          >>> mesh = pv.Wavelet()
          >>> cntr = mesh.contour()
@@ -856,8 +810,7 @@ Plotterオブジェクトにメッシュを追加する
 
    .. container:: half
 
-      .. revealjs-code-block:: python
-         :data-line-numbers: 1-100
+      .. code-block:: python
 
          >>> import pyvista as pv
          >>>
@@ -902,8 +855,7 @@ Plotterオブジェクトにメッシュを追加する
 
    .. container:: half
 
-      .. revealjs-code-block:: python
-         :data-line-numbers: 1-100
+      .. code-block:: python
 
          >>> import pyvista as pv
          >>> from pyvista import examples
@@ -925,8 +877,7 @@ Plotterオブジェクトにメッシュを追加する
 
    .. container:: half
 
-      .. revealjs-code-block:: python
-         :data-line-numbers: 1-100
+      .. code-block:: python
 
          >>> import pyvista as pv
          >>> from pyvista import examples
@@ -1005,8 +956,7 @@ clip [#]_
 
    .. container:: half
 
-      .. revealjs-code-block:: python
-         :data-line-numbers: 1-100
+      .. code-block:: python
 
          >>> import pyvista as pv
          >>> from pyvista import examples
@@ -1037,8 +987,7 @@ clip [#]_
 
    .. container:: half
 
-      .. revealjs-code-block:: python
-         :data-line-numbers: 1-100
+      .. code-block:: python
 
          >>> import pyvista as pv
          >>> from pyvista import examples
@@ -1104,8 +1053,7 @@ clip [#]_
 
    .. container:: half
 
-      .. revealjs-code-block:: python
-         :data-line-numbers: 1-100
+      .. code-block:: python
 
          >>> result = (
          ...     dataset
