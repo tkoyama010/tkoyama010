@@ -14,7 +14,6 @@ release = "2024.03"
 extensions = [
     "sphinx.ext.mathjax",
     "sphinx.ext.todo",
-    "sphinx_design",
     "sphinx_revealjs",
     "sphinxcontrib.gtagjs",
     "sphinxcontrib.sass",
