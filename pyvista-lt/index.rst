@@ -91,7 +91,7 @@ PyVistaとは
             mesh,
             pbr=True,
             roughness=0.1,
-            metallic=0.5
+            metallic=0.5,
          )
          pl.show()
 
