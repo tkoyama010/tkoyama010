@@ -1,4 +1,3 @@
----
 <br>
 <br>
 <a href="https://vshymanskyy.github.io/StandWithUkraine">
@@ -6,7 +5,6 @@
 </a>
 <br>
 <br>
----
 
 <h1 align="center">
   <a href="https://git.io/typing-svg">
