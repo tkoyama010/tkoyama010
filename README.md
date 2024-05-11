@@ -1,3 +1,13 @@
+---
+<br>
+<br>
+<a href="https://vshymanskyy.github.io/StandWithUkraine">
+<img src="https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg">
+</a>
+<br>
+<br>
+---
+
 <h1 align="center">
   <a href="https://git.io/typing-svg">
     <img src="https://readme-typing-svg.herokuapp.com/?lines=Hello,+there!+;I+am+Tetsuo+Koyama...;Nice+to+meet+you!&center=true&size=25">
