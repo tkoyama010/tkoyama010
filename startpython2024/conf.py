@@ -1,8 +1,5 @@
 # -- Path setup --------------------------------------------------------------
-import os
-from urllib.parse import urljoin
 
-from sphinx_revealjs.themes import get_theme_path
 
 # -- Project information -----------------------------------------------------
 project = "pyvista-tutorial-presentation"
@@ -19,9 +16,11 @@ extensions = [
     "sphinx_revealjs",
     "sphinxcontrib.gtagjs",
     "sphinxcontrib.sass",
-    "sphinxext.opengraph",
     "sphinxemoji.sphinxemoji",
     "oembedpy.ext.sphinx",
+    "pyvista.ext.plot_directive",
+    "pyvista.ext.viewer_directive",
+    "sphinx_design",
 ]
 templates_path = ["_templates"]
 source_suffix = ".rst"
@@ -111,31 +110,3 @@ epub_exclude_files = ["search.html"]
 
 # -- Options for extensions --------------------------------------------------
 todo_include_todos = True
-
-if "GTAGJS_IDS" in os.environ:
-    gtagjs_ids = os.environ["GTAGJS_IDS"].split(",")
-
-budoux_targets = ["h1", "h2", "h3"]
-
-sass_src_dir = "_sass"
-sass_out_dir = "_static"
-sass_targets = {"custom.scss": "custom.css"}
-sass_include_paths = [
-    get_theme_path("sphinx_revealjs") / "static" / "revealjs4" / "css" / "theme",
-]
-
-# sphinxext-opengraph
-ogp_site_url = os.environ.get("DEMO_URL_BASE", "http://localhost:8000/")
-ogp_custom_meta_tags = [
-    '<meta name="twitter:card" content="summary_large_image" />',
-    '<meta name="twitter:site" content="@attakei" />',
-]
-
-
-def update_ogp(app, config):
-    print(config.ogp_site_url, config.language)
-    config.ogp_site_url = urljoin(config.ogp_site_url, f"{config.language}/")
-
-
-def setup(app):
-    app.connect("config-inited", update_ogp)
