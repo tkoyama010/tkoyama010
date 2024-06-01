@@ -61,19 +61,11 @@ Pythonで |br| **3次元CG** を作りたい |br| 人のための **PyVista** �
 
    .. container:: half
 
-      3D空間にオブジェクトを配置する「モデリング」の方法を紹介します。
-      モデリングをするためには、PyVistaの ``pyvista.PolyData`` クラスを使います。
+       * XXXXX XXXXX XXXXX XXXXX XXXXX
 
-   .. container:: half
+       .. code-block:: bash
 
-      3D空間にオブジェクトを配置する「モデリング」の方法を紹介します。
-      モデリングをするためには、PyVistaの ``pyvista.PolyData`` クラスを使います。
-
-.. revealjs-break::
-
-.. container:: flex-container
-
-   .. container:: half
+          $ pip install pyvista
 
        .. code-block:: python
 
