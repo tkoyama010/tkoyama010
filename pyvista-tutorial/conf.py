@@ -17,7 +17,6 @@ extensions = [
     "sphinx.ext.todo",
     "sphinx_design",
     "sphinx_revealjs",
-    "sphinx_revealjs.ext.screenshot",
     "sphinxcontrib.gtagjs",
     "sphinxcontrib.sass",
     "sphinxext.opengraph",
