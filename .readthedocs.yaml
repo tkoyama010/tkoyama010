@@ -12,6 +12,7 @@ build:
     - libgl1-mesa-dev
     - xvfb
   commands:
+    - cd docs
     - make revealjs
     - mv _build/revealjs _build/html
 
