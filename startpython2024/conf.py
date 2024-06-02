@@ -73,6 +73,7 @@ revealjs_css_files = [
     "slides.css",
     "footnotes.css",
 ]
+revealjs_notes_from_comments = True
 
 # -- Options for HTMLHelp output ---------------------------------------------
 htmlhelp_basename = "sphinx-revealjsdoc"
