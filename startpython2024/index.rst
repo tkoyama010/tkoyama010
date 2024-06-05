@@ -86,9 +86,9 @@ PyVistaとは？
 .. PyVistaは、MatplotlibやPandasのAPIに似ているため、これらのライブラリを使える人は簡単に使えます。
 .. また、Matplotlibで実現できないCGの表現もPyVistaで実現できます。
 
-* Pythonフレンドリな3D可視化ライブラリです。
-* MatplotlibやPandasのAPIに似ているため、これらのライブラリを使える人は簡単に使えます。
-* Matplotlibで実現できないCGの表現もPyVistaで実現できます。
+#. Pythonフレンドリな3D可視化ライブラリです。
+#. MatplotlibやPandasのAPIに似ています。
+#. Matplotlibで実現できないCGの表現もPyVistaで実現できます。
 
 モデリングをしてみよう
 ======================
