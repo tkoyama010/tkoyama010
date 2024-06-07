@@ -115,7 +115,6 @@ PyVistaとは？
 
 .. それでは、始めましょう。
 .. まずは、モデリングの方法について説明します。
-.. 今回は、Pythonの3D可視化ライブラリPyVistaを使って、3Dオブジェクトを作成します。
 .. まずは、Pipを使って、PyVistaをインストールします。
 
 .. revealjs-break::
@@ -161,12 +160,66 @@ PyVistaとは？
 テクスチャを追加してみよう
 ==========================
 
-オブジェクトの質感を表現する「テクスチャ」の方法を紹介します。
+.. 次にオブジェクトの質感を表現する「テクスチャ」の方法を紹介します。
+
+.. revealjs-break::
+
+.. ここでは、テクスチャマッピングを使って、オブジェクトに画像を貼り付けます。
+
+.. container:: flex-container
+
+   .. container:: half
+
+       .. code-block:: python
+
 
 マテリアルを追加してみよう
 ==========================
 
-オブジェクトの質感を表現する「マテリアル」の方法を紹介します。
+.. さらに、オブジェクトの質感を表現する「マテリアル」の方法を紹介します。
+
+.. container:: flex-container
+
+   .. container:: half
+
+       .. code-block:: python
+
+          >>> import pyvista.examples as ex
+          >>> dataset = ex.download_cubemap_park()
+          >>> pl.add_actor(dataset.to_skybox())
+          >>> pl.set_environment_texture(
+          >>>     dataset, True
+          >>> )
+          >>> pl.add_mesh(
+          >>>    mesh,
+          >>>    pbr=True,
+          >>>    roughness=0.1,
+          >>>    metallic=0.5,
+          >>> )
+          >>> pl.show()
+
+   .. container:: half
+
+       .. pyvista-plot::
+           :include-source: False
+
+           import pyvista as pv
+           import pyvista.examples as ex
+
+           pl = pv.Plotter(lighting=None)
+           mesh = pv.Sphere()
+           dataset = ex.download_cubemap_park()
+           pl.add_actor(dataset.to_skybox())
+           pl.set_environment_texture(
+               dataset, True
+           )
+           pl.add_mesh(
+              mesh,
+              pbr=True,
+              roughness=0.1,
+              metallic=0.5,
+           )
+           pl.show()
 
 ライティングをしてみよう
 ========================
