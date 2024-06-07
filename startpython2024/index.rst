@@ -129,21 +129,21 @@ PyVistaとは？
 
        .. code-block:: python
 
-          >>> # PyVistaをインポートする。
+          # PyVistaをインポートする。
 
-          >>> import pyvista as pv
-
-       .. code-block:: python
-
-          >>> # 球体のモデルを作成する。
-
-          >>> mesh = pv.Sphere()
+          import pyvista as pv
 
        .. code-block:: python
 
-          >>> # 球体のモデルを描画する。
+          # 球体のモデルを作成する。
 
-          >>> mesh.plot()
+          mesh = pv.Sphere()
+
+       .. code-block:: python
+
+          # 球体のモデルを描画する。
+
+          mesh.plot()
 
    .. container:: half
 
@@ -184,19 +184,19 @@ PyVistaとは？
 
        .. code-block:: python
 
-          >>> import pyvista.examples as ex
-          >>> dataset = ex.download_cubemap_park()
-          >>> pl.add_actor(dataset.to_skybox())
-          >>> pl.set_environment_texture(
-          >>>     dataset, True
-          >>> )
-          >>> pl.add_mesh(
-          >>>    mesh,
-          >>>    pbr=True,
-          >>>    roughness=0.1,
-          >>>    metallic=0.5,
-          >>> )
-          >>> pl.show()
+          import pyvista.examples as ex
+          dataset = ex.download_cubemap_park()
+          pl.add_actor(dataset.to_skybox())
+          pl.set_environment_texture(
+              dataset, True
+          )
+          pl.add_mesh(
+             mesh,
+             pbr=True,
+             roughness=0.1,
+             metallic=0.5,
+          )
+          pl.show()
 
    .. container:: half
 
@@ -224,7 +224,65 @@ PyVistaとは？
 ライティングをしてみよう
 ========================
 
-3D空間に光を配置してオブジェクトを照らす「ライティング」の方法を紹介します。
+.. container:: flex-container
+
+   .. container:: half
+
+       .. code-block:: python
+
+          # 3D空間に光を配置します。
+          import pyvista as pv
+          import pyvista.examples as ex
+
+          pl = pv.Plotter(lighting=None)
+          light = pv.Light(position=(0, 0, 20), focal_point=(0, 0, 0), color='white')
+          light.positional = True
+          light.cone_angle = 40
+          light.exponent = 10
+          light.intensity = 3
+          light.show_actor()
+          floor = pv.Plane(center=(0, 0, 0), i_size=30, j_size=25)
+          pl.add_mesh(floor)
+          pl.add_light(light)
+          pl.enable_shadows()
+          mesh = pv.Sphere(center=(0, 0, 5), radius=5.0)
+          pl.add_mesh(
+             mesh,
+             pbr=True,
+             roughness=0.1,
+             metallic=0.5,
+          )
+          pl.show()
+
+
+   .. container:: half
+
+       .. pyvista-plot::
+          :include-source: False
+
+          import pyvista as pv
+          import pyvista.examples as ex
+
+          pl = pv.Plotter(lighting=None)
+          light = pv.Light(position=(0, 0, 20), focal_point=(0, 0, 0), color='white')
+          light.positional = True
+          light.cone_angle = 40
+          light.exponent = 10
+          light.intensity = 3
+          light.show_actor()
+          floor = pv.Plane(center=(0, 0, 0), i_size=30, j_size=25)
+          pl.add_mesh(floor)
+          pl.add_light(light)
+          pl.enable_shadows()
+          mesh = pv.Sphere(center=(0, 0, 5), radius=5.0)
+          pl.add_mesh(
+             mesh,
+             pbr=True,
+             roughness=0.1,
+             metallic=0.5,
+          )
+          pl.show()
+
 
 Minecraftのような洞窟を作ってみよう
 ===================================
