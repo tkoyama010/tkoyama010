@@ -304,8 +304,11 @@ Minecraftのような洞窟を作ってみよう
 
    .. container:: half
 
-       * パーリンノイズを使って地形を生成
-       * ボクセル化して立方体を生成
+       .. code-block:: python
+
+          # パーリンノイズを使って地形を生成
+          # ボクセル化して立方体を生成
+          out = grid.threshold(0.02)
 
    .. container:: half
 
@@ -316,6 +319,7 @@ Minecraftのような洞窟を作ってみよう
           freq = (1, 1, 1)
           noise = pv.perlin_noise(1, freq, (0, 0, 0))
           grid = pv.sample_function(noise, [0, 3.0, -0, 1.0, 0, 1.0], dim=(120, 40, 40))
+
           out = grid.threshold(0.02)
           mn, mx = [out['scalars'].min(), out['scalars'].max()]
           clim = (mn, mx * 1.8)
