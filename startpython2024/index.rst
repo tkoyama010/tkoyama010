@@ -149,9 +149,6 @@ PyVistaとは？
 ==========================
 
 .. 次にオブジェクトの質感を表現する「テクスチャ」の方法を紹介します。
-
-.. revealjs-break::
-
 .. ここでは、テクスチャマッピングを使って、オブジェクトに画像を貼り付けます。
 
 .. container:: flex-container
@@ -160,12 +157,23 @@ PyVistaとは？
 
        .. code-block:: python
 
-          import pyvista as pv
+          # テクスチャに使用する画像を読み込み
+
           from pyvista import examples
-          mesh = pv.Cylinder()
-          image_file = examples.mapfile
-          tex = pv.read_texture(image_file)
-          mesh.plot(texture=tex)
+
+          filename = examples.mapfile
+
+       .. code-block:: python
+
+          # 画像をテクスチャとして読み込み
+
+          texture = pv.read_texture(filename=filename)
+
+       .. code-block:: python
+
+          # テクスチャをオブジェクトに貼り付け
+
+          mesh.plot(texture=texture)
 
    .. container:: half
 
@@ -174,10 +182,14 @@ PyVistaとは？
 
           import pyvista as pv
           from pyvista import examples
+
           mesh = pv.Cylinder()
-          image_file = examples.mapfile
-          tex = pv.read_texture(image_file)
-          mesh.plot(texture=tex)
+
+          filename = examples.mapfile
+
+          texture = pv.read_texture(filename=filename)
+
+          mesh.plot(texture=texture)
 
 
 マテリアルを追加してみよう
