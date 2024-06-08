@@ -123,26 +123,26 @@ PyVistaとは？
 
    .. container:: half
 
-       .. code-block:: bash
+      .. code-block:: bash
 
-          $ python
+         $ python
 
-       .. literalinclude:: 01.py
-          :language: python
-          :lines: 1-3
+      .. literalinclude:: 01.py
+         :language: python
+         :lines: 1-3
 
-       .. literalinclude:: 01.py
-          :language: python
-          :lines: 5-7
+      .. literalinclude:: 01.py
+         :language: python
+         :lines: 5-7
 
-       .. literalinclude:: 01.py
-          :language: python
-          :lines: 9-11
+      .. literalinclude:: 01.py
+         :language: python
+         :lines: 9-11
 
    .. container:: half
 
-       .. pyvista-plot:: 01.py
-          :include-source: False
+      .. pyvista-plot:: 01.py
+         :include-source: False
 
 
 テクスチャを追加してみよう
@@ -216,60 +216,60 @@ PyVistaとは？
 
    .. container:: half
 
-       .. code-block:: python
+      .. code-block:: python
 
-          # 3D空間に光を配置します。
-          import pyvista as pv
-          import pyvista.examples as ex
+         # 3D空間に光を配置します。
+         import pyvista as pv
+         import pyvista.examples as ex
 
-          pl = pv.Plotter(lighting=None)
-          light = pv.Light(position=(0, 0, 20), focal_point=(0, 0, 0), color='white')
-          light.positional = True
-          light.cone_angle = 40
-          light.exponent = 10
-          light.intensity = 3
-          light.show_actor()
-          floor = pv.Plane(center=(0, 0, 0), i_size=30, j_size=25)
-          pl.add_mesh(floor)
-          pl.add_light(light)
-          pl.enable_shadows()
-          mesh = pv.Sphere(center=(0, 0, 5), radius=5.0)
-          pl.add_mesh(
-             mesh,
-             pbr=True,
-             roughness=0.1,
-             metallic=0.5,
-          )
-          pl.show()
+         pl = pv.Plotter(lighting=None)
+         light = pv.Light(position=(0, 0, 20), focal_point=(0, 0, 0), color='white')
+         light.positional = True
+         light.cone_angle = 40
+         light.exponent = 10
+         light.intensity = 3
+         light.show_actor()
+         floor = pv.Plane(center=(0, 0, 0), i_size=30, j_size=25)
+         pl.add_mesh(floor)
+         pl.add_light(light)
+         pl.enable_shadows()
+         mesh = pv.Sphere(center=(0, 0, 5), radius=5.0)
+         pl.add_mesh(
+            mesh,
+            pbr=True,
+            roughness=0.1,
+            metallic=0.5,
+         )
+         pl.show()
 
 
    .. container:: half
 
-       .. pyvista-plot::
-          :include-source: False
+      .. pyvista-plot::
+         :include-source: False
 
-          import pyvista as pv
-          import pyvista.examples as ex
+         import pyvista as pv
+         import pyvista.examples as ex
 
-          pl = pv.Plotter(lighting=None)
-          light = pv.Light(position=(0, 0, 20), focal_point=(0, 0, 0), color='white')
-          light.positional = True
-          light.cone_angle = 40
-          light.exponent = 10
-          light.intensity = 3
-          light.show_actor()
-          floor = pv.Plane(center=(0, 0, 0), i_size=30, j_size=25)
-          pl.add_mesh(floor)
-          pl.add_light(light)
-          pl.enable_shadows()
-          mesh = pv.Sphere(center=(0, 0, 5), radius=5.0)
-          pl.add_mesh(
-             mesh,
-             pbr=True,
-             roughness=0.1,
-             metallic=0.5,
-          )
-          pl.show()
+         pl = pv.Plotter(lighting=None)
+         light = pv.Light(position=(0, 0, 20), focal_point=(0, 0, 0), color='white')
+         light.positional = True
+         light.cone_angle = 40
+         light.exponent = 10
+         light.intensity = 3
+         light.show_actor()
+         floor = pv.Plane(center=(0, 0, 0), i_size=30, j_size=25)
+         pl.add_mesh(floor)
+         pl.add_light(light)
+         pl.enable_shadows()
+         mesh = pv.Sphere(center=(0, 0, 5), radius=5.0)
+         pl.add_mesh(
+            mesh,
+            pbr=True,
+            roughness=0.1,
+            metallic=0.5,
+         )
+         pl.show()
 
 
 Minecraftのような洞窟を作ってみよう
@@ -287,33 +287,89 @@ Minecraftのような洞窟を作ってみよう
    .. container:: half
 
        .. pyvista-plot::
-           :include-source: False
+          :include-source: False
 
-           import pyvista as pv
-           freq = (1, 1, 1)
-           noise = pv.perlin_noise(1, freq, (0, 0, 0))
-           grid = pv.sample_function(noise, [0, 3.0, -0, 1.0, 0, 1.0], dim=(120, 40, 40))
-           out = grid.threshold(0.02)
-           mn, mx = [out['scalars'].min(), out['scalars'].max()]
-           clim = (mn, mx * 1.8)
-           out.plot(
-               cmap='gist_earth_r',
-               background='white',
-               show_scalar_bar=False,
-               lighting=True,
-               clim=clim,
-               show_edges=False,
-           )
+          import pyvista as pv
+          freq = (1, 1, 1)
+          noise = pv.perlin_noise(1, freq, (0, 0, 0))
+          grid = pv.sample_function(noise, [0, 3.0, -0, 1.0, 0, 1.0], dim=(120, 40, 40))
+          out = grid.threshold(0.02)
+          mn, mx = [out['scalars'].min(), out['scalars'].max()]
+          clim = (mn, mx * 1.8)
+          out.plot(
+              cmap='gist_earth_r',
+              background='white',
+              show_scalar_bar=False,
+              lighting=True,
+              clim=clim,
+              show_edges=False,
+          )
 
 インタラクティブに可視化をしてみよう
 ====================================
 
+.. revealjs-break::
+
 .. さて、最後にインタラクティブな可視化の方法について説明します。
 .. 皆様は、Pythonでコードを書いて、その結果を見るときに、どのような方法を使っていますか？
+
+Sphinxによる可視化
+------------------
+
+.. まずは、Sphinxを使って、Pythonで3次元CGを作成する方法を説明します。
+.. PyVistaをインストールすると、SphinxのドキュメントにPyVistaの3D可視化拡張機能が追加されます。
+
+.. container:: flex-container
+
+   .. container:: half
+
+      .. code-block:: rst
+
+         .. pyvista-plot::
+            :include-source: False
+
+            # pyvista-plotディレクティブを使って、
+            # Sphinxドキュメントに右のような
+            # 3D可視化を追加することができます。
+
+            import pyvista as pv
+            mesh = pv.Sphere()
+            mesh.plot()
+
+            # このスライドもSphinxで作成しています。
+            # SphinxでReveal.jsのスライドを作成する
+            # sphinx-revealjsを使っています。
+
+   .. container:: half
+
+      .. pyvista-plot::
+         :include-source: False
+
+         import pyvista as pv
+         mesh = pv.Sphere()
+         mesh.plot()
+
+Jupyterによる可視化
+-------------------
+
+.. また、Jupyter Notebookを使って、Pythonで3次元CGを作成する方法もあります。
+.. PyVistaは標準でJupyter Notebookでの可視化をサポートしています。
 .. Jupyter Notebookを使っている方も多いと思いますが、PyVistaを使えば、Jupyter Notebook上でインタラクティブな可視化が可能です。
+
+.. raw:: html
+
+   <video width="80%" height="auto" controls autoplay muted>
+     <source src="_static/pyvista_jupyterlab_demo.mp4" type="video/mp4">
+     Your browser does not support the video tag.
+   </video>
+
+Streamlitによる可視化
+---------------------
+
 .. さらに、StreamlitやPanelを使えば、Webアプリケーションとしても可視化が可能です。
 .. これにより、Pythonで3次元CGを作成する際に、より効率的に作業ができるようになります。
 .. そのため、皆様がこれらのツールを使って、Pythonで3次元CGを作成する際に様々な方法を試してみてください。
+.. 現在、公式ではこの機能はサポートされていませんが、サードパーティ製のツールを使うことで、Webアプリケーションとしての可視化も可能です。
 
 .. raw:: html
 
@@ -333,6 +389,7 @@ Please star!
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 
+.. ご清聴ありがとうございました。
 .. 本日は、Pythonで3次元CGを作る方法についてお話ししました。
 .. また、空間上のデータを使用して、Minecraftのような洞窟を作成する方法や、インタラクティブな可視化の方法についても説明しました。
 .. この発表が皆様のお役に立てれば幸いです。
