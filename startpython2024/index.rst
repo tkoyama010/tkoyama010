@@ -147,14 +147,8 @@ PyVistaとは？
 
    .. container:: half
 
-       .. pyvista-plot::
+       .. pyvista-plot:: modeling.py
            :include-source: False
-
-           import pyvista as pv
-
-           mesh = pv.Sphere()
-
-           mesh.plot()
 
 
 テクスチャを追加してみよう
@@ -335,6 +329,15 @@ Minecraftのような洞窟を作ってみよう
 
 ご清聴ありがとうございました
 ============================
+
+Please star!
+
+.. raw:: html
+
+    <!-- Place this tag where you want the button to render. -->
+    <a class="github-button" href="https://github.com/pyvista/pyvista" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star pyvista/pyvista on GitHub">Star</a>
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
 
 .. 本日は、Pythonで3次元CGを作る方法についてお話ししました。
 .. また、空間上のデータを使用して、Minecraftのような洞窟を作成する方法や、インタラクティブな可視化の方法についても説明しました。
