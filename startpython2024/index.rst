@@ -127,21 +127,21 @@ PyVistaとは？
 
          $ python
 
-      .. literalinclude:: 01.py
+      .. literalinclude:: 01_hello_world.py
          :language: python
          :lines: 1-3
 
-      .. literalinclude:: 01.py
+      .. literalinclude:: 01_hello_world.py
          :language: python
          :lines: 5-7
 
-      .. literalinclude:: 01.py
+      .. literalinclude:: 01_hello_world.py
          :language: python
          :lines: 9-11
 
    .. container:: half
 
-      .. pyvista-plot:: 01.py
+      .. pyvista-plot:: 01_hello_world.py
          :include-source: False
 
 
