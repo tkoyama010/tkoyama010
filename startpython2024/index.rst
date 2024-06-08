@@ -142,6 +142,39 @@ PyVistaとは？
       .. pyvista-plot:: 01_hello_world.py
          :include-source: False
 
+モデリングをしてみよう
+======================
+
+.. それでは、始めましょう。
+.. まずは、モデリングの方法について説明します。
+.. まずは、Pipを使って、PyVistaをインストールします。
+
+.. container:: flex-container
+
+   .. container:: half
+
+      .. code-block:: python
+
+         import pyvista as pv
+
+         pl = pv.Plotter()
+
+         pl.add_mesh(pv.Cylinder())
+
+         pl.add_mesh(pv.Sphere())
+
+         pl.show()
+
+   .. container:: half
+
+      .. pyvista-plot::
+         :include-source: False
+
+         import pyvista as pv
+         pl = pv.Plotter()
+         pl.add_mesh(pv.Cylinder())
+         pl.add_mesh(pv.Sphere())
+         pl.show()
 
 テクスチャを追加してみよう
 ==========================
@@ -153,41 +186,41 @@ PyVistaとは？
 
    .. container:: half
 
-       .. code-block:: python
+      .. code-block:: python
 
-          # テクスチャに使用する画像を読み込み
+         # テクスチャに使用する画像を読み込み
 
-          from pyvista import examples
+         from pyvista import examples
 
-          filename = examples.mapfile
+         filename = examples.mapfile
 
-       .. code-block:: python
+      .. code-block:: python
 
-          # 画像をテクスチャとして読み込み
+         # 画像をテクスチャとして読み込み
 
-          texture = pv.read_texture(filename=filename)
+         texture = pv.read_texture(filename=filename)
 
-       .. code-block:: python
+      .. code-block:: python
 
-          # テクスチャをオブジェクトに貼り付け
+         # テクスチャをオブジェクトに貼り付け
 
-          mesh.plot(texture=texture)
+         mesh.plot(texture=texture)
 
    .. container:: half
 
-       .. pyvista-plot::
-          :include-source: False
+      .. pyvista-plot::
+         :include-source: False
 
-          import pyvista as pv
-          from pyvista import examples
+         import pyvista as pv
+         from pyvista import examples
 
-          mesh = pv.Cylinder()
+         mesh = pv.Cylinder()
 
-          filename = examples.mapfile
+         filename = examples.mapfile
 
-          texture = pv.read_texture(filename=filename)
+         texture = pv.read_texture(filename=filename)
 
-          mesh.plot(texture=texture)
+         mesh.plot(texture=texture)
 
 
 マテリアルを追加してみよう
