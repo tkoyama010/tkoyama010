@@ -121,10 +121,6 @@ PyVistaとは？
 
    .. container:: half
 
-      .. code-block:: bash
-
-         $ python
-
       .. literalinclude:: 01_hello_world.py
          :language: python
          :lines: 1-3
@@ -155,13 +151,24 @@ PyVistaとは？
 
       .. code-block:: python
 
-         import pyvista as pv
+         # Plotterオブジェクト
 
          pl = pv.Plotter()
 
-         pl.add_mesh(pv.Cylinder())
+         # 円柱を上方向に1.0移動します
 
-         pl.add_mesh(pv.Sphere())
+         mesh = pv.Cylinder()
+         mesh.translate(xyz=(0, 0, 1), inplace=True)
+         pl.add_mesh(mesh)
+
+      .. code-block:: python
+
+         # もう1つ円柱を追加します
+
+         mesh = pv.Cylinder()
+         pl.add_mesh(mesh)
+
+         # 追加されたモデルを描画します
 
          pl.show()
 
@@ -171,9 +178,16 @@ PyVistaとは？
          :include-source: False
 
          import pyvista as pv
+
          pl = pv.Plotter()
-         pl.add_mesh(pv.Cylinder())
-         pl.add_mesh(pv.Sphere())
+
+         mesh = pv.Cylinder()
+         mesh.translate(xyz=(0, 0, 1), inplace=True)
+         pl.add_mesh(mesh)
+
+         mesh = pv.Cylinder()
+         pl.add_mesh(mesh)
+
          pl.show()
 
 テクスチャを追加してみよう

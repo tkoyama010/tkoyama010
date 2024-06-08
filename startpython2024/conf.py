@@ -20,7 +20,6 @@ extensions = [
     "sphinxcontrib.gtagjs",
     "sphinxcontrib.sass",
     "sphinxemoji.sphinxemoji",
-    "oembedpy.ext.sphinx",
     "pyvista.ext.plot_directive",
     "pyvista.ext.viewer_directive",
     "sphinx_design",
