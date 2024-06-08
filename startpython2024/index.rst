@@ -300,7 +300,6 @@ PyVistaとは？
          import pyvista as pv
          import pyvista.examples as ex
 
-         pl = pv.Plotter(lighting=None)
          light = pv.Light(
             position=(0, 0, 20),
             focal_point=(0, 0, 0),
@@ -311,18 +310,11 @@ PyVistaとは？
          light.exponent = 10
          light.intensity = 3
          light.show_actor()
-         floor = pv.Plane(center=(0, 0, 0), i_size=30, j_size=25)
-         pl.add_mesh(floor)
+
+      .. code-block:: python
+
+         # Plotterクラスに光を追加します。
          pl.add_light(light)
-         pl.enable_shadows()
-         mesh = pv.Cylinder(center=(0, 0, 5), radius=5.0)
-         pl.add_mesh(
-            mesh,
-            pbr=True,
-            roughness=0.1,
-            metallic=0.5,
-         )
-         pl.show()
 
 
    .. container:: half
@@ -344,7 +336,7 @@ PyVistaとは？
          pl.add_mesh(floor)
          pl.add_light(light)
          pl.enable_shadows()
-         mesh = pv.Cylinder(center=(0, 0, 5), radius=5.0)
+         mesh = pv.Cylinder(center=(0, 0, 5), radius=5.0, height=10.0)
          pl.add_mesh(
             mesh,
             pbr=True,
