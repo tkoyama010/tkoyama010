@@ -246,44 +246,46 @@ PyVistaとは？
 
    .. container:: half
 
-       .. code-block:: python
+      .. code-block:: python
 
-          import pyvista.examples as ex
-          dataset = ex.download_cubemap_park()
-          pl.add_actor(dataset.to_skybox())
-          pl.set_environment_texture(
-              dataset, True
-          )
-          pl.add_mesh(
+         # スカイボックスを追加する
+         from pyvista import examples as ex
+         cubemap = ex.download_sky_box_cube_map()
+         pl.add_actor(cubemap.to_skybox())
+
+      .. code-block:: python
+
+         # 物理ベースレンダリングを使用してモデリング
+         pl.set_environment_texture(cubemap)
+         pl.add_mesh(
              mesh,
+             color='linen',
              pbr=True,
+             metallic=0.8,
              roughness=0.1,
-             metallic=0.5,
-          )
-          pl.show()
+             diffuse=1
+         )
 
    .. container:: half
 
        .. pyvista-plot::
-          :include-source: False
+         :include-source: False
 
-          import pyvista as pv
-          import pyvista.examples as ex
+         import pyvista as pv
+         from pyvista import examples
 
-          pl = pv.Plotter(lighting=None)
-          mesh = pv.Cylinder()
-          dataset = ex.download_cubemap_park()
-          pl.add_actor(dataset.to_skybox())
-          pl.set_environment_texture(
-              dataset, True
-          )
-          pl.add_mesh(
-             mesh,
-             pbr=True,
-             roughness=0.1,
-             metallic=0.5,
-          )
-          pl.show()
+         # Load the statue mesh
+         mesh = pv.Cylinder()
+
+         # Download skybox
+         cubemap = examples.download_sky_box_cube_map()
+
+         pl = pv.Plotter()
+         pl.add_actor(cubemap.to_skybox())
+         pl.set_environment_texture(cubemap)
+         pl.add_mesh(mesh, color='linen', pbr=True, metallic=0.8, roughness=0.1, diffuse=1)
+
+         pl.show()
 
 ライティングをしてみよう
 ========================
