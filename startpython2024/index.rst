@@ -127,28 +127,22 @@ PyVistaとは？
 
           $ python
 
-       .. code-block:: python
+       .. literalinclude:: 01.py
+          :language: python
+          :lines: 1-3
 
-          # PyVistaをインポートする。
+       .. literalinclude:: 01.py
+          :language: python
+          :lines: 5-7
 
-          import pyvista as pv
-
-       .. code-block:: python
-
-          # 球体のモデルを作成する。
-
-          mesh = pv.Sphere()
-
-       .. code-block:: python
-
-          # 球体のモデルを描画する。
-
-          mesh.plot()
+       .. literalinclude:: 01.py
+          :language: python
+          :lines: 9-11
 
    .. container:: half
 
-       .. pyvista-plot:: modeling.py
-           :include-source: False
+       .. pyvista-plot:: 01.py
+          :include-source: False
 
 
 テクスチャを追加してみよう
