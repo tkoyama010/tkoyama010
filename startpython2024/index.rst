@@ -160,6 +160,25 @@ PyVistaとは？
 
        .. code-block:: python
 
+          import pyvista as pv
+          from pyvista import examples
+          mesh = pv.Cylinder()
+          image_file = examples.mapfile
+          tex = pv.read_texture(image_file)
+          mesh.plot(texture=tex)
+
+   .. container:: half
+
+       .. pyvista-plot::
+          :include-source: False
+
+          import pyvista as pv
+          from pyvista import examples
+          mesh = pv.Cylinder()
+          image_file = examples.mapfile
+          tex = pv.read_texture(image_file)
+          mesh.plot(texture=tex)
+
 
 マテリアルを追加してみよう
 ==========================
@@ -189,25 +208,25 @@ PyVistaとは？
    .. container:: half
 
        .. pyvista-plot::
-           :include-source: False
+          :include-source: False
 
-           import pyvista as pv
-           import pyvista.examples as ex
+          import pyvista as pv
+          import pyvista.examples as ex
 
-           pl = pv.Plotter(lighting=None)
-           mesh = pv.Sphere()
-           dataset = ex.download_cubemap_park()
-           pl.add_actor(dataset.to_skybox())
-           pl.set_environment_texture(
-               dataset, True
-           )
-           pl.add_mesh(
-              mesh,
-              pbr=True,
-              roughness=0.1,
-              metallic=0.5,
-           )
-           pl.show()
+          pl = pv.Plotter(lighting=None)
+          mesh = pv.Cylinder()
+          dataset = ex.download_cubemap_park()
+          pl.add_actor(dataset.to_skybox())
+          pl.set_environment_texture(
+              dataset, True
+          )
+          pl.add_mesh(
+             mesh,
+             pbr=True,
+             roughness=0.1,
+             metallic=0.5,
+          )
+          pl.show()
 
 ライティングをしてみよう
 ========================
@@ -223,7 +242,11 @@ PyVistaとは？
          import pyvista.examples as ex
 
          pl = pv.Plotter(lighting=None)
-         light = pv.Light(position=(0, 0, 20), focal_point=(0, 0, 0), color='white')
+         light = pv.Light(
+            position=(0, 0, 20),
+            focal_point=(0, 0, 0),
+            color='white'
+         )
          light.positional = True
          light.cone_angle = 40
          light.exponent = 10
@@ -233,7 +256,7 @@ PyVistaとは？
          pl.add_mesh(floor)
          pl.add_light(light)
          pl.enable_shadows()
-         mesh = pv.Sphere(center=(0, 0, 5), radius=5.0)
+         mesh = pv.Cylinder(center=(0, 0, 5), radius=5.0)
          pl.add_mesh(
             mesh,
             pbr=True,
@@ -262,7 +285,7 @@ PyVistaとは？
          pl.add_mesh(floor)
          pl.add_light(light)
          pl.enable_shadows()
-         mesh = pv.Sphere(center=(0, 0, 5), radius=5.0)
+         mesh = pv.Cylinder(center=(0, 0, 5), radius=5.0)
          pl.add_mesh(
             mesh,
             pbr=True,
@@ -331,7 +354,7 @@ Sphinxによる可視化
             # 3D可視化を追加することができます。
 
             import pyvista as pv
-            mesh = pv.Sphere()
+            mesh = pv.Cylinder()
             mesh.plot()
 
             # このスライドもSphinxで作成しています。
@@ -344,7 +367,7 @@ Sphinxによる可視化
          :include-source: False
 
          import pyvista as pv
-         mesh = pv.Sphere()
+         mesh = pv.Cylinder()
          mesh.plot()
 
 Jupyterによる可視化

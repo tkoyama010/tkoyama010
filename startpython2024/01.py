@@ -2,9 +2,9 @@
 
 import pyvista as pv
 
-# 球体のモデルを作成する。
+# 円柱のモデルを作成する。
 
-mesh = pv.Sphere()
+mesh = pv.Cylinder()
 
 # 球体のモデルを描画する。
 
