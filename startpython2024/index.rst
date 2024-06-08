@@ -308,6 +308,51 @@ PyVistaとは？
 Minecraftのような洞窟を作ってみよう
 ===================================
 
+.. container:: flex-container
+
+   .. container:: half
+
+       .. code-block:: python
+
+          # Perlin noiseを使ってグリッドを作成
+
+          function = pv.perlin_noise(
+              amplitude=1,
+              freq=(1, 1, 1),
+              phase=(0, 0, 0)
+          )
+
+       .. code-block:: python
+
+          # データを格納したグリッドを生成
+
+          grid = pv.sample_function(
+              function=function,
+              bounds=[0, 3.0, -0, 1.0, 0, 1.0],
+              dim=(120, 40, 40),
+          )
+
+   .. container:: half
+
+       .. pyvista-plot::
+          :include-source: False
+
+          import pyvista as pv
+
+          noise = pv.perlin_noise(amplitude=1, freq=(1, 1, 1), phase=(0, 0, 0))
+          grid = pv.sample_function(noise, [0, 3.0, -0, 1.0, 0, 1.0], dim=(120, 40, 40))
+
+          mn, mx = [grid['scalars'].min(), grid['scalars'].max()]
+          clim = (mn, mx * 1.8)
+          grid.plot(
+              cmap='gist_earth_r',
+              background='white',
+              show_scalar_bar=False,
+              lighting=True,
+              clim=clim,
+              show_edges=False,
+          )
+
 .. revealjs-break::
 
 .. container:: flex-container
@@ -316,9 +361,9 @@ Minecraftのような洞窟を作ってみよう
 
        .. code-block:: python
 
-          # パーリンノイズを使って地形を生成
-          # ボクセル化して立方体を生成
-          out = grid.threshold(0.02)
+          # 値が0.02より大きい部分を抽出
+
+          out = grid.threshold(value=0.02)
 
    .. container:: half
 
@@ -326,8 +371,8 @@ Minecraftのような洞窟を作ってみよう
           :include-source: False
 
           import pyvista as pv
-          freq = (1, 1, 1)
-          noise = pv.perlin_noise(1, freq, (0, 0, 0))
+
+          noise = pv.perlin_noise(amplitude=1, freq=(1, 1, 1), phase=(0, 0, 0))
           grid = pv.sample_function(noise, [0, 3.0, -0, 1.0, 0, 1.0], dim=(120, 40, 40))
 
           out = grid.threshold(0.02)
