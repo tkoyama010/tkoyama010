@@ -9,13 +9,17 @@ Pythonで |br| **3次元CG** を作りたい |br| 人のための **PyVista** �
 :Speaker: 小山哲央
 :Date: 2024-06-20
 
+.. 本日はこのトークをお聴きいただき、ありがとうございます。
+.. 本日は、Pythonで3次元CGを作りたい人のためのPyVista入門と題して、Pythonで3次元CGを作成する方法についてお話しします。
+
 自己紹介
 ========
 
 .. まずは自己紹介をさせていただきます。
 .. 私は小山哲央と申します。
-.. 現在、3D可視化ライブラリPyVistaのメンテナ兼ドキュメント翻訳者をしています。
-.. また、今年のScipy Conferenceではチュートリアルの共同議長を務めさせていただきました。
+.. 主にGitHubでPythonの3D可視化ライブラリPyVistaのメンテナンスとドキュメント翻訳をしています。
+.. アカウント名はtkoyama010です。
+.. また、今年のScipy Conferenceではチュートリアルの共同議長を務めさせていただいています。
 .. 今日は、私がメンテナンスしているPyVistaを使って、Pythonで3次元CGを作る方法についてお話しします。
 
 .. container:: flex-container
@@ -32,13 +36,14 @@ Pythonで |br| **3次元CG** を作りたい |br| 人のための **PyVista** �
          :alt: tkoyama010
          :width: 400px
 
-
 もくじ
 ======
 
 .. 本日の内容は以下の通りです。
 .. まずはPythonでCGを作るのに必要なことの概要をお話し、その後、実際に3次元CGを作成する方法を紹介します。
-.. モデリング、テクスチャ、マテリアル、ライティング、Minecraftのような洞窟の作成、インタラクティブな可視化の方法について説明をします。
+.. モデリング、テクスチャ、マテリアル、ライティングというCGを作るための基本的な要素について説明します。
+.. 次にMinecraftのような洞窟の作成するデモを行います。
+.. 最後に応用例としてインタラクティブな可視化の方法について説明をします。
 
 +--------------------------------------+-----------------+
 | **タイトル**                         | **時間**        |
@@ -67,34 +72,92 @@ Pythonで |br| **3次元CG** を作りたい |br| 人のための **PyVista** �
 CGを作るのに必要なこと
 ======================
 
-.. まずはPythonでCGを作るのに必要なことについてお話しします。
-.. 3次元CGを作るために必要な基本的な要素について説明します。
+.. CGを作るのが初めての方もいるかもしれません。
+.. そこで、まずはCGを作るのに必要なことについて説明します。
 
 モデリング
 ----------
 
+.. まずはモデリングについて説明します。
 .. モデリングは、仮想3次元空間上に個々の物体の形状をつくる作業です。
+.. これは、CGを作る際に最も基本的な作業です。
+.. この作業を行うことで、仮想3次元空間上に自分の作成したい物体を配置することができます。
 
-- 仮想3次元空間上に個々の物体の形状をつくる。
+.. container:: flex-container
+
+   .. container:: half
+
+      - 仮想3次元空間上に個々の物体の形状をつくる。
+      - CGを作る際に最も基本的な作業。
+      - 仮想3次元空間上に自分の作成したい物体を配置することができる。
+
+   .. container:: half
+
+      .. pyvista-plot:: 01_hello_world.py
+         :include-source: False
 
 テクスチャマッピング
 ---------------------
 
+.. 次にテクスチャマッピングについて説明します。
 .. テクスチャマッピングは、オブジェクトの質感を表現するための画像です。
+.. 先程のモデリングで作成したオブジェクトに、テクスチャを貼り付けることで、CGをよりリアルに表現することができます。
 
-- 質感を表現するための画像をモデルに貼り付ける。
+.. container:: flex-container
+
+   .. container:: half
+
+      - 質感を表現するための画像をモデルに貼り付ける。
+      - モデリングで作成したオブジェクトに、テクスチャを貼り付けることで、CGをよりリアルに表現することができる。
+
+   .. container:: half
+
+      .. pyvista-plot::
+         :include-source: False
+
+         import pyvista as pv
+         from pyvista import examples
+
+         mesh = pv.Cylinder()
+
+         filename = examples.mapfile
+
+         texture = pv.read_texture(filename=filename)
+
+         mesh.plot(texture=texture)
 
 ライティング
 ------------
 .. ライティングは、3D空間に光を配置してオブジェクトを照らすことです。
-.. これらの要素を組み合わせて、3次元CGを作成します。
+.. 光源を配置することで、モデリングしたオブジェクトに影をつけることができます。
+.. これにより、CGをよりリアルに表現することができます。
 
-- 3D空間に光を配置してオブジェクトを照らす。
+.. container:: flex-container
+
+   .. container:: half
+
+      - 仮想3D空間に光を配置してオブジェクトを照らす。
+      - 光源を配置することで、モデリングしたオブジェクトに影をつけることができる。
+
+   .. container:: half
+
+      .. pyvista-plot::
+         :include-source: False
+
+         import pyvista as pv
+         from pyvista import examples
+         mesh = pv.Cylinder()
+         plotter = pv.Plotter(lighting='none')
+         plotter.add_mesh(mesh, smooth_shading=True)
+         light = pv.Light(position=(0, 1, 0), light_type='scene light')
+         plotter.add_light(light)
+         plotter.show()
 
 PyVistaとは？
 =============
 
-.. これらを実現するために、Pythonの3D可視化ライブラリPyVistaを使います。
+.. 以上の要素を組み合わせて、3次元CGを作成します。
+.. これらをPythonで実現するために、3D可視化ライブラリPyVistaを使います。
 .. PyVistaは、3D可視化のためのライブラリで、Pythonで3次元CGを作成する際に便利です。
 .. PyVistaは、MatplotlibやPandasのAPIに似ているため、これらのライブラリを使える人は簡単に使えます。
 .. また、Matplotlibで実現できないCGの表現もPyVistaで実現できます。
@@ -296,26 +359,22 @@ PyVistaとは？
 
       .. code-block:: python
 
-         # 3D空間に光を配置します。
-         import pyvista as pv
-         import pyvista.examples as ex
+         # Plotterクラスでlightingを無効にします。
+         plotter = pv.Plotter(lighting='none')
 
+      .. code-block:: python
+
+         # 3D空間に光を配置します。
          light = pv.Light(
-            position=(0, 0, 20),
-            focal_point=(0, 0, 0),
-            color='white'
+             position=(0, 1, 0),
+             light_type='scene light'
          )
-         light.positional = True
-         light.cone_angle = 40
-         light.exponent = 10
-         light.intensity = 3
-         light.show_actor()
 
       .. code-block:: python
 
          # Plotterクラスに光を追加します。
          pl.add_light(light)
-
+         plotter.show()
 
    .. container:: half
 
@@ -323,28 +382,13 @@ PyVistaとは？
          :include-source: False
 
          import pyvista as pv
-         import pyvista.examples as ex
-
-         pl = pv.Plotter(lighting=None)
-         light = pv.Light(position=(0, 0, 20), focal_point=(0, 0, 0), color='white')
-         light.positional = True
-         light.cone_angle = 40
-         light.exponent = 10
-         light.intensity = 3
-         light.show_actor()
-         floor = pv.Plane(center=(0, 0, 0), i_size=30, j_size=25)
-         pl.add_mesh(floor)
-         pl.add_light(light)
-         pl.enable_shadows()
-         mesh = pv.Cylinder(center=(0, 0, 5), radius=5.0, height=10.0)
-         pl.add_mesh(
-            mesh,
-            pbr=True,
-            roughness=0.1,
-            metallic=0.5,
-         )
-         pl.show()
-
+         from pyvista import examples
+         mesh = pv.Cylinder()
+         plotter = pv.Plotter(lighting='none')
+         plotter.add_mesh(mesh, smooth_shading=True)
+         light = pv.Light(position=(0, 1, 0), light_type='scene light')
+         plotter.add_light(light)
+         plotter.show()
 
 Minecraftのような洞窟を作ってみよう
 ===================================
