@@ -266,6 +266,9 @@ PyVistaとは？
          import pyvista as pv
          pl = pv.Plotter()
          mesh = pv.Cylinder()
+         mesh.translate(xyz=(0, 0, 1), inplace=True)
+         pl.add_mesh(mesh)
+         mesh = pv.Cylinder()
          pl.add_mesh(mesh)
          pl.show()
 
