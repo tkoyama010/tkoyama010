@@ -274,6 +274,11 @@ PyVistaとは？
 
 .. 次にオブジェクトの質感を表現する「テクスチャ」の方法を紹介します。
 .. ここでは、テクスチャマッピングを使って、オブジェクトに画像を貼り付けます。
+.. テクスチャは、先ほどご説明申し上げた通り、物体をよりリアリティのあるように見せるために表面に画像を追加をするという操作CG上の操作です。
+.. これをPyVistaで実現をする場合、 まずはテクスチャーに使用する画像をロードします。
+.. このように例をロードする表現はseabornなどの統計関係のライブラリでよく使われるAPIの形式です
+.. その次に画像をテクスチャとして読み込みます。
+.. これを先ほどのPlotterオブジェクトのtextureという引数に定義をしてあげると、こちらの右のようにテクスチャーが円筒貼り付けられます。
 
 .. container:: flex-container
 
@@ -316,10 +321,19 @@ PyVistaとは？
          mesh.plot(texture=texture)
 
 
-マテリアルを追加してみよう
-==========================
+スカイボックスを表示してみよう
+==============================
 
-.. さらに、オブジェクトの質感を表現する「マテリアル」の方法を紹介します。
+.. このように、テクスチャを使って画像を貼り付けることで質感を表現することができますが、あまりリアリティがありません。
+.. そこで、背景を設定して、背景の映り込みをテクスチャとして設定することで、よりリアリティのあるCGを作成してみます。
+.. まずは、映り込みに使用する背景を表示してみましょう。
+.. ゲームなどのCGを作成する際には、背景にスカイボックスを設定することが一般的です。
+.. 左下の画像がスカイボックスの例です。
+.. 上下左右前後の6つの面の画像を背景に設定することで全方向に背景を表示することができます。
+.. PyVistaでは、download_sky_box_cube_map()関数を使って、標準のスカイボックスをダウンロードすることができます。
+.. 右がスカイボックスを表示した例です。
+.. 中央にサンプルの球が表示されています。
+.. これを使って、背景の映り込みをテクスチャとして設定することで、よりリアリティのあるCGを作成してみます。
 
 .. container:: flex-container
 
@@ -327,22 +341,57 @@ PyVistaとは？
 
       .. code-block:: python
 
-         # スカイボックスを追加する
          from pyvista import examples as ex
-         cubemap = ex.download_sky_box_cube_map()
-         pl.add_actor(cubemap.to_skybox())
+
+         # スカイボックスをダウンロードする
+
+         cube_map = ex.download_sky_box_cube_map()
+
+         cube_map.plot()
+
+      .. image::  https://upload.wikimedia.org/wikipedia/commons/b/b4/Skybox_example.png
+         :alt: skybox
+         :width: 400px
+
+   .. container:: half
+
+       .. pyvista-plot::
+         :include-source: False
+         :force_static:
+
+         from pyvista import examples as ex
+         cube_map = ex.download_sky_box_cube_map()
+         cube_map.plot()
+
+質感と背景の映り込みを追加してみよう
+====================================
+
+.. それでは、質感と背景の映り込みを追加してみましょう。
+.. まずは、スカイボックスを背景に設定します。
+.. その次に、背景の映込をテクスチャとして設定します。
+.. 映り込みを表現する際にはオブジェクトの表面に反射する光の強さを設定する必要があります。
+.. これは物理ベースレンダリングと呼ばれる手法を使って表現することができます。
+.. この機能を使用するにはpbr(Physically Based Renderingの略)のフラグをTrueに設定します。
+
+.. container:: flex-container
+
+   .. container:: half
 
       .. code-block:: python
 
-         # 物理ベースレンダリングを使用してモデリング
-         pl.set_environment_texture(cubemap)
+         # スカイボックスを背景に設定する
+         pl.add_actor(cube_map.to_skybox())
+         # 背景の映込をテクスチャとして設定する
+         pl.set_environment_texture(cube_map)
+
+         # 物理ベースレンダリングを使用して
+         # 表面に反射する光の強さを設定する
          pl.add_mesh(
-             mesh,
-             color='linen',
-             pbr=True,
-             metallic=0.8,
-             roughness=0.1,
-             diffuse=1
+            mesh,
+            pbr=True,
+            metallic=0.8,
+            roughness=0.1,
+            diffuse=1
          )
 
    .. container:: half
@@ -353,22 +402,26 @@ PyVistaとは？
 
          import pyvista as pv
          from pyvista import examples
-
-         # Load the statue mesh
          mesh = pv.Cylinder()
-
-         # Download skybox
-         cubemap = examples.download_sky_box_cube_map()
-
+         cube_map = examples.download_sky_box_cube_map()
          pl = pv.Plotter()
-         pl.add_actor(cubemap.to_skybox())
-         pl.set_environment_texture(cubemap)
-         pl.add_mesh(mesh, color='linen', pbr=True, metallic=0.8, roughness=0.1, diffuse=1)
-
-         pl.show()
+         pl.add_actor(cube_map.to_skybox())
+         pl.set_environment_texture(cube_map)
+         pl.add_mesh(mesh, pbr=True, metallic=0.8, roughness=0.1, diffuse=1)
+         pl.show(cpos="xy")
 
 ライティングをしてみよう
 ========================
+
+.. 次にライティングについてご説明をします。
+.. 先程ご説明した通り、ライティングは今まで作成をしたオブジェクトに光を当てることで、光と影を表現する操作です。
+.. PyVistaにはLightオブジェクトが用意されています。
+.. これを設定しPlotterオブジェクトに追加することで仮想空間上の3Dオブジェクトに光を当てることが可能になっています。
+.. ちなみに、Plotterオブジェクトにはデフォルトでライティングが有効になっています。
+.. そのため、ライティングを新しく定義する場合はlighting='none'というオプションを指定することでデフォルトのライティングを無効にします。
+.. 次に仮想3D空間に配置する光の光源位置と光源の種類を定義します。
+.. この例では、光源の位置を(0, 1, 0)に設定し、光源の種類を'scene light'に設定しています。
+.. この光をPlotterオブジェクトに設定すると、右のように右斜め手前から光が当てられた状態になります。
 
 .. container:: flex-container
 
@@ -381,7 +434,7 @@ PyVistaとは？
 
       .. code-block:: python
 
-         # 3D空間に光を配置します。
+         # 仮想3D空間に光を配置します。
          light = pv.Light(
              position=(0, 1, 0),
              light_type='scene light'
@@ -409,6 +462,14 @@ PyVistaとは？
 
 Minecraftのような洞窟を作ってみよう
 ===================================
+
+.. 単にコンピュータグラフィクを表示するだけでなく、表示するオブジェクトにデータを持たせて処理をすることも可能です。
+.. ここでは、グリッドBoxを作成し、MineCraftのような洞窟を作成してみます。
+.. Mincraftでは、ランダムな地形を生成するためにPerlin noiseデータが使用されています。
+.. Perlin noiseというデータがどのように作成されているかの説明は省略しますが、PyVistaにはPerlin noiseを生成する関数が用意されています。
+.. こちらのコードのようにperlin_noise()関数を使ってPerlin noiseを生成し、sample_function()関数を使ってデータを格納したグリッドを生成することができます。
+.. 生成したグリッドをplot()関数で表示すると、右のようにPerlin noiseの値がコンターとなって表示されます。
+.. グリッドの中で値が小さい部分を削除してMineCraftのような洞窟を作成してみます。
 
 .. container:: flex-container
 
@@ -449,13 +510,18 @@ Minecraftのような洞窟を作ってみよう
           grid.plot(
               cmap='gist_earth_r',
               background='white',
-              show_scalar_bar=False,
+              show_scalar_bar=True,
               lighting=True,
               clim=clim,
-              show_edges=False,
+              show_edges=True,
           )
 
 .. revealjs-break::
+
+.. 値が大きい部分を抽出するには、threshold()メソッドを使用して値が0.02より大きい部分を抽出することができます。
+.. その結果値の小さい部分が削除され、右のように洞窟のような形状が表示されます。
+.. このように、PyVistaを使ってPerlin noiseを生成し、グリッドを作成し、洞窟のような形状を作成することができます。
+.. この例を通して、PyVistaを使ってデータを持たせたオブジェクトを作成しその値をもとに処理をする方法を学ぶことができます。
 
 .. container:: flex-container
 
@@ -483,10 +549,10 @@ Minecraftのような洞窟を作ってみよう
           out.plot(
               cmap='gist_earth_r',
               background='white',
-              show_scalar_bar=False,
+              show_scalar_bar=True,
               lighting=True,
               clim=clim,
-              show_edges=False,
+              show_edges=True,
           )
 
 インタラクティブに可視化をしてみよう
@@ -494,12 +560,16 @@ Minecraftのような洞窟を作ってみよう
 
 .. さて、最後にインタラクティブな可視化の方法について説明します。
 .. 皆様は、Pythonでコードを書いて、その結果を見るときに、どのような方法を使っていますか？
+.. Pythonのエコシステムは非常に豊富で、様々な結果の処理ツールがあります。
+.. ここでは、Sphinx、Jupyter Notebook、Streamlitといったツールを使って、Pythonで3次元CGを作成する方法を紹介します。
 
 Sphinxによる可視化
 ------------------
 
 .. まずは、Sphinxを使って、Pythonで3次元CGを作成する方法を説明します。
-.. PyVistaをインストールすると、SphinxのドキュメントにPyVistaの3D可視化拡張機能が追加されます。
+.. SphinxはPythonのドキュメントを作成するためのツールです。
+.. Sphinxを使用するとPythonのコードをドキュメントに埋め込むことができます。
+.. PyVistaをインストールすると、Sphinxのドキュメントにコードを埋め込むのと同じ方法でPyVistaの3D可視化のコードを埋め込むことができます。
 
 .. container:: flex-container
 
