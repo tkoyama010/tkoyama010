@@ -92,8 +92,14 @@ CGを作るのに必要なこと
 
    .. container:: half
 
-      .. pyvista-plot:: 01_hello_world.py
+      .. pyvista-plot::
          :include-source: False
+
+         import pyvista as pv
+         pl = pv.Plotter()
+         mesh = pv.Cylinder()
+         pl.add_mesh(mesh)
+         pl.show()
 
 テクスチャマッピング
 ---------------------
@@ -156,17 +162,24 @@ PyVistaとは？
 =============
 
 .. 以上の要素を組み合わせて、3次元CGを作成します。
-.. これらをPythonで実現するために、3D可視化ライブラリPyVistaを使います。
-.. PyVistaは、3D可視化のためのライブラリで、Pythonで3次元CGを作成する際に便利です。
-.. PyVistaは、MatplotlibやPandasのAPIに似ているため、これらのライブラリを使える人は簡単に使えます。
+.. これらのCG作成作業をそれぞれPythonで実現をする方法を考えた際に一番今現状で使いやすいライブラリが我々が開発しているPyVistaです。
+.. PyVistaは、MatplotlibやPandasのAPIを意識して作成しているため、これらのライブラリを使える人は簡単に使えます。
+.. 皆さんの中でもMatplotlibを使用して描画をされている方はいらっしゃると思います。
+.. Matplotlibは2次元のグラフを描画するにはとても強力なライブラリですが、3次元プロットの機能はそれほど強力ではありません。
+.. そのため、3次元の空間情報や物体がどのように変形するかなどの表現をするには機能が不足しています。
 .. また、Matplotlibで実現できないCGの表現もPyVistaで実現できます。
 
 #. Pythonフレンドリな3D可視化ライブラリです。
 #. MatplotlibやPandasのAPIに似ています。
 #. Matplotlibで実現できないCGの表現もPyVistaで実現できます。
+#. Jupyter NotebookやSphinxでのインタラクティブな可視化もサポートしています。
 
 インストール
 ============
+
+.. インストールは、pipコマンドでインストールすることが可能です。
+.. condaコマンドのパッケージも用意はされていますが、pipでインストールするのが一般的です。
+.. 標準ではJupyterの拡張機能がインストールされませんが、Allというオプションをつけることで拡張をインストールすることができます。
 
 .. code-block:: bash
 
@@ -177,28 +190,39 @@ PyVistaとは？
 
 .. それでは、始めましょう。
 .. まずは、モデリングの方法について説明します。
-.. まずは、Pipを使って、PyVistaをインストールします。
+.. Pythonを起動して、PyVistaをインポートします。
+.. Pythonのライブラリには、
 
 .. container:: flex-container
 
    .. container:: half
 
-      .. literalinclude:: 01_hello_world.py
-         :language: python
-         :lines: 1-3
+      .. code-block:: python
 
-      .. literalinclude:: 01_hello_world.py
-         :language: python
-         :lines: 5-7
+         # PyVistaをインポートする。
 
-      .. literalinclude:: 01_hello_world.py
-         :language: python
-         :lines: 9-11
+         import pyvista as pv
+
+      .. code-block:: python
+
+         # 円柱のモデルを作成する。
+
+         mesh = pv.Cylinder()
+
+      .. code-block:: python
+
+         # 球体のモデルを描画する。
+
+         mesh.plot()
 
    .. container:: half
 
-      .. pyvista-plot:: 01_hello_world.py
+      .. pyvista-plot::
          :include-source: False
+
+         import pyvista as pv
+         mesh = pv.Cylinder()
+         mesh.plot()
 
 モデリングをしてみよう
 ======================
@@ -240,16 +264,9 @@ PyVistaとは？
          :include-source: False
 
          import pyvista as pv
-
          pl = pv.Plotter()
-
-         mesh = pv.Cylinder()
-         mesh.translate(xyz=(0, 0, 1), inplace=True)
-         pl.add_mesh(mesh)
-
          mesh = pv.Cylinder()
          pl.add_mesh(mesh)
-
          pl.show()
 
 テクスチャを追加してみよう
@@ -332,6 +349,7 @@ PyVistaとは？
 
        .. pyvista-plot::
          :include-source: False
+         :force_static:
 
          import pyvista as pv
          from pyvista import examples
