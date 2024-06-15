@@ -183,7 +183,7 @@ PyVistaとは？
 
 .. code-block:: bash
 
-   $ pip install pyvista[all]
+   $ pip install "pyvista[all]"
 
 モデリングをしてみよう
 ======================
