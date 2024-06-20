@@ -19,7 +19,6 @@ Pythonで |br| **3次元CG** を作りたい |br| 人のための **PyVista** �
 .. 私は小山哲央と申します。
 .. 主にGitHubでPythonの3D可視化ライブラリPyVistaのメンテナンスとドキュメント翻訳をしています。
 .. アカウント名はtkoyama010です。
-.. また、今年のScipy Conferenceではチュートリアルの共同議長を務めさせていただいています。
 
 .. container:: flex-container
 
@@ -27,7 +26,6 @@ Pythonで |br| **3次元CG** を作りたい |br| 人のための **PyVista** �
 
       * :fab:`github` `@tkoyama010 <https://github.com/tkoyama010>`_
       * 3D 可視化ライブラリ `@pyvista <https://github.com/pyvista/pyvista>`_ メンテナ兼ドキュメント翻訳者
-      * `@scipy-conference <https://www.scipy2024.scipy.org/>`_ チュートリアル共同議長
 
    .. container:: half
 
@@ -41,45 +39,36 @@ Pythonで |br| **3次元CG** を作りたい |br| 人のための **PyVista** �
 .. 本日の内容は以下の通りです。
 .. まずはPythonでCGを作るのに必要なことの概要をお話し、その後、実際に3次元CGを作成する方法を紹介します。
 .. モデリング、テクスチャ、マテリアル、ライティングというCGを作るための基本的な要素について説明します。
-
-+--------------------------------------+-----------------+
-| **タイトル**                         | **時間**        |
-+--------------------------------------+-----------------+
-| PythonでCGを作るのに必要なこと       | 4分             |
-+--------------------------------------+-----------------+
-| モデリングをしてみよう               | 4分             |
-+--------------------------------------+-----------------+
-| テクスチャマッピングをしてみよう     | 3分             |
-+--------------------------------------+-----------------+
-| マテリアルを追加してみよう           | 2分             |
-+--------------------------------------+-----------------+
-
-.. revealjs-break::
-
-.. 次にMinecraftのような洞窟の作成するデモを行います。
+.. 次に空間のデータ分析を行うデモを行います。
 .. 最後に応用例としてインタラクティブな可視化の方法について説明をします。
 
-+--------------------------------------+-----------------+
-| **タイトル**                         | **時間**        |
-+--------------------------------------+-----------------+
-| ライティングをしてみよう             | 4分             |
-+--------------------------------------+-----------------+
-| Minecraftのような洞窟を作ってみよう  | 4分             |
-+--------------------------------------+-----------------+
-| インタラクティブに可視化をしてみよう | 4分             |
-+--------------------------------------+-----------------+
+- PythonでCGを作るのに必要なこと
+- モデリングをしてみよう
+- テクスチャを追加してみよう
+- マテリアルを追加してみよう
+- ライティングをしてみよう
+- 空間のデータ分析をしてみよう
+- インタラクティブに可視化をしてみよう
 
-CGを作るのに必要なこと
-======================
+PythonでCGを作るのに必要なこと
+==============================
 
 .. CGを作るのが初めての方もいるかもしれません。
-.. そこで、まずはCGを作るのに必要なことについて説明します。
+.. そこで、まずはPythonでCGを作るのに必要なことについて説明します。
+
+- 👉 PythonでCGを作るのに必要なこと
+- モデリングをしてみよう
+- テクスチャを追加してみよう
+- マテリアルを追加してみよう
+- ライティングをしてみよう
+- 空間のデータ分析をしてみよう
+- インタラクティブに可視化をしてみよう
 
 モデリング
 ----------
 
 .. まずはモデリングについて説明します。
-.. モデリングは、仮想3次元空間上に個々の物体の形状をつくる作業です。
+.. モデリングは、仮想3次元空間上に個々のポリゴンをつくる作業です。
 .. これは、CGを作る際に最も基本的な作業です。
 .. この作業を行うことで、仮想3次元空間上に自分の作成したい物体を配置することができます。
 
@@ -87,7 +76,7 @@ CGを作るのに必要なこと
 
    .. container:: half
 
-      - 仮想3次元空間上に個々の物体の形状をつくる。
+      - 仮想3次元空間上に個々のポリゴンをつくる。
       - CGを作る際に最も基本的な作業。
       - 仮想3次元空間上に自分の作成したい物体を配置することができる。
 
@@ -122,11 +111,11 @@ CGを作るのに必要なこと
          :include-source: False
 
          import pyvista as pv
-         from pyvista import examples
+         from pyvista import examples as ex
 
          mesh = pv.Cylinder()
 
-         filename = examples.mapfile
+         filename = ex.mapfile
 
          texture = pv.read_texture(filename=filename)
 
@@ -151,7 +140,6 @@ CGを作るのに必要なこと
          :include-source: False
 
          import pyvista as pv
-         from pyvista import examples
          mesh = pv.Cylinder()
          plotter = pv.Plotter(lighting='none')
          plotter.add_mesh(mesh, smooth_shading=True)
@@ -191,6 +179,17 @@ PyVistaとは？
 
 .. それでは、始めましょう。
 .. まずは、モデリングの方法について説明します。
+
+- PythonでCGを作るのに必要なこと
+- 👉 モデリングをしてみよう
+- テクスチャを追加してみよう
+- マテリアルを追加してみよう
+- ライティングをしてみよう
+- 空間のデータ分析をしてみよう
+- インタラクティブに可視化をしてみよう
+
+.. revealjs-break::
+
 .. Pythonを起動して、PyVistaをインポートします。
 .. Pythonのライブラリには、
 
@@ -225,8 +224,7 @@ PyVistaとは？
          mesh = pv.Cylinder()
          mesh.plot()
 
-モデリングをしてみよう
-======================
+.. revealjs-break::
 
 .. それでは、始めましょう。
 .. まずは、モデリングの方法について説明します。
@@ -277,10 +275,20 @@ PyVistaとは？
 ==========================
 
 .. 次にオブジェクトの質感を表現する「テクスチャ」の方法を紹介します。
-.. ここでは、テクスチャマッピングを使って、オブジェクトに画像を貼り付けます。
+
+- PythonでCGを作るのに必要なこと
+- モデリングをしてみよう
+- 👉 テクスチャを追加してみよう
+- マテリアルを追加してみよう
+- ライティングをしてみよう
+- 空間のデータ分析をしてみよう
+- インタラクティブに可視化をしてみよう
+
+.. revealjs-break::
+
 .. テクスチャは、先ほどご説明申し上げた通り、物体をよりリアリティのあるように見せるために表面に画像を追加をするという操作CG上の操作です。
+.. ここでは、テクスチャマッピングという方法を使用して、オブジェクトに画像を貼り付けます。
 .. これをPyVistaで実現をする場合、 まずはテクスチャーに使用する画像をロードします。
-.. このように例をロードする表現はseabornなどの統計関係のライブラリでよく使われるAPIの形式です
 .. その次に画像をテクスチャとして読み込みます。
 .. これを先ほどのPlotterオブジェクトのtextureという引数に定義をしてあげると、こちらの右のようにテクスチャーが円筒貼り付けられます。
 
@@ -292,9 +300,9 @@ PyVistaとは？
 
          # テクスチャに使用する画像を読み込み
 
-         from pyvista import examples
+         from pyvista import examples as ex
 
-         filename = examples.mapfile
+         filename = ex.mapfile
 
       .. code-block:: python
 
@@ -314,22 +322,33 @@ PyVistaとは？
          :include-source: False
 
          import pyvista as pv
-         from pyvista import examples
+         from pyvista import examples as ex
 
          mesh = pv.Cylinder()
 
-         filename = examples.mapfile
+         filename = ex.mapfile
 
          texture = pv.read_texture(filename=filename)
 
          mesh.plot(texture=texture)
 
-
-スカイボックスを表示してみよう
-==============================
+マテリアルを追加してみよう
+==========================
 
 .. このように、テクスチャを使って画像を貼り付けることで質感を表現することができますが、あまりリアリティがありません。
 .. そこで、背景を設定して、背景の映り込みをテクスチャとして設定することで、よりリアリティのあるCGを作成してみます。
+
+- PythonでCGを作るのに必要なこと
+- モデリングをしてみよう
+- テクスチャを追加してみよう
+- 👉 マテリアルを追加してみよう
+- ライティングをしてみよう
+- 空間のデータ分析をしてみよう
+- インタラクティブに可視化をしてみよう
+
+スカイボックスを表示してみよう
+------------------------------
+
 .. まずは、映り込みに使用する背景を表示してみましょう。
 .. ゲームなどのCGを作成する際には、背景にスカイボックスを設定することが一般的です。
 .. 左下の画像がスカイボックスの例です。
@@ -368,7 +387,7 @@ PyVistaとは？
          cube_map.plot()
 
 質感と背景の映り込みを追加してみよう
-====================================
+------------------------------------
 
 .. それでは、質感と背景の映り込みを追加してみましょう。
 .. まずは、スカイボックスを背景に設定します。
@@ -405,9 +424,9 @@ PyVistaとは？
          :force_static:
 
          import pyvista as pv
-         from pyvista import examples
+         from pyvista import examples as ex
          mesh = pv.Cylinder()
-         cube_map = examples.download_sky_box_cube_map()
+         cube_map = ex.download_sky_box_cube_map()
          pl = pv.Plotter()
          pl.add_actor(cube_map.to_skybox())
          pl.set_environment_texture(cube_map)
@@ -418,6 +437,17 @@ PyVistaとは？
 ========================
 
 .. 次にライティングについてご説明をします。
+
+- PythonでCGを作るのに必要なこと
+- モデリングをしてみよう
+- テクスチャを追加してみよう
+- マテリアルを追加してみよう
+- 👉 ライティングをしてみよう
+- 空間のデータ分析をしてみよう
+- インタラクティブに可視化をしてみよう
+
+.. revealjs-break::
+
 .. 先程ご説明した通り、ライティングは今まで作成をしたオブジェクトに光を当てることで、光と影を表現する操作です。
 .. PyVistaにはLightオブジェクトが用意されています。
 .. これを設定しPlotterオブジェクトに追加することで仮想空間上の3Dオブジェクトに光を当てることが可能になっています。
@@ -456,7 +486,6 @@ PyVistaとは？
          :include-source: False
 
          import pyvista as pv
-         from pyvista import examples
          mesh = pv.Cylinder()
          plotter = pv.Plotter(lighting='none')
          plotter.add_mesh(mesh, smooth_shading=True)
@@ -464,10 +493,30 @@ PyVistaとは？
          plotter.add_light(light)
          plotter.show()
 
-Minecraftのような洞窟を作ってみよう
-===================================
+空間のデータ分析をしてみよう
+============================
 
 .. 単にコンピュータグラフィクを表示するだけでなく、表示するオブジェクトにデータを持たせて処理をすることも可能です。
+
+- PythonでCGを作るのに必要なこと
+- モデリングをしてみよう
+- テクスチャを追加してみよう
+- マテリアルを追加してみよう
+- ライティングをしてみよう
+- 👉 空間のデータ分析をしてみよう
+- インタラクティブに可視化をしてみよう
+
+.. revealjs-break::
+
+.. PythonでCGを表示することができましたが、せっかくPythonを使用しているので3D空間のデータ分析を行いたい。
+.. PyVistaではCGを表示するだけでなく、ポリゴンにデータを持たせてPandasのように処理をするメソッドが整備されています。
+
+- Pythonを使用しているので3D空間のデータ分析も行いたい。
+- PyVistaではポリゴンにデータを持たせてPandasのように処理をするメソッドが整備されている。
+
+Minecraftのような洞窟を作ってみよう
+-----------------------------------
+
 .. ここでは、グリッドBoxを作成し、MineCraftのような洞窟を作成してみます。
 .. Mincraftでは、ランダムな地形を生成するためにPerlin noiseデータが使用されています。
 .. Perlin noiseというデータがどのように作成されているかの説明は省略します。
@@ -512,8 +561,7 @@ Minecraftのような洞窟を作ってみよう
           grid = pv.sample_function(noise, [0, 3.0, -0, 1.0, 0, 1.0], dim=(120, 40, 40))
           grid = grid.point_data_to_cell_data()
 
-          mn, mx = [grid['scalars'].min(), grid['scalars'].max()]
-          clim = (mn, mx * 1.8)
+          clim = (0.0, grid['scalars'].max())
           grid.plot(
               cmap='gist_earth_r',
               background='white',
@@ -521,13 +569,14 @@ Minecraftのような洞窟を作ってみよう
               lighting=True,
               clim=clim,
               show_edges=True,
+              n_colors=20,
           )
 
 .. revealjs-break::
 
 .. 値が大きい部分を抽出するには、threshold()メソッドを使用して値が0.02より大きい部分を抽出することができます。
-.. その結果値の小さい部分が削除され、右のように洞窟のような形状が表示されます。
-.. このように、PyVistaを使ってPerlin noiseを生成し、グリッドを作成し、洞窟のような形状を作成することができます。
+.. その結果値の小さい部分が削除され、右のように洞窟のようなポリゴンが表示されます。
+.. このように、PyVistaを使ってPerlin noiseを生成し、グリッドを作成し、洞窟のようなポリゴンを作成することができます。
 .. この例を通して、PyVistaを使ってデータを持たせたオブジェクトを作成しその値をもとに処理をする方法を学ぶことができます。
 
 .. container:: flex-container
@@ -536,7 +585,7 @@ Minecraftのような洞窟を作ってみよう
 
        .. code-block:: python
 
-          # ノイズの最小値と最大値を取得
+          # データの最小値と最大値を取得
           >>> grid['noise'].min()
           -0.85
           >>> grid['noise'].max()
@@ -544,14 +593,14 @@ Minecraftのような洞窟を作ってみよう
 
        .. code-block:: python
 
-          # ノイズが0.02より大きいグリッドを抽出
-          out = grid.threshold(value=0.02)
+          # データが0.0565より大きいグリッドを抽出
+          out = grid.threshold(value=0.0565)
 
        .. code-block:: python
 
           # 抽出後の最小値と最大値を取得
           >>> out['noise'].min()
-          0.02
+          0.0565
           >>> out['noise'].max()
           0.903
 
@@ -566,9 +615,8 @@ Minecraftのような洞窟を作ってみよう
           grid = pv.sample_function(noise, [0, 3.0, -0, 1.0, 0, 1.0], dim=(120, 40, 40))
           grid = grid.point_data_to_cell_data()
 
-          out = grid.threshold(0.02)
-          mn, mx = [out['scalars'].min(), out['scalars'].max()]
-          clim = (mn, mx * 1.8)
+          out = grid.threshold(0.0565)
+          clim = (0.0, out['scalars'].max())
           out.plot(
               cmap='gist_earth_r',
               background='white',
@@ -576,6 +624,7 @@ Minecraftのような洞窟を作ってみよう
               lighting=True,
               clim=clim,
               show_edges=True,
+              n_colors=20,
           )
 
 インタラクティブに可視化をしてみよう
@@ -585,6 +634,14 @@ Minecraftのような洞窟を作ってみよう
 .. 皆様は、Pythonでコードを書いて、その結果を見るときに、どのような方法を使っていますか？
 .. Pythonのエコシステムは非常に豊富で、様々な結果の処理ツールがあります。
 .. ここでは、Sphinx、Jupyter Notebook、Streamlitといったツールを使って、Pythonで3次元CGを作成する方法を紹介します。
+
+- PythonでCGを作るのに必要なこと
+- モデリングをしてみよう
+- テクスチャを追加してみよう
+- マテリアルを追加してみよう
+- ライティングをしてみよう
+- 空間のデータ分析をしてみよう
+- 👉 インタラクティブに可視化をしてみよう
 
 Sphinxによる可視化
 ------------------
@@ -654,14 +711,18 @@ Streamlitによる可視化
 ご清聴ありがとうございました
 ============================
 
-Please star!
-
 .. raw:: html
 
     <!-- Place this tag where you want the button to render. -->
     <a class="github-button" href="https://github.com/pyvista/pyvista" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star pyvista/pyvista on GitHub">Star</a>
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+.. |contrib.rocks| image:: https://contrib.rocks/image?repo=pyvista/pyvista
+   :target: https://github.com/pyvista/pyvista/graphs/contributors
+   :alt: contrib.rocks
+
+|contrib.rocks|
 
 .. ご清聴ありがとうございました。
 .. 本日は、Pythonで3次元CGを作る方法についてお話ししました。
