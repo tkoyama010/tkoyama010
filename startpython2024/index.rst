@@ -517,13 +517,11 @@ PyVistaとは？
 Minecraftのような洞窟を作ってみよう
 -----------------------------------
 
-.. ここでは、グリッドBoxを作成し、MineCraftのような洞窟を作成してみます。
-.. Mincraftでは、ランダムな地形を生成するためにPerlin noiseデータが使用されています。
-.. Perlin noiseというデータがどのように作成されているかの説明は省略します。
-.. 今回はそれらのデータがこちらのコードのnoiseという変数に格納されているとします。
-.. こちらのコードのようにperlin_noise()関数を使ってPerlin noiseを生成し、sample_function()関数を使ってデータを格納したグリッドを生成することができます。
-.. 生成したグリッドをplot()関数で表示すると、右のようにPerlin noiseの値がコンターとなって表示されます。
-.. グリッドの中で値が小さい部分を削除してMineCraftのような洞窟を作成してみます。
+.. ここでは、グリッド状に並んだポリゴンを作成し、MineCraftのような洞窟を作成してみます。
+.. Mincraftでは、ランダムな地形を生成するためにデータが使用されています。
+.. 今回はそれらのデータがこちらのコードのdataという変数に格納されているとします。
+.. 準備したグリッドをplot()関数で表示すると、右のようにデータの値がコンターとなって表示されます。
+.. グリッドの中で値が小さいポリゴンを削除してMineCraftのような洞窟を作成してみます。
 
 .. container:: flex-container
 
@@ -531,23 +529,23 @@ Minecraftのような洞窟を作ってみよう
 
        .. code-block:: python
 
-          # 右図のグリッドを構成するセルの数
+          # 右図のグリッドを構成するポリゴンの数
           >>> grid.number_of_points
           180999
 
-          # 各点の値のPerlin noiseを定義したNumPy配列
-          >>> noise
+          # 各点の値のデータを定義したNumPy配列
+          >>> data
           array([-0.29131388, ...])
 
-          # サイズは点の数と同じであることを確認
-          >>> len(noise)
+          # サイズはポリゴンの数と同じであることを確認
+          >>> len(data)
           180999
 
        .. code-block:: python
 
           # 辞書のように定義できます
-          >>> grid['noise'] = noise
-          >>> grid['noise']
+          >>> grid['data'] = data
+          >>> grid['data']
           pyvista_ndarray([-0.29131388, ...])
 
    .. container:: half
@@ -576,7 +574,7 @@ Minecraftのような洞窟を作ってみよう
 
 .. 値が大きい部分を抽出するには、threshold()メソッドを使用して値が0.02より大きい部分を抽出することができます。
 .. その結果値の小さい部分が削除され、右のように洞窟のようなポリゴンが表示されます。
-.. このように、PyVistaを使ってPerlin noiseを生成し、グリッドを作成し、洞窟のようなポリゴンを作成することができます。
+.. このように、PyVistaを使って、グリッドごとのデータを作成し、洞窟のような形状を作成することができます。
 .. この例を通して、PyVistaを使ってデータを持たせたオブジェクトを作成しその値をもとに処理をする方法を学ぶことができます。
 
 .. container:: flex-container
@@ -586,9 +584,9 @@ Minecraftのような洞窟を作ってみよう
        .. code-block:: python
 
           # データの最小値と最大値を取得
-          >>> grid['noise'].min()
+          >>> grid['data'].min()
           -0.85
-          >>> grid['noise'].max()
+          >>> grid['data'].max()
           0.903
 
        .. code-block:: python
@@ -599,9 +597,9 @@ Minecraftのような洞窟を作ってみよう
        .. code-block:: python
 
           # 抽出後の最小値と最大値を取得
-          >>> out['noise'].min()
+          >>> out['data'].min()
           0.0565
-          >>> out['noise'].max()
+          >>> out['data'].max()
           0.903
 
    .. container:: half
