@@ -561,8 +561,7 @@ Minecraftのような洞窟を作ってみよう
           grid = pv.sample_function(noise, [0, 3.0, -0, 1.0, 0, 1.0], dim=(120, 40, 40))
           grid = grid.point_data_to_cell_data()
 
-          mn, mx = [grid['scalars'].min(), grid['scalars'].max()]
-          clim = (mn, mx * 1.8)
+          clim = (0.0, grid['scalars'].max())
           grid.plot(
               cmap='gist_earth_r',
               background='white',
@@ -570,6 +569,7 @@ Minecraftのような洞窟を作ってみよう
               lighting=True,
               clim=clim,
               show_edges=True,
+              n_colors=20,
           )
 
 .. revealjs-break::
@@ -585,7 +585,7 @@ Minecraftのような洞窟を作ってみよう
 
        .. code-block:: python
 
-          # ノイズの最小値と最大値を取得
+          # データの最小値と最大値を取得
           >>> grid['noise'].min()
           -0.85
           >>> grid['noise'].max()
@@ -593,14 +593,14 @@ Minecraftのような洞窟を作ってみよう
 
        .. code-block:: python
 
-          # ノイズが0.02より大きいグリッドを抽出
-          out = grid.threshold(value=0.02)
+          # データが0.0565より大きいグリッドを抽出
+          out = grid.threshold(value=0.0565)
 
        .. code-block:: python
 
           # 抽出後の最小値と最大値を取得
           >>> out['noise'].min()
-          0.02
+          0.0565
           >>> out['noise'].max()
           0.903
 
@@ -615,9 +615,8 @@ Minecraftのような洞窟を作ってみよう
           grid = pv.sample_function(noise, [0, 3.0, -0, 1.0, 0, 1.0], dim=(120, 40, 40))
           grid = grid.point_data_to_cell_data()
 
-          out = grid.threshold(0.02)
-          mn, mx = [out['scalars'].min(), out['scalars'].max()]
-          clim = (mn, mx * 1.8)
+          out = grid.threshold(0.0565)
+          clim = (0.0, out['scalars'].max())
           out.plot(
               cmap='gist_earth_r',
               background='white',
@@ -625,6 +624,7 @@ Minecraftのような洞窟を作ってみよう
               lighting=True,
               clim=clim,
               show_edges=True,
+              n_colors=20,
           )
 
 インタラクティブに可視化をしてみよう
