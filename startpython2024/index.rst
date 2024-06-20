@@ -711,14 +711,18 @@ Streamlitによる可視化
 ご清聴ありがとうございました
 ============================
 
-わたしたちはボランティアでPyVistaを開発しています。 |br| このプロジェクトが気に入ったら |br| スター🌠をいただけると開発の励みになります!
-
 .. raw:: html
 
     <!-- Place this tag where you want the button to render. -->
     <a class="github-button" href="https://github.com/pyvista/pyvista" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star pyvista/pyvista on GitHub">Star</a>
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+.. |contrib.rocks| image:: https://contrib.rocks/image?repo=pyvista/pyvista
+   :target: https://github.com/pyvista/pyvista/graphs/contributors
+   :alt: contrib.rocks
+
+|contrib.rocks|
 
 .. ご清聴ありがとうございました。
 .. 本日は、Pythonで3次元CGを作る方法についてお話ししました。
