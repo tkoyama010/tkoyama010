@@ -7,36 +7,37 @@
 
    <br>
 
-======================================================
-**PyVista** による |br| 3D |br| ビジュアライゼーション
-======================================================
+.. **PyVista** による |br| 3D |br| ビジュアライゼーション
 
-:Instructor: Tetsuo Koyama
-:Date: 2023-10-26
+======================================
+3D Visualization |br| with **PyVista**
+======================================
 
-自己紹介
-========
+:Instructor: Bane Sullivan, Bill Little, Tetsuo Koyama
+:Date: 2024-7-9
 
-|:clock11:| 11:00-11:05
+.. 自己紹介
+.. ========
+
+self-introduction
+=================
+
+|:clock11:| 8:00-8:05
 
 インストラクター紹介
 --------------------
 
-* :fab:`twitter` @tkoyama010
+introduction of instructors
+---------------------------
+
 * :fab:`github` @tkoyama010
-
-TA紹介
-------
-
-* :fab:`twitter` @matsu_yarukinai
-* :fab:`github` @matsubaraDaisuke
 
 PyVistaチュートリアル [#]_
 ==========================
 
 |:clock11:| 11:05-11:10
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial.html#pyvista-tutorial
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial.html#pyvista-tutorial
 
 .. button-link:: https://github.com/pyvista/pyvista-tutorial/raw/gh-pages/notebooks.zip
    :color: primary
@@ -47,7 +48,7 @@ PyVistaチュートリアル [#]_
 ご質問 [#]_
 -----------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial.html#questions
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial.html#questions
 
 PyVistaについて何か質問があれば， |br| フォーラムに気軽に投稿してください．
 
@@ -62,7 +63,7 @@ PyVistaについて何か質問があれば， |br| フォーラムに気軽に�
 チュートリアルの概要 [#]_
 -------------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial.html#tutorial-overview
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial.html#tutorial-overview
 
 .. container:: flex-container
 
@@ -127,29 +128,29 @@ PyVistaについて何か質問があれば， |br| フォーラムに気軽に�
 はじめに [#]_
 =============
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/00_intro/index.html
 
 |:clock11:| 11:10-11:15
 
 沿革 [#]_
 ---------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#brief-history
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/00_intro/index.html#brief-history
 
 PyVistaは誰のためのものですか？ [#]_
 ------------------------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#who-is-pyvista-for
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/00_intro/index.html#who-is-pyvista-for
 
 簡単な例 [#]_
 -------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#brief-examples
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/00_intro/index.html#brief-examples
 
 サーフェスメッシュの読み込みとプロット [#]_
 -------------------------------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#read-and-plot-a-surface-mesh
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/00_intro/index.html#read-and-plot-a-surface-mesh
 
 .. container:: flex-container
 
@@ -164,13 +165,13 @@ PyVistaは誰のためのものですか？ [#]_
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_1_0.png
+      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index_1_0.png
 
 
 色を使った簡単な点群の構築 [#]_
 -------------------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#construct-a-simple-point-cloud-with-color
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/00_intro/index.html#construct-a-simple-point-cloud-with-color
 
 .. container:: flex-container
 
@@ -192,17 +193,17 @@ PyVistaは誰のためのものですか？ [#]_
 
    .. container:: half
 
-       .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_2_0.png
+       .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index_2_0.png
 
 他のライブラリとの比較 [#]_
 ---------------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#how-other-libraries-compare
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/00_intro/index.html#how-other-libraries-compare
 
 はじめに-演習 [#]_
 ------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_intro/index.html#exercises
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/00_intro/index.html#exercises
 
 |:clock11:| 11:15-11:30
 
@@ -231,13 +232,13 @@ Google Colab
 JupyterでPyVistaを使う [#]_
 ===========================
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/00_jupyter/index.html
 
 |:clock1130:| 11:30-11:40
 
 .. revealjs-break::
 
-.. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/jupyter.png
+.. image:: https://pyvista.github.io/pyvista-tutorial/_images/jupyter.png
    :alt: jupyter
    :width: 40%
 
@@ -262,7 +263,7 @@ Trameでデータを可視化する [#]_
 JupyterでPyVistaを使う [#]_
 ---------------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/00_jupyter/index.html
 
 .. container:: flex-container
 
@@ -281,7 +282,7 @@ JupyterでPyVistaを使う [#]_
 インストール  [#]_
 ------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/00_jupyter/index.html#installation
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/00_jupyter/index.html#installation
 
 .. revealjs-code-block:: bash
 
@@ -290,14 +291,14 @@ JupyterでPyVistaを使う [#]_
 基本的な使い方 [#]_
 ===================
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/01_basic/index.html
 
 |:clock1130:| 11:40-11:45
 
 既存データの活用 [#]_
 ---------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#using-existing-data
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/01_basic/index.html#using-existing-data
 
 .. container:: flex-container
 
@@ -322,7 +323,7 @@ JupyterでPyVistaを使う [#]_
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_2_01.png
+      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index_2_01.png
 
 .. revealjs-break::
 
@@ -347,12 +348,12 @@ JupyterでPyVistaを使う [#]_
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_4_0.png
+      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index_4_0.png
 
 ファイルから読み込む [#]_
 -------------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#read-from-a-file
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/01_basic/index.html#read-from-a-file
 
 .. container:: flex-container
 
@@ -376,37 +377,37 @@ JupyterでPyVistaを使う [#]_
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_6_0.png
+      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index_6_0.png
 
 基本的な使い方-演習 [#]_ [#]_
 -----------------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#exercises
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/01_basic/index.html#exercises
 
-.. [#] https://pyvista.github.io/pyvista-docs-dev-ja/
+.. [#] https://pyvista.github.io/pyvista-docs-dev/
 
 |:clock12:| 11:45-11:55
 
 基本的な使い方-解答 [#]_ [#]_
 -----------------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/01_basic/index.html#solutions
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/01_basic/index.html#solutions
 
-.. [#] https://pyvista.github.io/pyvista-docs-dev-ja/
+.. [#] https://pyvista.github.io/pyvista-docs-dev/
 
 |:clock12:| 11:55-12:00
 
 メッシュとは? [#]_
 ==================
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/02_mesh/index.html
 
 |:clock12:| 12:00-12:15
 
 ポイントとは？ [#]_
 -------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#what-is-a-point
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/02_mesh/index.html#what-is-a-point
 
 .. container:: flex-container
 
@@ -425,13 +426,13 @@ JupyterでPyVistaを使う [#]_
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_1_01.png
+      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index_1_01.png
          :alt: what-is-a-point
 
 セルとは？ [#]_
 ---------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#what-is-a-cell
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/02_mesh/index.html#what-is-a-cell
 
 .. container:: flex-container
 
@@ -468,12 +469,12 @@ JupyterでPyVistaを使う [#]_
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_4_01.png
+      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index_4_01.png
 
 アトリビュートとは? [#]_
 ------------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#what-are-attributes
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/02_mesh/index.html#what-are-attributes
 
 - ポイントデータ
 - セルデータ
@@ -482,7 +483,7 @@ JupyterでPyVistaを使う [#]_
 ポイントデータ [#]_
 -------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#point-data
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/02_mesh/index.html#point-data
 
 .. container:: flex-container
 
@@ -501,12 +502,12 @@ JupyterでPyVistaを使う [#]_
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_5_0.png
+      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index_5_0.png
 
 セルデータ [#]_
 ---------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#cell-data
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/02_mesh/index.html#cell-data
 
 .. container:: flex-container
 
@@ -525,7 +526,7 @@ JupyterでPyVistaを使う [#]_
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_6_01.png
+      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index_6_01.png
 
 .. revealjs-break::
 
@@ -555,17 +556,17 @@ JupyterでPyVistaを使う [#]_
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index-1_00_001.png
+      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index-1_00_001.png
 
 フィールドデータ [#]_
 ---------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#field-data
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/02_mesh/index.html#field-data
 
 スカラーをメッシュに割り当てる [#]_
 -----------------------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#field-data
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/02_mesh/index.html#field-data
 
 .. container:: flex-container
 
@@ -595,23 +596,23 @@ JupyterでPyVistaを使う [#]_
 
    .. container:: half
 
-       .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_7_0.png
+       .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index_7_0.png
 
 メッシュとは? - 演習 [#]_ [#]_
 ------------------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#exercises
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/02_mesh/index.html#exercises
 
-.. [#] https://pyvista.github.io/pyvista-docs-dev-ja/
+.. [#] https://pyvista.github.io/pyvista-docs-dev/
 
 |:clock12:| 12:15-12:35
 
 メッシュとは? - 解答 [#]_ [#]_
 ------------------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/02_mesh/index.html#solutions
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/02_mesh/index.html#solutions
 
-.. [#] https://pyvista.github.io/pyvista-docs-dev-ja/
+.. [#] https://pyvista.github.io/pyvista-docs-dev/
 
 |:clock12:| 12:35-12:40
 
@@ -623,7 +624,7 @@ JupyterでPyVistaを使う [#]_
 プロットオプションとアニメーション [#]_
 =======================================
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/03_figures/index.html
 
 |:clock1:| 12:55-13:00
 
@@ -643,7 +644,7 @@ Plotterオブジェクトにメッシュを追加する
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_1_02.png
+      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index_1_02.png
 
 .. revealjs-break::
 
@@ -660,7 +661,7 @@ Plotterオブジェクトにメッシュを追加する
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_2_03.png
+      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index_2_03.png
 
 .. revealjs-break::
 
@@ -686,7 +687,7 @@ Plotterオブジェクトにメッシュを追加する
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index-1_00_002.png
+      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index-1_00_002.png
 
 .. revealjs-break::
 
@@ -747,12 +748,12 @@ Plotterオブジェクトにメッシュを追加する
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index-2_00_00.png
+      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index-2_00_00.png
 
 サブプロット [#]_
 -----------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html#subplotting
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/03_figures/index.html#subplotting
 
 .. container:: flex-container
 
@@ -774,7 +775,7 @@ Plotterオブジェクトにメッシュを追加する
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index-3_00_00.png
+      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index-3_00_00.png
 
 .. revealjs-break::
 
@@ -802,7 +803,7 @@ Plotterオブジェクトにメッシュを追加する
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index-4_00_00.png
+      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index-4_00_00.png
 
 .. revealjs-break::
 
@@ -839,17 +840,17 @@ Plotterオブジェクトにメッシュを追加する
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index-5_00_00.png
+      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index-5_00_00.png
 
 シーンの制御 [#]_
 -----------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html#controlling-the-scene
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/03_figures/index.html#controlling-the-scene
 
 軸と境界の表示 [#]_
 -------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html#axes-and-bounds
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/03_figures/index.html#axes-and-bounds
 
 .. container:: flex-container
 
@@ -869,7 +870,7 @@ Plotterオブジェクトにメッシュを追加する
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index-6_00_00.png
+      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index-6_00_00.png
 
 .. revealjs-break::
 
@@ -892,62 +893,62 @@ Plotterオブジェクトにメッシュを追加する
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index-7_00_00.png
+      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index-7_00_00.png
 
 プロットオプションとアニメーション - 演習 [#]_ [#]_
 ---------------------------------------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html#exercises
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/03_figures/index.html#exercises
 
-.. [#] https://pyvista.github.io/pyvista-docs-dev-ja/
+.. [#] https://pyvista.github.io/pyvista-docs-dev/
 
 |:clock1:| 13:00-13:15
 
 プロットオプションとアニメーション - 解答 [#]_ [#]_
 ---------------------------------------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/03_figures/index.html#solutions
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/03_figures/index.html#solutions
 
-.. [#] https://pyvista.github.io/pyvista-docs-dev-ja/
+.. [#] https://pyvista.github.io/pyvista-docs-dev/
 
 |:clock1:| 13:15-13:20
 
 フィルタ [#]_
 =============
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/04_filters/index.html
 
 |:clock1:| 13:20-13:25
 
 threshold [#]_
 --------------
 
-.. [#] https://pyvista.github.io/pyvista-docs-dev-ja/api/core/_autosummary/pyvista.DataSetFilters.threshold.html#pyvista.DataSetFilters.threshold
+.. [#] https://pyvista.github.io/pyvista-docs-dev/api/core/_autosummary/pyvista.DataSetFilters.threshold.html#pyvista.DataSetFilters.threshold
 
 contour [#]_
 ------------
 
-.. [#] https://pyvista.github.io/pyvista-docs-dev-ja/api/core/_autosummary/pyvista.DataSetFilters.contour.html#pyvista-datasetfilters-contour
+.. [#] https://pyvista.github.io/pyvista-docs-dev/api/core/_autosummary/pyvista.DataSetFilters.contour.html#pyvista-datasetfilters-contour
 
 slice_orthogonal [#]_
 ---------------------
 
-.. [#] https://pyvista.github.io/pyvista-docs-dev-ja/api/core/_autosummary/pyvista.DataSetFilters.slice_orthogonal.html#pyvista.DataSetFilters.slice_orthogonal
+.. [#] https://pyvista.github.io/pyvista-docs-dev/api/core/_autosummary/pyvista.DataSetFilters.slice_orthogonal.html#pyvista.DataSetFilters.slice_orthogonal
 
 glyph [#]_
 ----------
 
-.. [#] https://pyvista.github.io/pyvista-docs-dev-ja/api/core/_autosummary/pyvista.DataSetFilters.glyph.html#pyvista.DataSetFilters.glyph
+.. [#] https://pyvista.github.io/pyvista-docs-dev/api/core/_autosummary/pyvista.DataSetFilters.glyph.html#pyvista.DataSetFilters.glyph
 
 elevation [#]_
 --------------
 
-.. [#] https://pyvista.github.io/pyvista-docs-dev-ja/api/core/_autosummary/pyvista.DataSetFilters.elevation.html#pyvista.DataSetFilters.elevation
+.. [#] https://pyvista.github.io/pyvista-docs-dev/api/core/_autosummary/pyvista.DataSetFilters.elevation.html#pyvista.DataSetFilters.elevation
 
 clip [#]_
 ---------
 
-.. [#] https://pyvista.github.io/pyvista-docs-dev-ja/api/core/_autosummary/pyvista.DataSetFilters.clip.html#pyvista.DataSetFilters.clip
+.. [#] https://pyvista.github.io/pyvista-docs-dev/api/core/_autosummary/pyvista.DataSetFilters.clip.html#pyvista.DataSetFilters.clip
 
 フィルタ
 --------
@@ -979,7 +980,7 @@ clip [#]_
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_2_04.png
+      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index_2_04.png
 
 .. revealjs-break::
 
@@ -1042,12 +1043,12 @@ clip [#]_
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index-1_00_003.png
+      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index-1_00_003.png
 
 フィルタパイプライン [#]_
 -------------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html#filter-pipeline
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/04_filters/index.html#filter-pipeline
 
 .. container:: flex-container
 
@@ -1080,23 +1081,23 @@ clip [#]_
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial-ja/_images/index_4_02.png
+      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index_4_02.png
 
 フィルタ - 演習 [#]_ [#]_
 -------------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html#exercises
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/04_filters/index.html#exercises
 
-.. [#] https://pyvista.github.io/pyvista-docs-dev-ja/
+.. [#] https://pyvista.github.io/pyvista-docs-dev/
 
 |:clock1:| 13:25-13:35
 
 フィルタ - 解答 [#]_ [#]_
 -------------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/04_filters/index.html#solutions
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/04_filters/index.html#solutions
 
-.. [#] https://pyvista.github.io/pyvista-docs-dev-ja/
+.. [#] https://pyvista.github.io/pyvista-docs-dev/
 
 |:clock1:| 13:35-13:40
 
@@ -1105,9 +1106,9 @@ PyVistaの活用 [#]_
 
 |:clock130:| 13:40-14:00
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/05_action/index.html
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/05_action/index.html
 
 GeoVistaの使用 [#]_
 -------------------
 
-.. [#] https://pyvista.github.io/pyvista-tutorial-ja/tutorial/05_action/a_lesson_geovista.html#using-geovista
+.. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/05_action/a_lesson_geovista.html#using-geovista
