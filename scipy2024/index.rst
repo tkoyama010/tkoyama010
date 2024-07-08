@@ -1,8 +1,3 @@
-:orphan:
-:og:image: ./_images/ogp/index.png
-:og:image:alt: Title section for demo presentation
-:og:description: Demo presentation of sphnx-revealjs
-
 .. |br| raw:: html
 
    <br>
@@ -1359,6 +1354,48 @@ threshold [#]_
          )
 
 .. [#] https://docs.pyvista.org/version/dev/api/core/_autosummary/pyvista.DataSetFilters.threshold.html#pyvista.DataSetFilters.threshold
+
+.. revealjs-break::
+
+.. container:: flex-container
+
+   .. container:: half
+
+      .. code-block:: python
+
+         import pyvista as pv
+         noise = pv.perlin_noise(
+             0.1, (1, 1, 1), (0, 0, 0)
+         )
+         grid = pv.sample_function(
+             noise,
+             [0, 1.0, -0, 1.0, 0, 1.0],
+             dim=(20, 20, 20)
+         )
+         threshed = grid.threshold(value=0.02)
+         threshed.plot(
+             cmap='gist_earth_r',
+             show_scalar_bar=False,
+             show_edges=True,
+         )
+
+   .. container:: half
+
+      .. pyvista-plot::
+         :context:
+         :include-source: False
+
+         import pyvista as pv
+         noise = pv.perlin_noise(0.1, (1, 1, 1), (0, 0, 0))
+         grid = pv.sample_function(
+             noise, [0, 1.0, -0, 1.0, 0, 1.0], dim=(20, 20, 20)
+         )
+         threshed = grid.threshold(value=0.02)
+         threshed.plot(
+             cmap='gist_earth_r',
+             show_scalar_bar=False,
+             show_edges=True,
+         )
 
 contour [#]_
 ------------
