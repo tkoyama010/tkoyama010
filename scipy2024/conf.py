@@ -2,7 +2,10 @@
 import os
 from urllib.parse import urljoin
 
+import pyvista
 from sphinx_revealjs.themes import get_theme_path
+
+pyvista.OFF_SCREEN = True
 
 # -- Project information -----------------------------------------------------
 project = "pyvista-tutorial-presentation"
@@ -13,16 +16,16 @@ release = "2023.10"
 
 # -- General configuration ---------------------------------------------------
 extensions = [
+    "pyvista.ext.plot_directive",
+    "pyvista.ext.viewer_directive",
     "sphinx.ext.mathjax",
     "sphinx.ext.todo",
     "sphinx_design",
     "sphinx_revealjs",
-    "sphinx_revealjs.ext.screenshot",
     "sphinxcontrib.gtagjs",
     "sphinxcontrib.sass",
-    "sphinxext.opengraph",
     "sphinxemoji.sphinxemoji",
-    "oembedpy.ext.sphinx",
+    "sphinxext.opengraph",
 ]
 templates_path = ["_templates"]
 source_suffix = ".rst"

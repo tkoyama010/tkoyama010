@@ -22,7 +22,7 @@
 self-introduction
 =================
 
-|:clock11:| 8:00-8:05
+|:clock8:| 8:00-8:05
 
 .. インストラクター紹介
 .. --------------------
@@ -41,7 +41,7 @@ introduction of instructors
 PyVista Tutorial [#]_
 =====================
 
-|:clock11:| 8:05-8:10
+|:clock8:| 8:05-8:10
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial.html#pyvista-tutorial
 
@@ -114,7 +114,7 @@ Tutorial Overview [#]_
 +--------------------------------------+-----------------+-----------------------------------------------------+
 | Introduction                         |  8:10- 8:30     | Use PyVista to create 3D visualizations.            |
 +--------------------------------------+-----------------+-----------------------------------------------------+
-| Using PyVista in Jupyter             |  8:30- 8:50     | Use PyVista in Jupyter.                             |
+| PyVista&Jupyter                      |  8:30- 8:50     | Use PyVista in Jupyter.                             |
 +--------------------------------------+-----------------+-----------------------------------------------------+
 
 .. revealjs-break::
@@ -171,30 +171,45 @@ Tutorial Overview [#]_
 | PyVista in Action                    | 10:40-11:00     | Introduction to what you can do with PyVista.                |
 +--------------------------------------+-----------------+--------------------------------------------------------------+
 
-はじめに [#]_
-=============
+.. はじめに [#]_
+.. =============
+
+Introduction [#]_
+=================
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/00_intro/index.html
 
-|:clock11:| 11:10-11:15
+|:clock8:|  8:10- 8:15
 
-沿革 [#]_
----------
+.. 沿革 [#]_
+.. ---------
+
+Brief History [#]_
+------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/00_intro/index.html#brief-history
 
-PyVistaは誰のためのものですか？ [#]_
-------------------------------------
+.. PyVistaは誰のためのものですか？ [#]_
+.. ------------------------------------
+
+Who is PyVista for? [#]_
+------------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/00_intro/index.html#who-is-pyvista-for
 
-簡単な例 [#]_
--------------
+.. 簡単な例 [#]_
+.. -------------
+
+Brief Examples [#]_
+-------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/00_intro/index.html#brief-examples
 
-サーフェスメッシュの読み込みとプロット [#]_
--------------------------------------------
+.. サーフェスメッシュの読み込みとプロット [#]_
+.. -------------------------------------------
+
+Read and Plot a Surface Mesh [#]_
+---------------------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/00_intro/index.html#read-and-plot-a-surface-mesh
 
@@ -211,11 +226,20 @@ PyVistaは誰のためのものですか？ [#]_
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index_1_0.png
+      .. pyvista-plot::
+         :include-source: False
+
+         from pyvista import examples
+
+         mesh = examples.download_bunny()
+         mesh.plot(cpos='xy')
 
 
-色を使った簡単な点群の構築 [#]_
--------------------------------
+.. 色を使った簡単な点群の構築 [#]_
+.. -------------------------------
+
+Construct a Simple Point Cloud with Color [#]_
+----------------------------------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/00_intro/index.html#construct-a-simple-point-cloud-with-color
 
@@ -239,19 +263,40 @@ PyVistaは誰のためのものですか？ [#]_
 
    .. container:: half
 
-       .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index_2_0.png
+      .. pyvista-plot::
+         :include-source: False
 
-他のライブラリとの比較 [#]_
----------------------------
+         import pyvista as pv
+         import numpy as np
+
+         points = np.random.random((1000, 3))
+         pc = pv.PolyData(points)
+         pc.plot(
+             scalars=points[:, 2],
+             point_size=5.0,
+             cmap='jet'
+         )
+
+.. 他のライブラリとの比較 [#]_
+.. ---------------------------
+
+How Other Libraries Compare [#]_
+--------------------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/00_intro/index.html#how-other-libraries-compare
 
-はじめに-演習 [#]_
-------------------
+.. はじめに-演習 [#]_
+.. ------------------
+
+Introduction Exercises [#]_
+---------------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/00_intro/index.html#exercises
 
-|:clock11:| 11:15-11:30
+|:clock8:|  8:15- 8:30
+
+.. MyBinder
+.. --------
 
 MyBinder
 --------
@@ -264,6 +309,9 @@ MyBinder
       </a>
     </center>
 
+.. Google Colab
+.. ------------
+
 Google Colab
 ------------
 
@@ -275,12 +323,15 @@ Google Colab
       </a>
     </center>
 
-JupyterでPyVistaを使う [#]_
-===========================
+.. JupyterでPyVistaを使う [#]_
+.. ===========================
+
+PyVista&Jupyter [#]_
+====================
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/00_jupyter/index.html
 
-|:clock1130:| 11:30-11:40
+|:clock830:| 8:30- 8:50
 
 .. revealjs-break::
 
@@ -288,7 +339,10 @@ JupyterでPyVistaを使う [#]_
    :alt: jupyter
    :width: 40%
 
-vtk.jsでデータを可視化する [#]_
+.. vtk.jsでデータを可視化する [#]_
+.. -------------------------------
+
+Visualize Data with vtk.js [#]_
 -------------------------------
 
 .. [#] https://kitware.github.io/vtk-js/
@@ -297,7 +351,10 @@ vtk.jsでデータを可視化する [#]_
    :alt: vtkjs
    :width: 20%
 
-Trameでデータを可視化する [#]_
+.. Trameでデータを可視化する [#]_
+.. ------------------------------
+
+Visualize Data with Trame [#]_
 ------------------------------
 
 .. [#] https://kitware.github.io/trame/
@@ -306,8 +363,11 @@ Trameでデータを可視化する [#]_
 
     <iframe src="https://player.vimeo.com/video/764741737?muted=1" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
-JupyterでPyVistaを使う [#]_
----------------------------
+.. JupyterでPyVistaを使う [#]_
+.. ---------------------------
+
+Using PyVista in Jupyter [#]_
+-----------------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/00_jupyter/index.html
 
@@ -325,8 +385,11 @@ JupyterでPyVistaを使う [#]_
 
       .. image:: https://discourse.vtk.org/uploads/default/optimized/2X/1/1dcf2d605e57e1d9c161e8a195c8da680184507c_2_441x500.jpeg
 
-インストール  [#]_
-------------------
+.. インストール  [#]_
+.. ------------------
+
+Installation [#]_
+-----------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/00_jupyter/index.html#installation
 
@@ -334,15 +397,21 @@ JupyterでPyVistaを使う [#]_
 
     pip install 'jupyterlab<4.0.0' 'ipywidgets<8.0.0' 'pyvista[all,trame]'
 
-基本的な使い方 [#]_
-===================
+.. 基本的な使い方 [#]_
+.. ===================
+
+Basic Usage [#]_
+================
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/01_basic/index.html
 
-|:clock1130:| 11:40-11:45
+|:clock830:|  8:50- 8:55
 
-既存データの活用 [#]_
----------------------
+.. 既存データの活用 [#]_
+.. ---------------------
+
+Using Existing Data [#]_
+------------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/01_basic/index.html#using-existing-data
 
@@ -369,7 +438,13 @@ JupyterでPyVistaを使う [#]_
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index_2_01.png
+      .. pyvista-plot::
+         :include-source: False
+
+         from pyvista.examples import download_saddle_surface
+
+         dataset = download_saddle_surface()
+         dataset.plot(color='tan')
 
 .. revealjs-break::
 
@@ -390,14 +465,23 @@ JupyterでPyVistaを使う [#]_
            Dimensions:   500, 470, 136
            Spacing:      1.000e+00, 1.000e+00, ...
            N Arrays:     1
-         >>> dataset.plot(color='tan')
+         >>> dataset.plot(volume=True)
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index_4_0.png
+      .. pyvista-plot::
+         :include-source: False
 
-ファイルから読み込む [#]_
--------------------------
+         from pyvista import examples
+
+         dataset = examples.download_frog()
+         dataset.plot(volume=True)
+
+.. ファイルから読み込む [#]_
+.. -------------------------
+
+Read from a File [#]_
+---------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/01_basic/index.html#read-from-a-file
 
@@ -423,35 +507,53 @@ JupyterでPyVistaを使う [#]_
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index_6_0.png
+      .. pyvista-plot::
+         :include-source: False
 
-基本的な使い方-演習 [#]_ [#]_
------------------------------
+         import pyvista as pv
+
+         dataset = pv.read('ironProt.vtk')
+         dataset.plot(volume=True)
+
+.. 基本的な使い方-演習 [#]_ [#]_
+.. -----------------------------
+
+Basic Usage Exercises [#]_ [#]_
+-------------------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/01_basic/index.html#exercises
 
 .. [#] https://pyvista.github.io/pyvista-docs-dev/
 
-|:clock12:| 11:45-11:55
+|:clock9:|  8:55- 9:05
 
-基本的な使い方-解答 [#]_ [#]_
------------------------------
+.. 基本的な使い方-解答 [#]_ [#]_
+.. -----------------------------
+
+Basic Usage Solutions [#]_ [#]_
+-------------------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/01_basic/index.html#solutions
 
 .. [#] https://pyvista.github.io/pyvista-docs-dev/
 
-|:clock12:| 11:55-12:00
+|:clock9:|  9:05- 9:10
 
-メッシュとは? [#]_
-==================
+.. メッシュとは? [#]_
+.. ==================
+
+What is a Mesh? [#]_
+====================
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/02_mesh/index.html
 
-|:clock12:| 12:00-12:15
+|:clock9:|  9:10- 9:25
 
-ポイントとは？ [#]_
--------------------
+.. ポイントとは？ [#]_
+.. -------------------
+
+What is a Point? [#]_
+---------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/02_mesh/index.html#what-is-a-point
 
@@ -472,11 +574,25 @@ JupyterでPyVistaを使う [#]_
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index_1_01.png
-         :alt: what-is-a-point
+      .. pyvista-plot::
+         :include-source: False
 
-セルとは？ [#]_
----------------
+         import numpy as np
+         import pyvista as pv
+
+         points = np.random.rand(100, 3)
+         mesh = pv.PolyData(points)
+         mesh.plot(
+             point_size=10,
+             style='points',
+             color='tan'
+         )
+
+.. セルとは？ [#]_
+.. ---------------
+
+What is a Cell? [#]_
+--------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/02_mesh/index.html#what-is-a-cell
 
@@ -515,19 +631,60 @@ JupyterでPyVistaを使う [#]_
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index_4_01.png
+      .. pyvista-plot::
+         :include-source: False
 
-アトリビュートとは? [#]_
-------------------------
+         import pyvista as pv
+         from pyvista import examples
+
+         mesh = examples.load_hexbeam()
+
+         pl = pv.Plotter()
+         pl.add_mesh(
+             mesh,
+             show_edges=True,
+             color='white'
+         )
+         pl.add_points(
+             mesh.points,
+             color='red',
+             point_size=20
+         )
+
+         single_cell = mesh.extract_cells(
+             mesh.n_cells - 1
+         )
+         pl.add_mesh(
+             single_cell,
+             color='pink',
+             edge_color='blue',
+             line_width=5,
+             show_edges=True
+         )
+
+         pl.show()
+
+.. アトリビュートとは? [#]_
+.. ------------------------
+
+What are Attributes? [#]_
+-------------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/02_mesh/index.html#what-are-attributes
 
-- ポイントデータ
-- セルデータ
-- フィールドデータ
+.. - ポイントデータ
+.. - セルデータ
+.. - フィールドデータ
 
-ポイントデータ [#]_
--------------------
+- Point Data
+- Cell Data
+- Field Data
+
+.. ポイントデータ [#]_
+.. -------------------
+
+Point Data [#]_
+---------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/02_mesh/index.html#point-data
 
@@ -548,10 +705,33 @@ JupyterでPyVistaを使う [#]_
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index_5_0.png
+      .. pyvista-plot::
+         :context:
+         :include-source: False
 
-セルデータ [#]_
----------------
+         import numpy as np
+         import pyvista as pv
+         from pyvista import examples
+
+         mesh = examples.load_hexbeam()
+         cpos = [(6.20, 3.00, 7.50),
+                 (0.16, 0.13, 2.65),
+                 (-0.28, 0.94, -0.21)]
+
+         mesh.point_data[
+             'my point values'
+         ] = np.arange(mesh.n_points)
+         mesh.plot(
+             scalars='my point values',
+             cpos=cpos,
+             show_edges=True
+         )
+
+.. セルデータ [#]_
+.. ---------------
+
+Cell Data [#]_
+--------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/02_mesh/index.html#cell-data
 
@@ -572,7 +752,24 @@ JupyterでPyVistaを使う [#]_
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index_6_01.png
+      .. pyvista-plot::
+         :context:
+         :include-source: False
+
+         import pyvista as pv
+         import numpy as np
+         from pyvista import examples
+
+         mesh = examples.load_hexbeam()
+
+         mesh.cell_data[
+             'my cell values'
+         ] = np.arange(mesh.n_cells)
+         mesh.plot(
+             scalars='my cell values',
+             cpos=cpos,
+             show_edges=True,
+         )
 
 .. revealjs-break::
 
@@ -602,15 +799,44 @@ JupyterでPyVistaを使う [#]_
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index-1_00_001.png
+      .. pyvista-plot::
+         :context:
+         :include-source: False
 
-フィールドデータ [#]_
----------------------
+         import pyvista as pv
+         from pyvista import examples
+
+         uni = examples.load_uniform()
+         pl = pv.Plotter(
+             shape=(1, 2),
+             border=False
+         )
+         pl.add_mesh(
+             uni,
+             scalars='Spatial Point Data',
+             show_edges=True
+         )
+         pl.subplot(0, 1)
+         pl.add_mesh(
+             uni,
+             scalars='Spatial Cell Data',
+             show_edges=True
+         )
+         pl.show()
+
+.. フィールドデータ [#]_
+.. ---------------------
+
+Field Data [#]_
+---------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/02_mesh/index.html#field-data
 
-スカラーをメッシュに割り当てる [#]_
------------------------------------
+.. スカラーをメッシュに割り当てる [#]_
+.. -----------------------------------
+
+Assign Scalars to Mesh [#]_
+---------------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/02_mesh/index.html#field-data
 
@@ -642,40 +868,79 @@ JupyterでPyVistaを使う [#]_
 
    .. container:: half
 
-       .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index_7_0.png
+        .. pyvista-plot::
+           :context:
+           :include-source: False
 
-メッシュとは? - 演習 [#]_ [#]_
-------------------------------
+           import pyvista as pv
+
+           cube = pv.Cube()
+           cube.cell_data[
+                'myscalars'
+           ] = range(6)
+
+           other_cube = cube.copy()
+           other_cube.point_data[
+                'myscalars'
+           ] = range(8)
+
+           pl = pv.Plotter(
+                shape=(1, 2), border_width=1
+           )
+           pl.add_mesh(cube, cmap='coolwarm')
+           pl.subplot(0, 1)
+           pl.add_mesh(
+                other_cube, cmap='coolwarm'
+           )
+           pl.show()
+
+.. メッシュとは? - 演習 [#]_ [#]_
+.. ------------------------------
+
+What is a Mesh? - Exercises [#]_ [#]_
+-------------------------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/02_mesh/index.html#exercises
 
 .. [#] https://pyvista.github.io/pyvista-docs-dev/
 
-|:clock12:| 12:15-12:35
+|:clock9:|  9:25- 9:45
 
-メッシュとは? - 解答 [#]_ [#]_
-------------------------------
+.. メッシュとは? - 解答 [#]_ [#]_
+.. ------------------------------
+
+What is a Mesh? - Solutions [#]_ [#]_
+-------------------------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/02_mesh/index.html#solutions
 
 .. [#] https://pyvista.github.io/pyvista-docs-dev/
 
-|:clock12:| 12:35-12:40
+|:clock9:| 9:45- 9:50
 
-休憩 |:coffee:|
-===============
+.. 休憩 |:coffee:|
+.. ===============
 
-|:clock1230:| 12:40-12:55
+Break |:coffee:|
+================
 
-プロットオプションとアニメーション [#]_
-=======================================
+|:clock930:|  9:40- 9:55
+
+.. プロットオプションとアニメーション [#]_
+.. =======================================
+
+Plotting Options and Animation [#]_
+===================================
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/03_figures/index.html
 
-|:clock1:| 12:55-13:00
+|:clock10:|  9:55-10:00
 
-Plotterオブジェクトにメッシュを追加する
----------------------------------------
+.. Plotterオブジェクトにメッシュを追加する
+.. ---------------------------------------
+
+Add Plotter Object to Mesh
+--------------------------
 
 .. container:: flex-container
 
@@ -690,7 +955,14 @@ Plotterオブジェクトにメッシュを追加する
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index_1_02.png
+      .. pyvista-plot::
+         :context:
+         :include-source: False
+
+         mesh = pv.Wavelet()
+         p = pv.Plotter()
+         p.add_mesh(mesh)
+         p.show()
 
 .. revealjs-break::
 
@@ -707,7 +979,14 @@ Plotterオブジェクトにメッシュを追加する
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index_2_03.png
+      .. pyvista-plot::
+         :context:
+         :include-source: False
+
+         mesh = pv.Wavelet()
+         p = pv.Plotter()
+         p.add_mesh(mesh, cmap='coolwarm')
+         p.show()
 
 .. revealjs-break::
 
@@ -733,7 +1012,22 @@ Plotterオブジェクトにメッシュを追加する
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index-1_00_002.png
+      .. pyvista-plot::
+         :context:
+         :include-source: False
+
+         from pyvista.examples import download_st_helens
+
+         idata = download_st_helens()
+         mesh = idata.warp_by_scalar()
+
+         p = pv.Plotter()
+         p.add_mesh(
+             mesh,
+             cmap='terrain',
+             opacity="linear",
+         )
+         p.show()
 
 .. revealjs-break::
 
@@ -796,8 +1090,11 @@ Plotterオブジェクトにメッシュを追加する
 
       .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index-2_00_00.png
 
-サブプロット [#]_
------------------
+.. サブプロット [#]_
+.. -----------------
+
+Subplotting [#]_
+----------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/03_figures/index.html#subplotting
 
@@ -821,7 +1118,21 @@ Plotterオブジェクトにメッシュを追加する
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index-3_00_00.png
+      .. pyvista-plot::
+         :context:
+         :include-source: False
+
+         import pyvista as pv
+
+         p = pv.Plotter(shape=(1, 2))
+
+         p.subplot(0, 0)
+         p.add_mesh(pv.Sphere())
+
+         p.subplot(0, 1)
+         p.add_mesh(pv.Cube())
+
+         p.show()
 
 .. revealjs-break::
 
@@ -888,13 +1199,19 @@ Plotterオブジェクトにメッシュを追加する
 
       .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index-5_00_00.png
 
-シーンの制御 [#]_
------------------
+.. シーンの制御 [#]_
+.. -----------------
+
+Control the Scene [#]_
+----------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/03_figures/index.html#controlling-the-scene
 
-軸と境界の表示 [#]_
--------------------
+.. 軸と境界の表示 [#]_
+.. -------------------
+
+Axes and Bounds [#]_
+--------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/03_figures/index.html#axes-and-bounds
 
@@ -916,7 +1233,19 @@ Plotterオブジェクトにメッシュを追加する
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index-6_00_00.png
+      .. pyvista-plot::
+         :context:
+         :include-source: False
+
+         import pyvista as pv
+         from pyvista import examples
+
+         mesh = examples.load_random_hills()
+
+         p = pv.Plotter()
+         p.add_mesh(mesh)
+         p.show_axes()
+         p.show()
 
 .. revealjs-break::
 
@@ -939,32 +1268,54 @@ Plotterオブジェクトにメッシュを追加する
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index-7_00_00.png
+      .. pyvista-plot::
+         :context:
+         :include-source: False
 
-プロットオプションとアニメーション - 演習 [#]_ [#]_
----------------------------------------------------
+         import pyvista as pv
+         from pyvista import examples
+
+         mesh = examples.load_random_hills()
+
+         p = pv.Plotter()
+         p.add_mesh(mesh)
+         p.show_axes()
+         p.show_bounds()
+         p.show()
+
+.. プロットオプションとアニメーション - 演習 [#]_ [#]_
+.. ---------------------------------------------------
+
+Plotting Options and Animation - Exercises [#]_ [#]_
+----------------------------------------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/03_figures/index.html#exercises
 
 .. [#] https://pyvista.github.io/pyvista-docs-dev/
 
-|:clock1:| 13:00-13:15
+|:clock10:| 10:00-10:15
 
-プロットオプションとアニメーション - 解答 [#]_ [#]_
----------------------------------------------------
+.. プロットオプションとアニメーション - 解答 [#]_ [#]_
+.. ---------------------------------------------------
+
+Plotting Options and Animation - Solutions [#]_ [#]_
+----------------------------------------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/03_figures/index.html#solutions
 
 .. [#] https://pyvista.github.io/pyvista-docs-dev/
 
-|:clock1:| 13:15-13:20
+|:clock10:| 10:15-10:20
 
-フィルタ [#]_
-=============
+.. フィルタ [#]_
+.. =============
+
+Filters [#]_
+============
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/04_filters/index.html
 
-|:clock1:| 13:20-13:25
+|:clock10:| 10:20-10:25
 
 threshold [#]_
 --------------
@@ -996,8 +1347,11 @@ clip [#]_
 
 .. [#] https://pyvista.github.io/pyvista-docs-dev/api/core/_autosummary/pyvista.DataSetFilters.clip.html#pyvista.DataSetFilters.clip
 
-フィルタ
---------
+.. フィルタ
+.. --------
+
+Filters
+-------
 
 .. container:: flex-container
 
@@ -1026,7 +1380,28 @@ clip [#]_
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index_2_04.png
+      .. pyvista-plot::
+         :context:
+         :include-source: False
+
+         import pyvista as pv
+         from pyvista import examples
+
+         dataset = examples.load_uniform()
+         dataset.set_active_scalars(
+             "Spatial Point Data"
+         )
+
+         threshed = dataset.threshold(
+             [100, 500]
+         )
+
+         outline = dataset.outline()
+         pl = pv.Plotter()
+         pl.add_mesh(outline, color="k")
+         pl.add_mesh(threshed)
+         pl.camera_position = [-2, 5, 3]
+         pl.show()
 
 .. revealjs-break::
 
@@ -1089,10 +1464,66 @@ clip [#]_
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index-1_00_003.png
+      .. pyvista-plot::
+         :context:
+         :include-source: False
 
-フィルタパイプライン [#]_
--------------------------
+         import pyvista as pv
+         from pyvista import examples
+
+         dataset = examples.load_uniform()
+         outline = dataset.outline()
+         threshed = dataset.threshold(
+             [100, 500]
+         )
+         contours = dataset.contour()
+         slices = dataset.slice_orthogonal()
+         glyphs = dataset.glyph(
+             factor=1e-3,
+             geom=pv.Sphere(),
+             orient=False,
+         )
+
+         p = pv.Plotter(shape=(2, 2))
+         # Show the threshold
+         p.add_mesh(outline, color="k")
+         p.add_mesh(
+             threshed,
+             show_scalar_bar=False,
+         )
+         p.camera_position = [-2, 5, 3]
+         # Show the contour
+         p.subplot(0, 1)
+         p.add_mesh(outline, color="k")
+         p.add_mesh(
+             contours,
+             show_scalar_bar=False
+         )
+         p.camera_position = [-2, 5, 3]
+         # Show the slices
+         p.subplot(1, 0)
+         p.add_mesh(outline, color="k")
+         p.add_mesh(
+             slices,
+             show_scalar_bar=False
+         )
+         p.camera_position = [-2, 5, 3]
+         # Show the glyphs
+         p.subplot(1, 1)
+         p.add_mesh(outline, color="k")
+         p.add_mesh(
+             glyphs,
+             show_scalar_bar=False
+         )
+         p.camera_position = [-2, 5, 3]
+         p.link_views()
+         p.show()
+
+.. フィルタパイプライン [#]_
+.. -------------------------
+
+Filter Pipeline [#]_
+--------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/04_filters/index.html#filter-pipeline
 
@@ -1104,16 +1535,9 @@ clip [#]_
 
          >>> result = (
          ...     dataset
-         ...     # NaN 値をすべて消去します．
          ...     .threshold()
-         ...     # 高さに対応するスカラー値を
-         ...     # 生成します．
          ...     .elevation()
-         ...     # データセットを半分にカット
-         ...     # します．
          ...     .clip(normal="z")
-         ...     # 各軸平面に沿ってスライスを
-         ...     # 3つ作成します．
          ...     .slice_orthogonal()
          ... )
          >>> p = pv.Plotter()
@@ -1127,34 +1551,64 @@ clip [#]_
 
    .. container:: half
 
-      .. image:: https://pyvista.github.io/pyvista-tutorial/_images/index_4_02.png
+      .. pyvista-plot::
+         :context:
+         :include-source: False
 
-フィルタ - 演習 [#]_ [#]_
--------------------------
+         result = (
+             dataset
+             .threshold()
+             .elevation()
+             .clip(normal="z")
+             .slice_orthogonal()
+         )
+         p = pv.Plotter()
+         p.add_mesh(outline, color="k")
+         p.add_mesh(
+             result,
+             scalars="Elevation",
+         )
+         p.view_isometric()
+         p.show()
+
+.. フィルタ - 演習 [#]_ [#]_
+.. -------------------------
+
+Filters - Exercises [#]_ [#]_
+-----------------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/04_filters/index.html#exercises
 
 .. [#] https://pyvista.github.io/pyvista-docs-dev/
 
-|:clock1:| 13:25-13:35
+|:clock10:| 10:25-10:35
 
-フィルタ - 解答 [#]_ [#]_
--------------------------
+.. フィルタ - 解答 [#]_ [#]_
+.. -------------------------
+
+Filters - Solutions [#]_ [#]_
+-----------------------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/04_filters/index.html#solutions
 
 .. [#] https://pyvista.github.io/pyvista-docs-dev/
 
-|:clock1:| 13:35-13:40
+|:clock10:| 10:35-10:40
 
-PyVistaの活用 [#]_
-==================
+.. PyVistaの活用 [#]_
+.. ==================
 
-|:clock130:| 13:40-14:00
+PyVisa in Action [#]_
+=====================
+
+|:clock1030:| 10:40-11:00
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/05_action/index.html
 
-GeoVistaの使用 [#]_
--------------------
+.. GeoVistaの使用 [#]_
+.. -------------------
+
+GeoVista [#]_
+-------------
 
 .. [#] https://pyvista.github.io/pyvista-tutorial/tutorial/05_action/a_lesson_geovista.html#using-geovista
