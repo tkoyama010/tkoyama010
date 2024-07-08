@@ -1,5 +1,5 @@
 oEmbedPy==0.6.0
-pyvista[all]==0.43.10
+pyvista[all]==0.44.0
 sphinx-revealjs[screenshot]==3.0.2
 sphinx-tabs==3.4.5
 sphinx_design==0.6.0
