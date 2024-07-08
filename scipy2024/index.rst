@@ -395,7 +395,7 @@ Installation [#]_
 
 .. revealjs-code-block:: bash
 
-    pip install 'jupyterlab<4.0.0' 'ipywidgets<8.0.0' 'pyvista[all,trame]'
+    pip install 'jupyterlab' 'pyvista[all]'
 
 .. 基本的な使い方 [#]_
 .. ===================
