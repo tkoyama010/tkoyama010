@@ -7,15 +7,15 @@
 <h3 align="center">Software Developer | Pythonista</h3>
 
 <p align="center">
-<a href="https://tkoyama010.streamlit.app/"><img alt="tkoyama010 examples and documentation" src="https://img.shields.io/static/v1?label=%20&message=Open%20in%20Community%20Cloud&color=pink&logo=streamlit&style=flat-square" width=200></a>
+<a href="https://tkoyama010.streamlit.app/"><img alt="tkoyama010 examples and documentation" src="https://img.shields.io/static/v1?label=%20&message=Open%20in%20Community%20Cloud&color=pink&logo=streamlit" width=200></a>
 </p>
 
 ## About me
 
-![](https://komarev.com/ghpvc/?username=tkoyama010&color=green&style=flat-square)
-[![Github](https://img.shields.io/github/followers/tkoyama010?label=Follow&style=flat-square)](https://github.com/tkoyama010)
-[![GitHub Repo stars](https://img.shields.io/github/stars/tkoyama010/tkoyama010?style=flat-square)](https://github.com/tkoyama010/tkoyama010/stargazers)
-[![Sponsor](https://img.shields.io/badge/-Sponsor-red?logo=github&style=flat-square)](https://github.com/sponsors/tkoyama010)
+![](https://komarev.com/ghpvc/?username=tkoyama010&color=green)
+[![Github](https://img.shields.io/github/followers/tkoyama010?label=Follow)](https://github.com/tkoyama010)
+[![GitHub Repo stars](https://img.shields.io/github/stars/tkoyama010/tkoyama010)](https://github.com/tkoyama010/tkoyama010/stargazers)
+[![Sponsor](https://img.shields.io/badge/-Sponsor-red?logo=github)](https://github.com/sponsors/tkoyama010)
 
 Hi! My name is Tetsuo Koyama. I'm a software engineer in Japan.
 I'm interested in scientific computing and visualization with computer graphics.
@@ -78,14 +78,14 @@ As a speaker, my talk at PyConJP 2019 was featured in a web magazine article as 
 ## Find me
 
 <p>
-  <a rel="me" href="https://mstdn.jp/@tkoyama010"><img src="https://img.shields.io/badge/-MASTODON-%232B90D9?style=flat-square&logo=mastodon&logoColor=white"></a>
+  <a rel="me" href="https://mstdn.jp/@tkoyama010"><img src="https://img.shields.io/badge/-MASTODON-%232B90D9&logo=mastodon&logoColor=white"></a>
   <a href="https://github.com/tkoyama010">
-    <img alt="Github" src="https://img.shields.io/badge/GitHub-%2312100E.svg?&style=flat-square&logo=Github&logoColor=white" />
+    <img alt="Github" src="https://img.shields.io/badge/GitHub-%2312100E.svg?&logo=Github&logoColor=white" />
   </a>
   <a href="mailto:tkoyama010@gmail.com">
-    <img alt="Gmail" src="https://img.shields.io/badge/Gmail-%23BB001B.svg?&style=flat-square&logo=Gmail&logoColor=white" />
+    <img alt="Gmail" src="https://img.shields.io/badge/Gmail-%23BB001B.svg?&logo=Gmail&logoColor=white" />
   </a>
   <a href="https://twitter.com/tkoyama010">
-    <img alt="Twitter" src="https://img.shields.io/badge/twitter-%231DA1F2.svg?&style=flat-square&logo=twitter&logoColor=white" />
+    <img alt="Twitter" src="https://img.shields.io/badge/twitter-%231DA1F2.svg?&logo=twitter&logoColor=white" />
   </a>
 </p>
