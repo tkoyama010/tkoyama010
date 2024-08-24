@@ -90,3 +90,8 @@ As a speaker, my talk at PyConJP 2019 was featured in a web magazine article as 
     <img alt="Twitter" src="https://img.shields.io/badge/twitter-%231DA1F2.svg?&logo=twitter&logoColor=white" />
   </a>
 </p>
+
+[![Edwin's github homepage](https://img.shields.io/static/v1?label=&message=Here&color=053957&logo=github)](https://github.com/tkoyama010/)
+[![Edwin's ORCID profile](https://img.shields.io/static/v1?label=&message=ORCiD&color=a6a8ab&logo=orcid)](https://orcid.org/0000-0003-1242-4815)
+[![Edwin's Linkedin profile](https://img.shields.io/static/v1?label=&message=Linkedin&color=589acf&logo=linkedin)](https://www.linkedin.com/in/edsaac/)
+[![Edwin's Google Scholar profile](https://img.shields.io/static/v1?label=&message=%20Google%20Scholar&color=192f31&logo=googlescholar)](https://scholar.google.com/citations?hl=en&user=th-VSYIAAAAJ&view_op=list_works&sortby=pubdate)
