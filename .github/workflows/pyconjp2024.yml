@@ -19,7 +19,7 @@ jobs:
       - uses: actions/setup-python@v5
       - uses: actions/checkout@v4
       - run: |
-          cd startpython2024
+          cd pyconjp2024
           pip install -r requirements.txt
           pip uninstall vtk -y
           pip install vtk-osmesa==9.3.0 --index-url https://gitlab.kitware.com/api/v4/projects/13/packages/pypi/simple
@@ -29,7 +29,7 @@ jobs:
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3.0
         with:
-          publish-dir: startpython2024/_build/revealjs
+          publish-dir: pyconjp2024/_build/revealjs
           production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"
