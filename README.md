@@ -16,6 +16,7 @@
 [![Github](https://img.shields.io/github/followers/tkoyama010?label=Follow)](https://github.com/tkoyama010)
 [![GitHub Repo stars](https://img.shields.io/github/stars/tkoyama010/tkoyama010)](https://github.com/tkoyama010/tkoyama010/stargazers)
 [![Sponsor](https://img.shields.io/badge/-Sponsor-red?logo=github)](https://github.com/sponsors/tkoyama010)
+[![wakatime](https://wakatime.com/badge/user/018c8661-c45f-4525-b855-c752f6c2370c.svg)](https://wakatime.com/@018c8661-c45f-4525-b855-c752f6c2370c)
 
 Hi! My name is Tetsuo Koyama. I'm a software engineer in Japan.
 I'm interested in scientific computing and visualization with computer graphics.
