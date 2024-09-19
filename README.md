@@ -1,8 +1,10 @@
 <h1 align="center">
   <a href="https://git.io/typing-svg">
     <img src="https://readme-typing-svg.herokuapp.com/?lines=Hello,+there!+;I+am+Tetsuo+Koyama...;Nice+to+meet+you!&center=true&size=25">
-    <img src="https://kusa-image.deno.dev/?user=tkoyama010">
   </a>
+</h1>
+<h1 align="center">
+    <img src="https://kusa-image.deno.dev/?user=tkoyama010">
 </h1>
 
 <h3 align="center">Software Developer | Pythonista</h3>
