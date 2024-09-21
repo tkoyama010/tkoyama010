@@ -54,29 +54,43 @@ Pythonで |br| **3次元CG** を作りたい |br| 人のための **PyVista** �
 
         - モデリング
         - テクスチャ
-        - マテリアル
         - ライティング
+        - マテリアル
 
    .. container:: half
 
       - 応用編
 
         - 空間のデータ分析
-        - 可視化
+        - 空間のデータ可視化
 
-PythonでCGを作るのに必要なこと
-==============================
+PythonでCG作成
+==============
 
 .. CGを作るのが初めての方もいるかもしれません。
 .. そこで、まずはPythonでCGを作るのに必要なことについて説明します。
 
-- 👉 PythonでCGを作るのに必要なこと
-- モデリングをしてみよう
-- テクスチャを追加してみよう
-- マテリアルを追加してみよう
-- ライティングをしてみよう
-- 空間のデータ分析をしてみよう
-- インタラクティブに可視化をしてみよう
+.. container:: flex-container
+
+   .. container:: half
+
+      - 概要
+
+        - 👉 PythonでCG作成
+
+      - 基礎編
+
+        - モデリング
+        - テクスチャ
+        - ライティング
+        - マテリアル
+
+   .. container:: half
+
+      - 応用編
+
+        - 空間のデータ分析
+        - 空間のデータ可視化
 
 モデリング
 ----------
@@ -105,11 +119,11 @@ PythonでCGを作るのに必要なこと
          pl.add_mesh(mesh)
          pl.show()
 
-テクスチャマッピング
+テクスチャ
 ---------------------
 
-.. 次にテクスチャマッピングについて説明します。
-.. テクスチャマッピングは、オブジェクトの質感を表現するための画像です。
+.. 次にテクスチャについて説明します。
+.. テクスチャは、オブジェクトの質感を表現するための画像です。
 .. 先程のモデリングで作成したオブジェクトに、テクスチャを貼り付けることで、CGをよりリアルに表現することができます。
 
 .. container:: flex-container
@@ -188,19 +202,33 @@ PyVistaとは？
 
    $ pip install "pyvista[all]"
 
-モデリングをしてみよう
-======================
+モデリング
+==========
 
 .. それでは、始めましょう。
 .. まずは、モデリングの方法について説明します。
 
-- PythonでCGを作るのに必要なこと
-- 👉 モデリングをしてみよう
-- テクスチャを追加してみよう
-- マテリアルを追加してみよう
-- ライティングをしてみよう
-- 空間のデータ分析をしてみよう
-- インタラクティブに可視化をしてみよう
+.. container:: flex-container
+
+   .. container:: half
+
+      - 概要
+
+        - PythonでCG作成
+
+      - 基礎編
+
+        - 👉 モデリング
+        - テクスチャ
+        - ライティング
+        - マテリアル
+
+   .. container:: half
+
+      - 応用編
+
+        - 空間のデータ分析
+        - 空間のデータ可視化
 
 .. revealjs-break::
 
@@ -299,23 +327,37 @@ PyVistaとは？
          pl.add_mesh(mesh)
          pl.show()
 
-テクスチャを追加してみよう
-==========================
+テクスチャ
+==========
 
 .. 次にオブジェクトの質感を表現する「テクスチャ」の方法を紹介します。
 
-- PythonでCGを作るのに必要なこと
-- モデリングをしてみよう
-- 👉 テクスチャを追加してみよう
-- マテリアルを追加してみよう
-- ライティングをしてみよう
-- 空間のデータ分析をしてみよう
-- インタラクティブに可視化をしてみよう
+.. container:: flex-container
+
+   .. container:: half
+
+      - 概要
+
+        - PythonでCG作成
+
+      - 基礎編
+
+        - モデリング
+        - 👉 テクスチャ
+        - ライティング
+        - マテリアル
+
+   .. container:: half
+
+      - 応用編
+
+        - 空間のデータ分析
+        - 空間のデータ可視化
 
 .. revealjs-break::
 
 .. テクスチャは、先ほどご説明申し上げた通り、物体をよりリアリティのあるように見せるために表面に画像を追加をするという操作CG上の操作です。
-.. ここでは、テクスチャマッピングという方法を使用して、オブジェクトに画像を貼り付けます。
+.. ここでは、テクスチャという方法を使用して、オブジェクトに画像を貼り付けます。
 .. これをPyVistaで実現をする場合、 まずはテクスチャーに使用する画像をロードします。
 .. その次に画像をテクスチャとして読み込みます。
 .. これを先ほどのPlotterオブジェクトのtextureという引数に定義をしてあげると、こちらの右のようにテクスチャーが円筒貼り付けられます。
@@ -360,119 +402,32 @@ PyVistaとは？
 
          mesh.plot(texture=texture)
 
-マテリアルを追加してみよう
-==========================
-
-.. このように、テクスチャを使って画像を貼り付けることで質感を表現することができますが、あまりリアリティがありません。
-.. そこで、背景を設定して、背景の映り込みをテクスチャとして設定することで、よりリアリティのあるCGを作成してみます。
-
-- PythonでCGを作るのに必要なこと
-- モデリングをしてみよう
-- テクスチャを追加してみよう
-- 👉 マテリアルを追加してみよう
-- ライティングをしてみよう
-- 空間のデータ分析をしてみよう
-- インタラクティブに可視化をしてみよう
-
-スカイボックスを表示してみよう
-------------------------------
-
-.. まずは、映り込みに使用する背景を表示してみましょう。
-.. ゲームなどのCGを作成する際には、背景にスカイボックスを設定することが一般的です。
-.. 左下の画像がスカイボックスの例です。
-.. 上下左右前後の6つの面の画像を背景に設定することで全方向に背景を表示することができます。
-.. PyVistaでは、download_sky_box_cube_map()関数を使って、標準のスカイボックスをダウンロードすることができます。
-.. 右がスカイボックスを表示した例です。
-.. 中央にサンプルの球が表示されています。
-.. これを使って、背景の映り込みをテクスチャとして設定することで、よりリアリティのあるCGを作成してみます。
-
-.. container:: flex-container
-
-   .. container:: half
-
-      .. code-block:: python
-
-         from pyvista import examples as ex
-
-         # スカイボックスをダウンロードする
-
-         cube_map = ex.download_sky_box_cube_map()
-
-         cube_map.plot()
-
-      .. image::  https://upload.wikimedia.org/wikipedia/commons/b/b4/Skybox_example.png
-         :alt: skybox
-         :width: 400px
-
-   .. container:: half
-
-       .. pyvista-plot::
-         :include-source: False
-         :force_static:
-
-         from pyvista import examples as ex
-         cube_map = ex.download_sky_box_cube_map()
-         cube_map.plot()
-
-質感と背景の映り込みを追加してみよう
-------------------------------------
-
-.. それでは、質感と背景の映り込みを追加してみましょう。
-.. まずは、スカイボックスを背景に設定します。
-.. その次に、背景の映込をテクスチャとして設定します。
-.. 映り込みを表現する際にはオブジェクトの表面に反射する光の強さを設定する必要があります。
-.. これは物理ベースレンダリングと呼ばれる手法を使って表現することができます。
-.. この機能を使用するにはpbr(Physically Based Renderingの略)のフラグをTrueに設定します。
-
-.. container:: flex-container
-
-   .. container:: half
-
-      .. code-block:: python
-
-         # スカイボックスを背景に設定する
-         pl.add_actor(cube_map.to_skybox())
-         # 背景の映込をテクスチャとして設定する
-         pl.set_environment_texture(cube_map)
-
-         # 物理ベースレンダリングを使用して
-         # 表面に反射する光の強さを設定する
-         pl.add_mesh(
-            mesh,
-            pbr=True,
-            metallic=0.8,
-            roughness=0.1,
-            diffuse=1
-         )
-
-   .. container:: half
-
-       .. pyvista-plot::
-         :include-source: False
-         :force_static:
-
-         import pyvista as pv
-         from pyvista import examples as ex
-         mesh = pv.Cylinder()
-         cube_map = ex.download_sky_box_cube_map()
-         pl = pv.Plotter()
-         pl.add_actor(cube_map.to_skybox())
-         pl.set_environment_texture(cube_map)
-         pl.add_mesh(mesh, pbr=True, metallic=0.8, roughness=0.1, diffuse=1)
-         pl.show(cpos="xy")
-
-ライティングをしてみよう
-========================
+ライティング
+============
 
 .. 次にライティングについてご説明をします。
 
-- PythonでCGを作るのに必要なこと
-- モデリングをしてみよう
-- テクスチャを追加してみよう
-- マテリアルを追加してみよう
-- 👉 ライティングをしてみよう
-- 空間のデータ分析をしてみよう
-- インタラクティブに可視化をしてみよう
+.. container:: flex-container
+
+   .. container:: half
+
+      - 概要
+
+        - PythonでCG作成
+
+      - 基礎編
+
+        - モデリング
+        - テクスチャ
+        - 👉 ライティング
+        - マテリアル
+
+   .. container:: half
+
+      - 応用編
+
+        - 空間のデータ分析
+        - 空間のデータ可視化
 
 .. revealjs-break::
 
@@ -521,18 +476,147 @@ PyVistaとは？
          plotter.add_light(light)
          plotter.show()
 
-空間のデータ分析をしてみよう
-============================
+マテリアル
+==========
+
+.. このように、テクスチャを使って画像を貼り付けることで質感を表現することができますが、あまりリアリティがありません。
+.. そこで、背景を設定して、背景の映り込みをテクスチャとして設定することで、よりリアリティのあるCGを作成してみます。
+
+.. container:: flex-container
+
+   .. container:: half
+
+      - 概要
+
+        - PythonでCG作成
+
+      - 基礎編
+
+        - モデリング
+        - テクスチャ
+        - ライティング
+        - 👉 マテリアル
+
+   .. container:: half
+
+      - 応用編
+
+        - 空間のデータ分析
+        - 空間のデータ可視化
+
+スカイボックス
+--------------
+
+.. まずは、映り込みに使用する背景を表示してみましょう。
+.. ゲームなどのCGを作成する際には、背景にスカイボックスを設定することが一般的です。
+.. 左下の画像がスカイボックスの例です。
+.. 上下左右前後の6つの面の画像を背景に設定することで全方向に背景を表示することができます。
+.. PyVistaでは、download_sky_box_cube_map()関数を使って、標準のスカイボックスをダウンロードすることができます。
+.. 右がスカイボックスを表示した例です。
+.. 中央にサンプルの球が表示されています。
+.. これを使って、背景の映り込みをテクスチャとして設定することで、よりリアリティのあるCGを作成してみます。
+
+.. container:: flex-container
+
+   .. container:: half
+
+      .. code-block:: python
+
+         from pyvista import examples as ex
+
+         # スカイボックスをダウンロードする
+
+         cube_map = ex.download_sky_box_cube_map()
+
+         cube_map.plot()
+
+      .. image::  https://upload.wikimedia.org/wikipedia/commons/b/b4/Skybox_example.png
+         :alt: skybox
+         :width: 400px
+
+   .. container:: half
+
+       .. pyvista-plot::
+         :include-source: False
+         :force_static:
+
+         from pyvista import examples as ex
+         cube_map = ex.download_sky_box_cube_map()
+         cube_map.plot()
+
+質感と背景の映り込み
+--------------------
+
+.. それでは、質感と背景の映り込みを追加してみましょう。
+.. まずは、スカイボックスを背景に設定します。
+.. その次に、背景の映込をテクスチャとして設定します。
+.. 映り込みを表現する際にはオブジェクトの表面に反射する光の強さを設定する必要があります。
+.. これは物理ベースレンダリングと呼ばれる手法を使って表現することができます。
+.. この機能を使用するにはpbr(Physically Based Renderingの略)のフラグをTrueに設定します。
+
+.. container:: flex-container
+
+   .. container:: half
+
+      .. code-block:: python
+
+         # スカイボックスを背景に設定する
+         pl.add_actor(cube_map.to_skybox())
+         # 背景の映込をテクスチャとして設定する
+         pl.set_environment_texture(cube_map)
+
+         # 物理ベースレンダリングを使用して
+         # 表面に反射する光の強さを設定する
+         pl.add_mesh(
+            mesh,
+            pbr=True,
+            metallic=0.8,
+            roughness=0.1,
+            diffuse=1
+         )
+
+   .. container:: half
+
+       .. pyvista-plot::
+         :include-source: False
+         :force_static:
+
+         import pyvista as pv
+         from pyvista import examples as ex
+         mesh = pv.Cylinder()
+         cube_map = ex.download_sky_box_cube_map()
+         pl = pv.Plotter()
+         pl.add_actor(cube_map.to_skybox())
+         pl.set_environment_texture(cube_map)
+         pl.add_mesh(mesh, pbr=True, metallic=0.8, roughness=0.1, diffuse=1)
+         pl.show(cpos="xy")
+
+空間のデータ分析
+================
 
 .. 単にコンピュータグラフィクを表示するだけでなく、表示するオブジェクトにデータを持たせて処理をすることも可能です。
 
-- PythonでCGを作るのに必要なこと
-- モデリングをしてみよう
-- テクスチャを追加してみよう
-- マテリアルを追加してみよう
-- ライティングをしてみよう
-- 👉 空間のデータ分析をしてみよう
-- インタラクティブに可視化をしてみよう
+.. container:: flex-container
+
+   .. container:: half
+
+      - 概要
+
+        - PythonでCG作成
+
+      - 基礎編
+
+        - モデリング
+        - テクスチャ
+        - ライティング
+        - マテリアル
+
+   .. container:: half
+
+      - 応用編
+
+        - 👉 空間のデータ分析
+        - 空間のデータ可視化
 
 .. revealjs-break::
 
@@ -653,21 +737,35 @@ Minecraftのような洞窟を作ってみよう
               n_colors=20,
           )
 
-インタラクティブに可視化をしてみよう
-====================================
+空間のデータ可視化
+==================
 
-.. さて、最後にインタラクティブな可視化の方法について説明します。
+.. さて、最後に分析結果可視化の方法について説明します。
 .. 皆様は、Pythonでコードを書いて、その結果を見るときに、どのような方法を使っていますか？
 .. Pythonのエコシステムは非常に豊富で、様々な結果の処理ツールがあります。
 .. ここでは、Sphinx、Jupyter Notebook、Streamlitといったツールを使って、Pythonで3次元CGを作成する方法を紹介します。
 
-- PythonでCGを作るのに必要なこと
-- モデリングをしてみよう
-- テクスチャを追加してみよう
-- マテリアルを追加してみよう
-- ライティングをしてみよう
-- 空間のデータ分析をしてみよう
-- 👉 インタラクティブに可視化をしてみよう
+.. container:: flex-container
+
+   .. container:: half
+
+      - 概要
+
+        - PythonでCG作成
+
+      - 基礎編
+
+        - モデリング
+        - テクスチャ
+        - ライティング
+        - マテリアル
+
+   .. container:: half
+
+      - 応用編
+
+        - 空間のデータ分析
+        - 👉 空間のデータ可視化
 
 Sphinxによる可視化
 ------------------
@@ -752,6 +850,6 @@ Streamlitによる可視化
 
 .. ご清聴ありがとうございました。
 .. 本日は、Pythonで3次元CGを作る方法についてお話ししました。
-.. また、空間上のデータを使用して、Minecraftのような洞窟を作成する方法や、インタラクティブな可視化の方法についても説明しました。
+.. また、空間上のデータを使用して分析する方法や、可視化の方法についても説明しました。
 .. この発表が皆様のお役に立てれば幸いです。
 .. ご清聴ありがとうございました。
