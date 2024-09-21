@@ -630,116 +630,39 @@ PyVistaとは？
 - Pythonを使用しているので3D空間のデータ分析も行いたい。
 - PyVistaではポリゴンにデータを持たせてPandasのように処理をするメソッドが整備されている。
 
-Minecraftのような洞窟を作ってみよう
------------------------------------
-
-.. ここでは、グリッド状に並んだポリゴンを作成し、MineCraftのような洞窟を作成してみます。
-.. Mincraftでは、ランダムな地形を生成するためにデータが使用されています。
-.. 今回はそれらのデータがこちらのコードのdataという変数に格納されているとします。
-.. 準備したグリッドをplot()関数で表示すると、右のようにデータの値がコンターとなって表示されます。
-.. グリッドの中で値が小さいポリゴンを削除してMineCraftのような洞窟を作成してみます。
+地理データの領域抽出
+--------------------
 
 .. container:: flex-container
 
    .. container:: half
 
-       .. code-block:: python
-
-          # 右図のグリッドを構成するポリゴンの数
-          >>> grid.number_of_points
-          180999
-
-          # 各点の値のデータを定義したNumPy配列
-          >>> data
-          array([-0.29131388, ...])
-
-          # サイズはポリゴンの数と同じであることを確認
-          >>> len(data)
-          180999
-
-       .. code-block:: python
-
-          # 辞書のように定義できます
-          >>> grid['data'] = data
-          >>> grid['data']
-          pyvista_ndarray([-0.29131388, ...])
+       .. image:: https://geovista.readthedocs.io/ja/latest/_images/03ec9a185acb4a41055cab869e98ba0b2cbde1a6d237c291113bba4575595c48.png
+         :width: 1000px
 
    .. container:: half
 
-       .. pyvista-plot::
-          :include-source: False
-
-          import pyvista as pv
-
-          noise = pv.perlin_noise(amplitude=1, freq=(1, 1, 1), phase=(0, 0, 0))
-          grid = pv.sample_function(noise, [0, 3.0, -0, 1.0, 0, 1.0], dim=(120, 40, 40))
-          grid = grid.point_data_to_cell_data()
-
-          clim = (0.0, grid['scalars'].max())
-          grid.plot(
-              cmap='gist_earth_r',
-              background='white',
-              show_scalar_bar=True,
-              lighting=True,
-              clim=clim,
-              show_edges=True,
-              n_colors=20,
-          )
+       .. image:: https://geovista.readthedocs.io/ja/latest/_images/988b4c4404c11e0f3097bda9f322f23f8c6ebcb797542eb665a72452a6810f11.png
+         :width: 1000px
 
 .. revealjs-break::
 
-.. 値が大きい部分を抽出するには、threshold()メソッドを使用して値が0.02より大きい部分を抽出することができます。
-.. その結果値の小さい部分が削除され、右のように洞窟のようなポリゴンが表示されます。
-.. このように、PyVistaを使って、グリッドごとのデータを作成し、洞窟のような形状を作成することができます。
-.. この例を通して、PyVistaを使ってデータを持たせたオブジェクトを作成しその値をもとに処理をする方法を学ぶことができます。
-
 .. container:: flex-container
 
    .. container:: half
 
-       .. code-block:: python
+      - `threshold() <https://docs.pyvista.org/api/core/_autosummary/pyvista.datasetfilters.threshold>`__ メソッドは、メッシュ上のスカラー配列からnan値を持つセルを削除します。
+        (`Region Manifold Extraction <https://geovista.readthedocs.io/ja/latest/tutorials/region-manifold-extraction.html>`__)
 
-          # データの最小値と最大値を取得
-          >>> grid['data'].min()
-          -0.85
-          >>> grid['data'].max()
-          0.903
+      .. code-block:: python
 
-       .. code-block:: python
-
-          # データが0.0565より大きいグリッドを抽出
-          out = grid.threshold(value=0.0565)
-
-       .. code-block:: python
-
-          # 抽出後の最小値と最大値を取得
-          >>> out['data'].min()
-          0.0565
-          >>> out['data'].max()
-          0.903
+         # 海域の領域を抽出する
+         sea_region = region.threshold()
 
    .. container:: half
 
-       .. pyvista-plot::
-          :include-source: False
-
-          import pyvista as pv
-
-          noise = pv.perlin_noise(amplitude=1, freq=(1, 1, 1), phase=(0, 0, 0))
-          grid = pv.sample_function(noise, [0, 3.0, -0, 1.0, 0, 1.0], dim=(120, 40, 40))
-          grid = grid.point_data_to_cell_data()
-
-          out = grid.threshold(0.0565)
-          clim = (0.0, out['scalars'].max())
-          out.plot(
-              cmap='gist_earth_r',
-              background='white',
-              show_scalar_bar=True,
-              lighting=True,
-              clim=clim,
-              show_edges=True,
-              n_colors=20,
-          )
+       .. image:: https://geovista.readthedocs.io/ja/latest/_images/0e28e39d9b5fc24fc452e8dba12ec43fd2c59ba90a04eadd20529549800d40f0.png
+         :width: 1000px
 
 空間のデータ可視化
 ==================
