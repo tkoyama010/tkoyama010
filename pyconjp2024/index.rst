@@ -285,10 +285,7 @@ PyVistaとは？
 .. PyVistaでも同様に、Plotterオブジェクトを使って複数のモデルを描画することができます。
 .. こちらのコードでは、Plotterオブジェクトを使って、円柱を2つ描画しています。
 .. まず、Plotterオブジェクトを作成し、add_mesh()関数を使って円柱を追加します。
-.. その際に、1目の円柱をtranslate()メソッドを使って上方向に1.0移動させています。
-.. このメソッドはメッシュ自身を変更するため、inplace=Trueというオプションを指定しています。
-.. このAPIはPandasに影響を受けているため、Pandasを使ったことがある方は使いやすいと思います。
-.. また、もう1つの円柱を追加し、追加されたモデルをshow()メソッドで表示します。
+.. さらに、もう1つ矢印を追加し、追加されたモデルをshow()メソッドで表示します。
 
 .. container:: flex-container
 
@@ -300,17 +297,16 @@ PyVistaとは？
 
          pl = pv.Plotter()
 
-         # 円柱を上方向に1.0移動します
+         # 円柱を追加します
 
          mesh = pv.Cylinder()
-         mesh.translate(xyz=(0, 0, 1), inplace=True)
          pl.add_mesh(mesh)
 
       .. code-block:: python
 
-         # もう1つ円柱を追加します
+         # 矢印を追加します
 
-         mesh = pv.Cylinder()
+         mesh = pv.Arrow()
          pl.add_mesh(mesh)
 
          # 追加されたモデルを描画します
@@ -325,9 +321,8 @@ PyVistaとは？
          import pyvista as pv
          pl = pv.Plotter()
          mesh = pv.Cylinder()
-         mesh.translate(xyz=(0, 0, 1), inplace=True)
          pl.add_mesh(mesh)
-         mesh = pv.Cylinder()
+         mesh = pv.Arrow()
          pl.add_mesh(mesh)
          pl.show()
 
