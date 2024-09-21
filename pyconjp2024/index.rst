@@ -120,7 +120,7 @@ PythonでCG作成
          pl.show()
 
 テクスチャ
----------------------
+----------
 
 .. 次にテクスチャについて説明します。
 .. テクスチャは、オブジェクトの質感を表現するための画像です。
@@ -171,7 +171,7 @@ PythonでCG作成
          mesh = pv.Cylinder()
          plotter = pv.Plotter(lighting='none')
          plotter.add_mesh(mesh, smooth_shading=True)
-         light = pv.Light(position=(0, 1, 0), light_type='scene light')
+         light = pv.Light(position=(0, 0, 1), light_type='scene light')
          plotter.add_light(light)
          plotter.show()
 
@@ -457,7 +457,7 @@ PyVistaとは？
 
          # 仮想3D空間に光を配置します。
          light = pv.Light(
-             position=(0, 1, 0),
+             position=(0, 0, 1),
              light_type='scene light'
          )
 
@@ -477,6 +477,32 @@ PyVistaとは？
          plotter = pv.Plotter(lighting='none')
          plotter.add_mesh(mesh, smooth_shading=True)
          light = pv.Light(position=(0, 1, 0), light_type='scene light')
+         plotter.add_light(light)
+         plotter.show()
+
+.. revealjs-break::
+
+.. container:: flex-container
+
+   .. container:: half
+
+      .. code-block:: python
+
+         # 光源の位置を(0, 0, 1)に変更します
+         light = pv.Light(
+             position=(0, 0, 1),
+         )
+
+   .. container:: half
+
+      .. pyvista-plot::
+         :include-source: False
+
+         import pyvista as pv
+         mesh = pv.Cylinder()
+         plotter = pv.Plotter(lighting='none')
+         plotter.add_mesh(mesh, smooth_shading=True)
+         light = pv.Light(position=(0, 0, 1), light_type='scene light')
          plotter.add_light(light)
          plotter.show()
 
