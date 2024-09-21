@@ -273,6 +273,13 @@ PyVistaとは？
 
 .. revealjs-break::
 
+.. image:: https://docs.pyvista.org/_images/sphx_glr_create-geometric-objects_001.png
+  :width: 750
+  :alt: Geometric Objects
+  :target: https://docs.pyvista.org/examples/00-load/create-geometric-objects#sphx-glr-examples-00-load-create-geometric-objects-py
+
+.. revealjs-break::
+
 .. また複数のモデルを作成することも可能です。
 .. Matplotlibにおいては、複数のグラフを描画する場合、Figureオブジェクトを使って複数のグラフを描画することができます。
 .. PyVistaでも同様に、Plotterオブジェクトを使って複数のモデルを描画することができます。
