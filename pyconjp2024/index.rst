@@ -261,7 +261,7 @@ PyVistaとは？
 
       .. code-block:: python
 
-         # 球体のモデルを描画する。
+         # 円柱のモデルを描画する。
 
          mesh.plot()
 
