@@ -5,7 +5,7 @@
   </a>
 </h1>
 
-<h3 align="center">Software Developer | Pythonista</h3>
+<h3 align="center">Software Developer | Pythonista | vimmer</h3>
 
 <p align="center">
 <a href="https://tkoyama010.streamlit.app/"><img alt="tkoyama010 examples and documentation" src="https://img.shields.io/static/v1?label=%20&message=Open%20in%20Community%20Cloud&color=pink&logo=streamlit" width=200></a>
