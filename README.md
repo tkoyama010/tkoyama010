@@ -1,10 +1,11 @@
 <h1 align="center">
   <a href="https://git.io/typing-svg">
     <img src="https://readme-typing-svg.herokuapp.com/?lines=Hello,+there!+;I+am+Tetsuo+Koyama...;Nice+to+meet+you!&center=true&size=25">
+    <img src="https://kusa-image.deno.dev/?user=tkoyama010">
   </a>
 </h1>
 
-<h3 align="center">Software Developer | Pythonista</h3>
+<h3 align="center">Software Developer | Pythonista | Vimmer</h3>
 
 <p align="center">
 <a href="https://tkoyama010.streamlit.app/"><img alt="tkoyama010 examples and documentation" src="https://img.shields.io/static/v1?label=%20&message=Open%20in%20Community%20Cloud&color=pink&logo=streamlit" width=200></a>
@@ -41,6 +42,7 @@ I am aims to help people like me who have a handicap in English to access our li
 
 I also wrote Scientific Python programming books using GetFEM and PyVista and wrote about the community in technical magazines.
 
+- [SciPy 2024 カンファレンスレポート](https://gihyo.jp/article/2024/08/scipy2024)
 - [SciPy 2023 カンファレンスレポート](https://gihyo.jp/article/2023/08/scipy2023)
 - [SciPy 2022 カンファレンスレポート](https://gihyo.jp/article/2022/09/scipy2022)
 - [Pythonによる有限要素法 実装ノート](https://www.amazon.co.jp/dp/B09SPMYZN4)
