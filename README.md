@@ -79,6 +79,15 @@ As a speaker, my talk at PyConJP 2019 was featured in a web magazine article as 
   <img src="https://raw.githubusercontent.com/gilbarbara/logos/main/logos/fortran.svg" title="Fortran" alt="Fortran" width="40" height="40"/>&nbsp;
 </div>
 
+## Podcast
+
+I am a guest of [terapyon channel podcast](https://podcast.terapyon.net/).
+
+- [#97 小山さんをゲストに SciPy con 2024参加の話をじっくりと聞く](https://podcast.terapyon.net/episodes/0106.html)
+- [#82 小山さんwhitphxさんをゲストに OSSを仕事にをキーワードにHugging Faceや周辺のPython UIフレームワークについて語る](https://podcast.terapyon.net/episodes/0091.html)
+- [#79 小山さんをゲストに SciPy con参加とOSSプロジェクトの話](https://podcast.terapyon.net/episodes/0088.html)
+- [#63 小山さんをゲストに SciPy con参加と PyVistaの話を深く聞く](https://podcast.terapyon.net/episodes/0072.html)
+
 ## Find me
 
 <p>
