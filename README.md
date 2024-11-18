@@ -25,6 +25,7 @@ I also contribute to the development of [GetFEM](https://github.com/getfem-doc/g
 
 - [PyVista: 3D plotting and mesh analysis through a streamlined interface for the Visualization Toolkit (VTK)](https://github.com/pyvista/pyvista)
 - [GetFEM: Open source library of Finite Element Method](https://github.com/getfem-doc/getfem)
+- [pyOpenSci scientific Python Packaging Guide](https://github.com/pyOpenSci/python-package-guide)
 
 We provide PyVista tutorials in SciPy2022, SciPy2023 and SciPy2024.
 I am a main contributor to the repository used for the tutorials.
