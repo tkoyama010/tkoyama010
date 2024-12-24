@@ -10,6 +10,9 @@
 <h3 align="center"><a href="https://github.com/scipy-conference">@scipy-conference</a> tutorial chairperson</h3>
 
 <p align="center">
+<a href="https://tryhackme.com/r/p/tkoyama010"><img alt="TryHackMe" src="https://tryhackme-badges.s3.amazonaws.com/tkoyama010.png" width=300></a>
+</p>
+<p align="center">
 <a href="https://tkoyama010.streamlit.app/"><img alt="tkoyama010 examples and documentation" src="https://img.shields.io/static/v1?label=%20&message=Open%20in%20Community%20Cloud&color=pink&logo=streamlit" width=200></a>
 </p>
 
@@ -20,8 +23,6 @@
 [![Github](https://img.shields.io/github/followers/tkoyama010?label=Follow)](https://github.com/tkoyama010)
 [![GitHub Repo stars](https://img.shields.io/github/stars/tkoyama010/tkoyama010)](https://github.com/tkoyama010/tkoyama010/stargazers)
 [![Sponsor](https://img.shields.io/badge/-Sponsor-red?logo=github)](https://github.com/sponsors/tkoyama010)
-
-[![TryHackMe](https://tryhackme-badges.s3.amazonaws.com/tkoyama010.png)](https://tryhackme.com/r/p/tkoyama010)
 
 Hi! My name is Tetsuo Koyama. I'm a software engineer in Japan.
 I'm interested in scientific computing and visualization with computer graphics.
