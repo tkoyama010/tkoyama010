@@ -17,6 +17,7 @@
 
 ![](https://komarev.com/ghpvc/?username=tkoyama010&color=green)
 [![LeetCode user tkoyama010](https://img.shields.io/badge/dynamic/json?style=flat&labelColor=black&color=%23ffa116&label=Solved&query=solvedOverTotal&url=https%3A%2F%2Fleetcode-badge.vercel.app%2Fapi%2Fusers%2Ftkoyama010&logo=leetcode&logoColor=yellow)](https://leetcode.com/tkoyama010/)
+[![Kaggle Badge](https://img.shields.io/badge/Kaggle-20BEFF?logo=kaggle&logoColor=fff&style=flat)](https://www.kaggle.com/tkoyama010)
 [![TryHackMe Badge](https://img.shields.io/badge/TryHackMe-212C42?logo=tryhackme&logoColor=fff&style=flat)](https://tryhackme.com/r/p/tkoyama010)
 [![Github](https://img.shields.io/github/followers/tkoyama010?label=Follow)](https://github.com/tkoyama010)
 [![GitHub Repo stars](https://img.shields.io/github/stars/tkoyama010/tkoyama010)](https://github.com/tkoyama010/tkoyama010/stargazers)
