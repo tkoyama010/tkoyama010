@@ -58,6 +58,12 @@ As a speaker, my talk at PyConJP 2019 was featured in a web magazine article as 
 
 [Tetsuo Koyama's Google Scholar.](https://scholar.google.co.jp/citations?user=GJ0Mv00AAAAJ)
 
+## TryHackMe badges
+
+<div>
+<img src="https://tryhackme-badges.s3.amazonaws.com/tkoyama010.png" alt="Your Image Badge" />
+</div>
+
 ## Technologies & Programming Languages
 
 <div>
