@@ -20,6 +20,8 @@
 [![GitHub Repo stars](https://img.shields.io/github/stars/tkoyama010/tkoyama010)](https://github.com/tkoyama010/tkoyama010/stargazers)
 [![Sponsor](https://img.shields.io/badge/-Sponsor-red?logo=github)](https://github.com/sponsors/tkoyama010)
 
+[![TryHackMe](https://tryhackme-badges.s3.amazonaws.com/tkoyama010.png)](https://tryhackme.com/r/p/tkoyama010)
+
 Hi! My name is Tetsuo Koyama. I'm a software engineer in Japan.
 I'm interested in scientific computing and visualization with computer graphics.
 I am on the developer team of [PyVista](https://github.com/orgs/pyvista/people).
@@ -57,14 +59,6 @@ As a speaker, my talk at PyConJP 2019 was featured in a web magazine article as 
 ## Publication
 
 [Tetsuo Koyama's Google Scholar.](https://scholar.google.co.jp/citations?user=GJ0Mv00AAAAJ)
-
-## TryHackMe badges
-
-<div>
-  <a rel="me" href="https://tryhackme.com/r/p/tkoyama010">
-  <img src="https://tryhackme-badges.s3.amazonaws.com/tkoyama010.png" alt="Your Image Badge" />
-  </a>
-</div>
 
 ## Technologies & Programming Languages
 
