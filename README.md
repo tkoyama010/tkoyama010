@@ -21,6 +21,8 @@
 [![GitHub Repo stars](https://img.shields.io/github/stars/tkoyama010/tkoyama010)](https://github.com/tkoyama010/tkoyama010/stargazers)
 [![Sponsor](https://img.shields.io/badge/-Sponsor-red?logo=github)](https://github.com/sponsors/tkoyama010)
 
+[![TryHackMe](https://tryhackme-badges.s3.amazonaws.com/tkoyama010.png)](https://tryhackme.com/r/p/tkoyama010)
+
 Hi! My name is Tetsuo Koyama. I'm a software engineer in Japan.
 I'm interested in scientific computing and visualization with computer graphics.
 I am on the developer team of [PyVista](https://github.com/orgs/pyvista/people).
