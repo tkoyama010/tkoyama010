@@ -61,7 +61,9 @@ As a speaker, my talk at PyConJP 2019 was featured in a web magazine article as 
 ## TryHackMe badges
 
 <div>
-<img src="https://tryhackme-badges.s3.amazonaws.com/tkoyama010.png" alt="Your Image Badge" />
+  <a rel="me" href="https://tryhackme.com/r/p/tkoyama010">
+  <img src="https://tryhackme-badges.s3.amazonaws.com/tkoyama010.png" alt="Your Image Badge" />
+  </a>
 </div>
 
 ## Technologies & Programming Languages
