@@ -16,6 +16,7 @@
 ## About me
 
 ![](https://komarev.com/ghpvc/?username=tkoyama010&color=green)
+[![committers.top badge](https://user-badge.committers.top/japan_public/tkoyama010.svg)](https://user-badge.committers.top/japan_public/tkoyama010)
 [![LeetCode user tkoyama010](https://img.shields.io/badge/dynamic/json?style=flat&labelColor=black&color=%23ffa116&label=Solved&query=solvedOverTotal&url=https%3A%2F%2Fleetcode-badge.vercel.app%2Fapi%2Fusers%2Ftkoyama010&logo=leetcode&logoColor=yellow)](https://leetcode.com/tkoyama010/)
 [![Kaggle Achievements](https://img.shields.io/badge/Kaggle-Gold_0,_Silver_0,_Bronze_1-yellow?logo=kaggle&labelColor=black&style=flat)](https://www.kaggle.com/tkoyama010)
 [![TryHackMe Badge](https://img.shields.io/badge/TryHackMe-[0x2]-blue?logo=tryhackme&logoColor=fff&style=flat&labelColor=black)](https://tryhackme.com/r/p/tkoyama010)
