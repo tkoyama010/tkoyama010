@@ -1,15 +1,12 @@
-import pyvista
-
-pyvista.OFF_SCREEN = True
 # -- Path setup --------------------------------------------------------------
 
 
 # -- Project information -----------------------------------------------------
-project = "pyvista-tutorial-presentation"
-copyright = "2023, Tetsuo Koyama"
+project = "scipydata2025-presentation"
+copyright = "2025, Tetsuo Koyama"
 author = "Tetsuo Koyama"
 version = "0.1.dev"
-release = "2023.10"
+release = "2025.01"
 
 # -- General configuration ---------------------------------------------------
 extensions = [
@@ -20,8 +17,6 @@ extensions = [
     "sphinxcontrib.gtagjs",
     "sphinxcontrib.sass",
     "sphinxemoji.sphinxemoji",
-    "pyvista.ext.plot_directive",
-    "pyvista.ext.viewer_directive",
     "sphinx_design",
 ]
 templates_path = ["_templates"]

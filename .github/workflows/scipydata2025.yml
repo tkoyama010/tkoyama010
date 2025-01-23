@@ -14,22 +14,20 @@ jobs:
     steps:
       - uses: awalsh128/cache-apt-pkgs-action@v1.4.3
         with:
-          packages: libosmesa6-dev libgl1-mesa-dev python3-tk pandoc git-restore-mtime
+          packages: pandoc git-restore-mtime
           version: 3.0
       - uses: actions/setup-python@v5
       - uses: actions/checkout@v4
       - run: |
-          cd pyconjp2024
+          cd scipydata2025
           pip install -r requirements.txt
-          pip uninstall vtk -y
-          pip install vtk-osmesa==9.3.0 --index-url https://gitlab.kitware.com/api/v4/projects/13/packages/pypi/simple
           playwright install
           make revealjs
           cd ..
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3.0
         with:
-          publish-dir: pyconjp2024/_build/revealjs
+          publish-dir: scipydata2025/_build/revealjs
           production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"
@@ -38,5 +36,5 @@ jobs:
           overwrites-pull-request-comment: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.PYCONJP2024_SITE_ID }}
+          NETLIFY_SITE_ID: ${{ secrets.SCIPYDATA2025_SITE_ID }}
         timeout-minutes: 5
