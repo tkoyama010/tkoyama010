@@ -5,7 +5,9 @@
   </a>
 </h1>
 
-<h3 align="center">Software Developer | Pythonista</h3>
+<h3 align="center">Software Developer | Pythonista | Vimmer</h3>
+<h3 align="center">Technical Steering Committee of <a href="https://github.com/numfocus">@numfocus</a></h3>
+<h3 align="center"><a href="https://github.com/scipy-conference">@scipy-conference</a> tutorial chairperson</h3>
 
 <p align="center">
 <a href="https://tkoyama010.streamlit.app/"><img alt="tkoyama010 examples and documentation" src="https://img.shields.io/static/v1?label=%20&message=Open%20in%20Community%20Cloud&color=pink&logo=streamlit" width=200></a>
@@ -14,6 +16,10 @@
 ## About me
 
 ![](https://komarev.com/ghpvc/?username=tkoyama010&color=green)
+[![committers.top badge](https://user-badge.committers.top/japan_public/tkoyama010.svg)](https://user-badge.committers.top/japan_public/tkoyama010)
+[![LeetCode user tkoyama010](https://img.shields.io/badge/dynamic/json?style=flat&labelColor=black&color=%23ffa116&label=Solved&query=solvedOverTotal&url=https%3A%2F%2Fleetcode-badge.vercel.app%2Fapi%2Fusers%2Ftkoyama010&logo=leetcode&logoColor=yellow)](https://leetcode.com/tkoyama010/)
+[![Kaggle Achievements](https://img.shields.io/badge/Kaggle-tkoyama010-yellow?logo=kaggle&labelColor=black&style=flat)](https://www.kaggle.com/tkoyama010)
+[![TryHackMe Badge](https://img.shields.io/badge/TryHackMe-tkoyama010-blue?logo=tryhackme&logoColor=fff&style=flat&labelColor=black)](https://tryhackme.com/r/p/tkoyama010)
 [![Github](https://img.shields.io/github/followers/tkoyama010?label=Follow)](https://github.com/tkoyama010)
 [![GitHub Repo stars](https://img.shields.io/github/stars/tkoyama010/tkoyama010)](https://github.com/tkoyama010/tkoyama010/stargazers)
 [![Sponsor](https://img.shields.io/badge/-Sponsor-red?logo=github)](https://github.com/sponsors/tkoyama010)
@@ -26,8 +32,9 @@ I also contribute to the development of [GetFEM](https://github.com/getfem-doc/g
 
 - [PyVista: 3D plotting and mesh analysis through a streamlined interface for the Visualization Toolkit (VTK)](https://github.com/pyvista/pyvista)
 - [GetFEM: Open source library of Finite Element Method](https://github.com/getfem-doc/getfem)
+- [pyOpenSci scientific Python Packaging Guide](https://github.com/pyOpenSci/python-package-guide)
 
-We provide PyVista tutorials in SciPy2022 and SciPy2023.
+We provide PyVista tutorials in SciPy2022, SciPy2023 and SciPy2024.
 I am a main contributor to the repository used for the tutorials.
 
 - [PyVista Tutorial](https://github.com/pyvista/pyvista-tutorial)
@@ -68,15 +75,27 @@ As a speaker, my talk at PyConJP 2019 was featured in a web magazine article as 
   <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/latex/latex-original.svg" title="LaTeX" alt="LaTeX" width="40" height="40"/>&nbsp;
   <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/markdown/markdown-original.svg" title="Markdown" alt="Markdown" width="40" height="40"/>&nbsp;
   <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/pytest/pytest-original.svg" title="pytest" alt="pytest" width="40" height="40"/>&nbsp;
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/pandas/pandas-original.svg" title="pandas" alt="pandas" width="40" height="40"/>&nbsp;
   <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" title="Python" alt="Python" width="40" height="40"/>&nbsp;
   <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/qt/qt-original.svg" title="Qt" alt="Qt" width="40" height="40"/>&nbsp;
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/scikitlearn/scikitlearn-original.svg" title="scikitlearn" alt="scikitlearn" width="40" height="40"/>&nbsp;
   <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/ssh/ssh-original.svg" title="ssh" alt="ssh" width="40" height="40"/>&nbsp;
   <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/streamlit/streamlit-original.svg" title="Streamlit" alt="Streamlit" width="40" height="40"/>&nbsp;
   <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/subversion/subversion-original.svg" title="Subversion" **alt="Subversion" width="40" height="40"/>
   <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/ubuntu/ubuntu-plain.svg" title="Ubuntu" alt="Ubuntu" width="40" height="40"/>&nbsp;
   <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vim/vim-original.svg" title="Vim" alt="Vim" width="40" height="40"/>&nbsp;
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg" title="VSCode" VSCode="Vim" width="40" height="40"/>&nbsp;
   <img src="https://raw.githubusercontent.com/gilbarbara/logos/main/logos/fortran.svg" title="Fortran" alt="Fortran" width="40" height="40"/>&nbsp;
 </div>
+
+## Podcast
+
+I am a guest of [terapyon channel podcast](https://podcast.terapyon.net/).
+
+- [#97 小山さんをゲストに SciPy con 2024参加の話をじっくりと聞く](https://podcast.terapyon.net/episodes/0106.html)
+- [#82 小山さんwhitphxさんをゲストに OSSを仕事にをキーワードにHugging Faceや周辺のPython UIフレームワークについて語る](https://podcast.terapyon.net/episodes/0091.html)
+- [#79 小山さんをゲストに SciPy con参加とOSSプロジェクトの話](https://podcast.terapyon.net/episodes/0088.html)
+- [#63 小山さんをゲストに SciPy con参加と PyVistaの話を深く聞く](https://podcast.terapyon.net/episodes/0072.html)
 
 ## Find me
 
