@@ -5,7 +5,7 @@
   </a>
 </h1>
 
-<h3 align="center">Pythonista | Vimmer</h3>
+<h3 align="center">Pythonista | AI engineer</h3>
 <h3 align="center">Technical Steering Committee of <a href="https://github.com/numfocus">@numfocus</a></h3>
 <h3 align="center"><a href="https://github.com/scipy-conference">@scipy-conference</a> tutorial chairperson</h3>
 
