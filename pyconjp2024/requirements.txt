@@ -1,5 +1,5 @@
 geovista==0.5.3
-oEmbedPy==0.8.0
+oEmbedPy==0.8.1
 pyvista[all]==0.44.2
 sphinx-revealjs[screenshot]==3.1.1
 sphinx-tabs==3.4.7
