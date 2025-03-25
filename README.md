@@ -24,6 +24,8 @@
 [![GitHub Repo stars](https://img.shields.io/github/stars/tkoyama010/tkoyama010)](https://github.com/tkoyama010/tkoyama010/stargazers)
 [![Sponsor](https://img.shields.io/badge/-Sponsor-red?logo=github)](https://github.com/sponsors/tkoyama010)
 [![wakatime](https://wakatime.com/badge/user/018c8661-c45f-4525-b855-c752f6c2370c.svg)](https://wakatime.com/@018c8661-c45f-4525-b855-c752f6c2370c)
+[![tkoyama010](https://img.shields.io/endpoint?url=https%3A%2F%2Fatcoder-badges.now.sh%2Fapi%2Fatcoder%2Fjson%2Ftkoyama010)](https://atcoder.jp/users/tkoyama010)
+[![tkoyama010](https://img.shields.io/endpoint?url=https%3A%2F%2Fatcoder-badges.now.sh%2Fapi%2Fcodeforces%2Fjson%2Ftkoyama010)](https://codeforces.com/profile/tkoyama010)
 
 Hi! My name is Tetsuo Koyama. I'm a AI engineer in Japan.
 I'm interested in scientific computing and visualization with computer graphics.
