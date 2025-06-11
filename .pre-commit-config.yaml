@@ -19,7 +19,7 @@ repos:
         exclude: opencae2020B02
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.19.1
+    rev: v3.20.0
     hooks:
       - id: pyupgrade
         args: [--py38-plus, --keep-runtime-typing]
@@ -43,7 +43,7 @@ repos:
       - id: check-github-workflows
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.11.9
+    rev: v0.11.13
     hooks:
       - id: ruff
         args: [--fix]
