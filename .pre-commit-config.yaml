@@ -6,7 +6,7 @@ repos:
         exclude: opencae2020B02
 
   - repo: https://github.com/keewis/blackdoc
-    rev: v0.3.9
+    rev: v0.4.0
     hooks:
       - id: blackdoc
         files: '\.py$'
