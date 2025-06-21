@@ -101,7 +101,8 @@ def print_path(path):
 
 def transport_boxes(n, w, d):
     """
-    各セル（0,0は除く）について、箱が1個なら1個、2個以上なら2個運ぶことを試みる。
+    各セル（0,0は除く）について、箱が1個を運ぶことを試みる。
+    その際、隣接する右のセルに箱がある場合は、そこに移動し、追加で箱を運ぶ。
     耐久力チェックを行い、条件を満たせば経路を出力する。
 
     引数:
@@ -109,7 +110,7 @@ def transport_boxes(n, w, d):
        w (list[list[int]]): 重さの行列
        d (list[list[int]]): 耐久力の行列
     """
-    for i, j in product(range(n), repeat=2):
+    for i, j in product(range(n - 1, -1, -1), repeat=2):
         if i == 0 and j == 0:
             continue
 
@@ -128,11 +129,11 @@ def transport_boxes(n, w, d):
         carry_count = 1
 
         # 耐久力の判定
-        # if d[i][j] < dist * carry_count * w[i][j]:
-        #    continue
+        if d[i][j] < dist * carry_count * w[i][j]:
+           continue
 
         print_path(path_there)
-        print(str(carry_count))  # 運ぶ箱の個数（1か2）を出力
+        print(str(carry_count))  # 運ぶ箱の個数を出力
         print_path(path_back)
 
 
