@@ -66,7 +66,7 @@ def print_path(path):
     Args:
         path (iterator): Iterator or list of directions ('U', 'D', 'L', 'R').
     """
-    print('\n'.join(path))
+    print("\n".join(path))
 
 
 def transport_boxes(n):
