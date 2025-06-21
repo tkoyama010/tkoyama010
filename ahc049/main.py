@@ -138,7 +138,7 @@ def transport_boxes(n, w, d):
             k = i
             l = j + 1
         total_damage = w[k][l] * len(path_back)
-        if total_damage < d[i][j]:
+        if is_transported[k][l] == False and total_damage < d[i][j]:
             print("1")
             is_transported[k][l] = True
         print_path(path_back[1:])
