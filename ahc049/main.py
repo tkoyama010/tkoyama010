@@ -121,11 +121,8 @@ def transport_boxes(n, w, d):
         path_there = list(bfs_path(n, (0, 0), (i, j)))
         path_back = list(bfs_path(n, (i, j), (0, 0)))
 
-        # 運搬する箱の個数を決定
-        carry_count = 1
-
         print_path(path_there)
-        print(str(carry_count))  # 運ぶ箱の個数を出力
+        print(str(1))  # 段ボールを持つ
         print_path(path_back)
         is_transported[i][j] = True
 
