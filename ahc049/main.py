@@ -102,6 +102,7 @@ def print_path(path):
 def transport_boxes(n, w, d):
     """
     各セル（0,0は除く）について、箱が1個を運ぶことを試みる。
+    その際、隣接する右のセルに箱がある場合は、そこに移動し、追加で箱を運ぶ。
     耐久力チェックを行い、条件を満たせば経路を出力する。
 
     引数:
@@ -109,44 +110,31 @@ def transport_boxes(n, w, d):
        w (list[list[int]]): 重さの行列
        d (list[list[int]]): 耐久力の行列
     """
-    is_transported = [[False] * n for _ in range(n)]
     for i, j in product(range(n - 1, -1, -1), repeat=2):
         if i == 0 and j == 0:
             continue
 
-        if is_transported[i][j]:
+        if w[i][j] <= 0:
             continue  # 箱がない場合はスキップ
 
         path_there = list(bfs_path(n, (0, 0), (i, j)))
         path_back = list(bfs_path(n, (i, j), (0, 0)))
 
+        # 運搬する箱の個数を決定
+        carry_count = 1
+
+        # 耐久力チェック：移動中に箱が潰れないか
+        dist = len(path_there) + len(path_back)
+        if d[i][j] < 0:  # 箱がない
+            continue
+
+        # 耐久力の判定
+        if d[i][j] < dist * carry_count * w[i][j]:
+           continue
+
         print_path(path_there)
-        print(str(1))  # 1つの箱を運ぶ
-
-        # path_back で戻るときに追加で1つの箱を運ぶ
-        # ただし、その荷物が運べるかどうかは、耐久力チェックで確認する
-        if path_back[0] == "U":
-            next_i = i - 1
-            next_j = j
-        elif path_back[0] == "D":
-            next_i = i + 1
-            next_j = j
-        elif path_back[0] == "L":
-            next_i = i
-            next_j = j - 1
-        elif path_back[0] == "R":
-            next_i = i
-            next_j = j + 1
-
-        if not is_transported[next_i][next_j] and w[next_i][next_j] * len(path_back) < d[i][j]:
-            print_path(path_back[0])
-            print("1") # 2つ目の箱を運ぶ
-            print_path(path_back[1:])
-            is_transported[i][j] = True
-            is_transported[next_i][next_j] = True
-        else:
-            print_path(path_back)
-            is_transported[i][j] = True
+        print(str(carry_count))  # 運ぶ箱の個数を出力
+        print_path(path_back)
 
 
 def main():
