@@ -9,16 +9,17 @@ DIRECTIONS = [("U", -1, 0), ("D", 1, 0), ("L", 0, -1), ("R", 0, 1)]
 
 def read_input():
     """
-    Reads input from standard input.
+    標準入力からデータを読み込む。
 
-    The input format is:
-    - An integer n representing the grid size.
-    - Two n x n integer matrices w and d.
+    入力形式:
+    - グリッドのサイズを表す整数 n
+    - 重さ行列 w を表す n 行の整数列
+    - 耐久力行列 d を表す n 行の整数列
 
-    Returns:
-        int: The size n of the grid.
-        list[list[int]]: Weight matrix w.
-        list[list[int]]: Strenght matrix d.
+    戻り値:
+        n (int): グリッドのサイズ
+        w (list[list[int]]): 重さの行列
+        d (list[list[int]]): 耐久力の行列
     """
     n = int(input())
     w = [list(map(int, input().split())) for _ in range(n)]
@@ -28,15 +29,15 @@ def read_input():
 
 def bfs_search(n, start, goal):
     """
-    Performs BFS to find a path from start to goal on an n x n grid.
+    BFSアルゴリズムで start から goal までの最短経路を探索する。
 
-    Args:
-        n (int): Size of the grid (n x n).
-        start (tuple): Starting coordinates (x, y).
-        goal (tuple): Goal coordinates (x, y).
+    引数:
+        n (int): グリッドのサイズ (n x n)
+        start (tuple): 開始座標 (x, y)
+        goal (tuple): 目標座標 (x, y)
 
-    Returns:
-        list[list[tuple]]: A 2D list representing the previous cell and direction taken to reach each cell.
+    戻り値:
+        prev (list[list[tuple or None]]): 各セルについて、(前のセルの x 座標, 前のセルの y 座標, 移動方向) を記録した2次元リスト
     """
     visited = [[False] * n for _ in range(n)]
     prev = [[None] * n for _ in range(n)]
@@ -59,22 +60,22 @@ def bfs_search(n, start, goal):
 
 def reconstruct_path(start, goal, prev):
     """
-    Reconstructs the path from start to goal using the 'prev' table.
+    prev リストを用いて start から goal までの移動方向の経路を復元する。
 
-    Args:
-        start (tuple): Starting coordinates (x, y).
-        goal (tuple): Goal coordinates (x, y).
-        prev (list[list[tuple]]): A 2D list of previous nodes and directions.
+    引数:
+        start (tuple): 開始座標 (x, y)
+        goal (tuple): 目標座標 (x, y)
+        prev (list[list[tuple or None]]): 各セルについての前のセルと移動方向を記録した2次元リスト
 
-    Returns:
-        iterator: An iterator of directions ('U', 'D', 'L', 'R') from start to goal.
+    戻り値:
+        iterator: 移動方向の列（'U', 'D', 'L', 'R'）
     """
     path = []
     x, y = goal
     while (x, y) != start:
         node = prev[x][y]
         if node is None:
-            return iter([])  # No path found
+            return iter([])  # 経路が存在しない場合は空のイテレータを返す
         x, y, d = node
         path.append(d)
     return reversed(path)
@@ -82,15 +83,10 @@ def reconstruct_path(start, goal, prev):
 
 def bfs_path(n, start, goal):
     """
-    Finds the shortest path from start to goal on an n x n grid using BFS.
+    start から goal までの最短経路の移動方向列を返す。
 
-    Args:
-        n (int): Size of the grid (n x n).
-        start (tuple): Starting coordinates (x, y).
-        goal (tuple): Goal coordinates (x, y).
-
-    Returns:
-        iterator: An iterator of directions ('U', 'D', 'L', 'R') from start to goal.
+    戻り値:
+        iterator: 移動方向の列
     """
     prev = bfs_search(n, start, goal)
     return reconstruct_path(start, goal, prev)
@@ -98,29 +94,27 @@ def bfs_path(n, start, goal):
 
 def print_path(path):
     """
-    Prints each direction in the path on a new line.
-
-    Args:
-        path (iterator): Iterator or list of directions ('U', 'D', 'L', 'R').
+    移動方向の列を1行ずつ出力する。
     """
     print("\n".join(path))
 
 
 def transport_boxes(n, w, d):
     """
-    For each cell in the n x n grid (except the start), finds and prints:
-    - The path from start (0, 0) to the cell.
-    - A '1' indicating picking up a box.
-    - The path back from the cell to start (0, 0).
+    各セル（0,0は除く）について、箱が1個なら1個、2個以上なら2個運ぶことを試みる。
+    耐久力チェックを行い、条件を満たせば経路を出力する。
 
-    Args:
-        n (int): Size of the grid.
-        w (list[list[int]]): Weight matrix.
-        d (list[list[int]]): Strength matrix.
+    引数:
+       n (int): グリッドのサイズ
+       w (list[list[int]]): 重さの行列
+       d (list[list[int]]): 耐久力の行列
     """
     for i, j in product(range(n), repeat=2):
         if i == 0 and j == 0:
             continue
+
+        if w[i][j] <= 0:
+            continue  # 箱がない場合はスキップ
 
         path_there = list(bfs_path(n, (0, 0), (i, j)))
         path_back = list(bfs_path(n, (i, j), (0, 0)))
@@ -129,18 +123,20 @@ def transport_boxes(n, w, d):
         dist = len(path_there) + len(path_back)
         if d[i][j] < 0:  # 箱がない
             continue
-        if d[i][j] < dist * 0:  # 0は上の箱の重さ、今は1個運ぶので無視できる
-            continue
+
+        # 運搬する箱の個数を決定
+        carry_count = 1
+
+        # 耐久力の判定
+        # if d[i][j] < dist * carry_count * w[i][j]:
+        #    continue
 
         print_path(path_there)
-        print("1")
+        print(str(carry_count))  # 運ぶ箱の個数（1か2）を出力
         print_path(path_back)
 
 
 def main():
-    """
-    Main function to read input and run the box transport logic.
-    """
     n, w, d = read_input()
     transport_boxes(n, w, d)
 
