@@ -1,60 +1,57 @@
 import sys
 from collections import deque
 
-sys.setrecursionlimit(10000)
+sys.setrecursionlimit(10_000)
 
-# 入力読み込み
-N = int(input())
-W = [list(map(int, input().split())) for _ in range(N)]
-D = [list(map(int, input().split())) for _ in range(N)]
+DIRECTIONS = [('U', -1, 0), ('D', 1, 0), ('L', 0, -1), ('R', 0, 1)]
 
-# 移動用
-DIRS = {"U": (-1, 0), "D": (1, 0), "L": (0, -1), "R": (0, 1)}
-DIR_CHARS = ["U", "D", "L", "R"]
+def read_input():
+    n = int(input())
+    w = [list(map(int, input().split())) for _ in range(n)]
+    d = [list(map(int, input().split())) for _ in range(n)]
+    return n
 
-
-def bfs_path(sx, sy, gx, gy):
-    """幅優先探索で入口からの最短経路を求める"""
-    visited = [[False] * N for _ in range(N)]
-    prev = [[None] * N for _ in range(N)]
-    queue = deque()
-    queue.append((sx, sy))
-    visited[sx][sy] = True
+def bfs_path(n, start, goal):
+    visited = [[False] * n for _ in range(n)]
+    prev = [[None] * n for _ in range(n)]
+    queue = deque([start])
+    visited[start[0]][start[1]] = True
 
     while queue:
         x, y = queue.popleft()
-        if (x, y) == (gx, gy):
+        if (x, y) == goal:
             break
-        for d, (dx, dy) in zip(DIR_CHARS, DIRS.values()):
+        for direction, dx, dy in DIRECTIONS:
             nx, ny = x + dx, y + dy
-            if 0 <= nx < N and 0 <= ny < N and not visited[nx][ny]:
+            if 0 <= nx < n and 0 <= ny < n and not visited[nx][ny]:
                 visited[nx][ny] = True
-                prev[nx][ny] = (x, y, d)
+                prev[nx][ny] = (x, y, direction)
                 queue.append((nx, ny))
 
-    # 経路復元
     path = []
-    cx, cy = gx, gy
-    while (cx, cy) != (sx, sy):
-        px, py, dir_char = prev[cx][cy]
-        path.append(dir_char)
-        cx, cy = px, py
-    return path[::-1]
+    x, y = goal
+    while (x, y) != start:
+        x, y, d = prev[x][y]
+        path.append(d)
+    return reversed(path)
 
+def print_path(path):
+    print('\n'.join(path))
 
-def move_path(path):
-    for step in path:
-        print(step)
+def transport_boxes(n):
+    for i in range(n):
+        for j in range(n):
+            if i == 0 and j == 0:
+                continue
+            path_there = bfs_path(n, (0, 0), (i, j))
+            print_path(path_there)
+            print('1')  # pick up
+            path_back = bfs_path(n, (i, j), (0, 0))
+            print_path(path_back)
 
+def main():
+    n = read_input()
+    transport_boxes(n)
 
-# 各マスに対して、距離の近い順に運び出す
-for i in range(N):
-    for j in range(N):
-        if (i, j) == (0, 0):
-            continue
-        path_to_box = bfs_path(0, 0, i, j)
-        move_path(path_to_box)
-        print("1")  # pick
-        path_back = bfs_path(i, j, 0, 0)
-        move_path(path_back)
-        # 運んだので箱を出す（実際はそのまま持って出たとみなす）
+if __name__ == '__main__':
+    main()
