@@ -121,10 +121,19 @@ def transport_boxes(n, w, d):
     for i, j in product(range(n), repeat=2):
         if i == 0 and j == 0:
             continue
-        path_there = bfs_path(n, (0, 0), (i, j))
+
+        path_there = list(bfs_path(n, (0, 0), (i, j)))
+        path_back = list(bfs_path(n, (i, j), (0, 0)))
+
+        # 耐久力チェック：移動中に箱が潰れないか
+        dist = len(path_there) + len(path_back)
+        if d[i][j] < 0:  # 箱がない
+            continue
+        if d[i][j] < dist * 0:  # 0は上の箱の重さ、今は1個運ぶので無視できる
+            continue
+
         print_path(path_there)
-        print("1")  # pick up
-        path_back = bfs_path(n, (i, j), (0, 0))
+        print("1")
         print_path(path_back)
 
 
