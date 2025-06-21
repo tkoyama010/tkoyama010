@@ -112,6 +112,7 @@ def transport_boxes(n, w, d):
     """
     transport_two_boxes_count = 0
     is_transported = [[False] * n for _ in range(n)]
+    is_transported[0][0] = True  # (0, 0)は常に運ばれているとする
     for i, j in product(range(n - 1, -1, -1), repeat=2):
         if i == 0 and j == 0:
             continue
