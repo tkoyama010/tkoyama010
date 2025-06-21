@@ -3,7 +3,8 @@ from collections import deque
 
 sys.setrecursionlimit(10_000)
 
-DIRECTIONS = [('U', -1, 0), ('D', 1, 0), ('L', 0, -1), ('R', 0, 1)]
+DIRECTIONS = [("U", -1, 0), ("D", 1, 0), ("L", 0, -1), ("R", 0, 1)]
+
 
 def read_input():
     """
@@ -20,6 +21,7 @@ def read_input():
     w = [list(map(int, input().split())) for _ in range(n)]
     d = [list(map(int, input().split())) for _ in range(n)]
     return n
+
 
 def bfs_path(n, start, goal):
     """
@@ -56,6 +58,7 @@ def bfs_path(n, start, goal):
         path.append(d)
     return reversed(path)
 
+
 def print_path(path):
     """
     Prints each direction in the path on a new line.
@@ -64,6 +67,7 @@ def print_path(path):
         path (iterator): Iterator or list of directions ('U', 'D', 'L', 'R').
     """
     print('\n'.join(path))
+
 
 def transport_boxes(n):
     """
@@ -81,9 +85,10 @@ def transport_boxes(n):
                 continue
             path_there = bfs_path(n, (0, 0), (i, j))
             print_path(path_there)
-            print('1')  # pick up
+            print("1")  # pick up
             path_back = bfs_path(n, (i, j), (0, 0))
             print_path(path_back)
+
 
 def main():
     """
@@ -92,5 +97,6 @@ def main():
     n = read_input()
     transport_boxes(n)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
