@@ -110,12 +110,13 @@ def transport_boxes(n, w, d):
        w (list[list[int]]): 重さの行列
        d (list[list[int]]): 耐久力の行列
     """
+    is_transported = [[False] * n for _ in range(n)]
     for i, j in product(range(n - 1, -1, -1), repeat=2):
         if i == 0 and j == 0:
             continue
 
-        if w[i][j] <= 0:
-            continue  # 箱がない場合はスキップ
+        if is_transported[i][j]:
+            continue
 
         path_there = list(bfs_path(n, (0, 0), (i, j)))
         path_back = list(bfs_path(n, (i, j), (0, 0)))
@@ -123,18 +124,10 @@ def transport_boxes(n, w, d):
         # 運搬する箱の個数を決定
         carry_count = 1
 
-        # 耐久力チェック：移動中に箱が潰れないか
-        dist = len(path_there) + len(path_back)
-        if d[i][j] < 0:  # 箱がない
-            continue
-
-        # 耐久力の判定
-        if d[i][j] < dist * carry_count * w[i][j]:
-           continue
-
         print_path(path_there)
         print(str(carry_count))  # 運ぶ箱の個数を出力
         print_path(path_back)
+        is_transported[i][j] = True
 
 
 def main():
