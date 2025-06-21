@@ -16,7 +16,7 @@ out_dir = "./pahcer"
 #         COMPILE STEPS
 # ==============================
 
-# On macOS, there’s a possibility of SIGKILL or other issues occurring, 
+# On macOS, there’s a possibility of SIGKILL or other issues occurring,
 # so it’s better to build the visualizer in advance
 # rather than running it with cargo run every time.
 
@@ -54,4 +54,3 @@ measure_time = true
 program = "./vis"
 args = ["./tools/in/{SEED04}.txt", "./tools/out/{SEED04}.txt"]
 measure_time = false
-
