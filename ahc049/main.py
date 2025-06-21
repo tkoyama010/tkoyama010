@@ -120,13 +120,13 @@ def transport_boxes(n, w, d):
         path_there = list(bfs_path(n, (0, 0), (i, j)))
         path_back = list(bfs_path(n, (i, j), (0, 0)))
 
+        # 運搬する箱の個数を決定
+        carry_count = 1
+
         # 耐久力チェック：移動中に箱が潰れないか
         dist = len(path_there) + len(path_back)
         if d[i][j] < 0:  # 箱がない
             continue
-
-        # 運搬する箱の個数を決定
-        carry_count = 1
 
         # 耐久力の判定
         if d[i][j] < dist * carry_count * w[i][j]:
