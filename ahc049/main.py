@@ -24,9 +24,9 @@ def read_input():
     return n
 
 
-def bfs_path(n, start, goal):
+def bfs_search(n, start, goal):
     """
-    Finds the shortest path from start to goal on an n x n grid using BFS.
+    Performs BFS to find a path from start to goal on an n x n grid.
 
     Args:
         n (int): Size of the grid (n x n).
@@ -34,7 +34,7 @@ def bfs_path(n, start, goal):
         goal (tuple): Goal coordinates (x, y).
 
     Returns:
-        iterator: An iterator of directions ('U', 'D', 'L', 'R') from start to goal.
+        list[list[tuple]]: A 2D list representing the previous cell and direction taken to reach each cell.
     """
     visited = [[False] * n for _ in range(n)]
     prev = [[None] * n for _ in range(n)]
@@ -52,12 +52,46 @@ def bfs_path(n, start, goal):
                 prev[nx][ny] = (x, y, direction)
                 queue.append((nx, ny))
 
+    return prev
+
+
+def reconstruct_path(start, goal, prev):
+    """
+    Reconstructs the path from start to goal using the 'prev' table.
+
+    Args:
+        start (tuple): Starting coordinates (x, y).
+        goal (tuple): Goal coordinates (x, y).
+        prev (list[list[tuple]]): A 2D list of previous nodes and directions.
+
+    Returns:
+        iterator: An iterator of directions ('U', 'D', 'L', 'R') from start to goal.
+    """
     path = []
     x, y = goal
     while (x, y) != start:
-        x, y, d = prev[x][y]
+        node = prev[x][y]
+        if node is None:
+            return iter([])  # No path found
+        x, y, d = node
         path.append(d)
     return reversed(path)
+
+
+def bfs_path(n, start, goal):
+    """
+    Finds the shortest path from start to goal on an n x n grid using BFS.
+
+    Args:
+        n (int): Size of the grid (n x n).
+        start (tuple): Starting coordinates (x, y).
+        goal (tuple): Goal coordinates (x, y).
+
+    Returns:
+        iterator: An iterator of directions ('U', 'D', 'L', 'R') from start to goal.
+    """
+    prev = bfs_search(n, start, goal)
+    return reconstruct_path(start, goal, prev)
 
 
 def print_path(path):
