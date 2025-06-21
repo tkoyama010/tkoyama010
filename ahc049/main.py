@@ -1,6 +1,6 @@
 import sys
 from collections import deque
-from itertools import product
+from itertools import permutations, combinations
 
 sys.setrecursionlimit(10_000)
 
@@ -74,10 +74,10 @@ def reconstruct_path(start, goal, prev):
     while (x, y) != start:
         node = prev[x][y]
         if node is None:
-            return iter([])  # No path found
+            return []
         x, y, d = node
         path.append(d)
-    return reversed(path)
+    return list(reversed(path))
 
 
 def bfs_path(n, start, goal):
@@ -106,35 +106,82 @@ def print_path(path):
     print("\n".join(path))
 
 
-def transport_boxes(n, w, d):
-    """
-    For each cell in the n x n grid (except the start), finds and prints:
-    - The path from start (0, 0) to the cell.
-    - A '1' indicating picking up a box.
-    - The path back from the cell to start (0, 0).
+def is_stackable(stack, total_steps):
+    total_weight = 0
+    for w, d in reversed(stack):  # 下から順に
+        if d < total_weight * total_steps:
+            return False
+        total_weight += w
+    return True
 
-    Args:
-        n (int): Size of the grid.
-        w (list[list[int]]): Weight matrix.
-        d (list[list[int]]): Strength matrix.
-    """
-    for i, j in product(range(n), repeat=2):
-        if i == 0 and j == 0:
-            continue
 
-        path_there = list(bfs_path(n, (0, 0), (i, j)))
-        path_back = list(bfs_path(n, (i, j), (0, 0)))
+def find_unvisited_boxes(n, carried):
+    return [(i, j) for i in range(n) for j in range(n) if not carried[i][j] and (i, j) != (0, 0)]
 
-        # 耐久力チェック：移動中に箱が潰れないか
-        dist = len(path_there) + len(path_back)
-        if d[i][j] < 0:  # 箱がない
-            continue
-        if d[i][j] < dist * 0:  # 0は上の箱の重さ、今は1個運ぶので無視できる
-            continue
 
-        print_path(path_there)
-        print("1")
-        print_path(path_back)
+def try_transport_group(n, w, d, carried, group):
+    best_order = None
+    best_path = None
+    best_total_steps = None
+
+    for perm in permutations(group):
+        current = (0, 0)
+        path = []
+        stack = []
+        total_steps = 0
+
+        for pos in perm:
+            subpath = bfs_path(n, current, pos)
+            if not subpath:
+                break
+            path += subpath
+            total_steps += len(subpath)
+            stack.append((w[pos[0]][pos[1]], d[pos[0]][pos[1]]))
+            current = pos
+        else:
+            backpath = bfs_path(n, current, (0, 0))
+            if not backpath:
+                continue
+            total_steps += len(backpath)
+            if is_stackable(stack, total_steps):
+                best_order = perm
+                best_path = path + backpath
+                best_total_steps = total_steps
+                break  # 採用
+
+    if best_order is not None:
+        for move in best_path[:-(len(best_path) - len(path))]:
+            print(move)
+        print("1\n" * len(best_order), end="")
+        for move in best_path[-(best_total_steps - len(path)):]:
+            print(move)
+        for i, j in best_order:
+            carried[i][j] = True
+        return True
+    return False
+
+
+def transport_boxes_grouped(n, w, d):
+    carried = [[False] * n for _ in range(n)]
+
+    while True:
+        boxes = find_unvisited_boxes(n, carried)
+        if not boxes:
+            break
+
+        success = False
+        # 3個→2個→1個の順に試す
+        for group_size in [3, 2, 1]:
+            for group in combinations(boxes, group_size):
+                if try_transport_group(n, w, d, carried, group):
+                    success = True
+                    break
+            if success:
+                break
+
+        # 運べる箱がない（全部WAになりそう）場合は終了
+        if not success:
+            break
 
 
 def main():
@@ -142,7 +189,7 @@ def main():
     Main function to read input and run the box transport logic.
     """
     n, w, d = read_input()
-    transport_boxes(n, w, d)
+    transport_boxes_grouped(n, w, d)
 
 
 if __name__ == "__main__":
