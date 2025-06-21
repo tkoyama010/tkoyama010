@@ -13,15 +13,17 @@ def read_input():
 
     The input format is:
     - An integer n representing the grid size.
-    - Two n x n integer matrices w and d (currently only n is returned).
+    - Two n x n integer matrices w and d.
 
     Returns:
         int: The size n of the grid.
+        list[list[int]]: Weight matrix w.
+        list[list[int]]: Strenght matrix d.
     """
     n = int(input())
-    # w = [list(map(int, input().split())) for _ in range(n)]
-    # d = [list(map(int, input().split())) for _ in range(n)]
-    return n
+    w = [list(map(int, input().split())) for _ in range(n)]
+    d = [list(map(int, input().split())) for _ in range(n)]
+    return (n, w, d)
 
 
 def bfs_search(n, start, goal):
@@ -104,7 +106,7 @@ def print_path(path):
     print("\n".join(path))
 
 
-def transport_boxes(n):
+def transport_boxes(n, w, d):
     """
     For each cell in the n x n grid (except the start), finds and prints:
     - The path from start (0, 0) to the cell.
@@ -113,6 +115,8 @@ def transport_boxes(n):
 
     Args:
         n (int): Size of the grid.
+        w (list[list[int]]): Weight matrix.
+        d (list[list[int]]): Strength matrix.
     """
     for i, j in product(range(n), repeat=2):
         if i == 0 and j == 0:
@@ -128,8 +132,8 @@ def main():
     """
     Main function to read input and run the box transport logic.
     """
-    n = read_input()
-    transport_boxes(n)
+    n, w, d = read_input()
+    transport_boxes(n, w, d)
 
 
 if __name__ == "__main__":
