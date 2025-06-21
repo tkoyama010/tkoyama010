@@ -1,5 +1,6 @@
 import sys
 from collections import deque
+from itertools import product
 
 sys.setrecursionlimit(10_000)
 
@@ -79,15 +80,14 @@ def transport_boxes(n):
     Args:
         n (int): Size of the grid.
     """
-    for i in range(n):
-        for j in range(n):
-            if i == 0 and j == 0:
-                continue
-            path_there = bfs_path(n, (0, 0), (i, j))
-            print_path(path_there)
-            print("1")  # pick up
-            path_back = bfs_path(n, (i, j), (0, 0))
-            print_path(path_back)
+    for i, j in product(range(n), repeat=2):
+        if i == 0 and j == 0:
+            continue
+        path_there = bfs_path(n, (0, 0), (i, j))
+        print_path(path_there)
+        print("1")  # pick up
+        path_back = bfs_path(n, (i, j), (0, 0))
+        print_path(path_back)
 
 
 def main():
