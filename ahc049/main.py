@@ -110,6 +110,7 @@ def transport_boxes(n, w, d):
        w (list[list[int]]): 重さの行列
        d (list[list[int]]): 耐久力の行列
     """
+    transport_two_boxes_count = 0
     is_transported = [[False] * n for _ in range(n)]
     for i, j in product(range(n - 1, -1, -1), repeat=2):
         if i == 0 and j == 0:
@@ -120,10 +121,27 @@ def transport_boxes(n, w, d):
 
         path_there = list(bfs_path(n, (0, 0), (i, j)))
         path_back = list(bfs_path(n, (i, j), (0, 0)))
-
         print_path(path_there)
         print(str(1))  # 段ボールを持つ
-        print_path(path_back)
+        print_path(path_back[0])
+        direction = path_back[0]
+        if direction == "U":
+            k = i - 1
+            l = j
+        elif direction == "D":
+            k = i + 1
+            l = j
+        elif direction == "L":
+            k = i
+            l = j - 1
+        elif direction == "R":
+            k = i
+            l = j + 1
+        total_damage = w[k][l] * len(path_back)
+        if total_damage < d[i][j]:
+            print("1")
+            is_transported[k][l] = True
+        print_path(path_back[1:])
         is_transported[i][j] = True
 
 
