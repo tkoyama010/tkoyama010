@@ -20,14 +20,14 @@
 ## 🎯 Current Roles
 
 <div align="center">
-  
-  | 🏢 Organization | 👤 Role |
-  |-----------------|---------|
-  | **[@numfocus](https://github.com/numfocus)** | Technical Steering Committee Member |
-  | **[@scipy-conference](https://github.com/scipy-conference)** | Tutorial Chairperson |
-  | **[@pyvista](https://github.com/pyvista)** | Core Developer |
-  | **[GetFEM](https://github.com/getfem-doc/getfem)** | Contributor & Documentation Lead |
-  
+
+| 🏢 Organization                                              | 👤 Role                             |
+| ------------------------------------------------------------ | ----------------------------------- |
+| **[@numfocus](https://github.com/numfocus)**                 | Technical Steering Committee Member |
+| **[@scipy-conference](https://github.com/scipy-conference)** | Tutorial Chairperson                |
+| **[@pyvista](https://github.com/pyvista)**                   | Core Developer                      |
+| **[GetFEM](https://github.com/getfem-doc/getfem)**           | Contributor & Documentation Lead    |
+
 </div>
 
 ---
@@ -35,7 +35,7 @@
 ## 📊 GitHub Stats
 
 <div align="center">
-  <img width="49%" height="195px" src="https://github-readme-stats.vercel.app/api?username=tkoyama010&show_icons=true&count_private=true&hide_border=true&title_color=F77B00&icon_color=F77B00&text_color=c9d1d9&bg_color=0d1117" alt="Tetsuo Koyama github stats" /> 
+  <img width="49%" height="195px" src="https://github-readme-stats.vercel.app/api?username=tkoyama010&show_icons=true&count_private=true&hide_border=true&title_color=F77B00&icon_color=F77B00&text_color=c9d1d9&bg_color=0d1117" alt="Tetsuo Koyama github stats" />
   <img width="41%" height="195px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=tkoyama010&layout=compact&hide_border=true&title_color=F77B00&text_color=c9d1d9&bg_color=0d1117" />
 </div>
 
@@ -81,19 +81,19 @@ class TetsuoKoyama:
         self.location = "Japan 🇯🇵"
         self.interests = [
             "Scientific Computing",
-            "3D Visualization", 
+            "3D Visualization",
             "Finite Element Method",
             "Open Source Development"
         ]
         self.languages = ["Japanese", "English"]
-    
+
     def get_current_projects(self):
         return {
             "PyVista": "3D plotting and mesh analysis",
             "GetFEM": "Finite Element Method library",
             "pyOpenSci": "Scientific Python packaging"
         }
-    
+
     def say_hi(self):
         print("Thanks for visiting my profile! 🎉")
         print("Feel free to explore my projects and connect!")
@@ -107,13 +107,13 @@ me.say_hi()
 ## 🚀 Featured Projects
 
 <div align="center">
-  
-| 📦 Project | 📝 Description | ⭐ Role |
-|------------|----------------|---------|
-| [**PyVista**](https://github.com/pyvista/pyvista) | 3D plotting and mesh analysis through VTK | Core Developer |
-| [**GetFEM**](https://github.com/getfem-doc/getfem) | Open source Finite Element Method library | Contributor |
-| [**PyVista Tutorial**](https://github.com/pyvista/pyvista-tutorial) | SciPy Conference tutorial materials | Main Contributor |
-| [**pyOpenSci Guide**](https://github.com/pyOpenSci/python-package-guide) | Scientific Python packaging guide | Contributor |
+
+| 📦 Project                                                               | 📝 Description                            | ⭐ Role          |
+| ------------------------------------------------------------------------ | ----------------------------------------- | ---------------- |
+| [**PyVista**](https://github.com/pyvista/pyvista)                        | 3D plotting and mesh analysis through VTK | Core Developer   |
+| [**GetFEM**](https://github.com/getfem-doc/getfem)                       | Open source Finite Element Method library | Contributor      |
+| [**PyVista Tutorial**](https://github.com/pyvista/pyvista-tutorial)      | SciPy Conference tutorial materials       | Main Contributor |
+| [**pyOpenSci Guide**](https://github.com/pyOpenSci/python-package-guide) | Scientific Python packaging guide         | Contributor      |
 
 </div>
 
@@ -146,6 +146,7 @@ I'm passionate about making technical documentation accessible to Japanese speak
 <div align="center">
 
 ### 🔧 Languages & Core Tools
+
 <p>
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
   <img src="https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white" alt="C++">
@@ -155,6 +156,7 @@ I'm passionate about making technical documentation accessible to Japanese speak
 </p>
 
 ### 📊 Scientific Computing & ML
+
 <p>
   <img src="https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white" alt="NumPy">
   <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas">
@@ -165,6 +167,7 @@ I'm passionate about making technical documentation accessible to Japanese speak
 </p>
 
 ### 🛠️ Development Tools
+
 <p>
   <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git">
   <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
@@ -175,6 +178,7 @@ I'm passionate about making technical documentation accessible to Japanese speak
 </p>
 
 ### 🖥️ Systems & Infrastructure
+
 <p>
   <img src="https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white" alt="Ubuntu">
   <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">
@@ -200,17 +204,21 @@ I'm passionate about making technical documentation accessible to Japanese speak
 <summary><b>📚 Books & Articles (Click to expand)</b></summary>
 
 ### 📰 Conference Reports
+
 - [SciPy 2024 カンファレンスレポート](https://gihyo.jp/article/2024/08/scipy2024)
 - [SciPy 2023 カンファレンスレポート](https://gihyo.jp/article/2023/08/scipy2023)
 - [SciPy 2022 カンファレンスレポート](https://gihyo.jp/article/2022/09/scipy2022)
 
 ### 📗 Books
+
 - [Pythonによる有限要素法 実装ノート](https://www.amazon.co.jp/dp/B09SPMYZN4)
 
 ### 🎤 Featured Talk
+
 - [注目セッション「Introduction to FEM Analysis with Python」― PyConJP 2019](https://gihyo.jp/news/report/01/pyconjp2019/0001#sec6)
 
 ### 📚 Academic Publications
+
 - [Google Scholar Profile](https://scholar.google.co.jp/citations?user=GJ0Mv00AAAAJ)
 
 </details>
@@ -234,7 +242,7 @@ I'm passionate about making technical documentation accessible to Japanese speak
 ## 🌐 Connect with Me
 
 <div align="center">
-  
+
   <a href="https://github.com/tkoyama010">
     <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
   </a>
@@ -247,7 +255,7 @@ I'm passionate about making technical documentation accessible to Japanese speak
   <a rel="me" href="https://mstdn.jp/@tkoyama010">
     <img src="https://img.shields.io/badge/Mastodon-6364FF?style=for-the-badge&logo=mastodon&logoColor=white" alt="Mastodon">
   </a>
-  
+
 </div>
 
 ---
