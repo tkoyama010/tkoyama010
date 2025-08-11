@@ -52,11 +52,6 @@
 ## 🏆 Achievements & Badges
 
 <p align="center">
-  <a href="https://user-badge.committers.top/japan_public/tkoyama010"><img src="https://user-badge.committers.top/japan_public/tkoyama010.svg" alt="Committers.top badge"></a>
-  <a href="https://wakatime.com/@018c8661-c45f-4525-b855-c752f6c2370c"><img src="https://wakatime.com/badge/user/018c8661-c45f-4525-b855-c752f6c2370c.svg" alt="Wakatime"></a>
-</p>
-
-<p align="center">
   <a href="https://leetcode.com/tkoyama010/"><img src="https://img.shields.io/badge/dynamic/json?style=for-the-badge&labelColor=black&color=%23ffa116&label=LeetCode&query=solvedOverTotal&url=https%3A%2F%2Fleetcode-badge.vercel.app%2Fapi%2Fusers%2Ftkoyama010&logo=leetcode&logoColor=yellow" alt="LeetCode"></a>
   <a href="https://www.kaggle.com/tkoyama010"><img src="https://img.shields.io/badge/Kaggle-tkoyama010-20BEFF?logo=kaggle&logoColor=white&style=for-the-badge" alt="Kaggle"></a>
   <a href="https://tryhackme.com/r/p/tkoyama010"><img src="https://img.shields.io/badge/TryHackMe-tkoyama010-212C42?logo=tryhackme&logoColor=white&style=for-the-badge" alt="TryHackMe"></a>
@@ -70,8 +65,6 @@
 ---
 
 ## 👨‍💻 About Me
-
-<img align="right" width="400" src="https://github-readme-stats.vercel.app/api/wakatime?username=tkoyama010&theme=dark&hide_border=true&bg_color=0d1117&title_color=F77B00&text_color=c9d1d9" alt="Wakatime stats">
 
 ```python
 class TetsuoKoyama:
