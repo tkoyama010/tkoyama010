@@ -96,6 +96,7 @@ As a speaker, my talk at PyConJP 2019 was featured in a web magazine article as 
 
 I am a guest of [terapyon channel podcast](https://podcast.terapyon.net/).
 
+- [#113 小山さんをゲストに SciPy con 2025参加報告](https://podcast.terapyon.net/episodes/0122.html)
 - [#97 小山さんをゲストに SciPy con 2024参加の話をじっくりと聞く](https://podcast.terapyon.net/episodes/0106.html)
 - [#82 小山さんwhitphxさんをゲストに OSSを仕事にをキーワードにHugging Faceや周辺のPython UIフレームワークについて語る](https://podcast.terapyon.net/episodes/0091.html)
 - [#79 小山さんをゲストに SciPy con参加とOSSプロジェクトの話](https://podcast.terapyon.net/episodes/0088.html)
