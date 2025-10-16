@@ -12,12 +12,12 @@ jobs:
       ALLOW_PLOTTING: true
       SHELLOPTS: "errexit:pipefail"
     steps:
-      - uses: awalsh128/cache-apt-pkgs-action@v1.5.1
+      - uses: awalsh128/cache-apt-pkgs-action@v1.6.0
         with:
           packages: libosmesa6-dev libgl1-mesa-dev python3-tk pandoc git-restore-mtime
           version: 3.0
-      - uses: actions/setup-python@v5
-      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
+      - uses: actions/checkout@v5
       - run: |
           cd pyconjp2024
           pip install -r requirements.txt
