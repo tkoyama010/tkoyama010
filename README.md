@@ -213,6 +213,7 @@ I'm passionate about making technical documentation accessible to Japanese speak
 ### 📚 Academic Publications
 
 - [Google Scholar Profile](https://scholar.google.co.jp/citations?user=GJ0Mv00AAAAJ)
+
 </details>
 
 ---
