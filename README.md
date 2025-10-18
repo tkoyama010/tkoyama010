@@ -223,10 +223,11 @@ I'm passionate about making technical documentation accessible to Japanese speak
 <details>
 <summary><b>🎧 Terapyon Channel Podcast Episodes (Click to expand)</b></summary>
 
-- [#97 SciPy con 2024参加の話をじっくりと聞く](https://podcast.terapyon.net/episodes/0106.html)
-- [#82 OSSを仕事にをキーワードにHugging Faceや周辺のPython UIフレームワークについて語る](https://podcast.terapyon.net/episodes/0091.html)
-- [#79 SciPy con参加とOSSプロジェクトの話](https://podcast.terapyon.net/episodes/0088.html)
-- [#63 SciPy con参加と PyVistaの話を深く聞く](https://podcast.terapyon.net/episodes/0072.html)
+- [#113 小山さんをゲストに SciPy con 2025参加報告](https://podcast.terapyon.net/episodes/0122.html)
+- [#97 小山さんをゲストに SciPy con 2024参加の話をじっくりと聞く](https://podcast.terapyon.net/episodes/0106.html)
+- [#82 小山さんwhitphxさんをゲストに OSSを仕事にをキーワードにHugging Faceや周辺のPython UIフレームワークについて語る](https://podcast.terapyon.net/episodes/0091.html)
+- [#79 小山さんをゲストに SciPy con参加とOSSプロジェクトの話](https://podcast.terapyon.net/episodes/0088.html)
+- [#63 小山さんをゲストに SciPy con参加と PyVistaの話を深く聞く](https://podcast.terapyon.net/episodes/0072.html)
 
 </details>
 
