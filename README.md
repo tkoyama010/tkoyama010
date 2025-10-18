@@ -198,6 +198,7 @@ I'm passionate about making technical documentation accessible to Japanese speak
 
 ### 📰 Conference Reports
 
+- [SciPy 2025 カンファレンスレポート](https://tech.akariinc.co.jp/entry/2025/07/24/190000)
 - [SciPy 2024 カンファレンスレポート](https://gihyo.jp/article/2024/08/scipy2024)
 - [SciPy 2023 カンファレンスレポート](https://gihyo.jp/article/2023/08/scipy2023)
 - [SciPy 2022 カンファレンスレポート](https://gihyo.jp/article/2022/09/scipy2022)
