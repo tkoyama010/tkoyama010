@@ -12,7 +12,7 @@ jobs:
       ALLOW_PLOTTING: true
       SHELLOPTS: "errexit:pipefail"
     steps:
-      - uses: awalsh128/cache-apt-pkgs-action@v1.5.3
+      - uses: awalsh128/cache-apt-pkgs-action@v1.6.0
         with:
           packages: libosmesa6-dev libgl1-mesa-dev python3-tk pandoc git-restore-mtime
           version: 3.0
