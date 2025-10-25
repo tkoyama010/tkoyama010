@@ -6,7 +6,7 @@ repos:
         exclude: opencae2020B02
 
   - repo: https://github.com/keewis/blackdoc
-    rev: v0.4.3
+    rev: v0.4.4
     hooks:
       - id: blackdoc
         files: '\.py$'
@@ -43,7 +43,7 @@ repos:
       - id: check-github-workflows
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.0
+    rev: v0.14.1
     hooks:
       - id: ruff
         args: [--fix]
