@@ -52,6 +52,7 @@ I am aims to help people like me who have a handicap in English to access our li
 
 I also wrote Scientific Python programming books using GetFEM and PyVista and wrote about the community in technical magazines.
 
+- [PyCon JP 2025 カンファレンスレポート](https://gihyo.jp/article/2025/10/pycon-jp-2025-report#gh5C8mZkog)
 - [SciPy 2024 カンファレンスレポート](https://gihyo.jp/article/2024/08/scipy2024)
 - [SciPy 2023 カンファレンスレポート](https://gihyo.jp/article/2023/08/scipy2023)
 - [SciPy 2022 カンファレンスレポート](https://gihyo.jp/article/2022/09/scipy2022)
