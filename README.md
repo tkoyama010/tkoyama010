@@ -190,7 +190,6 @@ I'm passionate about making technical documentation accessible to Japanese speak
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=tkoyama010&theme=react-dark&hide_border=true&area=true&custom_title=Contribution%20Graph" alt="Contribution Graph">
 </div>
 
-
 ## 📖 Publications & Media
 
 <details>
