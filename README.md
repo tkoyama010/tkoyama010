@@ -211,6 +211,7 @@ I'm passionate about making technical documentation accessible to Japanese speak
 
 ### 🎤 Featured Talk
 
+- [DAY 1 フェニックスホール⁠：SciPy Conferenceから学ぶ⁠、科学とPythonをつなぐコミュニティの作り方〜オープンサイエンスを支えるスプリント文化とコラボレーションの実践〜](https://gihyo.jp/article/2025/10/pycon-jp-2025-report#gh5C8mZkog)
 - [注目セッション「Introduction to FEM Analysis with Python」― PyConJP 2019](https://gihyo.jp/news/report/01/pyconjp2019/0001#sec6)
 
 ### 📚 Academic Publications
