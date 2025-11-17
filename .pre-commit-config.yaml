@@ -1,12 +1,12 @@
 repos:
   - repo: https://github.com/psf/black-pre-commit-mirror
-    rev: 25.9.0
+    rev: 25.11.0
     hooks:
       - id: black
         exclude: opencae2020B02
 
   - repo: https://github.com/keewis/blackdoc
-    rev: v0.4.4
+    rev: v0.4.6
     hooks:
       - id: blackdoc
         files: '\.py$'
@@ -19,7 +19,7 @@ repos:
         exclude: opencae2020B02
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.21.0
+    rev: v3.21.1
     hooks:
       - id: pyupgrade
         args: [--py38-plus, --keep-runtime-typing]
@@ -38,12 +38,12 @@ repos:
       - id: mixed-line-ending
 
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.34.1
+    rev: 0.35.0
     hooks:
       - id: check-github-workflows
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.1
+    rev: v0.14.5
     hooks:
       - id: ruff
         args: [--fix]
