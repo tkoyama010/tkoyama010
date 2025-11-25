@@ -1,4 +1,4 @@
-oEmbedPy==0.8.2
+oEmbedPy==0.8.3
 sphinx-revealjs[screenshot]==3.2.0
 sphinx-tabs==3.4.7
 sphinx_design==0.6.1
