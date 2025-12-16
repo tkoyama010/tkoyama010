@@ -4,5 +4,5 @@ sphinx-tabs==3.4.7
 sphinx_design==0.6.1
 sphinxcontrib-gtagjs==0.2.1
 sphinxcontrib-sass==0.3.5
-sphinxemoji==0.3.1
+sphinxemoji==0.3.2
 sphinxext-opengraph==0.13.0
