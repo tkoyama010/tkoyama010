@@ -38,6 +38,29 @@ MIN_STREAMLINE_POINTS = 100
 DOCKER_STARTUP_TIMEOUT = 60
 
 
+def filter_openfoam_output(output_bytes: bytes) -> str:
+    """Filter out OpenFOAM welcome messages from command output.
+
+    Args:
+        output_bytes: Raw output from OpenFOAM command.
+
+    Returns:
+        Filtered output string with welcome messages removed.
+
+    """
+    output_str = output_bytes.decode("utf-8")
+    lines = [
+        l
+        for l in output_str.split("\n")
+        if "Welcome to" not in l
+        and "Further Resources" not in l
+        and "* " not in l
+        and "Contributors" not in l
+    ]
+    filtered_output = "\n".join(lines).strip()
+    return filtered_output
+
+
 def start_docker() -> bool:
     """Start Docker (Colima) if not running.
 
@@ -188,17 +211,7 @@ def run_openfoam_case(
             entrypoint="",
         )
         if output:
-            output_str = output.decode("utf-8")
-            # Filter out welcome message
-            lines = [
-                l
-                for l in output_str.split("\n")
-                if "Welcome to" not in l
-                and "Further Resources" not in l
-                and "* " not in l
-                and "Contributors" not in l
-            ]
-            filtered_output = "\n".join(lines).strip()
+            filtered_output = filter_openfoam_output(output)
             if filtered_output:
                 logger.info(f"Mesh generation output:\n{filtered_output}")
         logger.info("Mesh generation completed")
@@ -220,16 +233,7 @@ def run_openfoam_case(
             entrypoint="",
         )
         if output:
-            output_str = output.decode("utf-8")
-            lines = [
-                l
-                for l in output_str.split("\n")
-                if "Welcome to" not in l
-                and "Further Resources" not in l
-                and "* " not in l
-                and "Contributors" not in l
-            ]
-            filtered_output = "\n".join(lines).strip()
+            filtered_output = filter_openfoam_output(output)
             if filtered_output:
                 logger.info(f"Solver output:\n{filtered_output}")
         logger.info("Simulation completed")
@@ -296,16 +300,7 @@ def convert_to_vtk(case_dir: Path) -> None:
                 entrypoint="",
             )
             if output:
-                output_str = output.decode("utf-8")
-                lines = [
-                    l
-                    for l in output_str.split("\n")
-                    if "Welcome to" not in l
-                    and "Further Resources" not in l
-                    and "* " not in l
-                    and "Contributors" not in l
-                ]
-                filtered_output = "\n".join(lines).strip()
+                filtered_output = filter_openfoam_output(output)
                 if filtered_output:
                     logger.info(f"VTK conversion output:\n{filtered_output}")
         logger.info("VTK conversion completed")
