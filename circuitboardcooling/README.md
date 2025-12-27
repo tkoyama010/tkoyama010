@@ -227,26 +227,28 @@ Falls back to simple visualization for single-region cases.
 The simulation successfully completes with physically reasonable results:
 
 #### Fluid Region
-| Parameter | Min | Max | Mean |
-|-----------|-----|-----|------|
-| Temperature | 300.00 K (26.85 °C) | 314.36 K (41.21 °C) | 301.52 K (28.37 °C) |
-| Velocity Magnitude | 0.004 m/s | 0.225 m/s | 0.118 m/s |
+
+| Parameter          | Min                 | Max                 | Mean                |
+| ------------------ | ------------------- | ------------------- | ------------------- |
+| Temperature        | 300.00 K (26.85 °C) | 314.36 K (41.21 °C) | 301.52 K (28.37 °C) |
+| Velocity Magnitude | 0.004 m/s           | 0.225 m/s           | 0.118 m/s           |
 
 - Mesh: ~4,200 points, ~2,000 cells
 
 #### Baffle Region (Heated Plate)
-| Parameter | Min | Max | Mean |
-|-----------|-----|-----|------|
+
+| Parameter   | Min                 | Max                  | Mean                 |
+| ----------- | ------------------- | -------------------- | -------------------- |
 | Temperature | 338.56 K (65.41 °C) | 457.88 K (184.73 °C) | 420.20 K (147.05 °C) |
 
 - Mesh: ~1,700 points, ~800 cells
 
 ### Result Validation
 
-✅ **Boundary Conditions**: Inlet velocity ~0.1 m/s and temperature 300 K correctly applied  
-✅ **Heat Transfer**: Temperature rise from 300 K to 314 K as air passes over heated baffles  
-✅ **Flow Field**: Velocity variations (0.004-0.225 m/s) show boundary layers and flow acceleration  
-✅ **Convergence**: All residuals < 1e-6 at final time  
+✅ **Boundary Conditions**: Inlet velocity ~0.1 m/s and temperature 300 K correctly applied
+✅ **Heat Transfer**: Temperature rise from 300 K to 314 K as air passes over heated baffles
+✅ **Flow Field**: Velocity variations (0.004-0.225 m/s) show boundary layers and flow acceleration
+✅ **Convergence**: All residuals < 1e-6 at final time
 ✅ **Physical Consistency**: Results align with expected CHT behavior
 
 The results match the expected behavior documented in OpenFOAM tutorials and technical literature for PCB cooling simulations.

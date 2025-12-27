@@ -51,7 +51,7 @@ def start_docker() -> bool:
         if docker_sock.exists():
             os.environ["DOCKER_HOST"] = f"unix://{docker_sock}"
             logger.debug(f"DOCKER_HOST set to: {os.environ['DOCKER_HOST']}")
-    
+
     try:
         client = docker.from_env()
         client.ping()
@@ -62,10 +62,10 @@ def start_docker() -> bool:
 
     # Docker is not running, try to start it
     system = platform.system()
-    
+
     if system == "Darwin":  # macOS
         # Check if Colima is installed
-        colima_check = subprocess.run(["which", "colima"], capture_output=True)
+        colima_check = subprocess.run(["which", "colima"], check=False, capture_output=True)
         if colima_check.returncode == 0:
             # Use Colima (preferred for licensing reasons)
             logger.info("Starting Colima...")
@@ -73,10 +73,10 @@ def start_docker() -> bool:
                 # Check Colima status
                 status_result = subprocess.run(
                     ["colima", "status"],
-                    capture_output=True,
+                    check=False, capture_output=True,
                     text=True,
                 )
-                
+
                 if status_result.returncode != 0:
                     # Colima is not running, start it
                     subprocess.run(
@@ -84,40 +84,43 @@ def start_docker() -> bool:
                         check=True,
                     )
                     logger.info("Colima started successfully")
-                    
+
                     # Set DOCKER_HOST for this session
                     docker_sock = Path.home() / ".colima" / "default" / "docker.sock"
                     os.environ["DOCKER_HOST"] = f"unix://{docker_sock}"
                     logger.info(f"DOCKER_HOST set to: {os.environ['DOCKER_HOST']}")
                 else:
                     logger.info("Colima is already running")
-                    
+
             except subprocess.CalledProcessError as e:
                 logger.error(f"Failed to start Colima: {e}")
                 return False
         else:
             # Colima not installed
             logger.error(
-                "Colima not found. Please install Colima: "
-                "brew install docker colima"
+                "Colima not found. Please install Colima: brew install docker colima",
             )
             return False
-        
+
     elif system == "Linux":
         logger.info("Starting Docker daemon...")
         try:
-            subprocess.run(["sudo", "systemctl", "start", "docker"], check=True, capture_output=True)
+            subprocess.run(
+                ["sudo", "systemctl", "start", "docker"],
+                check=True,
+                capture_output=True,
+            )
             logger.info("Docker daemon started")
         except subprocess.CalledProcessError:
             logger.error(
                 "Failed to start Docker. Please start Docker manually: "
-                "sudo systemctl start docker"
+                "sudo systemctl start docker",
             )
             return False
-            
+
     elif system == "Windows":
         logger.error(
-            "Windows is not supported. Please use Colima or Docker on Linux/macOS."
+            "Windows is not supported. Please use Colima or Docker on Linux/macOS.",
         )
         return False
     else:
@@ -136,7 +139,7 @@ def start_docker() -> bool:
             if i % 5 == 0:
                 logger.debug(f"Still waiting... ({i}/{DOCKER_STARTUP_TIMEOUT}s)")
             time.sleep(1)
-    
+
     logger.error("Docker failed to start within timeout. Please start Docker manually.")
     return False
 
@@ -155,7 +158,7 @@ def run_openfoam_case(
     if not start_docker():
         msg = "Docker is not available and could not be started automatically."
         raise RuntimeError(msg)
-    
+
     client = docker.from_env()
 
     # Pull the image if not available
@@ -180,10 +183,17 @@ def run_openfoam_case(
             entrypoint="",
         )
         if output:
-            output_str = output.decode('utf-8')
+            output_str = output.decode("utf-8")
             # Filter out welcome message
-            lines = [l for l in output_str.split('\n') if 'Welcome to' not in l and 'Further Resources' not in l and '* ' not in l and 'Contributors' not in l]
-            filtered_output = '\n'.join(lines).strip()
+            lines = [
+                l
+                for l in output_str.split("\n")
+                if "Welcome to" not in l
+                and "Further Resources" not in l
+                and "* " not in l
+                and "Contributors" not in l
+            ]
+            filtered_output = "\n".join(lines).strip()
             if filtered_output:
                 logger.info(f"Mesh generation output:\n{filtered_output}")
         logger.info("Mesh generation completed")
@@ -205,9 +215,16 @@ def run_openfoam_case(
             entrypoint="",
         )
         if output:
-            output_str = output.decode('utf-8')
-            lines = [l for l in output_str.split('\n') if 'Welcome to' not in l and 'Further Resources' not in l and '* ' not in l and 'Contributors' not in l]
-            filtered_output = '\n'.join(lines).strip()
+            output_str = output.decode("utf-8")
+            lines = [
+                l
+                for l in output_str.split("\n")
+                if "Welcome to" not in l
+                and "Further Resources" not in l
+                and "* " not in l
+                and "Contributors" not in l
+            ]
+            filtered_output = "\n".join(lines).strip()
             if filtered_output:
                 logger.info(f"Solver output:\n{filtered_output}")
         logger.info("Simulation completed")
@@ -226,7 +243,7 @@ def convert_to_vtk(case_dir: Path) -> None:
     if not start_docker():
         msg = "Docker is not available and could not be started automatically."
         raise RuntimeError(msg)
-    
+
     client = docker.from_env()
     openfoam_image = DEFAULT_OPENFOAM_IMAGE
 
@@ -235,8 +252,12 @@ def convert_to_vtk(case_dir: Path) -> None:
         # For multiRegion cases, foamToVTK must be run for each region
         # First check if it's a multiRegion case
         system_dir = case_dir / "system"
-        regions = [d.name for d in system_dir.iterdir() if d.is_dir() and d.name not in ['include']]
-        
+        regions = [
+            d.name
+            for d in system_dir.iterdir()
+            if d.is_dir() and d.name not in ["include"]
+        ]
+
         if regions:
             # MultiRegion case - convert each region
             logger.info(f"Converting {len(regions)} regions: {', '.join(regions)}")
@@ -252,9 +273,11 @@ def convert_to_vtk(case_dir: Path) -> None:
                     entrypoint="",
                 )
                 if output:
-                    output_str = output.decode('utf-8')
-                    if 'error' in output_str.lower() or 'fatal' in output_str.lower():
-                        logger.warning(f"VTK conversion for region {region}:\n{output_str}")
+                    output_str = output.decode("utf-8")
+                    if "error" in output_str.lower() or "fatal" in output_str.lower():
+                        logger.warning(
+                            f"VTK conversion for region {region}:\n{output_str}",
+                        )
         else:
             # Single region case
             output = client.containers.run(
@@ -268,9 +291,16 @@ def convert_to_vtk(case_dir: Path) -> None:
                 entrypoint="",
             )
             if output:
-                output_str = output.decode('utf-8')
-                lines = [l for l in output_str.split('\n') if 'Welcome to' not in l and 'Further Resources' not in l and '* ' not in l and 'Contributors' not in l]
-                filtered_output = '\n'.join(lines).strip()
+                output_str = output.decode("utf-8")
+                lines = [
+                    l
+                    for l in output_str.split("\n")
+                    if "Welcome to" not in l
+                    and "Further Resources" not in l
+                    and "* " not in l
+                    and "Contributors" not in l
+                ]
+                filtered_output = "\n".join(lines).strip()
                 if filtered_output:
                     logger.info(f"VTK conversion output:\n{filtered_output}")
         logger.info("VTK conversion completed")
@@ -426,41 +456,44 @@ def _add_streamlines(plotter: pv.Plotter, mesh: pv.DataSet) -> None:
         x_mid = (bounds[0] + bounds[1]) / 2
         y_range = bounds[3] - bounds[2]
         z_range = bounds[5] - bounds[4]
-        
+
         # Create multiple seed points for better flow visualization
         seed_points = []
         n_seeds = 15
-        
+
         # Create seeds along the inlet (x-direction)
         for i in range(n_seeds):
             y_pos = bounds[2] + (i + 1) * y_range / (n_seeds + 1)
             for j in range(n_seeds):
                 z_pos = bounds[4] + (j + 1) * z_range / (n_seeds + 1)
                 seed_points.append([bounds[0], y_pos, z_pos])
-        
+
         # Also add seeds in the middle of the domain
         for i in range(n_seeds // 2):
             y_pos = bounds[2] + (i + 1) * y_range / (n_seeds // 2 + 1)
             for j in range(n_seeds // 2):
                 z_pos = bounds[4] + (j + 1) * z_range / (n_seeds // 2 + 1)
                 seed_points.append([x_mid, y_pos, z_pos])
-        
+
         seed = pv.PolyData(np.array(seed_points))
-        
+
         streamlines = mesh.streamlines_from_source(
             seed,
             vectors="U",
             max_time=200.0,
             integration_direction="forward",
         )
-        
+
         if streamlines.n_points > 0:
             # Calculate velocity magnitude for coloring streamlines
             velocity_data = streamlines["U"]
-            if velocity_data.ndim == NUMPY_DIM_2D and velocity_data.shape[1] == NUMPY_DIM_3D:
+            if (
+                velocity_data.ndim == NUMPY_DIM_2D
+                and velocity_data.shape[1] == NUMPY_DIM_3D
+            ):
                 velocity_mag = np.linalg.norm(velocity_data, axis=1)
                 streamlines["velocity_magnitude"] = velocity_mag
-                
+
                 plotter.add_mesh(
                     streamlines,
                     scalars="velocity_magnitude",
@@ -611,7 +644,7 @@ def setup_case(
     if not start_docker():
         msg = "Docker is not available and could not be started automatically."
         raise RuntimeError(msg)
-    
+
     client = docker.from_env()
 
     # Pull the image if not available
