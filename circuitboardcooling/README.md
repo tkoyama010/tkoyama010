@@ -60,6 +60,7 @@ circuitboardcooling
 **Important**: This package uses Colima instead of Docker Desktop to avoid licensing restrictions.
 
 Colima is a free, open-source container runtime for macOS (and Linux):
+
 - No licensing restrictions
 - Compatible with Docker CLI and Python Docker SDK
 - Lightweight and fast
@@ -86,6 +87,7 @@ pip install -e .
 ```
 
 Or with uv:
+
 ```bash
 uv pip install -e .
 ```
@@ -93,10 +95,12 @@ uv pip install -e .
 ## Requirements
 
 ### Runtime
+
 - Colima (Docker runtime)
 - Docker CLI
 
 ### Python Dependencies
+
 - Python 3.8+
 - docker (Python SDK for Docker API)
 - pyvista (for 3D visualization)
@@ -109,6 +113,7 @@ uv pip install -e .
 ### Basic Usage
 
 Run with default settings (extracts tutorial from Docker):
+
 ```bash
 export DOCKER_HOST=unix://$HOME/.colima/default/docker.sock
 python -m circuitboardcooling
@@ -120,26 +125,31 @@ uv run python -m circuitboardcooling
 ### Command Options
 
 Use existing case directory:
+
 ```bash
 python -m circuitboardcooling --case-dir /path/to/case
 ```
 
 Skip simulation and only visualize:
+
 ```bash
 python -m circuitboardcooling --skip-run
 ```
 
 Skip visualization (headless mode):
+
 ```bash
 python -m circuitboardcooling --no-viz
 ```
 
 Use specific Docker image:
+
 ```bash
 python -m circuitboardcooling --image openfoam/openfoam11-paraview510
 ```
 
 Get help:
+
 ```bash
 circuitboardcooling --help
 ```
@@ -172,6 +182,7 @@ python -m circuitboardcooling --no-viz           # Only simulation
 The PyVista visualization automatically detects multiRegion cases and provides:
 
 ### MultiRegion Layout (circuitBoardCooling)
+
 - **Dual subplot view**:
   - Left: Temperature distribution across all regions
   - Right: Velocity field with streamlines (fluid regions)
@@ -185,22 +196,26 @@ The PyVista visualization automatically detects multiRegion cases and provides:
   - Press 'q': Quit
 
 ### Temperature Visualization
+
 - Hot colormap (blue → red)
 - All regions with temperature field shown
 - Scalar bar with temperature range in Kelvin
 
 ### Velocity Visualization
+
 - Coolwarm colormap
 - Velocity magnitude field
 - Streamlines showing flow patterns
 - Solid regions shown as semi-transparent gray
 
 ### Single Region Support
+
 Falls back to simple visualization for single-region cases.
 
 ## About the Tutorial
 
 The circuitBoardCooling case is a multiRegion CHT (Conjugate Heat Transfer) tutorial that simulates:
+
 - Heat transfer in electronic circuit boards
 - Multiple solid and fluid regions
 - Coupled heat conduction and convection
@@ -243,6 +258,7 @@ circuitboardcooling/
 ## Technical Details
 
 ### Implementation
+
 - Uses Python Docker SDK (not CLI subprocess)
 - Tutorial path: `/opt/openfoam11/tutorials/multiRegion/CHT/circuitBoardCooling`
 - Workflow:
@@ -253,6 +269,7 @@ circuitboardcooling/
   5. Visualize with PyVista
 
 ### Why Colima?
+
 1. **No Docker Desktop License Issues**: Free and open-source
 2. **Clean Python Docker SDK API**: No subprocess management needed
 3. **Lightweight**: Lower resource usage than Docker Desktop
