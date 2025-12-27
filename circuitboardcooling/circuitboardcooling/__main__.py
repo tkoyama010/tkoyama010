@@ -66,7 +66,9 @@ def start_docker() -> bool:
     if system == "Darwin":  # macOS
         # Check if Colima is installed
         colima_check = subprocess.run(
-            ["which", "colima"], check=False, capture_output=True,
+            ["which", "colima"],
+            check=False,
+            capture_output=True,
         )
         if colima_check.returncode == 0:
             # Use Colima (preferred for licensing reasons)
@@ -654,11 +656,11 @@ def visualize_cross_section(region_dirs: list[Path]) -> None:
         font_size=12,
         position="upper_edge",
     )
-    
+
     # Set camera to view YZ plane
     plotter.view_yz()
     plotter.camera.parallel_projection = True
-    
+
     # Add axis labels for YZ plane view
     # After view_yz(), axis mapping is: xtitle→Z(vertical), ytitle→Y(horizontal)
     plotter.show_bounds(
@@ -670,7 +672,7 @@ def visualize_cross_section(region_dirs: list[Path]) -> None:
         all_edges=True,
         font_size=12,
     )
-    
+
     plotter.add_axes()
 
     plotter.show()
