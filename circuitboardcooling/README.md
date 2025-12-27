@@ -6,8 +6,10 @@ OpenFOAM circuitBoardCooling tutorial runner with Docker (via Colima) and PyVist
 
 - Automatic extraction of OpenFOAM circuitBoardCooling tutorial from Docker image
 - Run OpenFOAM multiRegion CHT simulations in Docker containers (no local OpenFOAM installation needed)
+- **Auto-start Colima/Docker**: Automatically starts Colima if not running
 - Uses Colima as Docker runtime (free, open-source, no licensing issues)
-- Visualize temperature/velocity fields with PyVista
+- Visualize temperature/velocity fields with PyVista (with parallel projection)
+- Enhanced streamline visualization with velocity magnitude coloring
 - Package-based execution with Python Docker SDK
 
 ## Quick Start
@@ -22,9 +24,9 @@ brew install docker colima
 colima start --cpu 4 --memory 8
 ```
 
-### 2. Set up environment
+### 2. Set up environment (Optional)
 
-Add to your `~/.zshrc` (or `~/.bashrc`):
+The script will automatically start Colima if it's not running, but you can optionally add to your `~/.zshrc` (or `~/.bashrc`) for persistent configuration:
 
 ```bash
 export DOCKER_HOST=unix://$HOME/.colima/default/docker.sock
@@ -35,6 +37,8 @@ Then reload:
 ```bash
 source ~/.zshrc
 ```
+
+**Note**: The script automatically sets `DOCKER_HOST` when starting Colima, so this step is optional.
 
 ### 3. Install the package
 
@@ -108,19 +112,20 @@ uv pip install -e .
 
 ## Usage
 
-**Important**: Make sure `DOCKER_HOST` environment variable is set before running.
+The script automatically starts Colima if it's not running, so you don't need to manually start it.
 
 ### Basic Usage
 
 Run with default settings (extracts tutorial from Docker):
 
 ```bash
-export DOCKER_HOST=unix://$HOME/.colima/default/docker.sock
 python -m circuitboardcooling
 
 # or with uv
 uv run python -m circuitboardcooling
 ```
+
+**Note**: The script will automatically start Colima if it's not running. If `DOCKER_HOST` is not set, it will be set automatically when Colima starts.
 
 ### Command Options
 
@@ -203,10 +208,13 @@ The PyVista visualization automatically detects multiRegion cases and provides:
 
 ### Velocity Visualization
 
-- Coolwarm colormap
-- Velocity magnitude field
-- Streamlines showing flow patterns
+- Coolwarm colormap for velocity magnitude
+- **Enhanced streamline visualization**:
+  - Multiple seed points for comprehensive flow visualization
+  - Streamlines colored by velocity magnitude (jet colormap)
+  - 3D tube rendering for better visibility
 - Solid regions shown as semi-transparent gray
+- **Parallel projection enabled** for accurate 3D visualization
 
 ### Single Region Support
 

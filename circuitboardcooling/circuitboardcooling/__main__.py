@@ -5,22 +5,140 @@ from __future__ import annotations
 
 import argparse
 import io
+import logging
 import os
+import platform
 import shutil
+import subprocess
 import sys
 import tarfile
 import tempfile
+import time
 from pathlib import Path
 
 import docker
 import numpy as np
 import pyvista as pv
 
+# Setup logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    handlers=[
+        logging.StreamHandler(sys.stdout),
+    ],
+)
+logger = logging.getLogger(__name__)
+
 # Constants
 DEFAULT_OPENFOAM_IMAGE = "openfoam/openfoam11-paraview510"
 NUMPY_DIM_2D = 2
 NUMPY_DIM_3D = 3
 MIN_STREAMLINE_POINTS = 100
+DOCKER_STARTUP_TIMEOUT = 60
+
+
+def start_docker() -> bool:
+    """Start Docker (Colima) if not running.
+
+    Returns:
+        True if Docker is running or successfully started, False otherwise.
+
+    """
+    # Set DOCKER_HOST if not already set (for Colima)
+    if "DOCKER_HOST" not in os.environ:
+        docker_sock = Path.home() / ".colima" / "default" / "docker.sock"
+        if docker_sock.exists():
+            os.environ["DOCKER_HOST"] = f"unix://{docker_sock}"
+            logger.debug(f"DOCKER_HOST set to: {os.environ['DOCKER_HOST']}")
+    
+    try:
+        client = docker.from_env()
+        client.ping()
+        logger.info("Docker/Colima is already running")
+        return True
+    except Exception:
+        pass
+
+    # Docker is not running, try to start it
+    system = platform.system()
+    
+    if system == "Darwin":  # macOS
+        # Check if Colima is installed
+        colima_check = subprocess.run(["which", "colima"], capture_output=True)
+        if colima_check.returncode == 0:
+            # Use Colima (preferred for licensing reasons)
+            logger.info("Starting Colima...")
+            try:
+                # Check Colima status
+                status_result = subprocess.run(
+                    ["colima", "status"],
+                    capture_output=True,
+                    text=True,
+                )
+                
+                if status_result.returncode != 0:
+                    # Colima is not running, start it
+                    subprocess.run(
+                        ["colima", "start", "--cpu", "4", "--memory", "8"],
+                        check=True,
+                    )
+                    logger.info("Colima started successfully")
+                    
+                    # Set DOCKER_HOST for this session
+                    docker_sock = Path.home() / ".colima" / "default" / "docker.sock"
+                    os.environ["DOCKER_HOST"] = f"unix://{docker_sock}"
+                    logger.info(f"DOCKER_HOST set to: {os.environ['DOCKER_HOST']}")
+                else:
+                    logger.info("Colima is already running")
+                    
+            except subprocess.CalledProcessError as e:
+                logger.error(f"Failed to start Colima: {e}")
+                return False
+        else:
+            # Colima not installed
+            logger.error(
+                "Colima not found. Please install Colima: "
+                "brew install docker colima"
+            )
+            return False
+        
+    elif system == "Linux":
+        logger.info("Starting Docker daemon...")
+        try:
+            subprocess.run(["sudo", "systemctl", "start", "docker"], check=True, capture_output=True)
+            logger.info("Docker daemon started")
+        except subprocess.CalledProcessError:
+            logger.error(
+                "Failed to start Docker. Please start Docker manually: "
+                "sudo systemctl start docker"
+            )
+            return False
+            
+    elif system == "Windows":
+        logger.error(
+            "Windows is not supported. Please use Colima or Docker on Linux/macOS."
+        )
+        return False
+    else:
+        logger.error(f"Unsupported platform: {system}")
+        return False
+
+    # Wait for Docker to start
+    logger.info("Waiting for Docker to start...")
+    for i in range(DOCKER_STARTUP_TIMEOUT):
+        try:
+            client = docker.from_env()
+            client.ping()
+            logger.info("Docker started successfully!")
+            return True
+        except Exception:
+            if i % 5 == 0:
+                logger.debug(f"Still waiting... ({i}/{DOCKER_STARTUP_TIMEOUT}s)")
+            time.sleep(1)
+    
+    logger.error("Docker failed to start within timeout. Please start Docker manually.")
+    return False
 
 
 def run_openfoam_case(
@@ -34,35 +152,66 @@ def run_openfoam_case(
         openfoam_image: Docker image to use for running OpenFOAM.
 
     """
+    if not start_docker():
+        msg = "Docker is not available and could not be started automatically."
+        raise RuntimeError(msg)
+    
     client = docker.from_env()
 
     # Pull the image if not available
     try:
         client.images.get(openfoam_image)
+        logger.info(f"Using OpenFOAM image: {openfoam_image}")
     except docker.errors.ImageNotFound:
+        logger.info(f"Pulling OpenFOAM image: {openfoam_image}")
         client.images.pull(openfoam_image)
 
     # Run Allmesh script (for circuit board cooling)
-    client.containers.run(
-        openfoam_image,
-        command="bash -c './Allmesh-extrudeFromInternalFaces'",
-        volumes={str(case_dir.absolute()): {"bind": "/case", "mode": "rw"}},
-        working_dir="/case",
-        remove=True,
-        stdout=True,
-        stderr=True,
-    )
+    logger.info("Running mesh generation (Allmesh-extrudeFromInternalFaces)...")
+    try:
+        output = client.containers.run(
+            openfoam_image,
+            command="/bin/bash -c 'source /opt/openfoam11/etc/bashrc && ./Allmesh-extrudeFromInternalFaces'",
+            volumes={str(case_dir.absolute()): {"bind": "/case", "mode": "rw"}},
+            working_dir="/case",
+            remove=True,
+            stdout=True,
+            stderr=True,
+        )
+        if output:
+            output_str = output.decode('utf-8')
+            # Filter out welcome message
+            lines = [l for l in output_str.split('\n') if 'Welcome to' not in l and 'Further Resources' not in l and '* ' not in l and 'Contributors' not in l]
+            filtered_output = '\n'.join(lines).strip()
+            if filtered_output:
+                logger.info(f"Mesh generation output:\n{filtered_output}")
+        logger.info("Mesh generation completed")
+    except docker.errors.ContainerError as e:
+        logger.error(f"Mesh generation failed: {e.stderr.decode('utf-8')}")
+        raise
 
     # Run chtMultiRegionFoam
-    client.containers.run(
-        openfoam_image,
-        command="chtMultiRegionFoam",
-        volumes={str(case_dir.absolute()): {"bind": "/case", "mode": "rw"}},
-        working_dir="/case",
-        remove=True,
-        stdout=True,
-        stderr=True,
-    )
+    logger.info("Running chtMultiRegionFoam solver...")
+    try:
+        output = client.containers.run(
+            openfoam_image,
+            command="/bin/bash -c 'source /opt/openfoam11/etc/bashrc && chtMultiRegionFoam'",
+            volumes={str(case_dir.absolute()): {"bind": "/case", "mode": "rw"}},
+            working_dir="/case",
+            remove=True,
+            stdout=True,
+            stderr=True,
+        )
+        if output:
+            output_str = output.decode('utf-8')
+            lines = [l for l in output_str.split('\n') if 'Welcome to' not in l and 'Further Resources' not in l and '* ' not in l and 'Contributors' not in l]
+            filtered_output = '\n'.join(lines).strip()
+            if filtered_output:
+                logger.info(f"Solver output:\n{filtered_output}")
+        logger.info("Simulation completed")
+    except docker.errors.ContainerError as e:
+        logger.error(f"Simulation failed: {e.stderr.decode('utf-8')}")
+        raise
 
 
 def convert_to_vtk(case_dir: Path) -> None:
@@ -72,18 +221,34 @@ def convert_to_vtk(case_dir: Path) -> None:
         case_dir: Path to the OpenFOAM case directory.
 
     """
+    if not start_docker():
+        msg = "Docker is not available and could not be started automatically."
+        raise RuntimeError(msg)
+    
     client = docker.from_env()
     openfoam_image = DEFAULT_OPENFOAM_IMAGE
 
-    client.containers.run(
-        openfoam_image,
-        command="bash -c 'foamToVTK -allRegions'",
-        volumes={str(case_dir.absolute()): {"bind": "/case", "mode": "rw"}},
-        working_dir="/case",
-        remove=True,
-        stdout=True,
-        stderr=True,
-    )
+    logger.info("Converting OpenFOAM results to VTK format...")
+    try:
+        output = client.containers.run(
+            openfoam_image,
+            command="/bin/bash -c 'source /opt/openfoam11/etc/bashrc && foamToVTK -allRegions'",
+            volumes={str(case_dir.absolute()): {"bind": "/case", "mode": "rw"}},
+            working_dir="/case",
+            remove=True,
+            stdout=True,
+            stderr=True,
+        )
+        if output:
+            output_str = output.decode('utf-8')
+            lines = [l for l in output_str.split('\n') if 'Welcome to' not in l and 'Further Resources' not in l and '* ' not in l and 'Contributors' not in l]
+            filtered_output = '\n'.join(lines).strip()
+            if filtered_output:
+                logger.info(f"VTK conversion output:\n{filtered_output}")
+        logger.info("VTK conversion completed")
+    except docker.errors.ContainerError as e:
+        logger.error(f"VTK conversion failed: {e.stderr.decode('utf-8')}")
+        raise
 
 
 def visualize_results(case_dir: Path) -> None:
@@ -101,18 +266,22 @@ def visualize_results(case_dir: Path) -> None:
     # Find the latest time directory in VTK
     vtk_folders = sorted([d for d in vtk_dir.iterdir() if d.is_dir()])
     if not vtk_folders:
+        logger.warning("No VTK folders found")
         return
 
     latest_vtk = vtk_folders[-1]
+    logger.info(f"Visualizing results from: {latest_vtk.name}")
 
     # Find all region directories (multiRegion case)
     region_dirs = [d for d in latest_vtk.iterdir() if d.is_dir()]
 
     if region_dirs:
         # MultiRegion case - visualize all regions
+        logger.info(f"Found {len(region_dirs)} regions to visualize")
         visualize_multiregion(region_dirs)
     else:
         # Single region case
+        logger.info("Visualizing single region case")
         visualize_single_region(latest_vtk)
 
 
@@ -157,6 +326,7 @@ def _add_temperature_subplot(
 
     plotter.add_axes()
     plotter.camera_position = "iso"
+    plotter.camera.parallel_projection = True
 
 
 def _add_velocity_subplot(
@@ -212,6 +382,7 @@ def _add_velocity_subplot(
 
     plotter.add_axes()
     plotter.camera_position = "iso"
+    plotter.camera.parallel_projection = True
 
 
 def _add_streamlines(plotter: pv.Plotter, mesh: pv.DataSet) -> None:
@@ -223,33 +394,55 @@ def _add_streamlines(plotter: pv.Plotter, mesh: pv.DataSet) -> None:
 
     """
     try:
-        # Create seed points for streamlines
         bounds = mesh.bounds
-        seed = pv.Line(
-            [
-                bounds[0],
-                (bounds[2] + bounds[3]) / 2,
-                (bounds[4] + bounds[5]) / 2,
-            ],
-            [
-                bounds[1],
-                (bounds[2] + bounds[3]) / 2,
-                (bounds[4] + bounds[5]) / 2,
-            ],
-            resolution=20,
-        )
+        x_mid = (bounds[0] + bounds[1]) / 2
+        y_range = bounds[3] - bounds[2]
+        z_range = bounds[5] - bounds[4]
+        
+        # Create multiple seed points for better flow visualization
+        seed_points = []
+        n_seeds = 15
+        
+        # Create seeds along the inlet (x-direction)
+        for i in range(n_seeds):
+            y_pos = bounds[2] + (i + 1) * y_range / (n_seeds + 1)
+            for j in range(n_seeds):
+                z_pos = bounds[4] + (j + 1) * z_range / (n_seeds + 1)
+                seed_points.append([bounds[0], y_pos, z_pos])
+        
+        # Also add seeds in the middle of the domain
+        for i in range(n_seeds // 2):
+            y_pos = bounds[2] + (i + 1) * y_range / (n_seeds // 2 + 1)
+            for j in range(n_seeds // 2):
+                z_pos = bounds[4] + (j + 1) * z_range / (n_seeds // 2 + 1)
+                seed_points.append([x_mid, y_pos, z_pos])
+        
+        seed = pv.PolyData(np.array(seed_points))
+        
         streamlines = mesh.streamlines_from_source(
             seed,
             vectors="U",
-            max_time=100.0,
+            max_time=200.0,
+            integration_direction="forward",
         )
-        plotter.add_mesh(streamlines, color="black", line_width=2)
+        
+        if streamlines.n_points > 0:
+            # Calculate velocity magnitude for coloring streamlines
+            velocity_data = streamlines["U"]
+            if velocity_data.ndim == NUMPY_DIM_2D and velocity_data.shape[1] == NUMPY_DIM_3D:
+                velocity_mag = np.linalg.norm(velocity_data, axis=1)
+                streamlines["velocity_magnitude"] = velocity_mag
+                
+                plotter.add_mesh(
+                    streamlines,
+                    scalars="velocity_magnitude",
+                    cmap="jet",
+                    line_width=3,
+                    render_lines_as_tubes=True,
+                    opacity=0.8,
+                )
     except (ValueError, RuntimeError, AttributeError) as e:
-        # Streamline generation may fail for various reasons:
-        # - Empty mesh or insufficient points
-        # - Invalid vector field
-        # - Numerical issues in integration
-        sys.stderr.write(f"Streamline generation failed: {e}\n")
+        logger.warning(f"Streamline generation failed: {e}")
 
 
 def visualize_multiregion(region_dirs: list[Path]) -> None:
@@ -345,6 +538,7 @@ def visualize_single_region(vtk_dir: Path) -> None:
     plotter.add_axes()
     plotter.show_grid()
     plotter.camera_position = "iso"
+    plotter.camera.parallel_projection = True
 
     plotter.show()
 
@@ -386,17 +580,11 @@ def setup_case(
             return case_dir
 
     # Extract from Docker container
-    try:
-        client = docker.from_env()
-    except Exception as e:
-        msg = (
-            "Docker is not available. Please install and start Docker:\n"
-            "  macOS: https://docs.docker.com/desktop/install/mac-install/\n"
-            "  Linux: https://docs.docker.com/engine/install/\n"
-            "  Windows: https://docs.docker.com/desktop/install/windows-install/\n"
-            f"Error: {e}"
-        )
-        raise RuntimeError(msg) from e
+    if not start_docker():
+        msg = "Docker is not available and could not be started automatically."
+        raise RuntimeError(msg)
+    
+    client = docker.from_env()
 
     # Pull the image if not available
     try:
@@ -461,18 +649,28 @@ def main() -> int:
 
     try:
         # Setup case directory
+        logger.info("Setting up OpenFOAM case directory...")
         case_dir = setup_case(args.case_dir, openfoam_image=args.image)
+        logger.info(f"Case directory: {case_dir}")
 
         # Run simulation
         if not args.skip_run:
+            logger.info("Starting OpenFOAM simulation...")
             run_openfoam_case(case_dir, openfoam_image=args.image)
+        else:
+            logger.info("Skipping simulation (--skip-run)")
 
         # Visualize results
         if not args.no_viz:
+            logger.info("Preparing visualization...")
             visualize_results(case_dir)
+        else:
+            logger.info("Skipping visualization (--no-viz)")
+
+        logger.info("All tasks completed successfully!")
 
     except (FileNotFoundError, RuntimeError, docker.errors.DockerException) as e:
-        sys.stderr.write(f"Error: {e}\n")
+        logger.error(f"Error: {e}")
         return 1
 
     return 0
