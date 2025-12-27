@@ -177,7 +177,10 @@ def _add_velocity_subplot(
         if "U" in mesh.array_names:
             # Calculate velocity magnitude
             velocity_data = mesh["U"]
-            if velocity_data.ndim == NUMPY_DIM_2D and velocity_data.shape[1] == NUMPY_DIM_3D:
+            if (
+                velocity_data.ndim == NUMPY_DIM_2D
+                and velocity_data.shape[1] == NUMPY_DIM_3D
+            ):
                 velocity_mag = np.linalg.norm(velocity_data, axis=1)
                 mesh["velocity_magnitude"] = velocity_mag
 
