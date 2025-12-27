@@ -596,18 +596,20 @@ def visualize_cross_section(region_dirs: list[Path]) -> None:
             T_celsius = slice_mesh["T"] - 273.15
             slice_mesh["T_celsius"] = T_celsius
 
-            # Add temperature contour
+            # Add temperature contour (semi-transparent to see baffle behind)
             plotter.add_mesh(
                 slice_mesh,
                 scalars="T_celsius",
                 cmap="hot",
                 show_edges=False,
+                opacity=0.7,  # Semi-transparent
                 scalar_bar_args={
                     "title": "Temperature (°C)",
                     "vertical": True,
                     "position_x": 0.85,
                     "position_y": 0.1,
                     "n_labels": 8,
+                    "fmt": "%.1f",
                 },
             )
 
@@ -647,15 +649,22 @@ def visualize_cross_section(region_dirs: list[Path]) -> None:
                     f"Adding baffle slice: {slice_mesh.n_points} points, T range: {T_celsius.min():.1f} to {T_celsius.max():.1f} °C",
                 )
 
-                # Add baffle with high contrast edges
+                # Add baffle with red fill and cyan edges for high visibility
                 plotter.add_mesh(
                     slice_mesh,
-                    scalars="T_celsius",
-                    cmap="hot",
+                    color="red",
                     show_edges=True,
-                    edge_color="cyan",  # Bright cyan for visibility
-                    line_width=5,  # Thicker lines
+                    edge_color="cyan",
+                    line_width=10,
                     opacity=1.0,
+                )
+                
+                # Add points as yellow spheres for maximum visibility
+                plotter.add_points(
+                    slice_mesh.points,
+                    color="yellow",
+                    point_size=15,
+                    render_points_as_spheres=True,
                 )
             else:
                 logger.warning("Baffle slice has no temperature data")
