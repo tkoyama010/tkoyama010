@@ -298,12 +298,12 @@ def convert_to_vtk(case_dir: Path) -> None:
             if output:
                 output_str = output.decode("utf-8")
                 lines = [
-                    l
-                    for l in output_str.split("\n")
-                    if "Welcome to" not in l
-                    and "Further Resources" not in l
-                    and "* " not in l
-                    and "Contributors" not in l
+                    line
+                    for line in output_str.split("\n")
+                    if "Welcome to" not in line
+                    and "Further Resources" not in line
+                    and "* " not in line
+                    and "Contributors" not in line
                 ]
                 filtered_output = "\n".join(lines).strip()
                 if filtered_output:
