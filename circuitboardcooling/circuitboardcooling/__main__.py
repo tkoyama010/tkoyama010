@@ -658,7 +658,7 @@ def visualize_cross_section(region_dirs: list[Path]) -> None:
                     line_width=10,
                     opacity=1.0,
                 )
-                
+
                 # Add points as yellow spheres for maximum visibility
                 plotter.add_points(
                     slice_mesh.points,
