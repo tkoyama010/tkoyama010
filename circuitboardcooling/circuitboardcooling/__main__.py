@@ -65,7 +65,9 @@ def start_docker() -> bool:
 
     if system == "Darwin":  # macOS
         # Check if Colima is installed
-        colima_check = subprocess.run(["which", "colima"], check=False, capture_output=True)
+        colima_check = subprocess.run(
+            ["which", "colima"], check=False, capture_output=True,
+        )
         if colima_check.returncode == 0:
             # Use Colima (preferred for licensing reasons)
             logger.info("Starting Colima...")
@@ -73,7 +75,8 @@ def start_docker() -> bool:
                 # Check Colima status
                 status_result = subprocess.run(
                     ["colima", "status"],
-                    check=False, capture_output=True,
+                    check=False,
+                    capture_output=True,
                     text=True,
                 )
 
@@ -323,11 +326,15 @@ def visualize_results(case_dir: Path) -> None:
 
     # Check for region directories directly in VTK folder (multiRegion case)
     region_dirs = [d for d in vtk_dir.iterdir() if d.is_dir()]
-    
-    if region_dirs and all(d.name in ['baffle3D', 'fluid'] for d in region_dirs if not d.name.startswith('.')):
+
+    if region_dirs and all(
+        d.name in ["baffle3D", "fluid"]
+        for d in region_dirs
+        if not d.name.startswith(".")
+    ):
         # MultiRegion case with region folders directly in VTK
         logger.info(f"Found {len(region_dirs)} regions to visualize")
-        
+
         # Get VTK files from each region (latest time)
         region_time_dirs = []
         for region_dir in region_dirs:
@@ -336,12 +343,12 @@ def visualize_results(case_dir: Path) -> None:
             if time_files:
                 # Use the region directory itself, we'll read files directly
                 region_time_dirs.append(region_dir)
-        
+
         if region_time_dirs:
             visualize_multiregion(region_time_dirs)
             visualize_cross_section(region_time_dirs)
         return
-    
+
     # Find the latest time directory in VTK (old structure)
     vtk_folders = sorted([d for d in vtk_dir.iterdir() if d.is_dir()])
     if not vtk_folders:
@@ -536,13 +543,13 @@ def visualize_cross_section(region_dirs: list[Path]) -> None:
 
     """
     plotter = pv.Plotter(window_size=[1200, 900])
-    
+
     all_meshes = []
-    
+
     # Load meshes from region directories
     for region_dir in region_dirs:
         region_name = region_dir.name
-        
+
         # Find latest case VTK file
         case_vtk_files = sorted(region_dir.glob("case_*.vtk"))
         if case_vtk_files:
@@ -551,41 +558,41 @@ def visualize_cross_section(region_dirs: list[Path]) -> None:
             mesh["region"] = region_name
             all_meshes.append((region_name, mesh))
             logger.debug(f"Loaded {region_name}: {mesh.n_points} points")
-    
+
     if not all_meshes:
         logger.warning("No meshes found for cross-section visualization")
         return
-    
+
     # Find the baffle center position (X direction)
     baffle_mesh = None
     for region_name, mesh in all_meshes:
         if "baffle" in region_name.lower():
             baffle_mesh = mesh
             break
-    
+
     if baffle_mesh is None:
         logger.warning("Baffle region not found for cross-section")
         return
-    
+
     # Get baffle bounds and center
     bounds = baffle_mesh.bounds
     x_center = (bounds[0] + bounds[1]) / 2
-    
+
     logger.info(f"Creating cross-section at X = {x_center:.4f} m (baffle center)")
-    
+
     # Create slice at baffle center
     for region_name, mesh in all_meshes:
         # Create slice
-        slice_mesh = mesh.slice(normal='x', origin=[x_center, 0, 0])
-        
+        slice_mesh = mesh.slice(normal="x", origin=[x_center, 0, 0])
+
         if slice_mesh.n_points == 0:
             continue
-        
+
         if "fluid" in region_name.lower() and "T" in slice_mesh.array_names:
             # Convert temperature to Celsius
             T_celsius = slice_mesh["T"] - 273.15
             slice_mesh["T_celsius"] = T_celsius
-            
+
             # Add temperature contour
             plotter.add_mesh(
                 slice_mesh,
@@ -600,7 +607,7 @@ def visualize_cross_section(region_dirs: list[Path]) -> None:
                     "n_labels": 8,
                 },
             )
-            
+
             # Add velocity vectors/streamlines on the slice
             if "U" in slice_mesh.array_names:
                 # Subsample for cleaner vector display
@@ -610,7 +617,7 @@ def visualize_cross_section(region_dirs: list[Path]) -> None:
                     every_n = max(1, subsample.n_points // 100)
                     indices = np.arange(0, subsample.n_points, every_n)
                     subsample = subsample.extract_points(indices)
-                
+
                 # Add velocity vectors
                 arrows = subsample.glyph(
                     orient="U",
@@ -618,20 +625,20 @@ def visualize_cross_section(region_dirs: list[Path]) -> None:
                     factor=0.005,
                     geom=pv.Arrow(),
                 )
-                
-                # Calculate velocity magnitude for arrows  
+
+                # Calculate velocity magnitude for arrows
                 if arrows.n_points > 0:
                     plotter.add_mesh(
                         arrows,
                         color="black",
                         opacity=0.7,
                     )
-        
+
         elif "baffle" in region_name.lower() and "T" in slice_mesh.array_names:
             # Convert temperature to Celsius for baffle
             T_celsius = slice_mesh["T"] - 273.15
             slice_mesh["T_celsius"] = T_celsius
-            
+
             # Add baffle with temperature
             plotter.add_mesh(
                 slice_mesh,
@@ -641,7 +648,7 @@ def visualize_cross_section(region_dirs: list[Path]) -> None:
                 edge_color="black",
                 line_width=2,
             )
-    
+
     plotter.add_text(
         f"Cross-section at X = {x_center:.4f} m (Baffle Center)\nTemperature: °C, Velocity: Arrows",
         font_size=12,
@@ -650,7 +657,7 @@ def visualize_cross_section(region_dirs: list[Path]) -> None:
     plotter.add_axes()
     plotter.view_yz()
     plotter.camera.parallel_projection = True
-    
+
     plotter.show()
 
 
@@ -667,41 +674,44 @@ def _add_streamlines(plotter: pv.Plotter, mesh: pv.DataSet) -> None:
         x_mid = (bounds[0] + bounds[1]) / 2
         y_range = bounds[3] - bounds[2]
         z_range = bounds[5] - bounds[4]
-        
+
         # Create multiple seed points for better flow visualization
         seed_points = []
         n_seeds = 15
-        
+
         # Create seeds along the inlet (x-direction)
         for i in range(n_seeds):
             y_pos = bounds[2] + (i + 1) * y_range / (n_seeds + 1)
             for j in range(n_seeds):
                 z_pos = bounds[4] + (j + 1) * z_range / (n_seeds + 1)
                 seed_points.append([bounds[0], y_pos, z_pos])
-        
+
         # Also add seeds in the middle of the domain
         for i in range(n_seeds // 2):
             y_pos = bounds[2] + (i + 1) * y_range / (n_seeds // 2 + 1)
             for j in range(n_seeds // 2):
                 z_pos = bounds[4] + (j + 1) * z_range / (n_seeds // 2 + 1)
                 seed_points.append([x_mid, y_pos, z_pos])
-        
+
         seed = pv.PolyData(np.array(seed_points))
-        
+
         streamlines = mesh.streamlines_from_source(
             seed,
             vectors="U",
             max_time=200.0,
             integration_direction="forward",
         )
-        
+
         if streamlines.n_points > 0:
             # Calculate velocity magnitude for coloring streamlines
             velocity_data = streamlines["U"]
-            if velocity_data.ndim == NUMPY_DIM_2D and velocity_data.shape[1] == NUMPY_DIM_3D:
+            if (
+                velocity_data.ndim == NUMPY_DIM_2D
+                and velocity_data.shape[1] == NUMPY_DIM_3D
+            ):
                 velocity_mag = np.linalg.norm(velocity_data, axis=1)
                 streamlines["velocity_magnitude"] = velocity_mag
-                
+
                 plotter.add_mesh(
                     streamlines,
                     scalars="velocity_magnitude",
@@ -749,7 +759,7 @@ def visualize_multiregion(region_dirs: list[Path]) -> None:
     plotter.link_views()
 
     plotter.show()
-    
+
     # Show cross-section view
     visualize_cross_section([d for d in region_dirs])
 
