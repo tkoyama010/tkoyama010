@@ -1,3 +1,6 @@
-"""CircuitBoardCooling OpenFOAM package for running CHT simulations with Docker and PyVista visualization."""
+"""CircuitBoardCooling OpenFOAM package.
+
+For running CHT simulations with Docker and PyVista visualization.
+"""
 
 __version__ = "0.1.0"
