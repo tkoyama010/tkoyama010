@@ -544,7 +544,8 @@ def visualize_cross_section(region_dirs: list[Path]) -> None:
         region_dirs: List of region directories containing VTK files.
 
     """
-    plotter = pv.Plotter(window_size=[1200, 900])
+    # Use off_screen mode to save screenshot
+    plotter = pv.Plotter(window_size=[1400, 1000], off_screen=True)
 
     all_meshes = []
 
@@ -675,7 +676,13 @@ def visualize_cross_section(region_dirs: list[Path]) -> None:
 
     plotter.add_axes()
 
-    plotter.show()
+    # Save screenshot
+    screenshot_path = Path.cwd() / "cross_section_yz.png"
+    plotter.screenshot(str(screenshot_path))
+    logger.info(f"Cross-section screenshot saved to: {screenshot_path}")
+    
+    # Also show interactively if not off_screen
+    # plotter.show()
 
 
 def _add_streamlines(plotter: pv.Plotter, mesh: pv.DataSet) -> None:
