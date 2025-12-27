@@ -650,13 +650,28 @@ def visualize_cross_section(region_dirs: list[Path]) -> None:
             )
 
     plotter.add_text(
-        f"Cross-section at X = {x_center:.4f} m (Baffle Center)\nTemperature: °C, Velocity: Arrows",
+        f"YZ-Plane Cross-Section at X = {x_center:.4f} m (Baffle Center)\nTemperature: °C, Velocity: Arrows",
         font_size=12,
         position="upper_edge",
     )
-    plotter.add_axes()
+    
+    # Set camera to view YZ plane
     plotter.view_yz()
     plotter.camera.parallel_projection = True
+    
+    # Add axis labels for YZ plane view
+    # After view_yz(), axis mapping is: xtitle→Z(vertical), ytitle→Y(horizontal)
+    plotter.show_bounds(
+        xtitle="Z (m)",  # Vertical axis
+        ytitle="Y (m)",  # Horizontal axis
+        ztitle="X (m)",  # Out of plane
+        grid="back",
+        location="outer",
+        all_edges=True,
+        font_size=12,
+    )
+    
+    plotter.add_axes()
 
     plotter.show()
 
