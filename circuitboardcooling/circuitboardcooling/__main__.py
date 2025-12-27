@@ -680,7 +680,7 @@ def visualize_cross_section(region_dirs: list[Path]) -> None:
     screenshot_path = Path.cwd() / "cross_section_yz.png"
     plotter.screenshot(str(screenshot_path))
     logger.info(f"Cross-section screenshot saved to: {screenshot_path}")
-    
+
     # Also show interactively if not off_screen
     # plotter.show()
 
