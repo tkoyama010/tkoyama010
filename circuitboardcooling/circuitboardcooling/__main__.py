@@ -637,20 +637,26 @@ def visualize_cross_section(region_dirs: list[Path]) -> None:
                         opacity=0.7,
                     )
 
-        elif "baffle" in region_name.lower() and "T" in slice_mesh.array_names:
-            # Convert temperature to Celsius for baffle
-            T_celsius = slice_mesh["T"] - 273.15
-            slice_mesh["T_celsius"] = T_celsius
+        elif "baffle" in region_name.lower():
+            if "T" in slice_mesh.array_names:
+                # Convert temperature to Celsius for baffle
+                T_celsius = slice_mesh["T"] - 273.15
+                slice_mesh["T_celsius"] = T_celsius
+                
+                logger.info(f"Adding baffle slice: {slice_mesh.n_points} points, T range: {T_celsius.min():.1f} to {T_celsius.max():.1f} °C")
 
-            # Add baffle with temperature
-            plotter.add_mesh(
-                slice_mesh,
-                scalars="T_celsius",
-                cmap="hot",
-                show_edges=True,
-                edge_color="black",
-                line_width=2,
-            )
+                # Add baffle with high contrast edges
+                plotter.add_mesh(
+                    slice_mesh,
+                    scalars="T_celsius",
+                    cmap="hot",
+                    show_edges=True,
+                    edge_color="cyan",  # Bright cyan for visibility
+                    line_width=5,       # Thicker lines
+                    opacity=1.0,
+                )
+            else:
+                logger.warning(f"Baffle slice has no temperature data")
 
     plotter.add_text(
         f"YZ-Plane Cross-Section at X = {x_center:.4f} m (Baffle Center)\nTemperature: °C, Velocity: Arrows",
