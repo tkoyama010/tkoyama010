@@ -177,6 +177,7 @@ def run_openfoam_case(
             remove=True,
             stdout=True,
             stderr=True,
+            entrypoint="",
         )
         if output:
             output_str = output.decode('utf-8')
@@ -201,6 +202,7 @@ def run_openfoam_case(
             remove=True,
             stdout=True,
             stderr=True,
+            entrypoint="",
         )
         if output:
             output_str = output.decode('utf-8')
@@ -230,21 +232,47 @@ def convert_to_vtk(case_dir: Path) -> None:
 
     logger.info("Converting OpenFOAM results to VTK format...")
     try:
-        output = client.containers.run(
-            openfoam_image,
-            command="/bin/bash -c 'source /opt/openfoam11/etc/bashrc && foamToVTK -allRegions'",
-            volumes={str(case_dir.absolute()): {"bind": "/case", "mode": "rw"}},
-            working_dir="/case",
-            remove=True,
-            stdout=True,
-            stderr=True,
-        )
-        if output:
-            output_str = output.decode('utf-8')
-            lines = [l for l in output_str.split('\n') if 'Welcome to' not in l and 'Further Resources' not in l and '* ' not in l and 'Contributors' not in l]
-            filtered_output = '\n'.join(lines).strip()
-            if filtered_output:
-                logger.info(f"VTK conversion output:\n{filtered_output}")
+        # For multiRegion cases, foamToVTK must be run for each region
+        # First check if it's a multiRegion case
+        system_dir = case_dir / "system"
+        regions = [d.name for d in system_dir.iterdir() if d.is_dir() and d.name not in ['include']]
+        
+        if regions:
+            # MultiRegion case - convert each region
+            logger.info(f"Converting {len(regions)} regions: {', '.join(regions)}")
+            for region in regions:
+                output = client.containers.run(
+                    openfoam_image,
+                    command=f"/bin/bash -c 'source /opt/openfoam11/etc/bashrc && foamToVTK -region {region}'",
+                    volumes={str(case_dir.absolute()): {"bind": "/case", "mode": "rw"}},
+                    working_dir="/case",
+                    remove=True,
+                    stdout=True,
+                    stderr=True,
+                    entrypoint="",
+                )
+                if output:
+                    output_str = output.decode('utf-8')
+                    if 'error' in output_str.lower() or 'fatal' in output_str.lower():
+                        logger.warning(f"VTK conversion for region {region}:\n{output_str}")
+        else:
+            # Single region case
+            output = client.containers.run(
+                openfoam_image,
+                command="/bin/bash -c 'source /opt/openfoam11/etc/bashrc && foamToVTK'",
+                volumes={str(case_dir.absolute()): {"bind": "/case", "mode": "rw"}},
+                working_dir="/case",
+                remove=True,
+                stdout=True,
+                stderr=True,
+                entrypoint="",
+            )
+            if output:
+                output_str = output.decode('utf-8')
+                lines = [l for l in output_str.split('\n') if 'Welcome to' not in l and 'Further Resources' not in l and '* ' not in l and 'Contributors' not in l]
+                filtered_output = '\n'.join(lines).strip()
+                if filtered_output:
+                    logger.info(f"VTK conversion output:\n{filtered_output}")
         logger.info("VTK conversion completed")
     except docker.errors.ContainerError as e:
         logger.error(f"VTK conversion failed: {e.stderr.decode('utf-8')}")
@@ -574,7 +602,7 @@ def setup_case(
             / "circuitBoardCooling"
         )
         if tutorial_src.exists():
-            temp_dir = Path(tempfile.mkdtemp(prefix="circuitboard_"))
+            temp_dir = Path(tempfile.mkdtemp(prefix="circuitboard_", dir=Path.home()))
             case_dir = temp_dir / "circuitBoardCooling"
             shutil.copytree(tutorial_src, case_dir)
             return case_dir
@@ -592,7 +620,8 @@ def setup_case(
     except docker.errors.ImageNotFound:
         client.images.pull(openfoam_image)
 
-    temp_dir = Path(tempfile.mkdtemp(prefix="circuitboard_"))
+    # Create temp directory in $HOME for Colima compatibility
+    temp_dir = Path(tempfile.mkdtemp(prefix="circuitboard_", dir=Path.home()))
     case_dir = temp_dir / "circuitBoardCooling"
 
     # Create a container and copy the tutorial files
