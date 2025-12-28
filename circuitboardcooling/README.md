@@ -324,14 +324,16 @@ circuitboardcooling/
 The circuit board cooling model has the following dimensions:
 
 #### Main Domain (Fluid Region)
+
 - **X direction (Length)**: 0.0 to 0.1 m (100 mm)
-- **Y direction (Width)**: 0.0 to 0.05 m (50 mm)  
+- **Y direction (Width)**: 0.0 to 0.05 m (50 mm)
 - **Z direction (Height)**: 0.0 to 0.03 m (30 mm)
 - **Total Volume**: 100 mm × 50 mm × 30 mm = 150,000 mm³
 
 **Scale Reference**: About the size of a mobile phone
 
 #### Coordinate System
+
 - **X**: Main flow direction (inlet at X=0, outlet at X=0.1m)
 - **Y**: Width direction (horizontal, perpendicular to flow)
 - **Z**: Height direction (vertical, gravity direction)
@@ -339,6 +341,7 @@ The circuit board cooling model has the following dimensions:
 ### Internal Objects
 
 #### Baffle (Heat Transfer Plate)
+
 - **Location**: Center of domain at X = 0.05 m (50 mm from inlet)
 - **Thickness**: 0.002 m (2 mm)
 - **Y extent**: 0.01 m to 0.04 m (30 mm width, 10 mm margins on each side)
@@ -388,12 +391,12 @@ Z (mm)
 
 ### Dimensions Summary
 
-| Component | X (mm) | Y (mm) | Z (mm) | Volume (mm³) |
-|-----------|--------|--------|--------|--------------|
-| **Fluid Domain** | 0 → 100 | 0 → 50 | 0 → 30 | 150,000 |
-| **Baffle** | 48 → 52 (2mm thick) | 10 → 40 | 0 → 30 | 1,800 |
-| **Left Gap** | - | 0 → 10 | - | - |
-| **Right Gap** | - | 40 → 50 | - | - |
+| Component        | X (mm)              | Y (mm)  | Z (mm) | Volume (mm³) |
+| ---------------- | ------------------- | ------- | ------ | ------------ |
+| **Fluid Domain** | 0 → 100             | 0 → 50  | 0 → 30 | 150,000      |
+| **Baffle**       | 48 → 52 (2mm thick) | 10 → 40 | 0 → 30 | 1,800        |
+| **Left Gap**     | -                   | 0 → 10  | -      | -            |
+| **Right Gap**    | -                   | 40 → 50 | -      | -            |
 
 ### Flow Characteristics
 
@@ -403,6 +406,7 @@ Z (mm)
 - **Air kinematic viscosity**: ~1.5×10⁻⁵ m²/s
 
 #### Flow Regions
+
 1. **Inlet Region** (X: 0 → 40 mm): Developing flow, uniform temperature
 2. **Baffle Region** (X: 40 → 60 mm): Flow separation, recirculation zones, maximum heat transfer
 3. **Outlet Region** (X: 60 → 100 mm): Flow reattachment, thermal wake
