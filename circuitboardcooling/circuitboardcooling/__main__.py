@@ -293,11 +293,7 @@ def convert_to_vtk(case_dir: Path) -> None:
         # For multiRegion cases, foamToVTK must be run for each region
         # First check if it's a multiRegion case
         system_dir = case_dir / "system"
-        regions = [
-            d.name
-            for d in system_dir.iterdir()
-            if d.is_dir() and d.name not in ["include"]
-        ]
+        regions = [d.name for d in system_dir.iterdir() if d.is_dir() and d.name not in ["include"]]
 
         if regions:
             # MultiRegion case - convert each region
@@ -362,9 +358,7 @@ def visualize_results(case_dir: Path) -> None:
     region_dirs = [d for d in vtk_dir.iterdir() if d.is_dir()]
 
     if region_dirs and all(
-        d.name in ["baffle3D", "fluid"]
-        for d in region_dirs
-        if not d.name.startswith(".")
+        d.name in ["baffle3D", "fluid"] for d in region_dirs if not d.name.startswith(".")
     ):
         # MultiRegion case with region folders directly in VTK
         logger.info("Found %s regions to visualize", len(region_dirs))
@@ -468,10 +462,7 @@ def _add_velocity_subplot(
         if "U" in mesh.array_names:
             # Calculate velocity magnitude
             velocity_data = mesh["U"]
-            if (
-                velocity_data.ndim == NUMPY_DIM_2D
-                and velocity_data.shape[1] == NUMPY_DIM_3D
-            ):
+            if velocity_data.ndim == NUMPY_DIM_2D and velocity_data.shape[1] == NUMPY_DIM_3D:
                 velocity_mag = np.linalg.norm(velocity_data, axis=1)
                 mesh["velocity_magnitude"] = velocity_mag
 
@@ -550,10 +541,7 @@ def _add_streamlines(plotter: pv.Plotter, mesh: pv.DataSet) -> None:
         if streamlines.n_points > 0:
             # Calculate velocity magnitude for coloring streamlines
             velocity_data = streamlines["U"]
-            if (
-                velocity_data.ndim == NUMPY_DIM_2D
-                and velocity_data.shape[1] == NUMPY_DIM_3D
-            ):
+            if velocity_data.ndim == NUMPY_DIM_2D and velocity_data.shape[1] == NUMPY_DIM_3D:
                 velocity_mag = np.linalg.norm(velocity_data, axis=1)
                 streamlines["velocity_magnitude"] = velocity_mag
 
@@ -958,10 +946,7 @@ def setup_case(
     foam_tutorials = os.environ.get("FOAM_TUTORIALS")
     if foam_tutorials:
         tutorial_src = (
-            Path(foam_tutorials)
-            / "heatTransfer"
-            / "buoyantSimpleFoam"
-            / "circuitBoardCooling"
+            Path(foam_tutorials) / "heatTransfer" / "buoyantSimpleFoam" / "circuitBoardCooling"
         )
         if tutorial_src.exists():
             temp_dir = Path(tempfile.mkdtemp(prefix="circuitboard_", dir=Path.home()))
@@ -1070,9 +1055,7 @@ def _add_demo_geometry(
     # Temperature gradient
     center_y = (y_min + y_max) / 2
     center_z = (z_min + z_max) / 2
-    temp_preview = 20 + 30 * np.exp(
-        -((y_grid - center_y) ** 2 + (z_grid - center_z) ** 2) / 0.001,
-    )
+    temp_preview = 20 + 30 * np.exp(-((y_grid - center_y) ** 2 + (z_grid - center_z) ** 2) / 0.001)
 
     points = np.c_[x_grid.ravel(), y_grid.ravel(), z_grid.ravel()]
     preview_mesh = pv.StructuredGrid()
@@ -1104,18 +1087,35 @@ def _add_demo_cross_section(
     y_grid, z_grid = np.meshgrid(y, z)
     x_grid = np.full_like(y_grid, x_center)
 
-    # Temperature field (warmer near center)
+    # Temperature field (warmer at bottom/inlet, cooler at top/outlet)
+    # Simulate heat from bottom rising upward
     center_y = (y_min + y_max) / 2
-    center_z = (z_min + z_max) / 2
-    temperature = 20 + 30 * np.exp(
-        -((y_grid - center_y) ** 2 + (z_grid - center_z) ** 2) / 0.001,
-    )
+    temperature = 30 + 20 * (1 - z_grid / z_max) + 5 * np.exp(-((y_grid - center_y) ** 2) / 0.0005)
 
-    # Create velocity field (circular flow pattern around baffle)
-    # V velocity component (Y direction)
-    v_velocity = 0.5 * (z_grid - center_z) / 0.015
-    # W velocity component (Z direction)
-    w_velocity = -0.5 * (y_grid - center_y) / 0.025
+    # Create realistic velocity field (flow from bottom to top, around baffle)
+    baffle_y_min = y_min + 0.01
+    baffle_y_max = y_max - 0.01
+
+    # V velocity component (Y direction) - flow goes around baffle
+    v_velocity = np.zeros_like(y_grid)
+    for i in range(y_points):
+        for j in range(z_points):
+            y_pos = y_grid[j, i]
+            _z_pos = z_grid[j, i]
+
+            # If in baffle region, deflect flow sideways
+            if baffle_y_min <= y_pos <= baffle_y_max:
+                # Flow deflects to the sides
+                if y_pos < center_y:
+                    v_velocity[j, i] = -0.3  # Flow to -Y direction
+                else:
+                    v_velocity[j, i] = 0.3  # Flow to +Y direction
+            else:
+                # Normal flow with slight variation
+                v_velocity[j, i] = 0.05 * (y_pos - center_y) / (y_max - y_min)
+
+    # W velocity component (Z direction) - main upward flow
+    w_velocity = 0.5 * (1 - 0.3 * np.abs(y_grid - center_y) / (y_max - y_min))
 
     # Create mesh
     points = np.c_[x_grid.ravel(), y_grid.ravel(), z_grid.ravel()]
@@ -1150,11 +1150,10 @@ def _add_demo_cross_section(
     )
 
     # Add streamlines for velocity
-    # Create seed points for streamlines
+    # Create seed points at the bottom (inlet region)
     seed_points = [
-        [x_center, y_seed, z_seed]
-        for y_seed in np.linspace(y_min + 0.005, y_max - 0.005, 8)
-        for z_seed in np.linspace(z_min + 0.003, z_max - 0.003, 5)
+        [x_center, y_seed, z_min + 0.003]
+        for y_seed in np.linspace(y_min + 0.002, y_max - 0.002, 12)
     ]
 
     seed = pv.PolyData(np.array(seed_points))
@@ -1163,21 +1162,43 @@ def _add_demo_cross_section(
     streamlines = slice_mesh.streamlines_from_source(
         seed,
         vectors="velocity",
-        max_time=10.0,
-        integration_direction="both",
+        max_time=50.0,
+        integration_direction="forward",
     )
 
     if streamlines.n_points > 0:
         plotter.add_mesh(
             streamlines,
             color="cyan",
-            line_width=2,
-            opacity=0.8,
+            line_width=2.5,
+            opacity=0.9,
             label="Flow streamlines",
         )
 
-    # Add baffle boundary with label
+    # Add baffle as a filled rectangle on the cross-section
     baffle_y_min, baffle_y_max = y_min + 0.01, y_max - 0.01
+
+    # Create baffle surface on the cross-section
+    baffle_rect = pv.Plane(
+        center=[x_center, (baffle_y_min + baffle_y_max) / 2, (z_min + z_max) / 2],
+        direction=[1, 0, 0],  # Normal in X direction (perpendicular to YZ plane)
+        i_size=baffle_y_max - baffle_y_min,
+        j_size=z_max - z_min,
+        i_resolution=1,
+        j_resolution=1,
+    )
+
+    plotter.add_mesh(
+        baffle_rect,
+        color="red",
+        opacity=0.8,
+        show_edges=True,
+        edge_color="darkred",
+        line_width=3,
+        label="Baffle",
+    )
+
+    # Add baffle boundary outline for emphasis
     baffle_points = np.array(
         [
             [x_center, baffle_y_min, z_min],
@@ -1189,14 +1210,7 @@ def _add_demo_cross_section(
     baffle_line = pv.PolyData(baffle_points)
     baffle_line.lines = np.array([4, 0, 1, 2, 3])
 
-    plotter.add_mesh(baffle_line, color="red", line_width=10, label="Baffle boundary")
-    plotter.add_points(
-        baffle_points,
-        color="yellow",
-        point_size=15,
-        render_points_as_spheres=True,
-        label="Baffle corners",
-    )
+    plotter.add_mesh(baffle_line, color="darkred", line_width=5)
 
 
 def create_demo_visualization(output_path: Path | None = None) -> Path:
