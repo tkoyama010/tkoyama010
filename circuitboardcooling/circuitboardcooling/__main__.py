@@ -293,7 +293,11 @@ def convert_to_vtk(case_dir: Path) -> None:
         # For multiRegion cases, foamToVTK must be run for each region
         # First check if it's a multiRegion case
         system_dir = case_dir / "system"
-        regions = [d.name for d in system_dir.iterdir() if d.is_dir() and d.name not in ["include"]]
+        regions = [
+            d.name
+            for d in system_dir.iterdir()
+            if d.is_dir() and d.name not in ["include"]
+        ]
 
         if regions:
             # MultiRegion case - convert each region
@@ -358,7 +362,9 @@ def visualize_results(case_dir: Path) -> None:
     region_dirs = [d for d in vtk_dir.iterdir() if d.is_dir()]
 
     if region_dirs and all(
-        d.name in ["baffle3D", "fluid"] for d in region_dirs if not d.name.startswith(".")
+        d.name in ["baffle3D", "fluid"]
+        for d in region_dirs
+        if not d.name.startswith(".")
     ):
         # MultiRegion case with region folders directly in VTK
         logger.info("Found %s regions to visualize", len(region_dirs))
@@ -462,7 +468,10 @@ def _add_velocity_subplot(
         if "U" in mesh.array_names:
             # Calculate velocity magnitude
             velocity_data = mesh["U"]
-            if velocity_data.ndim == NUMPY_DIM_2D and velocity_data.shape[1] == NUMPY_DIM_3D:
+            if (
+                velocity_data.ndim == NUMPY_DIM_2D
+                and velocity_data.shape[1] == NUMPY_DIM_3D
+            ):
                 velocity_mag = np.linalg.norm(velocity_data, axis=1)
                 mesh["velocity_magnitude"] = velocity_mag
 
@@ -541,7 +550,10 @@ def _add_streamlines(plotter: pv.Plotter, mesh: pv.DataSet) -> None:
         if streamlines.n_points > 0:
             # Calculate velocity magnitude for coloring streamlines
             velocity_data = streamlines["U"]
-            if velocity_data.ndim == NUMPY_DIM_2D and velocity_data.shape[1] == NUMPY_DIM_3D:
+            if (
+                velocity_data.ndim == NUMPY_DIM_2D
+                and velocity_data.shape[1] == NUMPY_DIM_3D
+            ):
                 velocity_mag = np.linalg.norm(velocity_data, axis=1)
                 streamlines["velocity_magnitude"] = velocity_mag
 
@@ -946,7 +958,10 @@ def setup_case(
     foam_tutorials = os.environ.get("FOAM_TUTORIALS")
     if foam_tutorials:
         tutorial_src = (
-            Path(foam_tutorials) / "heatTransfer" / "buoyantSimpleFoam" / "circuitBoardCooling"
+            Path(foam_tutorials)
+            / "heatTransfer"
+            / "buoyantSimpleFoam"
+            / "circuitBoardCooling"
         )
         if tutorial_src.exists():
             temp_dir = Path(tempfile.mkdtemp(prefix="circuitboard_", dir=Path.home()))
