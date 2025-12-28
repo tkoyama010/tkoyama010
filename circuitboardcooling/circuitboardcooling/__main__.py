@@ -1237,8 +1237,8 @@ def _add_demo_cross_section(
 def create_demo_visualization(output_path: Path | None = None) -> Path:
     """Create a demo 2-panel visualization showing the concept.
 
-    This creates a demonstration of the visualization layout without requiring
-    actual OpenFOAM simulation data.
+    This creates a demonstration of the visualization layout. If VTK files exist
+    from a previous simulation, they will be used. Otherwise, synthetic data is generated.
 
     Args:
         output_path: Path where to save the image. Defaults to cross_section_yz_demo.png
@@ -1252,6 +1252,82 @@ def create_demo_visualization(output_path: Path | None = None) -> Path:
 
     logger.info("Creating demo visualization...")
 
+    # Check for existing VTK files from simulation
+    vtk_regions = []
+    case_dir = Path.cwd()
+
+    # Look for VTK directories
+    for vtk_dir in case_dir.glob("VTK/*"):
+        if vtk_dir.is_dir():
+            # Find case_*.vtk files
+            vtk_files = sorted(vtk_dir.glob("case_*.vtk"))
+            if vtk_files:
+                region_name = vtk_dir.name
+                latest_vtk = vtk_files[-1]
+                logger.info("Found VTK file for region %s: %s", region_name, latest_vtk)
+                vtk_regions.append((region_name, latest_vtk))
+
+    if vtk_regions:
+        logger.info("Using VTK files from simulation")
+        return _create_visualization_from_vtk(vtk_regions, output_path)
+    logger.info("No VTK files found, generating synthetic demo data")
+    return _create_synthetic_demo_visualization(output_path)
+
+
+def _create_visualization_from_vtk(
+    vtk_regions: list[tuple[str, Path]],
+    output_path: Path,
+) -> Path:
+    """Create visualization from actual VTK files using existing functions.
+
+    Args:
+        vtk_regions: List of (region_name, vtk_file_path) tuples
+        output_path: Path to save the output image
+
+    Returns:
+        Path to the saved image.
+
+    """
+    # Extract region directories from VTK file paths
+    region_dirs = []
+    for _region_name, vtk_file in vtk_regions:
+        region_dir = vtk_file.parent
+        if region_dir not in region_dirs:
+            region_dirs.append(region_dir)
+
+    # Use the existing visualize_cross_section function
+    # but modify it to save to our output path
+    original_cwd = Path.cwd()
+    try:
+        # Temporarily change to output directory
+        output_dir = output_path.parent
+        if output_dir.exists():
+            os.chdir(str(output_dir))
+
+        visualize_cross_section(region_dirs)
+
+        # Move the generated image to desired location
+        default_output = Path.cwd() / "cross_section_yz.png"
+        if default_output.exists() and default_output != output_path:
+            shutil.move(str(default_output), str(output_path))
+
+        logger.info("Visualization from VTK saved to: %s", output_path)
+    finally:
+        os.chdir(str(original_cwd))
+
+    return output_path
+
+
+def _create_synthetic_demo_visualization(output_path: Path) -> Path:
+    """Create synthetic demo visualization when no VTK files are available.
+
+    Args:
+        output_path: Path to save the output image
+
+    Returns:
+        Path to the saved image.
+
+    """
     # Create 2-panel plotter
     plotter = pv.Plotter(shape=(1, 2), window_size=[2000, 1000], off_screen=True)
 
@@ -1265,7 +1341,8 @@ def create_demo_visualization(output_path: Path | None = None) -> Path:
     # LEFT PANEL: Isometric view with internal structure
     plotter.subplot(0, 0)
     plotter.add_text(
-        "Isometric View with Internal Structure\n(Yellow plane shows cut location)",
+        "Isometric View with Internal Structure (Synthetic Data)\n"
+        "(Yellow plane shows cut location)",
         font_size=12,
         position="upper_edge",
     )
@@ -1278,7 +1355,7 @@ def create_demo_visualization(output_path: Path | None = None) -> Path:
     # RIGHT PANEL: Cross-section view
     plotter.subplot(0, 1)
     plotter.add_text(
-        f"YZ-Plane Cross-Section at X = {x_center:.4f} m\n"
+        f"YZ-Plane Cross-Section at X = {x_center:.4f} m (Synthetic Data)\n"
         "Temperature (color) + Flow Streamlines (cyan)",
         font_size=12,
         position="upper_edge",
@@ -1300,7 +1377,7 @@ def create_demo_visualization(output_path: Path | None = None) -> Path:
 
     # Save screenshot
     plotter.screenshot(str(output_path))
-    logger.info("Demo visualization saved to: %s", output_path)
+    logger.info("Synthetic demo visualization saved to: %s", output_path)
 
     return output_path
 
