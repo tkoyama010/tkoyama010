@@ -293,11 +293,7 @@ def convert_to_vtk(case_dir: Path) -> None:
         # For multiRegion cases, foamToVTK must be run for each region
         # First check if it's a multiRegion case
         system_dir = case_dir / "system"
-        regions = [
-            d.name
-            for d in system_dir.iterdir()
-            if d.is_dir() and d.name not in ["include"]
-        ]
+        regions = [d.name for d in system_dir.iterdir() if d.is_dir() and d.name not in ["include"]]
 
         if regions:
             # MultiRegion case - convert each region
@@ -362,9 +358,7 @@ def visualize_results(case_dir: Path) -> None:
     region_dirs = [d for d in vtk_dir.iterdir() if d.is_dir()]
 
     if region_dirs and all(
-        d.name in ["baffle3D", "fluid"]
-        for d in region_dirs
-        if not d.name.startswith(".")
+        d.name in ["baffle3D", "fluid"] for d in region_dirs if not d.name.startswith(".")
     ):
         # MultiRegion case with region folders directly in VTK
         logger.info("Found %s regions to visualize", len(region_dirs))
@@ -468,10 +462,7 @@ def _add_velocity_subplot(
         if "U" in mesh.array_names:
             # Calculate velocity magnitude
             velocity_data = mesh["U"]
-            if (
-                velocity_data.ndim == NUMPY_DIM_2D
-                and velocity_data.shape[1] == NUMPY_DIM_3D
-            ):
+            if velocity_data.ndim == NUMPY_DIM_2D and velocity_data.shape[1] == NUMPY_DIM_3D:
                 velocity_mag = np.linalg.norm(velocity_data, axis=1)
                 mesh["velocity_magnitude"] = velocity_mag
 
@@ -550,10 +541,7 @@ def _add_streamlines(plotter: pv.Plotter, mesh: pv.DataSet) -> None:
         if streamlines.n_points > 0:
             # Calculate velocity magnitude for coloring streamlines
             velocity_data = streamlines["U"]
-            if (
-                velocity_data.ndim == NUMPY_DIM_2D
-                and velocity_data.shape[1] == NUMPY_DIM_3D
-            ):
+            if velocity_data.ndim == NUMPY_DIM_2D and velocity_data.shape[1] == NUMPY_DIM_3D:
                 velocity_mag = np.linalg.norm(velocity_data, axis=1)
                 streamlines["velocity_magnitude"] = velocity_mag
 
@@ -958,10 +946,7 @@ def setup_case(
     foam_tutorials = os.environ.get("FOAM_TUTORIALS")
     if foam_tutorials:
         tutorial_src = (
-            Path(foam_tutorials)
-            / "heatTransfer"
-            / "buoyantSimpleFoam"
-            / "circuitBoardCooling"
+            Path(foam_tutorials) / "heatTransfer" / "buoyantSimpleFoam" / "circuitBoardCooling"
         )
         if tutorial_src.exists():
             temp_dir = Path(tempfile.mkdtemp(prefix="circuitboard_", dir=Path.home()))
@@ -1017,17 +1002,18 @@ def _add_demo_geometry(
     """Add geometry to isometric view for demo."""
     x_min, x_max, y_min, y_max, z_min, z_max = bounds
 
-    # Fluid domain box
+    # Fluid domain box (semi-transparent)
     fluid_box = pv.Box(bounds=[x_min, x_max, y_min, y_max, z_min, z_max])
     plotter.add_mesh(
         fluid_box,
         color="lightblue",
-        opacity=0.2,
+        opacity=0.15,
         show_edges=True,
         edge_color="blue",
+        line_width=2,
     )
 
-    # Baffle
+    # Add baffle mesh
     baffle_thickness = 0.002
     baffle = pv.Box(
         bounds=[
@@ -1039,9 +1025,9 @@ def _add_demo_geometry(
             z_max,
         ],
     )
-    plotter.add_mesh(baffle, color="red", opacity=0.5)
+    plotter.add_mesh(baffle, color="red", opacity=0.8, label="Baffle")
 
-    # Cutting plane
+    # Cutting plane (yellow, semi-transparent)
     plane = pv.Plane(
         center=[x_center, (y_min + y_max) / 2, (z_min + z_max) / 2],
         direction=[1, 0, 0],
@@ -1051,10 +1037,38 @@ def _add_demo_geometry(
     plotter.add_mesh(
         plane,
         color="yellow",
-        opacity=0.5,
+        opacity=0.4,
         show_edges=True,
         edge_color="orange",
         line_width=3,
+        label="Cut Plane",
+    )
+
+    # Add internal cross-section preview (same as cut plane but with temperature gradient)
+    # Create a simple gradient to show internal structure
+    y_points, z_points = 20, 15
+    y = np.linspace(y_min, y_max, y_points)
+    z = np.linspace(z_min, z_max, z_points)
+    y_grid, z_grid = np.meshgrid(y, z)
+    x_grid = np.full_like(y_grid, x_center)
+
+    # Temperature gradient
+    center_y = (y_min + y_max) / 2
+    center_z = (z_min + z_max) / 2
+    temp_preview = 20 + 30 * np.exp(-((y_grid - center_y) ** 2 + (z_grid - center_z) ** 2) / 0.001)
+
+    points = np.c_[x_grid.ravel(), y_grid.ravel(), z_grid.ravel()]
+    preview_mesh = pv.StructuredGrid()
+    preview_mesh.points = points
+    preview_mesh.dimensions = [1, y_points, z_points]
+    preview_mesh["Temperature"] = temp_preview.ravel()
+
+    plotter.add_mesh(
+        preview_mesh,
+        scalars="Temperature",
+        cmap="hot",
+        opacity=0.6,
+        show_edges=False,
     )
 
 
@@ -1076,9 +1090,13 @@ def _add_demo_cross_section(
     # Temperature field (warmer near center)
     center_y = (y_min + y_max) / 2
     center_z = (z_min + z_max) / 2
-    temperature = 20 + 30 * np.exp(
-        -((y_grid - center_y) ** 2 + (z_grid - center_z) ** 2) / 0.001,
-    )
+    temperature = 20 + 30 * np.exp(-((y_grid - center_y) ** 2 + (z_grid - center_z) ** 2) / 0.001)
+
+    # Create velocity field (circular flow pattern around baffle)
+    # V velocity component (Y direction)
+    v_velocity = 0.5 * (z_grid - center_z) / 0.015
+    # W velocity component (Z direction)
+    w_velocity = -0.5 * (y_grid - center_y) / 0.025
 
     # Create mesh
     points = np.c_[x_grid.ravel(), y_grid.ravel(), z_grid.ravel()]
@@ -1087,13 +1105,21 @@ def _add_demo_cross_section(
     slice_mesh.dimensions = [1, y_points, z_points]
     slice_mesh["T_celsius"] = temperature.ravel()
 
+    # Add velocity vectors (U=0 on slice, only V and W components)
+    velocity = np.c_[
+        np.zeros(y_grid.size),  # U component (normal to slice)
+        v_velocity.ravel(),  # V component
+        w_velocity.ravel(),  # W component
+    ]
+    slice_mesh["velocity"] = velocity
+
     # Add temperature contour
     plotter.add_mesh(
         slice_mesh,
         scalars="T_celsius",
         cmap="hot",
         show_edges=False,
-        opacity=0.7,
+        opacity=0.6,
         scalar_bar_args={
             "title": "Temperature (°C)",
             "vertical": True,
@@ -1104,7 +1130,34 @@ def _add_demo_cross_section(
         },
     )
 
-    # Add baffle on cross-section
+    # Add streamlines for velocity
+    # Create seed points for streamlines
+    seed_points = [
+        [x_center, y_seed, z_seed]
+        for y_seed in np.linspace(y_min + 0.005, y_max - 0.005, 8)
+        for z_seed in np.linspace(z_min + 0.003, z_max - 0.003, 5)
+    ]
+
+    seed = pv.PolyData(np.array(seed_points))
+
+    # Generate streamlines
+    streamlines = slice_mesh.streamlines_from_source(
+        seed,
+        vectors="velocity",
+        max_time=10.0,
+        integration_direction="both",
+    )
+
+    if streamlines.n_points > 0:
+        plotter.add_mesh(
+            streamlines,
+            color="cyan",
+            line_width=2,
+            opacity=0.8,
+            label="Flow streamlines",
+        )
+
+    # Add baffle boundary with label
     baffle_y_min, baffle_y_max = y_min + 0.01, y_max - 0.01
     baffle_points = np.array(
         [
@@ -1117,9 +1170,13 @@ def _add_demo_cross_section(
     baffle_line = pv.PolyData(baffle_points)
     baffle_line.lines = np.array([4, 0, 1, 2, 3])
 
-    plotter.add_mesh(baffle_line, color="red", line_width=10)
+    plotter.add_mesh(baffle_line, color="red", line_width=10, label="Baffle boundary")
     plotter.add_points(
-        baffle_points, color="yellow", point_size=15, render_points_as_spheres=True,
+        baffle_points,
+        color="yellow",
+        point_size=15,
+        render_points_as_spheres=True,
+        label="Baffle corners",
     )
 
 
@@ -1151,23 +1208,24 @@ def create_demo_visualization(output_path: Path | None = None) -> Path:
     x_center = (x_min + x_max) / 2
     bounds = (x_min, x_max, y_min, y_max, z_min, z_max)
 
-    # LEFT PANEL: Isometric view
+    # LEFT PANEL: Isometric view with internal structure
     plotter.subplot(0, 0)
     plotter.add_text(
-        "Isometric View\n(showing cut plane location)",
+        "Isometric View with Internal Structure\n(Yellow plane shows cut location)",
         font_size=12,
         position="upper_edge",
     )
     _add_demo_geometry(plotter, bounds, x_center)
     plotter.view_isometric()
+    plotter.camera.parallel_projection = True  # Enable parallel projection
     plotter.add_axes()
     plotter.show_bounds(grid="back", location="outer", font_size=10)
 
     # RIGHT PANEL: Cross-section view
     plotter.subplot(0, 1)
     plotter.add_text(
-        f"YZ-Plane Cross-Section at X = {x_center:.4f} m (Baffle Center)\n"
-        "Temperature: °C, Velocity: Arrows",
+        f"YZ-Plane Cross-Section at X = {x_center:.4f} m\n"
+        "Temperature (color) + Flow Streamlines (cyan)",
         font_size=12,
         position="upper_edge",
     )
@@ -1184,6 +1242,7 @@ def create_demo_visualization(output_path: Path | None = None) -> Path:
         font_size=12,
     )
     plotter.add_axes()
+    plotter.add_legend(size=(0.2, 0.2), loc="lower left")
 
     # Save screenshot
     plotter.screenshot(str(output_path))
