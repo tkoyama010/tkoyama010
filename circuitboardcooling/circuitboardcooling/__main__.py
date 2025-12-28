@@ -697,69 +697,6 @@ def visualize_cross_section(region_dirs: list[Path]) -> None:
     # plotter.show()
 
 
-def _add_streamlines(plotter: pv.Plotter, mesh: pv.DataSet) -> None:
-    """Add streamlines to plotter.
-
-    Args:
-        plotter: PyVista plotter instance.
-        mesh: Mesh data with velocity field.
-
-    """
-    try:
-        bounds = mesh.bounds
-        x_mid = (bounds[0] + bounds[1]) / 2
-        y_range = bounds[3] - bounds[2]
-        z_range = bounds[5] - bounds[4]
-
-        # Create multiple seed points for better flow visualization
-        seed_points = []
-        n_seeds = 15
-
-        # Create seeds along the inlet (x-direction)
-        for i in range(n_seeds):
-            y_pos = bounds[2] + (i + 1) * y_range / (n_seeds + 1)
-            for j in range(n_seeds):
-                z_pos = bounds[4] + (j + 1) * z_range / (n_seeds + 1)
-                seed_points.append([bounds[0], y_pos, z_pos])
-
-        # Also add seeds in the middle of the domain
-        for i in range(n_seeds // 2):
-            y_pos = bounds[2] + (i + 1) * y_range / (n_seeds // 2 + 1)
-            for j in range(n_seeds // 2):
-                z_pos = bounds[4] + (j + 1) * z_range / (n_seeds // 2 + 1)
-                seed_points.append([x_mid, y_pos, z_pos])
-
-        seed = pv.PolyData(np.array(seed_points))
-
-        streamlines = mesh.streamlines_from_source(
-            seed,
-            vectors="U",
-            max_time=200.0,
-            integration_direction="forward",
-        )
-
-        if streamlines.n_points > 0:
-            # Calculate velocity magnitude for coloring streamlines
-            velocity_data = streamlines["U"]
-            if (
-                velocity_data.ndim == NUMPY_DIM_2D
-                and velocity_data.shape[1] == NUMPY_DIM_3D
-            ):
-                velocity_mag = np.linalg.norm(velocity_data, axis=1)
-                streamlines["velocity_magnitude"] = velocity_mag
-
-                plotter.add_mesh(
-                    streamlines,
-                    scalars="velocity_magnitude",
-                    cmap="jet",
-                    line_width=3,
-                    render_lines_as_tubes=True,
-                    opacity=0.8,
-                )
-    except (ValueError, RuntimeError, AttributeError) as e:
-        logger.warning(f"Streamline generation failed: {e}")
-
-
 def visualize_multiregion(region_dirs: list[Path]) -> None:
     """Visualize multiRegion case with all regions.
 
