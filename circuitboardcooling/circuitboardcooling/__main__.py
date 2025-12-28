@@ -36,6 +36,8 @@ NUMPY_DIM_2D = 2
 NUMPY_DIM_3D = 3
 MIN_STREAMLINE_POINTS = 100
 DOCKER_STARTUP_TIMEOUT = 60
+VECTOR_SUBSAMPLE_THRESHOLD = 100
+VECTOR_SUBSAMPLE_TARGET = 100
 
 
 def filter_openfoam_output(output_bytes: bytes) -> str:
@@ -50,15 +52,121 @@ def filter_openfoam_output(output_bytes: bytes) -> str:
     """
     output_str = output_bytes.decode("utf-8")
     lines = [
-        l
-        for l in output_str.split("\n")
-        if "Welcome to" not in l
-        and "Further Resources" not in l
-        and "* " not in l
-        and "Contributors" not in l
+        line
+        for line in output_str.split("\n")
+        if "Welcome to" not in line
+        and "Further Resources" not in line
+        and "* " not in line
+        and "Contributors" not in line
     ]
-    filtered_output = "\n".join(lines).strip()
-    return filtered_output
+    return "\n".join(lines).strip()
+
+
+def _set_docker_host_if_needed() -> None:
+    """Set DOCKER_HOST environment variable if not already set (for Colima)."""
+    if "DOCKER_HOST" not in os.environ:
+        docker_sock = Path.home() / ".colima" / "default" / "docker.sock"
+        if docker_sock.exists():
+            os.environ["DOCKER_HOST"] = f"unix://{docker_sock}"
+            logger.debug("DOCKER_HOST set to: %s", os.environ["DOCKER_HOST"])
+
+
+def _is_docker_running() -> bool:
+    """Check if Docker is currently running."""
+    try:
+        client = docker.from_env()
+        client.ping()
+    except docker.errors.DockerException:
+        return False
+    else:
+        logger.info("Docker/Colima is already running")
+        return True
+
+
+def _start_colima() -> bool:
+    """Start Colima on macOS."""
+    colima_path = shutil.which("colima")
+    if not colima_path:
+        logger.error(
+            "Colima not found. Please install Colima: brew install docker colima",
+        )
+        return False
+
+    logger.info("Starting Colima...")
+    try:
+        # Check Colima status
+        status_result = subprocess.run(  # noqa: S603
+            [colima_path, "status"],
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+
+        if status_result.returncode != 0:
+            # Colima is not running, start it
+            subprocess.run(  # noqa: S603
+                [colima_path, "start", "--cpu", "4", "--memory", "8"],
+                check=True,
+            )
+            logger.info("Colima started successfully")
+
+            # Set DOCKER_HOST for this session
+            docker_sock = Path.home() / ".colima" / "default" / "docker.sock"
+            os.environ["DOCKER_HOST"] = f"unix://{docker_sock}"
+            logger.info("DOCKER_HOST set to: %s", os.environ["DOCKER_HOST"])
+        else:
+            logger.info("Colima is already running")
+    except subprocess.CalledProcessError:
+        logger.exception("Failed to start Colima")
+        return False
+    else:
+        return True
+
+
+def _start_docker_linux() -> bool:
+    """Start Docker daemon on Linux."""
+    logger.info("Starting Docker daemon...")
+    try:
+        subprocess.run(
+            ["sudo", "systemctl", "start", "docker"],  # noqa: S607
+            check=True,
+            capture_output=True,
+        )
+        logger.info("Docker daemon started")
+    except subprocess.CalledProcessError:
+        logger.exception(
+            "Failed to start Docker. Please start Docker manually: "
+            "sudo systemctl start docker",
+        )
+        return False
+    else:
+        return True
+
+
+def _wait_for_docker() -> bool:
+    """Wait for Docker to become available."""
+    logger.info("Waiting for Docker to start...")
+    for i in range(DOCKER_STARTUP_TIMEOUT):
+        if _check_docker_ping():
+            logger.info("Docker started successfully!")
+            return True
+        if i % 5 == 0:
+            logger.debug("Still waiting... (%s/%ss)", i, DOCKER_STARTUP_TIMEOUT)
+        time.sleep(1)
+
+    logger.error("Docker failed to start within timeout. Please start Docker manually.")
+    return False
+
+
+def _check_docker_ping() -> bool:
+    """Check if Docker responds to ping."""
+    try:
+        client = docker.from_env()
+        client.ping()
+    except docker.errors.DockerException:
+        return False
+    else:
+        return True
 
 
 def start_docker() -> bool:
@@ -68,108 +176,30 @@ def start_docker() -> bool:
         True if Docker is running or successfully started, False otherwise.
 
     """
-    # Set DOCKER_HOST if not already set (for Colima)
-    if "DOCKER_HOST" not in os.environ:
-        docker_sock = Path.home() / ".colima" / "default" / "docker.sock"
-        if docker_sock.exists():
-            os.environ["DOCKER_HOST"] = f"unix://{docker_sock}"
-            logger.debug(f"DOCKER_HOST set to: {os.environ['DOCKER_HOST']}")
+    _set_docker_host_if_needed()
 
-    try:
-        client = docker.from_env()
-        client.ping()
-        logger.info("Docker/Colima is already running")
+    if _is_docker_running():
         return True
-    except Exception:
-        pass
 
     # Docker is not running, try to start it
     system = platform.system()
 
     if system == "Darwin":  # macOS
-        # Check if Colima is installed
-        colima_check = subprocess.run(
-            ["which", "colima"],
-            check=False,
-            capture_output=True,
-        )
-        if colima_check.returncode == 0:
-            # Use Colima (preferred for licensing reasons)
-            logger.info("Starting Colima...")
-            try:
-                # Check Colima status
-                status_result = subprocess.run(
-                    ["colima", "status"],
-                    check=False,
-                    capture_output=True,
-                    text=True,
-                )
-
-                if status_result.returncode != 0:
-                    # Colima is not running, start it
-                    subprocess.run(
-                        ["colima", "start", "--cpu", "4", "--memory", "8"],
-                        check=True,
-                    )
-                    logger.info("Colima started successfully")
-
-                    # Set DOCKER_HOST for this session
-                    docker_sock = Path.home() / ".colima" / "default" / "docker.sock"
-                    os.environ["DOCKER_HOST"] = f"unix://{docker_sock}"
-                    logger.info(f"DOCKER_HOST set to: {os.environ['DOCKER_HOST']}")
-                else:
-                    logger.info("Colima is already running")
-
-            except subprocess.CalledProcessError as e:
-                logger.error(f"Failed to start Colima: {e}")
-                return False
-        else:
-            # Colima not installed
-            logger.error(
-                "Colima not found. Please install Colima: brew install docker colima",
-            )
+        if not _start_colima():
             return False
-
     elif system == "Linux":
-        logger.info("Starting Docker daemon...")
-        try:
-            subprocess.run(
-                ["sudo", "systemctl", "start", "docker"],
-                check=True,
-                capture_output=True,
-            )
-            logger.info("Docker daemon started")
-        except subprocess.CalledProcessError:
-            logger.error(
-                "Failed to start Docker. Please start Docker manually: "
-                "sudo systemctl start docker",
-            )
+        if not _start_docker_linux():
             return False
-
     elif system == "Windows":
         logger.error(
             "Windows is not supported. Please use Colima or Docker on Linux/macOS.",
         )
         return False
     else:
-        logger.error(f"Unsupported platform: {system}")
+        logger.error("Unsupported platform: %s", system)
         return False
 
-    # Wait for Docker to start
-    logger.info("Waiting for Docker to start...")
-    for i in range(DOCKER_STARTUP_TIMEOUT):
-        try:
-            client = docker.from_env()
-            client.ping()
-            logger.info("Docker started successfully!")
-            return True
-        except Exception:
-            if i % 5 == 0:
-                logger.debug(f"Still waiting... ({i}/{DOCKER_STARTUP_TIMEOUT}s)")
-            time.sleep(1)
-
-    logger.error("Docker failed to start within timeout. Please start Docker manually.")
-    return False
+    return _wait_for_docker()
 
 
 def run_openfoam_case(
@@ -192,9 +222,9 @@ def run_openfoam_case(
     # Pull the image if not available
     try:
         client.images.get(openfoam_image)
-        logger.info(f"Using OpenFOAM image: {openfoam_image}")
+        logger.info("Using OpenFOAM image: %s", openfoam_image)
     except docker.errors.ImageNotFound:
-        logger.info(f"Pulling OpenFOAM image: {openfoam_image}")
+        logger.info("Pulling OpenFOAM image: %s", openfoam_image)
         client.images.pull(openfoam_image)
 
     # Run Allmesh script (for circuit board cooling)
@@ -202,7 +232,10 @@ def run_openfoam_case(
     try:
         output = client.containers.run(
             openfoam_image,
-            command="/bin/bash -c 'source /opt/openfoam11/etc/bashrc && ./Allmesh-extrudeFromInternalFaces'",
+            command=(
+                "/bin/bash -c 'source /opt/openfoam11/etc/bashrc && "
+                "./Allmesh-extrudeFromInternalFaces'"
+            ),
             volumes={str(case_dir.absolute()): {"bind": "/case", "mode": "rw"}},
             working_dir="/case",
             remove=True,
@@ -213,10 +246,10 @@ def run_openfoam_case(
         if output:
             filtered_output = filter_openfoam_output(output)
             if filtered_output:
-                logger.info(f"Mesh generation output:\n{filtered_output}")
+                logger.info("Mesh generation output:\n%s", filtered_output)
         logger.info("Mesh generation completed")
     except docker.errors.ContainerError as e:
-        logger.error(f"Mesh generation failed: {e.stderr.decode('utf-8')}")
+        logger.exception("Mesh generation failed: %s", e.stderr.decode("utf-8"))
         raise
 
     # Run chtMultiRegionFoam
@@ -235,10 +268,10 @@ def run_openfoam_case(
         if output:
             filtered_output = filter_openfoam_output(output)
             if filtered_output:
-                logger.info(f"Solver output:\n{filtered_output}")
+                logger.info("Solver output:\n%s", filtered_output)
         logger.info("Simulation completed")
     except docker.errors.ContainerError as e:
-        logger.error(f"Simulation failed: {e.stderr.decode('utf-8')}")
+        logger.exception("Simulation failed: %s", e.stderr.decode("utf-8"))
         raise
 
 
@@ -269,11 +302,14 @@ def convert_to_vtk(case_dir: Path) -> None:
 
         if regions:
             # MultiRegion case - convert each region
-            logger.info(f"Converting {len(regions)} regions: {', '.join(regions)}")
+            logger.info("Converting %s regions: %s", len(regions), ", ".join(regions))
             for region in regions:
                 output = client.containers.run(
                     openfoam_image,
-                    command=f"/bin/bash -c 'source /opt/openfoam11/etc/bashrc && foamToVTK -region {region}'",
+                    command=(
+                        f"/bin/bash -c 'source /opt/openfoam11/etc/bashrc && "
+                        f"foamToVTK -region {region}'"
+                    ),
                     volumes={str(case_dir.absolute()): {"bind": "/case", "mode": "rw"}},
                     working_dir="/case",
                     remove=True,
@@ -285,7 +321,9 @@ def convert_to_vtk(case_dir: Path) -> None:
                     output_str = output.decode("utf-8")
                     if "error" in output_str.lower() or "fatal" in output_str.lower():
                         logger.warning(
-                            f"VTK conversion for region {region}:\n{output_str}",
+                            "VTK conversion for region %s:\n%s",
+                            region,
+                            output_str,
                         )
         else:
             # Single region case
@@ -302,10 +340,10 @@ def convert_to_vtk(case_dir: Path) -> None:
             if output:
                 filtered_output = filter_openfoam_output(output)
                 if filtered_output:
-                    logger.info(f"VTK conversion output:\n{filtered_output}")
+                    logger.info("VTK conversion output:\n%s", filtered_output)
         logger.info("VTK conversion completed")
     except docker.errors.ContainerError as e:
-        logger.error(f"VTK conversion failed: {e.stderr.decode('utf-8')}")
+        logger.exception("VTK conversion failed: %s", e.stderr.decode("utf-8"))
         raise
 
 
@@ -330,13 +368,13 @@ def visualize_results(case_dir: Path) -> None:
         if not d.name.startswith(".")
     ):
         # MultiRegion case with region folders directly in VTK
-        logger.info(f"Found {len(region_dirs)} regions to visualize")
+        logger.info("Found %s regions to visualize", len(region_dirs))
 
         # Get VTK files from each region (latest time)
         region_time_dirs = []
         for region_dir in region_dirs:
             # Find latest time directory in each region
-            time_files = sorted([f for f in region_dir.glob("case_*.vtk")])
+            time_files = sorted(region_dir.glob("case_*.vtk"))
             if time_files:
                 # Use the region directory itself, we'll read files directly
                 region_time_dirs.append(region_dir)
@@ -353,14 +391,14 @@ def visualize_results(case_dir: Path) -> None:
         return
 
     latest_vtk = vtk_folders[-1]
-    logger.info(f"Visualizing results from: {latest_vtk.name}")
+    logger.info("Visualizing results from: %s", latest_vtk.name)
 
     # Find all region directories (multiRegion case)
     region_dirs = [d for d in latest_vtk.iterdir() if d.is_dir()]
 
     if region_dirs:
         # MultiRegion case - visualize all regions
-        logger.info(f"Found {len(region_dirs)} regions to visualize")
+        logger.info("Found %s regions to visualize", len(region_dirs))
         visualize_multiregion(region_dirs)
         visualize_cross_section(region_dirs)
     else:
@@ -529,143 +567,143 @@ def _add_streamlines(plotter: pv.Plotter, mesh: pv.DataSet) -> None:
                     opacity=0.8,
                 )
     except (ValueError, RuntimeError, AttributeError) as e:
-        logger.warning(f"Streamline generation failed: {e}")
+        logger.warning("Streamline generation failed: %s", e)
 
 
-def visualize_cross_section(region_dirs: list[Path]) -> None:
-    """Visualize X-direction cross-section at baffle center with temperature contour and velocity lines.
-
-    Args:
-        region_dirs: List of region directories containing VTK files.
-
-    """
-    # Use off_screen mode to save screenshot
-    plotter = pv.Plotter(window_size=[1400, 1000], off_screen=True)
-
+def _load_region_meshes(region_dirs: list[Path]) -> list[tuple[str, pv.Mesh]]:
+    """Load all region meshes from VTK files."""
     all_meshes = []
-
-    # Load meshes from region directories
     for region_dir in region_dirs:
         region_name = region_dir.name
-
-        # Find latest case VTK file
         case_vtk_files = sorted(region_dir.glob("case_*.vtk"))
         if case_vtk_files:
             latest_vtk = case_vtk_files[-1]
             mesh = pv.read(str(latest_vtk))
             mesh["region"] = region_name
             all_meshes.append((region_name, mesh))
-            logger.debug(f"Loaded {region_name}: {mesh.n_points} points")
+            logger.debug("Loaded %s: %s points", region_name, mesh.n_points)
+    return all_meshes
 
-    if not all_meshes:
-        logger.warning("No meshes found for cross-section visualization")
-        return
 
-    # Find the baffle center position (X direction)
-    baffle_mesh = None
+def _find_baffle_center(all_meshes: list[tuple[str, pv.Mesh]]) -> float | None:
+    """Find the X-coordinate of the baffle center."""
     for region_name, mesh in all_meshes:
         if "baffle" in region_name.lower():
-            baffle_mesh = mesh
-            break
+            bounds = mesh.bounds
+            return (bounds[0] + bounds[1]) / 2
+    return None
 
-    if baffle_mesh is None:
-        logger.warning("Baffle region not found for cross-section")
+
+def _add_fluid_slice(
+    plotter: pv.Plotter,
+    slice_mesh: pv.Mesh,
+) -> None:
+    """Add fluid region slice with temperature and velocity to plotter."""
+    if "T" not in slice_mesh.array_names:
         return
 
-    # Get baffle bounds and center
-    bounds = baffle_mesh.bounds
-    x_center = (bounds[0] + bounds[1]) / 2
+    # Convert temperature to Celsius
+    t_celsius = slice_mesh["T"] - 273.15
+    slice_mesh["t_celsius"] = t_celsius
 
-    logger.info(f"Creating cross-section at X = {x_center:.4f} m (baffle center)")
+    # Add temperature contour (semi-transparent to see baffle behind)
+    plotter.add_mesh(
+        slice_mesh,
+        scalars="t_celsius",
+        cmap="hot",
+        show_edges=False,
+        opacity=0.7,  # Semi-transparent
+        scalar_bar_args={
+            "title": "Temperature (°C)",
+            "vertical": True,
+            "position_x": 0.85,
+            "position_y": 0.1,
+            "n_labels": 8,
+            "fmt": "%.1f",
+        },
+    )
 
-    # Create slice at baffle center
-    for region_name, mesh in all_meshes:
-        # Create slice
-        slice_mesh = mesh.slice(normal="x", origin=[x_center, 0, 0])
+    # Add velocity vectors/streamlines on the slice
+    if "U" in slice_mesh.array_names:
+        _add_velocity_arrows(plotter, slice_mesh)
 
-        if slice_mesh.n_points == 0:
-            continue
 
-        if "fluid" in region_name.lower() and "T" in slice_mesh.array_names:
-            # Convert temperature to Celsius
-            T_celsius = slice_mesh["T"] - 273.15
-            slice_mesh["T_celsius"] = T_celsius
+def _add_velocity_arrows(plotter: pv.Plotter, slice_mesh: pv.Mesh) -> None:
+    """Add velocity arrows to the plotter."""
+    # Subsample for cleaner vector display
+    subsample = slice_mesh.extract_geometry()
+    if subsample.n_points > VECTOR_SUBSAMPLE_THRESHOLD:
+        # Reduce point density for vectors
+        every_n = max(1, subsample.n_points // VECTOR_SUBSAMPLE_TARGET)
+        indices = np.arange(0, subsample.n_points, every_n)
+        subsample = subsample.extract_points(indices)
 
-            # Add temperature contour (semi-transparent to see baffle behind)
-            plotter.add_mesh(
-                slice_mesh,
-                scalars="T_celsius",
-                cmap="hot",
-                show_edges=False,
-                opacity=0.7,  # Semi-transparent
-                scalar_bar_args={
-                    "title": "Temperature (°C)",
-                    "vertical": True,
-                    "position_x": 0.85,
-                    "position_y": 0.1,
-                    "n_labels": 8,
-                    "fmt": "%.1f",
-                },
-            )
+    # Add velocity vectors
+    arrows = subsample.glyph(
+        orient="U",
+        scale=False,
+        factor=0.005,
+        geom=pv.Arrow(),
+    )
 
-            # Add velocity vectors/streamlines on the slice
-            if "U" in slice_mesh.array_names:
-                # Subsample for cleaner vector display
-                subsample = slice_mesh.extract_geometry()
-                if subsample.n_points > 100:
-                    # Reduce point density for vectors
-                    every_n = max(1, subsample.n_points // 100)
-                    indices = np.arange(0, subsample.n_points, every_n)
-                    subsample = subsample.extract_points(indices)
+    # Calculate velocity magnitude for arrows
+    if arrows.n_points > 0:
+        plotter.add_mesh(
+            arrows,
+            color="black",
+            opacity=0.7,
+        )
 
-                # Add velocity vectors
-                arrows = subsample.glyph(
-                    orient="U",
-                    scale=False,
-                    factor=0.005,
-                    geom=pv.Arrow(),
-                )
 
-                # Calculate velocity magnitude for arrows
-                if arrows.n_points > 0:
-                    plotter.add_mesh(
-                        arrows,
-                        color="black",
-                        opacity=0.7,
-                    )
+def _add_baffle_slice(
+    plotter: pv.Plotter,
+    slice_mesh: pv.Mesh,
+) -> None:
+    """Add baffle region slice to plotter."""
+    if "T" not in slice_mesh.array_names:
+        logger.warning("Baffle slice has no temperature data")
+        return
 
-        elif "baffle" in region_name.lower():
-            if "T" in slice_mesh.array_names:
-                # Convert temperature to Celsius for baffle
-                T_celsius = slice_mesh["T"] - 273.15
-                slice_mesh["T_celsius"] = T_celsius
+    # Convert temperature to Celsius for baffle
+    t_celsius = slice_mesh["T"] - 273.15
+    slice_mesh["t_celsius"] = t_celsius
 
-                logger.info(
-                    f"Adding baffle slice: {slice_mesh.n_points} points, T range: {T_celsius.min():.1f} to {T_celsius.max():.1f} °C",
-                )
+    logger.info(
+        "Adding baffle slice: %d points, T range: %.1f to %.1f °C",
+        slice_mesh.n_points,
+        t_celsius.min(),
+        t_celsius.max(),
+    )
 
-                # Add baffle with red fill and cyan edges for high visibility
-                plotter.add_mesh(
-                    slice_mesh,
-                    color="red",
-                    show_edges=True,
-                    edge_color="cyan",
-                    line_width=10,
-                    opacity=1.0,
-                )
+    # Add baffle with red fill and cyan edges for high visibility
+    plotter.add_mesh(
+        slice_mesh,
+        color="red",
+        show_edges=True,
+        edge_color="cyan",
+        line_width=10,
+        opacity=1.0,
+    )
 
-                # Add points as yellow spheres for maximum visibility
-                plotter.add_points(
-                    slice_mesh.points,
-                    color="yellow",
-                    point_size=15,
-                    render_points_as_spheres=True,
-                )
-            else:
-                logger.warning("Baffle slice has no temperature data")
+    # Add points as yellow spheres for maximum visibility
+    plotter.add_points(
+        slice_mesh.points,
+        color="yellow",
+        point_size=15,
+        render_points_as_spheres=True,
+    )
 
+
+def _setup_cross_section_view(
+    plotter: pv.Plotter,
+    x_center: float,
+) -> None:
+    """Set up camera and labels for cross-section view."""
     plotter.add_text(
-        f"YZ-Plane Cross-Section at X = {x_center:.4f} m (Baffle Center)\nTemperature: °C, Velocity: Arrows",
+        (
+            f"YZ-Plane Cross-Section at X = {x_center:.4f} m (Baffle Center)\n"
+            "Temperature: °C, Velocity: Arrows"
+        ),
         font_size=12,
         position="upper_edge",
     )
@@ -675,7 +713,6 @@ def visualize_cross_section(region_dirs: list[Path]) -> None:
     plotter.camera.parallel_projection = True
 
     # Add axis labels for YZ plane view
-    # After view_yz(), axis mapping is: xtitle→Z(vertical), ytitle→Y(horizontal)
     plotter.show_bounds(
         xtitle="Z (m)",  # Vertical axis
         ytitle="Y (m)",  # Horizontal axis
@@ -688,13 +725,51 @@ def visualize_cross_section(region_dirs: list[Path]) -> None:
 
     plotter.add_axes()
 
+
+def visualize_cross_section(
+    region_dirs: list[Path],
+) -> None:
+    """Visualize X-direction cross-section at baffle center.
+
+    Shows temperature contour and velocity lines.
+
+    Args:
+        region_dirs: List of region directories containing VTK files.
+
+    """
+    # Use off_screen mode to save screenshot
+    plotter = pv.Plotter(window_size=[1400, 1000], off_screen=True)
+
+    all_meshes = _load_region_meshes(region_dirs)
+    if not all_meshes:
+        logger.warning("No meshes found for cross-section visualization")
+        return
+
+    x_center = _find_baffle_center(all_meshes)
+    if x_center is None:
+        logger.warning("Baffle region not found for cross-section")
+        return
+
+    logger.info("Creating cross-section at X = %.4f m (baffle center)", x_center)
+
+    # Create slice at baffle center
+    for region_name, mesh in all_meshes:
+        slice_mesh = mesh.slice(normal="x", origin=[x_center, 0, 0])
+
+        if slice_mesh.n_points == 0:
+            continue
+
+        if "fluid" in region_name.lower():
+            _add_fluid_slice(plotter, slice_mesh)
+        elif "baffle" in region_name.lower():
+            _add_baffle_slice(plotter, slice_mesh)
+
+    _setup_cross_section_view(plotter, x_center)
+
     # Save screenshot
     screenshot_path = Path.cwd() / "cross_section_yz.png"
     plotter.screenshot(str(screenshot_path))
-    logger.info(f"Cross-section screenshot saved to: {screenshot_path}")
-
-    # Also show interactively if not off_screen
-    # plotter.show()
+    logger.info("Cross-section screenshot saved to: %s", screenshot_path)
 
 
 def visualize_multiregion(region_dirs: list[Path]) -> None:
@@ -734,7 +809,7 @@ def visualize_multiregion(region_dirs: list[Path]) -> None:
     plotter.show()
 
     # Show cross-section view
-    visualize_cross_section([d for d in region_dirs])
+    visualize_cross_section(list(region_dirs))
 
 
 def visualize_single_region(vtk_dir: Path) -> None:
@@ -907,7 +982,7 @@ def main() -> int:
         # Setup case directory
         logger.info("Setting up OpenFOAM case directory...")
         case_dir = setup_case(args.case_dir, openfoam_image=args.image)
-        logger.info(f"Case directory: {case_dir}")
+        logger.info("Case directory: %s", case_dir)
 
         # Run simulation
         if not args.skip_run:
@@ -925,8 +1000,8 @@ def main() -> int:
 
         logger.info("All tasks completed successfully!")
 
-    except (FileNotFoundError, RuntimeError, docker.errors.DockerException) as e:
-        logger.error(f"Error: {e}")
+    except (FileNotFoundError, RuntimeError, docker.errors.DockerException):
+        logger.exception("Error occurred")
         return 1
 
     return 0
