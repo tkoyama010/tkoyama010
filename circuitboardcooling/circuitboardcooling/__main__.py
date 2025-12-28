@@ -1009,6 +1009,185 @@ def setup_case(
     return case_dir
 
 
+def _add_demo_geometry(
+    plotter: pv.Plotter,
+    bounds: tuple[float, float, float, float, float, float],
+    x_center: float,
+) -> None:
+    """Add geometry to isometric view for demo."""
+    x_min, x_max, y_min, y_max, z_min, z_max = bounds
+
+    # Fluid domain box
+    fluid_box = pv.Box(bounds=[x_min, x_max, y_min, y_max, z_min, z_max])
+    plotter.add_mesh(
+        fluid_box,
+        color="lightblue",
+        opacity=0.2,
+        show_edges=True,
+        edge_color="blue",
+    )
+
+    # Baffle
+    baffle_thickness = 0.002
+    baffle = pv.Box(
+        bounds=[
+            x_center - baffle_thickness / 2,
+            x_center + baffle_thickness / 2,
+            y_min + 0.01,
+            y_max - 0.01,
+            z_min,
+            z_max,
+        ],
+    )
+    plotter.add_mesh(baffle, color="red", opacity=0.5)
+
+    # Cutting plane
+    plane = pv.Plane(
+        center=[x_center, (y_min + y_max) / 2, (z_min + z_max) / 2],
+        direction=[1, 0, 0],
+        i_size=y_max - y_min,
+        j_size=z_max - z_min,
+    )
+    plotter.add_mesh(
+        plane,
+        color="yellow",
+        opacity=0.5,
+        show_edges=True,
+        edge_color="orange",
+        line_width=3,
+    )
+
+
+def _add_demo_cross_section(
+    plotter: pv.Plotter,
+    bounds: tuple[float, float, float, float, float, float],
+    x_center: float,
+) -> None:
+    """Add cross-section to demo visualization."""
+    _x_min, _x_max, y_min, y_max, z_min, z_max = bounds
+
+    # Create temperature field mesh
+    y_points, z_points = 50, 30
+    y = np.linspace(y_min, y_max, y_points)
+    z = np.linspace(z_min, z_max, z_points)
+    y_grid, z_grid = np.meshgrid(y, z)
+    x_grid = np.full_like(y_grid, x_center)
+
+    # Temperature field (warmer near center)
+    center_y = (y_min + y_max) / 2
+    center_z = (z_min + z_max) / 2
+    temperature = 20 + 30 * np.exp(-((y_grid - center_y) ** 2 + (z_grid - center_z) ** 2) / 0.001)
+
+    # Create mesh
+    points = np.c_[x_grid.ravel(), y_grid.ravel(), z_grid.ravel()]
+    slice_mesh = pv.StructuredGrid()
+    slice_mesh.points = points
+    slice_mesh.dimensions = [1, y_points, z_points]
+    slice_mesh["T_celsius"] = temperature.ravel()
+
+    # Add temperature contour
+    plotter.add_mesh(
+        slice_mesh,
+        scalars="T_celsius",
+        cmap="hot",
+        show_edges=False,
+        opacity=0.7,
+        scalar_bar_args={
+            "title": "Temperature (°C)",
+            "vertical": True,
+            "position_x": 0.85,
+            "position_y": 0.1,
+            "n_labels": 8,
+            "fmt": "%.1f",
+        },
+    )
+
+    # Add baffle on cross-section
+    baffle_y_min, baffle_y_max = y_min + 0.01, y_max - 0.01
+    baffle_points = np.array(
+        [
+            [x_center, baffle_y_min, z_min],
+            [x_center, baffle_y_max, z_min],
+            [x_center, baffle_y_max, z_max],
+            [x_center, baffle_y_min, z_max],
+        ],
+    )
+    baffle_line = pv.PolyData(baffle_points)
+    baffle_line.lines = np.array([4, 0, 1, 2, 3])
+
+    plotter.add_mesh(baffle_line, color="red", line_width=10)
+    plotter.add_points(baffle_points, color="yellow", point_size=15, render_points_as_spheres=True)
+
+
+def create_demo_visualization(output_path: Path | None = None) -> Path:
+    """Create a demo 2-panel visualization showing the concept.
+
+    This creates a demonstration of the visualization layout without requiring
+    actual OpenFOAM simulation data.
+
+    Args:
+        output_path: Path where to save the image. Defaults to cross_section_yz_demo.png
+
+    Returns:
+        Path to the saved image.
+
+    """
+    if output_path is None:
+        output_path = Path.cwd() / "cross_section_yz_demo.png"
+
+    logger.info("Creating demo visualization...")
+
+    # Create 2-panel plotter
+    plotter = pv.Plotter(shape=(1, 2), window_size=[2000, 1000], off_screen=True)
+
+    # Define geometry bounds
+    x_min, x_max = 0, 0.1
+    y_min, y_max = 0, 0.05
+    z_min, z_max = 0, 0.03
+    x_center = (x_min + x_max) / 2
+    bounds = (x_min, x_max, y_min, y_max, z_min, z_max)
+
+    # LEFT PANEL: Isometric view
+    plotter.subplot(0, 0)
+    plotter.add_text(
+        "Isometric View\n(showing cut plane location)",
+        font_size=12,
+        position="upper_edge",
+    )
+    _add_demo_geometry(plotter, bounds, x_center)
+    plotter.view_isometric()
+    plotter.add_axes()
+    plotter.show_bounds(grid="back", location="outer", font_size=10)
+
+    # RIGHT PANEL: Cross-section view
+    plotter.subplot(0, 1)
+    plotter.add_text(
+        f"YZ-Plane Cross-Section at X = {x_center:.4f} m (Baffle Center)\n"
+        "Temperature: °C, Velocity: Arrows",
+        font_size=12,
+        position="upper_edge",
+    )
+    _add_demo_cross_section(plotter, bounds, x_center)
+    plotter.view_yz()
+    plotter.camera.parallel_projection = True
+    plotter.show_bounds(
+        xtitle="Z (m)",
+        ytitle="Y (m)",
+        ztitle="X (m)",
+        grid="back",
+        location="outer",
+        all_edges=True,
+        font_size=12,
+    )
+    plotter.add_axes()
+
+    # Save screenshot
+    plotter.screenshot(str(output_path))
+    logger.info("Demo visualization saved to: %s", output_path)
+
+    return output_path
+
+
 def main() -> int:
     """Run the circuitBoardCooling simulation and visualization."""
     parser = argparse.ArgumentParser(
@@ -1035,8 +1214,20 @@ def main() -> int:
         default=DEFAULT_OPENFOAM_IMAGE,
         help=f"Docker image to use (default: {DEFAULT_OPENFOAM_IMAGE})",
     )
+    parser.add_argument(
+        "--demo",
+        action="store_true",
+        help="Create demo visualization without running simulation",
+    )
 
     args = parser.parse_args()
+
+    # Handle demo mode
+    if args.demo:
+        logger.info("Running in demo mode...")
+        create_demo_visualization()
+        logger.info("Demo visualization completed!")
+        return 0
 
     try:
         # Setup case directory
