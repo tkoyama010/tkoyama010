@@ -1076,7 +1076,9 @@ def _add_demo_cross_section(
     # Temperature field (warmer near center)
     center_y = (y_min + y_max) / 2
     center_z = (z_min + z_max) / 2
-    temperature = 20 + 30 * np.exp(-((y_grid - center_y) ** 2 + (z_grid - center_z) ** 2) / 0.001)
+    temperature = 20 + 30 * np.exp(
+        -((y_grid - center_y) ** 2 + (z_grid - center_z) ** 2) / 0.001,
+    )
 
     # Create mesh
     points = np.c_[x_grid.ravel(), y_grid.ravel(), z_grid.ravel()]
@@ -1116,7 +1118,9 @@ def _add_demo_cross_section(
     baffle_line.lines = np.array([4, 0, 1, 2, 3])
 
     plotter.add_mesh(baffle_line, color="red", line_width=10)
-    plotter.add_points(baffle_points, color="yellow", point_size=15, render_points_as_spheres=True)
+    plotter.add_points(
+        baffle_points, color="yellow", point_size=15, render_points_as_spheres=True,
+    )
 
 
 def create_demo_visualization(output_path: Path | None = None) -> Path:
