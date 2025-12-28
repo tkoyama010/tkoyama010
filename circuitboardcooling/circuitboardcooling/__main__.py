@@ -293,7 +293,11 @@ def convert_to_vtk(case_dir: Path) -> None:
         # For multiRegion cases, foamToVTK must be run for each region
         # First check if it's a multiRegion case
         system_dir = case_dir / "system"
-        regions = [d.name for d in system_dir.iterdir() if d.is_dir() and d.name not in ["include"]]
+        regions = [
+            d.name
+            for d in system_dir.iterdir()
+            if d.is_dir() and d.name not in ["include"]
+        ]
 
         if regions:
             # MultiRegion case - convert each region
@@ -358,7 +362,9 @@ def visualize_results(case_dir: Path) -> None:
     region_dirs = [d for d in vtk_dir.iterdir() if d.is_dir()]
 
     if region_dirs and all(
-        d.name in ["baffle3D", "fluid"] for d in region_dirs if not d.name.startswith(".")
+        d.name in ["baffle3D", "fluid"]
+        for d in region_dirs
+        if not d.name.startswith(".")
     ):
         # MultiRegion case with region folders directly in VTK
         logger.info("Found %s regions to visualize", len(region_dirs))
@@ -462,7 +468,10 @@ def _add_velocity_subplot(
         if "U" in mesh.array_names:
             # Calculate velocity magnitude
             velocity_data = mesh["U"]
-            if velocity_data.ndim == NUMPY_DIM_2D and velocity_data.shape[1] == NUMPY_DIM_3D:
+            if (
+                velocity_data.ndim == NUMPY_DIM_2D
+                and velocity_data.shape[1] == NUMPY_DIM_3D
+            ):
                 velocity_mag = np.linalg.norm(velocity_data, axis=1)
                 mesh["velocity_magnitude"] = velocity_mag
 
@@ -541,7 +550,10 @@ def _add_streamlines(plotter: pv.Plotter, mesh: pv.DataSet) -> None:
         if streamlines.n_points > 0:
             # Calculate velocity magnitude for coloring streamlines
             velocity_data = streamlines["U"]
-            if velocity_data.ndim == NUMPY_DIM_2D and velocity_data.shape[1] == NUMPY_DIM_3D:
+            if (
+                velocity_data.ndim == NUMPY_DIM_2D
+                and velocity_data.shape[1] == NUMPY_DIM_3D
+            ):
                 velocity_mag = np.linalg.norm(velocity_data, axis=1)
                 streamlines["velocity_magnitude"] = velocity_mag
 
@@ -946,7 +958,10 @@ def setup_case(
     foam_tutorials = os.environ.get("FOAM_TUTORIALS")
     if foam_tutorials:
         tutorial_src = (
-            Path(foam_tutorials) / "heatTransfer" / "buoyantSimpleFoam" / "circuitBoardCooling"
+            Path(foam_tutorials)
+            / "heatTransfer"
+            / "buoyantSimpleFoam"
+            / "circuitBoardCooling"
         )
         if tutorial_src.exists():
             temp_dir = Path(tempfile.mkdtemp(prefix="circuitboard_", dir=Path.home()))
@@ -1055,7 +1070,9 @@ def _add_demo_geometry(
     # Temperature gradient
     center_y = (y_min + y_max) / 2
     center_z = (z_min + z_max) / 2
-    temp_preview = 20 + 30 * np.exp(-((y_grid - center_y) ** 2 + (z_grid - center_z) ** 2) / 0.001)
+    temp_preview = 20 + 30 * np.exp(
+        -((y_grid - center_y) ** 2 + (z_grid - center_z) ** 2) / 0.001,
+    )
 
     points = np.c_[x_grid.ravel(), y_grid.ravel(), z_grid.ravel()]
     preview_mesh = pv.StructuredGrid()
@@ -1090,7 +1107,9 @@ def _add_demo_cross_section(
     # Temperature field (warmer near center)
     center_y = (y_min + y_max) / 2
     center_z = (z_min + z_max) / 2
-    temperature = 20 + 30 * np.exp(-((y_grid - center_y) ** 2 + (z_grid - center_z) ** 2) / 0.001)
+    temperature = 20 + 30 * np.exp(
+        -((y_grid - center_y) ** 2 + (z_grid - center_z) ** 2) / 0.001,
+    )
 
     # Create velocity field (circular flow pattern around baffle)
     # V velocity component (Y direction)
