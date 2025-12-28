@@ -135,8 +135,7 @@ def _start_docker_linux() -> bool:
         logger.info("Docker daemon started")
     except subprocess.CalledProcessError:
         logger.exception(
-            "Failed to start Docker. Please start Docker manually: "
-            "sudo systemctl start docker",
+            "Failed to start Docker. Please start Docker manually: sudo systemctl start docker",
         )
         return False
     else:
@@ -294,11 +293,7 @@ def convert_to_vtk(case_dir: Path) -> None:
         # For multiRegion cases, foamToVTK must be run for each region
         # First check if it's a multiRegion case
         system_dir = case_dir / "system"
-        regions = [
-            d.name
-            for d in system_dir.iterdir()
-            if d.is_dir() and d.name not in ["include"]
-        ]
+        regions = [d.name for d in system_dir.iterdir() if d.is_dir() and d.name not in ["include"]]
 
         if regions:
             # MultiRegion case - convert each region
@@ -363,9 +358,7 @@ def visualize_results(case_dir: Path) -> None:
     region_dirs = [d for d in vtk_dir.iterdir() if d.is_dir()]
 
     if region_dirs and all(
-        d.name in ["baffle3D", "fluid"]
-        for d in region_dirs
-        if not d.name.startswith(".")
+        d.name in ["baffle3D", "fluid"] for d in region_dirs if not d.name.startswith(".")
     ):
         # MultiRegion case with region folders directly in VTK
         logger.info("Found %s regions to visualize", len(region_dirs))
@@ -469,10 +462,7 @@ def _add_velocity_subplot(
         if "U" in mesh.array_names:
             # Calculate velocity magnitude
             velocity_data = mesh["U"]
-            if (
-                velocity_data.ndim == NUMPY_DIM_2D
-                and velocity_data.shape[1] == NUMPY_DIM_3D
-            ):
+            if velocity_data.ndim == NUMPY_DIM_2D and velocity_data.shape[1] == NUMPY_DIM_3D:
                 velocity_mag = np.linalg.norm(velocity_data, axis=1)
                 mesh["velocity_magnitude"] = velocity_mag
 
@@ -551,10 +541,7 @@ def _add_streamlines(plotter: pv.Plotter, mesh: pv.DataSet) -> None:
         if streamlines.n_points > 0:
             # Calculate velocity magnitude for coloring streamlines
             velocity_data = streamlines["U"]
-            if (
-                velocity_data.ndim == NUMPY_DIM_2D
-                and velocity_data.shape[1] == NUMPY_DIM_3D
-            ):
+            if velocity_data.ndim == NUMPY_DIM_2D and velocity_data.shape[1] == NUMPY_DIM_3D:
                 velocity_mag = np.linalg.norm(velocity_data, axis=1)
                 streamlines["velocity_magnitude"] = velocity_mag
 
@@ -731,14 +718,14 @@ def visualize_cross_section(
 ) -> None:
     """Visualize X-direction cross-section at baffle center.
 
-    Shows temperature contour and velocity lines.
+    Shows temperature contour and velocity lines with isometric view.
 
     Args:
         region_dirs: List of region directories containing VTK files.
 
     """
-    # Use off_screen mode to save screenshot
-    plotter = pv.Plotter(window_size=[1400, 1000], off_screen=True)
+    # Use multi-panel plotter: left = isometric, right = cross-section
+    plotter = pv.Plotter(shape=(1, 2), window_size=[2000, 1000], off_screen=True)
 
     all_meshes = _load_region_meshes(region_dirs)
     if not all_meshes:
@@ -751,6 +738,67 @@ def visualize_cross_section(
         return
 
     logger.info("Creating cross-section at X = %.4f m (baffle center)", x_center)
+
+    # Left panel: Isometric view showing the cut plane location
+    plotter.subplot(0, 0)
+    plotter.add_text(
+        "Isometric View\n(showing cut plane location)",
+        font_size=12,
+        position="upper_edge",
+    )
+
+    # Add semi-transparent geometry outlines
+    for region_name, mesh in all_meshes:
+        if "fluid" in region_name.lower():
+            # Show fluid domain outline
+            outline = mesh.extract_geometry().extract_surface()
+            plotter.add_mesh(
+                outline,
+                color="lightblue",
+                opacity=0.2,
+                show_edges=True,
+                edge_color="blue",
+            )
+        elif "baffle" in region_name.lower():
+            # Show baffle location
+            plotter.add_mesh(
+                mesh,
+                color="red",
+                opacity=0.5,
+            )
+
+    # Add cutting plane visualization
+    bounds = all_meshes[0][1].bounds
+    y_range = [bounds[2], bounds[3]]
+    z_range = [bounds[4], bounds[5]]
+
+    # Create plane mesh at x_center
+    plane = pv.Plane(
+        center=[x_center, (y_range[0] + y_range[1]) / 2, (z_range[0] + z_range[1]) / 2],
+        direction=[1, 0, 0],
+        i_size=y_range[1] - y_range[0],
+        j_size=z_range[1] - z_range[0],
+    )
+    plotter.add_mesh(
+        plane,
+        color="yellow",
+        opacity=0.5,
+        show_edges=True,
+        edge_color="orange",
+        line_width=3,
+    )
+
+    # Set isometric view
+    plotter.view_isometric()
+    plotter.add_axes()
+    plotter.show_bounds(
+        grid="back",
+        location="outer",
+        font_size=10,
+    )
+
+    # Right panel: Cross-section view
+    plotter.subplot(0, 1)
 
     # Create slice at baffle center
     for region_name, mesh in all_meshes:
@@ -898,10 +946,7 @@ def setup_case(
     foam_tutorials = os.environ.get("FOAM_TUTORIALS")
     if foam_tutorials:
         tutorial_src = (
-            Path(foam_tutorials)
-            / "heatTransfer"
-            / "buoyantSimpleFoam"
-            / "circuitBoardCooling"
+            Path(foam_tutorials) / "heatTransfer" / "buoyantSimpleFoam" / "circuitBoardCooling"
         )
         if tutorial_src.exists():
             temp_dir = Path(tempfile.mkdtemp(prefix="circuitboard_", dir=Path.home()))
