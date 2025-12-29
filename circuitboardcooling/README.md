@@ -156,14 +156,14 @@ python -m circuitboardcooling --image openfoam/openfoam11-paraview510
 Show mesh visualization:
 
 ```bash
-# Show mesh structure with demo data
-python -m circuitboardcooling --demo --show-mesh
-
 # Show mesh from actual simulation
 python -m circuitboardcooling --show-mesh
 
 # Show mesh without running simulation (if VTK files exist)
 python -m circuitboardcooling --skip-run --show-mesh
+
+# Save mesh image without opening interactive window
+python -m circuitboardcooling --save-mesh-image mesh.png
 ```
 
 Get help:
@@ -236,8 +236,11 @@ _Left panel: Mesh wireframe with edges. Right panel: Grid points and mesh info_
 **Save mesh visualization to file:**
 
 ```bash
-# Save mesh image without opening interactive window
-python -m circuitboardcooling --demo --save-mesh-image mesh.png
+# Save mesh image from simulation results (runs simulation first)
+python -m circuitboardcooling --save-mesh-image mesh.png
+
+# Save mesh image from existing VTK files (skip simulation)
+python -m circuitboardcooling --skip-run --save-mesh-image mesh.png
 ```
 
 ### Temperature Visualization

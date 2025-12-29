@@ -1637,11 +1637,6 @@ def main() -> int:
         help=f"Docker image to use (default: {DEFAULT_OPENFOAM_IMAGE})",
     )
     parser.add_argument(
-        "--demo",
-        action="store_true",
-        help="Create demo visualization without running simulation",
-    )
-    parser.add_argument(
         "--show-mesh",
         action="store_true",
         help="Display mesh structure (edges and points)",
@@ -1653,31 +1648,6 @@ def main() -> int:
     )
 
     args = parser.parse_args()
-
-    # Handle demo mode
-    if args.demo:
-        logger.info("Running in demo mode...")
-
-        # Check for mesh visualization
-        if args.show_mesh or args.save_mesh_image:
-            # Check for existing VTK files
-            vtk_regions = []
-            case_dir = Path.cwd()
-            for vtk_dir in case_dir.glob("VTK/*"):
-                if vtk_dir.is_dir():
-                    vtk_files = sorted(vtk_dir.glob("case_*.vtk"))
-                    if vtk_files:
-                        vtk_regions.append((vtk_dir.name, vtk_files[-1]))
-
-            save_path = Path(args.save_mesh_image) if args.save_mesh_image else None
-            visualize_mesh(
-                vtk_regions if vtk_regions else None, save_screenshot=save_path,
-            )
-        else:
-            create_demo_visualization()
-
-        logger.info("Demo visualization completed!")
-        return 0
 
     try:
         # Setup case directory
