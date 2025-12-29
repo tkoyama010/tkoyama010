@@ -293,11 +293,7 @@ def convert_to_vtk(case_dir: Path) -> None:
         # For multiRegion cases, foamToVTK must be run for each region
         # First check if it's a multiRegion case
         system_dir = case_dir / "system"
-        regions = [
-            d.name
-            for d in system_dir.iterdir()
-            if d.is_dir() and d.name not in ["include"]
-        ]
+        regions = [d.name for d in system_dir.iterdir() if d.is_dir() and d.name not in ["include"]]
 
         if regions:
             # MultiRegion case - convert each region
@@ -362,9 +358,7 @@ def visualize_results(case_dir: Path) -> None:
     region_dirs = [d for d in vtk_dir.iterdir() if d.is_dir()]
 
     if region_dirs and all(
-        d.name in ["baffle3D", "fluid"]
-        for d in region_dirs
-        if not d.name.startswith(".")
+        d.name in ["baffle3D", "fluid"] for d in region_dirs if not d.name.startswith(".")
     ):
         # MultiRegion case with region folders directly in VTK
         logger.info("Found %s regions to visualize", len(region_dirs))
@@ -468,10 +462,7 @@ def _add_velocity_subplot(
         if "U" in mesh.array_names:
             # Calculate velocity magnitude
             velocity_data = mesh["U"]
-            if (
-                velocity_data.ndim == NUMPY_DIM_2D
-                and velocity_data.shape[1] == NUMPY_DIM_3D
-            ):
+            if velocity_data.ndim == NUMPY_DIM_2D and velocity_data.shape[1] == NUMPY_DIM_3D:
                 velocity_mag = np.linalg.norm(velocity_data, axis=1)
                 mesh["velocity_magnitude"] = velocity_mag
 
@@ -550,10 +541,7 @@ def _add_streamlines(plotter: pv.Plotter, mesh: pv.DataSet) -> None:
         if streamlines.n_points > 0:
             # Calculate velocity magnitude for coloring streamlines
             velocity_data = streamlines["U"]
-            if (
-                velocity_data.ndim == NUMPY_DIM_2D
-                and velocity_data.shape[1] == NUMPY_DIM_3D
-            ):
+            if velocity_data.ndim == NUMPY_DIM_2D and velocity_data.shape[1] == NUMPY_DIM_3D:
                 velocity_mag = np.linalg.norm(velocity_data, axis=1)
                 streamlines["velocity_magnitude"] = velocity_mag
 
@@ -958,10 +946,7 @@ def setup_case(
     foam_tutorials = os.environ.get("FOAM_TUTORIALS")
     if foam_tutorials:
         tutorial_src = (
-            Path(foam_tutorials)
-            / "heatTransfer"
-            / "buoyantSimpleFoam"
-            / "circuitBoardCooling"
+            Path(foam_tutorials) / "heatTransfer" / "buoyantSimpleFoam" / "circuitBoardCooling"
         )
         if tutorial_src.exists():
             temp_dir = Path(tempfile.mkdtemp(prefix="circuitboard_", dir=Path.home()))
@@ -1107,11 +1092,7 @@ def _add_demo_cross_section(
     # Temperature field (warmer at bottom/inlet, cooler at top/outlet)
     # Simulate heat from bottom rising upward
     center_y = (y_min + y_max) / 2
-    temperature = (
-        30
-        + 20 * (1 - z_grid / z_max)
-        + 5 * np.exp(-((y_grid - center_y) ** 2) / 0.0005)
-    )
+    temperature = 30 + 20 * (1 - z_grid / z_max) + 5 * np.exp(-((y_grid - center_y) ** 2) / 0.0005)
 
     # Create realistic velocity field (flow from bottom to top, around baffle)
     baffle_y_min = y_min + 0.01
@@ -1232,6 +1213,208 @@ def _add_demo_cross_section(
     baffle_line.lines = np.array([4, 0, 1, 2, 3])
 
     plotter.add_mesh(baffle_line, color="darkred", line_width=5)
+
+
+def visualize_mesh(vtk_regions: list[tuple[str, Path]] | None = None) -> None:
+    """Visualize mesh structure with edges and points.
+
+    Args:
+        vtk_regions: List of (region_name, vtk_file_path) tuples. If None, uses synthetic mesh.
+
+    """
+    logger.info("Creating mesh visualization...")
+
+    if vtk_regions:
+        # Use actual VTK mesh
+        plotter = pv.Plotter(shape=(1, 2), window_size=[2000, 1000])
+
+        # LEFT PANEL: Full mesh with edges
+        plotter.subplot(0, 0)
+        plotter.add_text(
+            "Mesh Structure - All Regions\n(Edges and wireframe)",
+            font_size=14,
+            position="upper_edge",
+        )
+
+        for region_name, vtk_file in vtk_regions:
+            mesh = pv.read(str(vtk_file))
+            logger.info("Mesh %s: %d points, %d cells", region_name, mesh.n_points, mesh.n_cells)
+
+            if "fluid" in region_name.lower():
+                plotter.add_mesh(
+                    mesh,
+                    color="lightblue",
+                    show_edges=True,
+                    edge_color="blue",
+                    line_width=1,
+                    opacity=0.3,
+                    label=f"{region_name}",
+                )
+            elif "baffle" in region_name.lower():
+                plotter.add_mesh(
+                    mesh,
+                    color="red",
+                    show_edges=True,
+                    edge_color="darkred",
+                    line_width=2,
+                    opacity=0.5,
+                    label=f"{region_name}",
+                )
+
+        plotter.view_isometric()
+        plotter.camera.parallel_projection = True
+        plotter.add_axes()
+        plotter.show_bounds(grid="back", location="outer", font_size=10)
+        plotter.add_legend(size=(0.2, 0.2), loc="upper_left")
+
+        # RIGHT PANEL: Mesh quality info
+        plotter.subplot(0, 1)
+        plotter.add_text(
+            "Mesh Quality Metrics\n(Cell distribution)",
+            font_size=14,
+            position="upper_edge",
+        )
+
+        # Show cell quality for first mesh
+        if vtk_regions:
+            region_name, vtk_file = vtk_regions[0]
+            mesh = pv.read(str(vtk_file))
+
+            # Compute cell quality
+            quality = mesh.compute_cell_quality(quality_measure="volume")
+
+            plotter.add_mesh(
+                quality,
+                scalars="CellQuality",
+                cmap="viridis",
+                show_edges=True,
+                edge_color="gray",
+                line_width=0.5,
+                scalar_bar_args={
+                    "title": "Cell Volume",
+                    "vertical": True,
+                    "position_x": 0.85,
+                    "position_y": 0.1,
+                    "n_labels": 8,
+                    "fmt": "%.2e",
+                },
+            )
+
+            plotter.view_isometric()
+            plotter.camera.parallel_projection = True
+            plotter.add_axes()
+            plotter.show_bounds(grid="back", location="outer", font_size=10)
+
+        plotter.show()
+
+    else:
+        # Use synthetic demo mesh
+        logger.info("Using synthetic demo mesh")
+        plotter = pv.Plotter(shape=(1, 2), window_size=[2000, 1000])
+
+        # Create demo geometry
+        x_min, x_max = 0, 0.1
+        y_min, y_max = 0, 0.05
+        z_min, z_max = 0, 0.03
+        x_center = (x_min + x_max) / 2
+
+        # LEFT PANEL: Domain mesh
+        plotter.subplot(0, 0)
+        plotter.add_text(
+            "Mesh Structure - Demo Data\n(Domain wireframe)",
+            font_size=14,
+            position="upper_edge",
+        )
+
+        # Create structured grid for fluid domain
+        nx, ny, nz = 21, 11, 7
+        x = np.linspace(x_min, x_max, nx)
+        y = np.linspace(y_min, y_max, ny)
+        z = np.linspace(z_min, z_max, nz)
+
+        mesh = pv.StructuredGrid()
+        xv, yv, zv = np.meshgrid(x, y, z, indexing="ij")
+        mesh.points = np.c_[xv.ravel(), yv.ravel(), zv.ravel()]
+        mesh.dimensions = [nx, ny, nz]
+
+        logger.info("Demo mesh: %d points, %d cells", mesh.n_points, mesh.n_cells)
+
+        plotter.add_mesh(
+            mesh,
+            color="lightblue",
+            show_edges=True,
+            edge_color="blue",
+            line_width=1,
+            opacity=0.3,
+            label="Fluid domain",
+        )
+
+        # Add baffle mesh
+        baffle_thickness = 0.002
+        baffle = pv.Box(
+            bounds=[
+                x_center - baffle_thickness / 2,
+                x_center + baffle_thickness / 2,
+                y_min + 0.01,
+                y_max - 0.01,
+                z_min,
+                z_max,
+            ],
+        )
+        plotter.add_mesh(
+            baffle,
+            color="red",
+            show_edges=True,
+            edge_color="darkred",
+            line_width=2,
+            opacity=0.5,
+            label="Baffle",
+        )
+
+        plotter.view_isometric()
+        plotter.camera.parallel_projection = True
+        plotter.add_axes()
+        plotter.show_bounds(grid="back", location="outer", font_size=10)
+        plotter.add_legend(size=(0.2, 0.2), loc="upper_left")
+
+        # RIGHT PANEL: Mesh info
+        plotter.subplot(0, 1)
+        plotter.add_text(
+            f"Mesh Information\n"
+            f"Points: {mesh.n_points:,}\n"
+            f"Cells: {mesh.n_cells:,}\n"
+            f"Grid: {nx} x {ny} x {nz}",
+            font_size=12,
+            position="upper_edge",
+        )
+
+        # Show mesh with point cloud
+        plotter.add_mesh(
+            mesh,
+            style="points",
+            color="blue",
+            point_size=5,
+            render_points_as_spheres=True,
+            label="Grid points",
+        )
+
+        plotter.add_mesh(
+            mesh,
+            color="lightblue",
+            show_edges=True,
+            edge_color="gray",
+            line_width=0.5,
+            opacity=0.1,
+        )
+
+        plotter.view_isometric()
+        plotter.camera.parallel_projection = True
+        plotter.add_axes()
+        plotter.show_bounds(grid="back", location="outer", font_size=10)
+
+        plotter.show()
+
+    logger.info("Mesh visualization completed!")
 
 
 def create_demo_visualization(output_path: Path | None = None) -> Path:
@@ -1413,13 +1596,33 @@ def main() -> int:
         action="store_true",
         help="Create demo visualization without running simulation",
     )
+    parser.add_argument(
+        "--show-mesh",
+        action="store_true",
+        help="Display mesh structure (edges and points)",
+    )
 
     args = parser.parse_args()
 
     # Handle demo mode
     if args.demo:
         logger.info("Running in demo mode...")
-        create_demo_visualization()
+
+        # Check for mesh visualization
+        if args.show_mesh:
+            # Check for existing VTK files
+            vtk_regions = []
+            case_dir = Path.cwd()
+            for vtk_dir in case_dir.glob("VTK/*"):
+                if vtk_dir.is_dir():
+                    vtk_files = sorted(vtk_dir.glob("case_*.vtk"))
+                    if vtk_files:
+                        vtk_regions.append((vtk_dir.name, vtk_files[-1]))
+
+            visualize_mesh(vtk_regions if vtk_regions else None)
+        else:
+            create_demo_visualization()
+
         logger.info("Demo visualization completed!")
         return 0
 
@@ -1439,7 +1642,24 @@ def main() -> int:
         # Visualize results
         if not args.no_viz:
             logger.info("Preparing visualization...")
-            visualize_results(case_dir)
+
+            # Check for mesh visualization
+            if args.show_mesh:
+                # Find VTK files
+                vtk_regions = []
+                for vtk_dir in case_dir.glob("VTK/*"):
+                    if vtk_dir.is_dir():
+                        vtk_files = sorted(vtk_dir.glob("case_*.vtk"))
+                        if vtk_files:
+                            vtk_regions.append((vtk_dir.name, vtk_files[-1]))
+
+                if vtk_regions:
+                    visualize_mesh(vtk_regions)
+                else:
+                    logger.warning("No VTK files found for mesh visualization")
+                    visualize_mesh(None)  # Show demo mesh
+            else:
+                visualize_results(case_dir)
         else:
             logger.info("Skipping visualization (--no-viz)")
 

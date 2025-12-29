@@ -153,6 +153,19 @@ Use specific Docker image:
 python -m circuitboardcooling --image openfoam/openfoam11-paraview510
 ```
 
+Show mesh visualization:
+
+```bash
+# Show mesh structure with demo data
+python -m circuitboardcooling --demo --show-mesh
+
+# Show mesh from actual simulation
+python -m circuitboardcooling --show-mesh
+
+# Show mesh without running simulation (if VTK files exist)
+python -m circuitboardcooling --skip-run --show-mesh
+```
+
 Get help:
 
 ```bash
@@ -199,6 +212,22 @@ The PyVista visualization automatically detects multiRegion cases and provides:
   - Right-click drag: Pan
   - Press 's': Save screenshot
   - Press 'q': Quit
+
+### Mesh Visualization (--show-mesh)
+
+The `--show-mesh` option displays mesh structure:
+
+- **Left panel**: Full mesh wireframe with edges
+  - Fluid regions: Light blue with blue edges
+  - Baffle regions: Red with dark red edges
+  - All regions labeled
+- **Right panel**: Mesh quality metrics
+  - Cell quality visualization (volume-based)
+  - Cell distribution analysis
+  - Point cloud display
+- **Demo mode**: Shows structured grid mesh (21×11×7 points)
+  - ~1,600 cells demonstration mesh
+  - Clear grid structure visualization
 
 ### Temperature Visualization
 
