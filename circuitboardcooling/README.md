@@ -217,6 +217,10 @@ The PyVista visualization automatically detects multiRegion cases and provides:
 
 The `--show-mesh` option displays mesh structure:
 
+![Mesh Visualization](../mesh_visualization.png)
+
+*Left panel: Mesh wireframe with edges. Right panel: Grid points and mesh info*
+
 - **Left panel**: Full mesh wireframe with edges
   - Fluid regions: Light blue with blue edges
   - Baffle regions: Red with dark red edges
@@ -228,6 +232,13 @@ The `--show-mesh` option displays mesh structure:
 - **Demo mode**: Shows structured grid mesh (21×11×7 points)
   - ~1,600 cells demonstration mesh
   - Clear grid structure visualization
+
+**Save mesh visualization to file:**
+
+```bash
+# Save mesh image without opening interactive window
+python -m circuitboardcooling --demo --save-mesh-image mesh.png
+```
 
 ### Temperature Visualization
 

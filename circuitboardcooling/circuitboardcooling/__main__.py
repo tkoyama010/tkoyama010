@@ -1234,18 +1234,25 @@ def _add_demo_cross_section(
     plotter.add_mesh(baffle_line, color="darkred", line_width=5)
 
 
-def visualize_mesh(vtk_regions: list[tuple[str, Path]] | None = None) -> None:
+def visualize_mesh(
+    vtk_regions: list[tuple[str, Path]] | None = None,
+    save_screenshot: Path | None = None,
+) -> None:
     """Visualize mesh structure with edges and points.
 
     Args:
         vtk_regions: List of (region_name, vtk_file_path) tuples. If None, uses synthetic mesh.
+        save_screenshot: If provided, save screenshot to this path instead of showing interactively.
 
     """
     logger.info("Creating mesh visualization...")
+    
+    # Determine if off-screen rendering
+    off_screen = save_screenshot is not None or pv.OFF_SCREEN
 
     if vtk_regions:
         # Use actual VTK mesh
-        plotter = pv.Plotter(shape=(1, 2), window_size=[2000, 1000])
+        plotter = pv.Plotter(shape=(1, 2), window_size=[2000, 1000], off_screen=off_screen)
 
         # LEFT PANEL: Full mesh with edges
         plotter.subplot(0, 0)
@@ -1286,7 +1293,7 @@ def visualize_mesh(vtk_regions: list[tuple[str, Path]] | None = None) -> None:
         plotter.camera.parallel_projection = True
         plotter.add_axes()
         plotter.show_bounds(grid="back", location="outer", font_size=10)
-        plotter.add_legend(size=(0.2, 0.2), loc="upper_left")
+        plotter.add_legend(size=(0.2, 0.2), loc="upper left")
 
         # RIGHT PANEL: Mesh quality info
         plotter.subplot(0, 1)
@@ -1326,12 +1333,17 @@ def visualize_mesh(vtk_regions: list[tuple[str, Path]] | None = None) -> None:
             plotter.add_axes()
             plotter.show_bounds(grid="back", location="outer", font_size=10)
 
-        plotter.show()
+        # Save or show
+        if save_screenshot:
+            plotter.screenshot(str(save_screenshot))
+            logger.info("Mesh visualization saved to: %s", save_screenshot)
+        else:
+            plotter.show()
 
     else:
         # Use synthetic demo mesh
         logger.info("Using synthetic demo mesh")
-        plotter = pv.Plotter(shape=(1, 2), window_size=[2000, 1000])
+        plotter = pv.Plotter(shape=(1, 2), window_size=[2000, 1000], off_screen=off_screen)
 
         # Create demo geometry
         x_min, x_max = 0, 0.1
@@ -1396,7 +1408,7 @@ def visualize_mesh(vtk_regions: list[tuple[str, Path]] | None = None) -> None:
         plotter.camera.parallel_projection = True
         plotter.add_axes()
         plotter.show_bounds(grid="back", location="outer", font_size=10)
-        plotter.add_legend(size=(0.2, 0.2), loc="upper_left")
+        plotter.add_legend(size=(0.2, 0.2), loc="upper left")
 
         # RIGHT PANEL: Mesh info
         plotter.subplot(0, 1)
@@ -1433,7 +1445,12 @@ def visualize_mesh(vtk_regions: list[tuple[str, Path]] | None = None) -> None:
         plotter.add_axes()
         plotter.show_bounds(grid="back", location="outer", font_size=10)
 
-        plotter.show()
+        # Save or show
+        if save_screenshot:
+            plotter.screenshot(str(save_screenshot))
+            logger.info("Mesh visualization saved to: %s", save_screenshot)
+        else:
+            plotter.show()
 
     logger.info("Mesh visualization completed!")
 
@@ -1622,6 +1639,11 @@ def main() -> int:
         action="store_true",
         help="Display mesh structure (edges and points)",
     )
+    parser.add_argument(
+        "--save-mesh-image",
+        type=str,
+        help="Save mesh visualization to image file (e.g., mesh.png)",
+    )
 
     args = parser.parse_args()
 
@@ -1630,7 +1652,7 @@ def main() -> int:
         logger.info("Running in demo mode...")
 
         # Check for mesh visualization
-        if args.show_mesh:
+        if args.show_mesh or args.save_mesh_image:
             # Check for existing VTK files
             vtk_regions = []
             case_dir = Path.cwd()
@@ -1640,7 +1662,8 @@ def main() -> int:
                     if vtk_files:
                         vtk_regions.append((vtk_dir.name, vtk_files[-1]))
 
-            visualize_mesh(vtk_regions if vtk_regions else None)
+            save_path = Path(args.save_mesh_image) if args.save_mesh_image else None
+            visualize_mesh(vtk_regions if vtk_regions else None, save_screenshot=save_path)
         else:
             create_demo_visualization()
 
@@ -1665,7 +1688,7 @@ def main() -> int:
             logger.info("Preparing visualization...")
 
             # Check for mesh visualization
-            if args.show_mesh:
+            if args.show_mesh or args.save_mesh_image:
                 # Find VTK files
                 vtk_regions = []
                 for vtk_dir in case_dir.glob("VTK/*"):
@@ -1674,11 +1697,12 @@ def main() -> int:
                         if vtk_files:
                             vtk_regions.append((vtk_dir.name, vtk_files[-1]))
 
+                save_path = Path(args.save_mesh_image) if args.save_mesh_image else None
                 if vtk_regions:
-                    visualize_mesh(vtk_regions)
+                    visualize_mesh(vtk_regions, save_screenshot=save_path)
                 else:
                     logger.warning("No VTK files found for mesh visualization")
-                    visualize_mesh(None)  # Show demo mesh
+                    visualize_mesh(None, save_screenshot=save_path)  # Show demo mesh
             else:
                 visualize_results(case_dir)
         else:
