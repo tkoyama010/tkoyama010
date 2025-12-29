@@ -219,7 +219,7 @@ The `--show-mesh` option displays mesh structure:
 
 ![Mesh Visualization](../mesh_visualization.png)
 
-*Left panel: Mesh wireframe with edges. Right panel: Grid points and mesh info*
+_Left panel: Mesh wireframe with edges. Right panel: Grid points and mesh info_
 
 - **Left panel**: Full mesh wireframe with edges
   - Fluid regions: Light blue with blue edges

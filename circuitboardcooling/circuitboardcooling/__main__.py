@@ -1246,13 +1246,15 @@ def visualize_mesh(
 
     """
     logger.info("Creating mesh visualization...")
-    
+
     # Determine if off-screen rendering
     off_screen = save_screenshot is not None or pv.OFF_SCREEN
 
     if vtk_regions:
         # Use actual VTK mesh
-        plotter = pv.Plotter(shape=(1, 2), window_size=[2000, 1000], off_screen=off_screen)
+        plotter = pv.Plotter(
+            shape=(1, 2), window_size=[2000, 1000], off_screen=off_screen,
+        )
 
         # LEFT PANEL: Full mesh with edges
         plotter.subplot(0, 0)
@@ -1265,7 +1267,10 @@ def visualize_mesh(
         for region_name, vtk_file in vtk_regions:
             mesh = pv.read(str(vtk_file))
             logger.info(
-                "Mesh %s: %d points, %d cells", region_name, mesh.n_points, mesh.n_cells,
+                "Mesh %s: %d points, %d cells",
+                region_name,
+                mesh.n_points,
+                mesh.n_cells,
             )
 
             if "fluid" in region_name.lower():
@@ -1343,7 +1348,9 @@ def visualize_mesh(
     else:
         # Use synthetic demo mesh
         logger.info("Using synthetic demo mesh")
-        plotter = pv.Plotter(shape=(1, 2), window_size=[2000, 1000], off_screen=off_screen)
+        plotter = pv.Plotter(
+            shape=(1, 2), window_size=[2000, 1000], off_screen=off_screen,
+        )
 
         # Create demo geometry
         x_min, x_max = 0, 0.1
@@ -1663,7 +1670,9 @@ def main() -> int:
                         vtk_regions.append((vtk_dir.name, vtk_files[-1]))
 
             save_path = Path(args.save_mesh_image) if args.save_mesh_image else None
-            visualize_mesh(vtk_regions if vtk_regions else None, save_screenshot=save_path)
+            visualize_mesh(
+                vtk_regions if vtk_regions else None, save_screenshot=save_path,
+            )
         else:
             create_demo_visualization()
 
