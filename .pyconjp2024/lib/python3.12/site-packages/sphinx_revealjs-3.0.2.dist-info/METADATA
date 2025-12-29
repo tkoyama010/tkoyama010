@@ -1,0 +1,149 @@
+Metadata-Version: 2.1
+Name: sphinx-revealjs
+Version: 3.0.2
+Summary: Sphinx extension with theme to generate Reveal.js presentation
+Author-email: Kazuya Takei <myself@attakei.net>
+Requires-Python: >= 3.7
+Description-Content-Type: text/x-rst
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Sphinx
+Classifier: Framework :: Sphinx :: Extension
+Classifier: Framework :: Sphinx :: Theme
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Documentation :: Sphinx
+Classifier: Topic :: Internet :: WWW/HTTP :: Site Management
+Classifier: Topic :: Multimedia :: Graphics :: Presentation
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Documentation
+Classifier: Topic :: Text Processing :: Markup :: HTML
+Requires-Dist: docutils
+Requires-Dist: Sphinx>=4.0
+Requires-Dist: packaging
+Requires-Dist: oEmbedPy ; extra == "demo"
+Requires-Dist: sphinx-intl >=2.0.1,<3 ; extra == "demo"
+Requires-Dist: sphinxcontrib-gtagjs >=0.2.0,<0.3 ; extra == "demo"
+Requires-Dist: sphinxcontrib-budoux ; extra == "demo"
+Requires-Dist: sphinxcontrib-sass ; extra == "demo"
+Requires-Dist: sphinxext-opengraph ; extra == "demo"
+Requires-Dist: Sphinx ==5.* ; extra == "doc"
+Requires-Dist: sphinx-autobuild ==2021.3.14 ; extra == "doc"
+Requires-Dist: sphinx-rtd-theme >=0.5.1,<0.6 ; extra == "doc"
+Requires-Dist: atsphinx-footnotes ; extra == "doc"
+Requires-Dist: atsphinx-htmx-boost ; extra == "doc"
+Requires-Dist: playwright ; extra == "screenshot"
+Requires-Dist: BeautifulSoup4 >=4.9.3,<5 ; extra == "test"
+Requires-Dist: Pillow ; extra == "test"
+Requires-Dist: pytest >=6.2.5,<7 ; extra == "test"
+Requires-Dist: python-magic ; extra == "test"
+Requires-Dist: Sphinx[test]>=4.0 ; extra == "test"
+Project-URL: Documentation, https://sphinx-revealjs.readthedocs.io/
+Project-URL: Home, https://attakei.github.io/sphinx-revealjs
+Project-URL: Repository, https://github.com/attakei/sphinx-revealjs
+Provides-Extra: demo
+Provides-Extra: doc
+Provides-Extra: screenshot
+Provides-Extra: test
+
+sphinx-revealjs
+===============
+
+.. image:: https://img.shields.io/pypi/v/sphinx-revealjs.svg
+    :target: https://pypi.org/project/sphinx-revealjs/
+
+.. image:: https://github.com/attakei/sphinx-revealjs/actions/workflows/main.yml/badge.svg
+    :target: https://github.com/attakei/sphinx-revealjs/actions
+
+.. image:: https://readthedocs.org/projects/sphinx-revealjs/badge/?version=latest
+    :target: https://sphinx-revealjs.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+
+Sphinx extension with theme to generate Reveal.js presentation
+
+Overview
+--------
+
+This extension generate Reveal.js presentation
+from **standard** reStructuredText.
+
+It include theses features.
+
+* Custom builder to translate from reST to reveal.js style HTML
+* Template to be enable to render presentation local independent
+
+For more information, refer to `the documentation <https://sphinx-revealjs.readthedocs.io/>`_.
+
+Installation
+------------
+
+.. code-block:: bash
+
+    $ pip install sphinx-revealjs
+
+
+Usage
+-----
+
+1. Create your sphinx documentation
+2. Edit `conf.py` to use this extension
+
+    .. code-block:: python
+
+        extensions = [
+            'sphinx_revealjs',
+        ]
+
+3. Write source for standard document style
+
+4. Build sources as Reveal.js presentation
+
+    .. code-block:: bash
+
+        $ make revealjs
+
+Change logs
+-----------
+
+See `it <./CHANGES.rst>`_
+
+Policy for following to Reveal.js version
+-----------------------------------------
+
+This is implemented based Reveal.js.
+I plan to update it at patch-version for catch up when new Reveal.js version released.
+
+* If Reveal.js updated minor or patch version, sphinx-revealjs update patch version.
+* If Reveal.js updated major version, sphinx-revealjs update minor version with compatible for two versions.
+
+Contributings
+-------------
+
+GitHub repository does not have reveal.js library.
+
+If you use from GitHub and editable mode, Run ``tools/fetch_revealjs.py`` after install.
+
+.. code-block:: bash
+
+    $ git clone https://github.com/attakei/sphinx-revealjs
+    $ cd sphinx-revealjs
+    $ python tools/fetch_revealjs.py
+
+For more information, See `CONTRIBUTING.rst <./CONTRIBUTING.rst>`_ and `"contributing" <https://sphinx-revealjs.readthedocs.io/en/stable/contributing/>`_ page in documentation.
+
+Copyright
+---------
+
+Apache-2.0 license. Please see `LICENSE <./LICENSE>`_.
+

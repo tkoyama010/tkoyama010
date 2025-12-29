@@ -328,22 +328,19 @@ def visualize_results(case_dir: Path) -> None:
     if not vtk_dir.exists():
         convert_to_vtk(case_dir)
 
-    # Find the latest time directory in VTK
-    vtk_folders = sorted([d for d in vtk_dir.iterdir() if d.is_dir()])
-    if not vtk_folders:
-        logger.warning("No VTK folders found")
+    # Find VTK files - OpenFOAM 7 structure is different
+    # Look for case_*.vtk files directly in VTK directory
+    case_vtk_files = sorted(vtk_dir.glob("case_*.vtk"))
+    
+    if not case_vtk_files:
+        logger.warning("No case VTK files found")
         return
-
-    latest_vtk = vtk_folders[-1]
+    
+    # Use the latest time (highest number)
+    latest_vtk = case_vtk_files[-1]
     logger.info("Visualizing results from: %s", latest_vtk.name)
 
-    # Load the internal mesh
-    internal_vtk = latest_vtk / "internal.vtk"
-    if not internal_vtk.exists():
-        logger.warning("internal.vtk not found")
-        return
-
-    mesh = pv.read(str(internal_vtk))
+    mesh = pv.read(str(latest_vtk))
     logger.info("Loaded mesh with %d points and %d cells", mesh.n_points, mesh.n_cells)
 
     # Create output directory for images
@@ -548,6 +545,8 @@ def setup_case(
         if not case_dir.exists():
             msg = f"Tutorial path not found: {tutorial_path}"
             raise FileNotFoundError(msg)
+        # Prepare initial conditions for existing case
+        _prepare_initial_conditions(case_dir)
         return case_dir
 
     # Copy from $FOAM_TUTORIALS if available
@@ -563,6 +562,8 @@ def setup_case(
             temp_dir = Path(tempfile.mkdtemp(prefix="circuitboard_", dir=Path.home()))
             case_dir = temp_dir / "circuitBoardCooling"
             shutil.copytree(tutorial_src, case_dir)
+            # Prepare initial conditions
+            _prepare_initial_conditions(case_dir)
             return case_dir
 
     # Extract from Docker container
@@ -602,7 +603,30 @@ def setup_case(
     finally:
         container.remove()
 
+    # Prepare initial conditions: copy 0.orig to 0
+    _prepare_initial_conditions(case_dir)
+
     return case_dir
+
+
+def _prepare_initial_conditions(case_dir: Path) -> None:
+    """Prepare initial conditions by copying 0.orig to 0 if needed.
+    
+    Args:
+        case_dir: Path to the OpenFOAM case directory.
+    """
+    zero_orig = case_dir / "0.orig"
+    zero_dir = case_dir / "0"
+    
+    # If 0 directory doesn't exist and 0.orig exists, copy it
+    if not zero_dir.exists() and zero_orig.exists():
+        logger.info("Copying initial conditions from 0.orig to 0...")
+        shutil.copytree(zero_orig, zero_dir)
+        logger.info("Initial conditions prepared")
+    elif zero_dir.exists():
+        logger.debug("0 directory already exists")
+    else:
+        logger.warning("Neither 0 nor 0.orig directory found")
 
 
 def main() -> int:

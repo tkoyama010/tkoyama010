@@ -1,0 +1,119 @@
+Metadata-Version: 2.1
+Name: oEmbedPy
+Version: 0.6.0
+Summary: oEmbed client for Python.
+Author-email: Kazuya Takei <myself@attakei.net>
+Requires-Python: >=3.8
+Description-Content-Type: text/x-rst
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Internet
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Utilities
+Requires-Dist: beautifulsoup4
+Requires-Dist: httpx
+Requires-Dist: lxml
+Requires-Dist: platformdirs
+Requires-Dist: Click>=8 ; extra == "cli"
+Requires-Dist: furo ; extra == "doc"
+Requires-Dist: Sphinx ; extra == "doc"
+Requires-Dist: sphinx-toolbox ; extra == "doc"
+Requires-Dist: rst-package-refs ; extra == "doc"
+Requires-Dist: sphinx ; extra == "sphinx"
+Requires-Dist: sphinx[test] ; extra == "test"
+Requires-Dist: pytest==7.* ; extra == "test"
+Requires-Dist: pytest-cov==4.* ; extra == "test"
+Requires-Dist: pytest-httpx==0.21.* ; extra == "test"
+Requires-Dist: pytest-mock==3.14.* ; extra == "test"
+Project-URL: Home, https://github.com/attakei-lab/oEmbedPy
+Provides-Extra: cli
+Provides-Extra: doc
+Provides-Extra: sphinx
+Provides-Extra: test
+
+========
+oEmbedPy
+========
+
+.. note::
+
+   This is yet experimental product.
+   It will be implemented needy features incrementally.
+
+Overview
+========
+
+This is `oEmbed <https://oembed.com>`_ client for Python.
+
+Features
+========
+
+* Simple usage
+* Python 3.x native
+* Multiple endpoint discovery
+
+Installation
+============
+
+This is uploaded on PyPI.
+
+.. code-block:: console
+
+   pip install oEmbedPy
+
+Usage
+=====
+
+Library
+-------
+
+.. code-block:: pycon
+
+    >>> from oembedpy.application import Oembed
+
+    >>> oembed = Oembed()
+    >>> content = oembed.fetch("https://twitter.com/attakei")
+    >>> print(content.type)
+    rich
+
+Commandline
+-----------
+
+.. note:: It needs Click for using CLI. Run extra install 'cli'.
+
+Simple usage for author's video (omitted some output).
+
+.. code-block:: console
+
+   $ oEmbed.py 'https://www.youtube.com/watch?v=Oyh8nuaLASA'
+   title:            Yoshi ( ...
+   author_name:      attakei
+   thumbnail_height: 360
+   thumbnail_width:  400
+
+If you want JSON, use ``--format`` option.
+
+.. code-block:: console
+
+   $ oEmbed.py --format=json 'https://www.youtube.com/watch?v=Oyh8nuaLASA'
+   {"title":"Yoshi (NES - Nint ..."}
+
+Others
+------
+
+This has extension for easy-using.
+Please see `documentation <https://oEmbedPy.rtfd.io>`_.
+
+License
+=======
+
+Apache License 2.0
+

@@ -1,0 +1,3 @@
+[console_scripts]
+oEmbed.py=oembedpy.cli:main
+
