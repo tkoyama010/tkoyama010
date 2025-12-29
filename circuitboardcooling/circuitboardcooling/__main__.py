@@ -1253,7 +1253,9 @@ def visualize_mesh(
     if vtk_regions:
         # Use actual VTK mesh
         plotter = pv.Plotter(
-            shape=(1, 2), window_size=[2000, 1000], off_screen=off_screen,
+            shape=(1, 2),
+            window_size=[2000, 1000],
+            off_screen=off_screen,
         )
 
         # LEFT PANEL: Full mesh with edges
@@ -1349,7 +1351,9 @@ def visualize_mesh(
         # Use synthetic demo mesh
         logger.info("Using synthetic demo mesh")
         plotter = pv.Plotter(
-            shape=(1, 2), window_size=[2000, 1000], off_screen=off_screen,
+            shape=(1, 2),
+            window_size=[2000, 1000],
+            off_screen=off_screen,
         )
 
         # Create demo geometry
