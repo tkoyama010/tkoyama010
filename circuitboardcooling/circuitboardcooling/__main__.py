@@ -32,7 +32,9 @@ logger = logging.getLogger(__name__)
 
 # Constants
 DEFAULT_OPENFOAM_IMAGE = "openfoam/openfoam7-paraview56"
-TUTORIAL_PATH = "/opt/openfoam7/tutorials/heatTransfer/buoyantSimpleFoam/circuitBoardCooling"
+TUTORIAL_PATH = (
+    "/opt/openfoam7/tutorials/heatTransfer/buoyantSimpleFoam/circuitBoardCooling"
+)
 NUMPY_DIM_2D = 2
 NUMPY_DIM_3D = 3
 MIN_STREAMLINE_POINTS = 100
@@ -232,10 +234,7 @@ def run_openfoam_case(
     try:
         output = client.containers.run(
             openfoam_image,
-            command=(
-                "/bin/bash -c 'source /opt/openfoam7/etc/bashrc && "
-                "blockMesh'"
-            ),
+            command=("/bin/bash -c 'source /opt/openfoam7/etc/bashrc && blockMesh'"),
             volumes={str(case_dir.absolute()): {"bind": "/case", "mode": "rw"}},
             working_dir="/case",
             remove=True,
