@@ -370,7 +370,7 @@ def visualize_mesh(mesh: pv.DataSet, output_path: Path) -> None:
 
     """
     plotter = pv.Plotter(off_screen=True, window_size=[1200, 900])
-    
+
     # Add mesh with edges
     plotter.add_mesh(
         mesh,
@@ -380,12 +380,12 @@ def visualize_mesh(mesh: pv.DataSet, output_path: Path) -> None:
         line_width=1,
         opacity=1.0,
     )
-    
+
     # Set view
     plotter.camera_position = "iso"
     plotter.camera.azimuth = 45
     plotter.camera.elevation = 30
-    
+
     # Add axes
     plotter.add_axes()
     plotter.show_bounds(
@@ -393,7 +393,7 @@ def visualize_mesh(mesh: pv.DataSet, output_path: Path) -> None:
         location="outer",
         font_size=10,
     )
-    
+
     # Save
     plotter.screenshot(str(output_path))
     logger.info("Mesh visualization saved to: %s", output_path)
@@ -410,15 +410,15 @@ def visualize_velocity(mesh: pv.DataSet, output_path: Path) -> None:
     if "U" not in mesh.array_names:
         logger.warning("Velocity field 'U' not found in mesh")
         return
-    
+
     plotter = pv.Plotter(off_screen=True, window_size=[1200, 900])
-    
+
     # Calculate velocity magnitude
     velocity_data = mesh["U"]
     if velocity_data.ndim == NUMPY_DIM_2D and velocity_data.shape[1] == NUMPY_DIM_3D:
         velocity_mag = np.linalg.norm(velocity_data, axis=1)
         mesh["velocity_magnitude"] = velocity_mag
-        
+
         # Add mesh with velocity magnitude coloring
         plotter.add_mesh(
             mesh,
@@ -432,7 +432,7 @@ def visualize_velocity(mesh: pv.DataSet, output_path: Path) -> None:
                 "position_y": 0.1,
             },
         )
-        
+
         # Add velocity vectors (glyphs)
         # Subsample for clearer visualization
         if mesh.n_points > 200:
@@ -441,30 +441,30 @@ def visualize_velocity(mesh: pv.DataSet, output_path: Path) -> None:
             subsample = mesh.extract_points(indices)
         else:
             subsample = mesh
-        
+
         # Scale factor for arrows
         max_vel = velocity_mag.max()
         if max_vel > 0:
             scale_factor = mesh.length * 0.05 / max_vel
-            
+
             arrows = subsample.glyph(
                 orient="U",
                 scale="velocity_magnitude",
                 factor=scale_factor,
                 geom=pv.Arrow(),
             )
-            
+
             plotter.add_mesh(
                 arrows,
                 color="black",
                 opacity=0.6,
             )
-    
+
     # Set view
     plotter.camera_position = "iso"
     plotter.camera.azimuth = 45
     plotter.camera.elevation = 30
-    
+
     # Add axes
     plotter.add_axes()
     plotter.show_bounds(
@@ -472,7 +472,7 @@ def visualize_velocity(mesh: pv.DataSet, output_path: Path) -> None:
         location="outer",
         font_size=10,
     )
-    
+
     # Save
     plotter.screenshot(str(output_path))
     logger.info("Velocity visualization saved to: %s", output_path)
@@ -489,14 +489,14 @@ def visualize_temperature(mesh: pv.DataSet, output_path: Path) -> None:
     if "T" not in mesh.array_names:
         logger.warning("Temperature field 'T' not found in mesh")
         return
-    
+
     plotter = pv.Plotter(off_screen=True, window_size=[1200, 900])
-    
+
     # Convert temperature to Celsius
     t_kelvin = mesh["T"]
     t_celsius = t_kelvin - 273.15
     mesh["T_celsius"] = t_celsius
-    
+
     # Add mesh with temperature coloring
     plotter.add_mesh(
         mesh,
@@ -510,12 +510,12 @@ def visualize_temperature(mesh: pv.DataSet, output_path: Path) -> None:
             "position_y": 0.1,
         },
     )
-    
+
     # Set view
     plotter.camera_position = "iso"
     plotter.camera.azimuth = 45
     plotter.camera.elevation = 30
-    
+
     # Add axes
     plotter.add_axes()
     plotter.show_bounds(
@@ -523,7 +523,7 @@ def visualize_temperature(mesh: pv.DataSet, output_path: Path) -> None:
         location="outer",
         font_size=10,
     )
-    
+
     # Save
     plotter.screenshot(str(output_path))
     logger.info("Temperature visualization saved to: %s", output_path)
