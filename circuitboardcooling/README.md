@@ -261,6 +261,24 @@ The circuitBoardCooling case is a multiRegion CHT (Conjugate Heat Transfer) tuto
 - Multiple solid and fluid regions
 - Coupled heat conduction and convection
 
+### Official Resources
+
+- **OpenFOAM Tutorial Location**: `$FOAM_TUTORIALS/multiRegion/CHT/circuitBoardCooling`
+- **GitHub Repository**: [OpenFOAM-dev/circuitBoardCooling](https://github.com/OpenFOAM/OpenFOAM-dev/tree/master/tutorials/multiRegion/CHT/circuitBoardCooling)
+- **Official Documentation**:
+  - [OpenFOAM Documentation Overview](https://www.openfoam.com/documentation/overview)
+  - [Tutorial Guide](https://www.openfoam.com/documentation/tutorial-guide)
+  - [chtMultiRegionFoam User Guide](https://www.openfoam.com/documentation/guides/latest/doc/guide-applications-solvers-heat-transfer-chtMultiRegionFoam.html)
+
+### Community Resources
+
+- **Video Tutorial**: [CircuitBoard Cooling Simulation in OpenFOAM - Step-by-Step](https://www.youtube.com/watch?v=kEkKKm_iNhc)
+- **Written Guides**:
+  - [XSim: Air cooling of heating plate](https://www.xsim.info/articles/OpenFOAM/en-US/tutorials/heatTransfer-buoyantSimpleFoam-circuitBoardCooling.html)
+  - [TensorEngineering: PCB Cooling CFD Simulation](https://tensorengineering.us/pcb-cooling-cfd-simulation-using-openfoam/)
+  - [Silentdynamics: Electronic cooling simulation](https://silentdynamics.de/en/2022/01/11/electronic-cooling-simulation-using-openfoam/)
+- **Academic Tutorial**: [ResearchGate: chtMultiRegionFoam Tutorial](https://www.researchgate.net/publication/308961950_Tutorial_to_set_up_a_case_for_chtMultiRegionFoam_in_OpenFOAM)
+
 ## Troubleshooting
 
 ### Docker connection error
