@@ -31,7 +31,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Constants
-DEFAULT_OPENFOAM_IMAGE = "openfoam/openfoam11-paraview510"
+DEFAULT_OPENFOAM_IMAGE = "openfoam/openfoam7-paraview56"
+TUTORIAL_PATH = "/opt/openfoam7/tutorials/heatTransfer/buoyantSimpleFoam/circuitBoardCooling"
 NUMPY_DIM_2D = 2
 NUMPY_DIM_3D = 3
 MIN_STREAMLINE_POINTS = 100
@@ -226,14 +227,14 @@ def run_openfoam_case(
         logger.info("Pulling OpenFOAM image: %s", openfoam_image)
         client.images.pull(openfoam_image)
 
-    # Run Allmesh script (for circuit board cooling)
-    logger.info("Running mesh generation (Allmesh-extrudeFromInternalFaces)...")
+    # Run blockMesh for mesh generation
+    logger.info("Running blockMesh for mesh generation...")
     try:
         output = client.containers.run(
             openfoam_image,
             command=(
-                "/bin/bash -c 'source /opt/openfoam11/etc/bashrc && "
-                "./Allmesh-extrudeFromInternalFaces'"
+                "/bin/bash -c 'source /opt/openfoam7/etc/bashrc && "
+                "blockMesh'"
             ),
             volumes={str(case_dir.absolute()): {"bind": "/case", "mode": "rw"}},
             working_dir="/case",
@@ -245,18 +246,18 @@ def run_openfoam_case(
         if output:
             filtered_output = filter_openfoam_output(output)
             if filtered_output:
-                logger.info("Mesh generation output:\n%s", filtered_output)
-        logger.info("Mesh generation completed")
+                logger.info("blockMesh output:\n%s", filtered_output)
+        logger.info("blockMesh completed")
     except docker.errors.ContainerError as e:
-        logger.exception("Mesh generation failed: %s", e.stderr.decode("utf-8"))
+        logger.exception("blockMesh failed: %s", e.stderr.decode("utf-8"))
         raise
 
-    # Run chtMultiRegionFoam
-    logger.info("Running chtMultiRegionFoam solver...")
+    # Run buoyantSimpleFoam solver
+    logger.info("Running buoyantSimpleFoam solver...")
     try:
         output = client.containers.run(
             openfoam_image,
-            command="/bin/bash -c 'source /opt/openfoam11/etc/bashrc && chtMultiRegionFoam'",
+            command="/bin/bash -c 'source /opt/openfoam7/etc/bashrc && buoyantSimpleFoam'",
             volumes={str(case_dir.absolute()): {"bind": "/case", "mode": "rw"}},
             working_dir="/case",
             remove=True,
@@ -290,56 +291,21 @@ def convert_to_vtk(case_dir: Path) -> None:
 
     logger.info("Converting OpenFOAM results to VTK format...")
     try:
-        # For multiRegion cases, foamToVTK must be run for each region
-        # First check if it's a multiRegion case
-        system_dir = case_dir / "system"
-        regions = [
-            d.name
-            for d in system_dir.iterdir()
-            if d.is_dir() and d.name not in ["include"]
-        ]
-
-        if regions:
-            # MultiRegion case - convert each region
-            logger.info("Converting %s regions: %s", len(regions), ", ".join(regions))
-            for region in regions:
-                output = client.containers.run(
-                    openfoam_image,
-                    command=(
-                        f"/bin/bash -c 'source /opt/openfoam11/etc/bashrc && "
-                        f"foamToVTK -region {region}'"
-                    ),
-                    volumes={str(case_dir.absolute()): {"bind": "/case", "mode": "rw"}},
-                    working_dir="/case",
-                    remove=True,
-                    stdout=True,
-                    stderr=True,
-                    entrypoint="",
-                )
-                if output:
-                    output_str = output.decode("utf-8")
-                    if "error" in output_str.lower() or "fatal" in output_str.lower():
-                        logger.warning(
-                            "VTK conversion for region %s:\n%s",
-                            region,
-                            output_str,
-                        )
-        else:
-            # Single region case
-            output = client.containers.run(
-                openfoam_image,
-                command="/bin/bash -c 'source /opt/openfoam11/etc/bashrc && foamToVTK'",
-                volumes={str(case_dir.absolute()): {"bind": "/case", "mode": "rw"}},
-                working_dir="/case",
-                remove=True,
-                stdout=True,
-                stderr=True,
-                entrypoint="",
-            )
-            if output:
-                filtered_output = filter_openfoam_output(output)
-                if filtered_output:
-                    logger.info("VTK conversion output:\n%s", filtered_output)
+        # buoyantSimpleFoam is a single region case
+        output = client.containers.run(
+            openfoam_image,
+            command="/bin/bash -c 'source /opt/openfoam7/etc/bashrc && foamToVTK'",
+            volumes={str(case_dir.absolute()): {"bind": "/case", "mode": "rw"}},
+            working_dir="/case",
+            remove=True,
+            stdout=True,
+            stderr=True,
+            entrypoint="",
+        )
+        if output:
+            filtered_output = filter_openfoam_output(output)
+            if filtered_output:
+                logger.info("VTK conversion output:\n%s", filtered_output)
         logger.info("VTK conversion completed")
     except docker.errors.ContainerError as e:
         logger.exception("VTK conversion failed: %s", e.stderr.decode("utf-8"))
@@ -989,9 +955,9 @@ def setup_case(
     # Create a container and copy the tutorial files
     container = client.containers.create(openfoam_image, command="bash")
     try:
-        # Get the tutorial path from the container
+        # Get the tutorial path from the container (using OpenFOAM 7 path)
         tutorial_archive, _ = container.get_archive(
-            "/opt/openfoam11/tutorials/multiRegion/CHT/circuitBoardCooling",
+            TUTORIAL_PATH,
         )
 
         # Extract the archive

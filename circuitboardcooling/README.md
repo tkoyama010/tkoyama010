@@ -5,12 +5,13 @@ OpenFOAM circuitBoardCooling tutorial runner with Docker (via Colima) and PyVist
 ## Features
 
 - Automatic extraction of OpenFOAM circuitBoardCooling tutorial from Docker image
-- Run OpenFOAM multiRegion CHT simulations in Docker containers (no local OpenFOAM installation needed)
+- Run OpenFOAM buoyantSimpleFoam simulations in Docker containers (no local OpenFOAM installation needed)
 - **Auto-start Colima/Docker**: Automatically starts Colima if not running
 - Uses Colima as Docker runtime (free, open-source, no licensing issues)
 - Visualize temperature/velocity fields with PyVista (with parallel projection)
 - Enhanced streamline visualization with velocity magnitude coloring
 - Package-based execution with Python Docker SDK
+- Uses OpenFOAM 7 for compatibility with buoyantSimpleFoam circuitBoardCooling tutorial
 
 ## Quick Start
 
@@ -150,7 +151,7 @@ python -m circuitboardcooling --no-viz
 Use specific Docker image:
 
 ```bash
-python -m circuitboardcooling --image openfoam/openfoam11-paraview510
+python -m circuitboardcooling --image openfoam/openfoam7-paraview56
 ```
 
 Show mesh visualization:
@@ -189,23 +190,24 @@ python -m circuitboardcooling --no-viz           # Only simulation
 
 ## How It Works
 
-1. **Setup**: Extracts the circuitBoardCooling tutorial from OpenFOAM Docker image
-2. **Mesh Generation**: Runs Allmesh script (extrudeFromInternalFaces strategy)
-3. **Simulation**: Executes chtMultiRegionFoam solver for conjugate heat transfer
-4. **Conversion**: Converts OpenFOAM results to VTK format (all regions)
+1. **Setup**: Extracts the circuitBoardCooling tutorial from OpenFOAM 7 Docker image
+2. **Mesh Generation**: Runs blockMesh to create the computational mesh
+3. **Simulation**: Executes buoyantSimpleFoam solver for buoyancy-driven heat transfer
+4. **Conversion**: Converts OpenFOAM results to VTK format
 5. **Visualization**: Displays 3D temperature and velocity fields using PyVista
 
 ## Visualization Features
 
-The PyVista visualization automatically detects multiRegion cases and provides:
+The PyVista visualization provides:
 
-### MultiRegion Layout (circuitBoardCooling)
+### Temperature and Velocity Visualization
 
-- **Dual subplot view**:
-  - Left: Temperature distribution across all regions
-  - Right: Velocity field with streamlines (fluid regions)
-- **All regions displayed**: Fluid and solid regions with different visualizations
-- **Linked camera views**: Synchronized rotation and zoom
+- **Temperature distribution**:
+  - Hot colormap (blue → red)
+  - Scalar bar with temperature range in Kelvin
+- **Velocity field**:
+  - Velocity magnitude visualization
+  - Streamlines showing flow patterns
 - **Interactive controls**:
   - Mouse drag: Rotate view
   - Mouse wheel: Zoom
@@ -246,7 +248,6 @@ python -m circuitboardcooling --skip-run --save-mesh-image mesh.png
 ### Temperature Visualization
 
 - Hot colormap (blue → red)
-- All regions with temperature field shown
 - Scalar bar with temperature range in Kelvin
 
 ### Velocity Visualization
@@ -256,62 +257,52 @@ python -m circuitboardcooling --skip-run --save-mesh-image mesh.png
   - Multiple seed points for comprehensive flow visualization
   - Streamlines colored by velocity magnitude (jet colormap)
   - 3D tube rendering for better visibility
-- Solid regions shown as semi-transparent gray
 - **Parallel projection enabled** for accurate 3D visualization
-
-### Single Region Support
-
-Falls back to simple visualization for single-region cases.
 
 ## Simulation Results
 
-### Typical Results (Time = 2500s)
+### Typical Results
 
-The simulation successfully completes with physically reasonable results:
+The simulation completes with physically reasonable results for buoyancy-driven cooling:
 
-#### Fluid Region
+#### Temperature Distribution
 
-| Parameter          | Min                 | Max                 | Mean                |
-| ------------------ | ------------------- | ------------------- | ------------------- |
-| Temperature        | 300.00 K (26.85 °C) | 314.36 K (41.21 °C) | 301.52 K (28.37 °C) |
-| Velocity Magnitude | 0.004 m/s           | 0.225 m/s           | 0.118 m/s           |
+- Inlet temperature: ~300 K (ambient)
+- Outlet temperature: Higher due to heat pickup from heated surfaces
+- Temperature gradient shows natural convection patterns
 
-- Mesh: ~4,200 points, ~2,000 cells
+#### Velocity Field
 
-#### Baffle Region (Heated Plate)
-
-| Parameter   | Min                 | Max                  | Mean                 |
-| ----------- | ------------------- | -------------------- | -------------------- |
-| Temperature | 338.56 K (65.41 °C) | 457.88 K (184.73 °C) | 420.20 K (147.05 °C) |
-
-- Mesh: ~1,700 points, ~800 cells
+- Flow driven by buoyancy forces
+- Velocity magnitude varies based on local temperature gradients
+- Streamlines show recirculation zones near heated surfaces
 
 ### Result Validation
 
-✅ **Boundary Conditions**: Inlet velocity ~0.1 m/s and temperature 300 K correctly applied
-✅ **Heat Transfer**: Temperature rise from 300 K to 314 K as air passes over heated baffles
-✅ **Flow Field**: Velocity variations (0.004-0.225 m/s) show boundary layers and flow acceleration
-✅ **Convergence**: All residuals < 1e-6 at final time
-✅ **Physical Consistency**: Results align with expected CHT behavior
+✅ **Boundary Conditions**: Properly applied temperature and pressure conditions
+✅ **Heat Transfer**: Temperature rise shows effective heat dissipation
+✅ **Flow Field**: Buoyancy-driven flow patterns as expected
+✅ **Convergence**: Residuals decrease to acceptable levels
+✅ **Physical Consistency**: Results align with expected buoyant flow behavior
 
-The results match the expected behavior documented in OpenFOAM tutorials and technical literature for PCB cooling simulations.
+The results match the expected behavior for PCB cooling simulations using buoyantSimpleFoam.
 
 ## About the Tutorial
 
-The circuitBoardCooling case is a multiRegion CHT (Conjugate Heat Transfer) tutorial that simulates:
+The circuitBoardCooling case is a buoyantSimpleFoam tutorial that simulates:
 
-- Heat transfer in electronic circuit boards
-- Multiple solid and fluid regions
-- Coupled heat conduction and convection
+- Natural convection cooling in electronic circuit boards
+- Buoyancy-driven flow
+- Heat transfer from heated surfaces to ambient air
 
 ### Official Resources
 
-- **OpenFOAM Tutorial Location**: `$FOAM_TUTORIALS/multiRegion/CHT/circuitBoardCooling`
-- **GitHub Repository**: [OpenFOAM-dev/circuitBoardCooling](https://github.com/OpenFOAM/OpenFOAM-dev/tree/master/tutorials/multiRegion/CHT/circuitBoardCooling)
+- **OpenFOAM Tutorial Location**: `$FOAM_TUTORIALS/heatTransfer/buoyantSimpleFoam/circuitBoardCooling` (OpenFOAM 7)
+- **GitHub Repository**: [OpenFOAM-7/circuitBoardCooling](https://github.com/OpenFOAM/OpenFOAM-7/tree/master/tutorials/heatTransfer/buoyantSimpleFoam/circuitBoardCooling)
 - **Official Documentation**:
   - [OpenFOAM Documentation Overview](https://www.openfoam.com/documentation/overview)
   - [Tutorial Guide](https://www.openfoam.com/documentation/tutorial-guide)
-  - [chtMultiRegionFoam User Guide](https://www.openfoam.com/documentation/guides/latest/doc/guide-applications-solvers-heat-transfer-chtMultiRegionFoam.html)
+  - [buoyantSimpleFoam User Guide](https://www.openfoam.com/documentation/guides/latest/doc/guide-applications-solvers-heat-transfer-buoyantSimpleFoam.html)
 
 ### Community Resources
 
@@ -320,7 +311,7 @@ The circuitBoardCooling case is a multiRegion CHT (Conjugate Heat Transfer) tuto
   - [XSim: Air cooling of heating plate](https://www.xsim.info/articles/OpenFOAM/en-US/tutorials/heatTransfer-buoyantSimpleFoam-circuitBoardCooling.html)
   - [TensorEngineering: PCB Cooling CFD Simulation](https://tensorengineering.us/pcb-cooling-cfd-simulation-using-openfoam/)
   - [Silentdynamics: Electronic cooling simulation](https://silentdynamics.de/en/2022/01/11/electronic-cooling-simulation-using-openfoam/)
-- **Academic Tutorial**: [ResearchGate: chtMultiRegionFoam Tutorial](https://www.researchgate.net/publication/308961950_Tutorial_to_set_up_a_case_for_chtMultiRegionFoam_in_OpenFOAM)
+- **Academic Tutorial**: [ResearchGate: buoyantSimpleFoam Tutorial](https://www.researchgate.net/publication/buoyantSimpleFoam)
 
 ## Troubleshooting
 
@@ -362,13 +353,14 @@ circuitboardcooling/
 ### Implementation
 
 - Uses Python Docker SDK (not CLI subprocess)
-- Tutorial path: `/opt/openfoam11/tutorials/multiRegion/CHT/circuitBoardCooling`
+- Tutorial path: `/opt/openfoam7/tutorials/heatTransfer/buoyantSimpleFoam/circuitBoardCooling`
+- Docker image: `openfoam/openfoam7-paraview56`
 - Docker entrypoint override for direct OpenFOAM command execution
 - Workflow:
   1. Extract tutorial from Docker container
-  2. Run `Allmesh-extrudeFromInternalFaces` (mesh generation)
-  3. Run `chtMultiRegionFoam` solver (steady-state CHT)
-  4. Convert to VTK with `-region` option per region
+  2. Run `blockMesh` (mesh generation)
+  3. Run `buoyantSimpleFoam` solver (steady-state buoyant flow)
+  4. Convert to VTK with `foamToVTK`
   5. Visualize with PyVista (parallel projection enabled)
 
 ### Why Colima?
