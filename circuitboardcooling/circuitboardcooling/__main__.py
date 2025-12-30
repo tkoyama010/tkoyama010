@@ -454,11 +454,14 @@ def visualize_velocity(mesh: pv.DataSet, output_path: Path) -> None:
         z_mid = (bounds[4] + bounds[5]) / 2
 
         slice_mesh = mesh.slice(normal="z", origin=[0, 0, z_mid])
-        
+
         # Use point_data for smooth/continuous contours
-        if "velocity_magnitude" not in slice_mesh.point_data and "velocity_magnitude" in slice_mesh.cell_data:
+        if (
+            "velocity_magnitude" not in slice_mesh.point_data
+            and "velocity_magnitude" in slice_mesh.cell_data
+        ):
             slice_mesh = slice_mesh.cell_data_to_point_data()
-        
+
         plotter.add_mesh(
             slice_mesh,
             scalars="velocity_magnitude",
@@ -553,11 +556,11 @@ def visualize_temperature(mesh: pv.DataSet, output_path: Path) -> None:
     z_mid = (bounds[4] + bounds[5]) / 2
 
     slice_mesh = mesh.slice(normal="z", origin=[0, 0, z_mid])
-    
+
     # Use point_data for smooth/continuous contours
     if "T_celsius" not in slice_mesh.point_data and "T_celsius" in slice_mesh.cell_data:
         slice_mesh = slice_mesh.cell_data_to_point_data()
-    
+
     plotter.add_mesh(
         slice_mesh,
         scalars="T_celsius",
