@@ -431,9 +431,9 @@ def visualize_velocity(mesh: pv.DataSet, output_path: Path) -> None:
             bounds[4] + (bounds[5] - bounds[4]) * 0.5,
             bounds[4] + (bounds[5] - bounds[4]) * 0.75,
         ]
-        
+
         for z_pos in z_positions:
-            slice_mesh = mesh.slice(normal='z', origin=[0, 0, z_pos])
+            slice_mesh = mesh.slice(normal="z", origin=[0, 0, z_pos])
             plotter.add_mesh(
                 slice_mesh,
                 scalars="velocity_magnitude",
@@ -455,26 +455,26 @@ def visualize_velocity(mesh: pv.DataSet, output_path: Path) -> None:
         # Generate streamlines from inlet with more points to capture complex flow
         # Create multiple seed points across the inlet
         bounds = mesh.bounds
-        
+
         # Generate streamlines from multiple positions
         seed_points = []
         # Create seed points at different Y positions
         y_positions = np.linspace(bounds[2] + 0.01, bounds[3] - 0.01, 10)
         z_positions = np.linspace(bounds[4] + 0.01, bounds[5] - 0.01, 5)
-        
+
         for y_pos in y_positions:
             for z_pos in z_positions:
                 seed_points.append([bounds[0] + 0.005, y_pos, z_pos])
-        
+
         seed_cloud = pv.PolyData(np.array(seed_points))
-        
+
         streamlines = mesh.streamlines_from_source(
             seed_cloud,
             vectors="U",
             max_steps=2000,
-            integration_direction='forward',
+            integration_direction="forward",
         )
-        
+
         if streamlines.n_points > 0:
             # Use tubes for better visualization
             tubes = streamlines.tube(radius=0.0005)
