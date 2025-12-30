@@ -368,6 +368,9 @@ def visualize_mesh(mesh: pv.DataSet, output_path: Path) -> None:
     """
     plotter = pv.Plotter(off_screen=True, window_size=[1200, 900])
 
+    # Enable parallel projection
+    plotter.enable_parallel_projection()
+
     # Add mesh with edges
     plotter.add_mesh(
         mesh,
@@ -378,10 +381,8 @@ def visualize_mesh(mesh: pv.DataSet, output_path: Path) -> None:
         opacity=1.0,
     )
 
-    # Set view
-    plotter.camera_position = "iso"
-    plotter.camera.azimuth = 45
-    plotter.camera.elevation = 30
+    # Set default view
+    plotter.view_isometric()
 
     # Add axes
     plotter.add_axes()
