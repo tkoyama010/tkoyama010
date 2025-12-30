@@ -601,7 +601,10 @@ def setup_case(
         _prepare_initial_conditions(case_dir)
         # Set permissions for Docker access
         import subprocess
-        subprocess.run(["chmod", "-R", "777", str(case_dir)], check=True)  # noqa: S603, S607
+
+        subprocess.run(
+            ["chmod", "-R", "777", str(case_dir)], check=True,
+        )
         return case_dir
 
     # Copy from $FOAM_TUTORIALS if available
@@ -621,7 +624,10 @@ def setup_case(
             _prepare_initial_conditions(case_dir)
             # Set permissions for Docker access
             import subprocess
-            subprocess.run(["chmod", "-R", "777", str(case_dir)], check=True)  # noqa: S603, S607
+
+            subprocess.run(
+                ["chmod", "-R", "777", str(case_dir)], check=True,
+            )
             return case_dir
 
     # Extract from Docker container
@@ -666,7 +672,10 @@ def setup_case(
 
     # Set permissions for Docker access
     import subprocess
-    subprocess.run(["chmod", "-R", "777", str(case_dir)], check=True)  # noqa: S603, S607
+
+    subprocess.run(
+        ["chmod", "-R", "777", str(case_dir)], check=True,
+    )
 
     return case_dir
 
