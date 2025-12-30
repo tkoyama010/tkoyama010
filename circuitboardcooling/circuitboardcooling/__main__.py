@@ -423,43 +423,52 @@ def visualize_velocity(mesh: pv.DataSet, output_path: Path) -> None:
         # Get max velocity for range
         max_vel = velocity_mag.max()
 
-        # Add mesh with velocity magnitude coloring (min=0.0)
-        plotter.add_mesh(
-            mesh,
-            scalars="velocity_magnitude",
-            cmap="jet",
-            show_edges=False,
-            clim=[0.0, max_vel],
-            scalar_bar_args={
-                "title": "Velocity [m/s]",
-                "vertical": True,
-                "position_x": 0.85,
-                "position_y": 0.1,
-            },
+        # Add multiple slices to show internal flow
+        bounds = mesh.bounds
+        # Create 3 slices at different Z positions
+        z_positions = [
+            bounds[4] + (bounds[5] - bounds[4]) * 0.25,
+            bounds[4] + (bounds[5] - bounds[4]) * 0.5,
+            bounds[4] + (bounds[5] - bounds[4]) * 0.75,
+        ]
+        
+        for z_pos in z_positions:
+            slice_mesh = mesh.slice(normal='z', origin=[0, 0, z_pos])
+            plotter.add_mesh(
+                slice_mesh,
+                scalars="velocity_magnitude",
+                cmap="jet",
+                show_edges=False,
+                clim=[0.0, max_vel],
+                opacity=0.8,
+            )
+
+        # Add scalar bar
+        plotter.add_scalar_bar(
+            title="Velocity [m/s]",
+            vertical=True,
+            position_x=0.85,
+            position_y=0.1,
         )
 
-        # Add streamlines for flow visualization
-        # Create seed points for streamlines
-        bounds = mesh.bounds
-
-        # Generate streamlines
+        # Add streamlines for flow visualization with raycast
+        # Generate streamlines from inlet
         streamlines = mesh.streamlines(
             vectors="U",
-            source_center=(
-                bounds[0],
-                (bounds[2] + bounds[3]) / 2,
-                (bounds[4] + bounds[5]) / 2,
-            ),
-            source_radius=0.05,
-            n_points=50,
+            source_center=(bounds[0] + 0.01, (bounds[2] + bounds[3]) / 2, (bounds[4] + bounds[5]) / 2),
+            source_radius=0.04,
+            n_points=100,
+            terminal_speed=0.0,
         )
-
+        
         if streamlines.n_points > 0:
+            # Use tubes for better visualization
+            tubes = streamlines.tube(radius=0.001)
             plotter.add_mesh(
-                streamlines,
+                tubes,
                 color="white",
-                line_width=2,
-                opacity=0.8,
+                line_width=3,
+                opacity=1.0,
             )
 
     # Set XY plane view (top view)
