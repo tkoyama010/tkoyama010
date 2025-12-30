@@ -331,11 +331,11 @@ def visualize_results(case_dir: Path) -> None:
     # Find VTK files - OpenFOAM 7 structure is different
     # Look for case_*.vtk files directly in VTK directory
     case_vtk_files = sorted(vtk_dir.glob("case_*.vtk"))
-    
+
     if not case_vtk_files:
         logger.warning("No case VTK files found")
         return
-    
+
     # Use the latest time (highest number)
     latest_vtk = case_vtk_files[-1]
     logger.info("Visualizing results from: %s", latest_vtk.name)
@@ -611,13 +611,14 @@ def setup_case(
 
 def _prepare_initial_conditions(case_dir: Path) -> None:
     """Prepare initial conditions by copying 0.orig to 0 if needed.
-    
+
     Args:
         case_dir: Path to the OpenFOAM case directory.
+
     """
     zero_orig = case_dir / "0.orig"
     zero_dir = case_dir / "0"
-    
+
     # If 0 directory doesn't exist and 0.orig exists, copy it
     if not zero_dir.exists() and zero_orig.exists():
         logger.info("Copying initial conditions from 0.orig to 0...")
