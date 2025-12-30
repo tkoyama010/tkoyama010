@@ -251,6 +251,32 @@ def run_openfoam_case(
         logger.exception("blockMesh failed: %s", e.stderr.decode("utf-8"))
         raise
 
+    # Run createBaffles to create heated baffles (if createBafflesDict exists)
+    create_baffles_dict = case_dir / "system" / "createBafflesDict"
+    if create_baffles_dict.exists():
+        logger.info("Running createBaffles to create heated baffles...")
+        try:
+            output = client.containers.run(
+                openfoam_image,
+                command="/bin/bash -c 'source /opt/openfoam7/etc/bashrc && createBaffles -overwrite'",
+                volumes={str(case_dir.absolute()): {"bind": "/case", "mode": "rw"}},
+                working_dir="/case",
+                remove=True,
+                stdout=True,
+                stderr=True,
+                entrypoint="",
+            )
+            if output:
+                filtered_output = filter_openfoam_output(output)
+                if filtered_output:
+                    logger.info("createBaffles output:\n%s", filtered_output)
+            logger.info("createBaffles completed")
+        except docker.errors.ContainerError as e:
+            logger.exception("createBaffles failed: %s", e.stderr.decode("utf-8"))
+            raise
+    else:
+        logger.info("No createBafflesDict found, skipping baffle creation")
+
     # Run buoyantSimpleFoam solver
     logger.info("Running buoyantSimpleFoam solver...")
     try:
@@ -573,6 +599,9 @@ def setup_case(
             raise FileNotFoundError(msg)
         # Prepare initial conditions for existing case
         _prepare_initial_conditions(case_dir)
+        # Set permissions for Docker access
+        import subprocess
+        subprocess.run(["chmod", "-R", "777", str(case_dir)], check=True)  # noqa: S603, S607
         return case_dir
 
     # Copy from $FOAM_TUTORIALS if available
@@ -590,6 +619,9 @@ def setup_case(
             shutil.copytree(tutorial_src, case_dir)
             # Prepare initial conditions
             _prepare_initial_conditions(case_dir)
+            # Set permissions for Docker access
+            import subprocess
+            subprocess.run(["chmod", "-R", "777", str(case_dir)], check=True)  # noqa: S603, S607
             return case_dir
 
     # Extract from Docker container
@@ -631,6 +663,10 @@ def setup_case(
 
     # Prepare initial conditions: copy 0.orig to 0
     _prepare_initial_conditions(case_dir)
+
+    # Set permissions for Docker access
+    import subprocess
+    subprocess.run(["chmod", "-R", "777", str(case_dir)], check=True)  # noqa: S603, S607
 
     return case_dir
 
