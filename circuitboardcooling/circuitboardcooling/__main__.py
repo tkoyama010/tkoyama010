@@ -431,9 +431,9 @@ def visualize_velocity(mesh: pv.DataSet, output_path: Path) -> None:
             bounds[4] + (bounds[5] - bounds[4]) * 0.5,
             bounds[4] + (bounds[5] - bounds[4]) * 0.75,
         ]
-        
+
         for z_pos in z_positions:
-            slice_mesh = mesh.slice(normal='z', origin=[0, 0, z_pos])
+            slice_mesh = mesh.slice(normal="z", origin=[0, 0, z_pos])
             plotter.add_mesh(
                 slice_mesh,
                 scalars="velocity_magnitude",
@@ -455,12 +455,16 @@ def visualize_velocity(mesh: pv.DataSet, output_path: Path) -> None:
         # Generate streamlines from inlet
         streamlines = mesh.streamlines(
             vectors="U",
-            source_center=(bounds[0] + 0.01, (bounds[2] + bounds[3]) / 2, (bounds[4] + bounds[5]) / 2),
+            source_center=(
+                bounds[0] + 0.01,
+                (bounds[2] + bounds[3]) / 2,
+                (bounds[4] + bounds[5]) / 2,
+            ),
             source_radius=0.04,
             n_points=100,
             terminal_speed=0.0,
         )
-        
+
         if streamlines.n_points > 0:
             # Use tubes for better visualization
             tubes = streamlines.tube(radius=0.001)
