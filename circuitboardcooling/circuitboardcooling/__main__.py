@@ -411,6 +411,9 @@ def visualize_velocity(mesh: pv.DataSet, output_path: Path) -> None:
 
     plotter = pv.Plotter(off_screen=True, window_size=[1200, 900])
 
+    # Enable parallel projection
+    plotter.enable_parallel_projection()
+
     # Calculate velocity magnitude
     velocity_data = mesh["U"]
     if velocity_data.ndim == NUMPY_DIM_2D and velocity_data.shape[1] == NUMPY_DIM_3D:
@@ -458,10 +461,8 @@ def visualize_velocity(mesh: pv.DataSet, output_path: Path) -> None:
                 opacity=0.6,
             )
 
-    # Set view
-    plotter.camera_position = "iso"
-    plotter.camera.azimuth = 45
-    plotter.camera.elevation = 30
+    # Set XY plane view (top view)
+    plotter.view_xy()
 
     # Add axes
     plotter.add_axes()
@@ -662,6 +663,11 @@ def main() -> int:
         type=str,
         help="Update mesh.png only using existing VTK file (provide path to VTK file)",
     )
+    parser.add_argument(
+        "--update-velocity-only",
+        type=str,
+        help="Update velocity.png only using existing VTK file (provide path to VTK file)",
+    )
 
     args = parser.parse_args()
 
@@ -678,6 +684,20 @@ def main() -> int:
             output_path = Path(__file__).parent.parent / "mesh.png"
             visualize_mesh(mesh, output_path)
             logger.info("Mesh image updated successfully!")
+            return 0
+
+        # Update velocity image only
+        if args.update_velocity_only:
+            logger.info("Updating velocity.png from: %s", args.update_velocity_only)
+            vtk_file = Path(args.update_velocity_only)
+            if not vtk_file.exists():
+                msg = f"VTK file not found: {vtk_file}"
+                raise FileNotFoundError(msg)
+            
+            mesh = pv.read(str(vtk_file))
+            output_path = Path(__file__).parent.parent / "velocity.png"
+            visualize_velocity(mesh, output_path)
+            logger.info("Velocity image updated successfully!")
             return 0
 
         # Setup case directory
