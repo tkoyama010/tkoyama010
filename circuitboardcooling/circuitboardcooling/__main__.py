@@ -452,7 +452,7 @@ def visualize_velocity(mesh: pv.DataSet, output_path: Path) -> None:
         # Add single slice at mid-plane to show internal flow
         bounds = mesh.bounds
         z_mid = (bounds[4] + bounds[5]) / 2
-        
+
         slice_mesh = mesh.slice(normal="z", origin=[0, 0, z_mid])
         plotter.add_mesh(
             slice_mesh,
@@ -594,7 +594,8 @@ def setup_case(
         import subprocess
 
         subprocess.run(
-            ["chmod", "-R", "777", str(case_dir)], check=True,
+            ["chmod", "-R", "777", str(case_dir)],
+            check=True,
         )
         return case_dir
 
@@ -617,7 +618,8 @@ def setup_case(
             import subprocess
 
             subprocess.run(
-                ["chmod", "-R", "777", str(case_dir)], check=True,
+                ["chmod", "-R", "777", str(case_dir)],
+                check=True,
             )
             return case_dir
 
@@ -665,7 +667,8 @@ def setup_case(
     import subprocess
 
     subprocess.run(
-        ["chmod", "-R", "777", str(case_dir)], check=True,
+        ["chmod", "-R", "777", str(case_dir)],
+        check=True,
     )
 
     return case_dir
