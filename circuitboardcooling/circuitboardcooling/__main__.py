@@ -657,10 +657,29 @@ def main() -> int:
         default=DEFAULT_OPENFOAM_IMAGE,
         help=f"Docker image to use (default: {DEFAULT_OPENFOAM_IMAGE})",
     )
+    parser.add_argument(
+        "--update-mesh-only",
+        type=str,
+        help="Update mesh.png only using existing VTK file (provide path to VTK file)",
+    )
 
     args = parser.parse_args()
 
     try:
+        # Update mesh image only
+        if args.update_mesh_only:
+            logger.info("Updating mesh.png from: %s", args.update_mesh_only)
+            vtk_file = Path(args.update_mesh_only)
+            if not vtk_file.exists():
+                msg = f"VTK file not found: {vtk_file}"
+                raise FileNotFoundError(msg)
+            
+            mesh = pv.read(str(vtk_file))
+            output_path = Path(__file__).parent.parent / "mesh.png"
+            visualize_mesh(mesh, output_path)
+            logger.info("Mesh image updated successfully!")
+            return 0
+
         # Setup case directory
         logger.info("Setting up OpenFOAM case directory...")
         case_dir = setup_case(args.case_dir, openfoam_image=args.image)
