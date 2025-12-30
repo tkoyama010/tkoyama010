@@ -449,27 +449,21 @@ def visualize_velocity(mesh: pv.DataSet, output_path: Path) -> None:
         # Get max velocity for range
         max_vel = velocity_mag.max()
 
-        # Add multiple slices to show internal flow
+        # Add single slice at mid-plane to show internal flow
         bounds = mesh.bounds
-        # Create 3 slices at different Z positions
-        z_positions = [
-            bounds[4] + (bounds[5] - bounds[4]) * 0.25,
-            bounds[4] + (bounds[5] - bounds[4]) * 0.5,
-            bounds[4] + (bounds[5] - bounds[4]) * 0.75,
-        ]
+        z_mid = (bounds[4] + bounds[5]) / 2
+        
+        slice_mesh = mesh.slice(normal="z", origin=[0, 0, z_mid])
+        plotter.add_mesh(
+            slice_mesh,
+            scalars="velocity_magnitude",
+            cmap="jet",
+            show_edges=False,
+            clim=[0.0, max_vel],
+            opacity=1.0,
+        )
 
-        for z_pos in z_positions:
-            slice_mesh = mesh.slice(normal="z", origin=[0, 0, z_pos])
-            plotter.add_mesh(
-                slice_mesh,
-                scalars="velocity_magnitude",
-                cmap="jet",
-                show_edges=False,
-                clim=[0.0, max_vel],
-                opacity=0.8,
-            )
-
-        # Add scalar bar
+        # Add scalar bar only once
         plotter.add_scalar_bar(
             title="Velocity [m/s]",
             vertical=True,
@@ -477,37 +471,34 @@ def visualize_velocity(mesh: pv.DataSet, output_path: Path) -> None:
             position_y=0.1,
         )
 
-        # Add streamlines for flow visualization with raycast
+        # Add streamlines with denser seed points
         # Generate streamlines from inlet with more points to capture complex flow
-        # Create multiple seed points across the inlet
-        bounds = mesh.bounds
-
-        # Generate streamlines from multiple positions
+        # Create dense seed points across the inlet
         seed_points = []
-        # Create seed points at different Y positions
-        y_positions = np.linspace(bounds[2] + 0.01, bounds[3] - 0.01, 10)
-        z_positions = np.linspace(bounds[4] + 0.01, bounds[5] - 0.01, 5)
+        # Create seed points at different Y and Z positions (denser grid)
+        y_positions = np.linspace(bounds[2] + 0.005, bounds[3] - 0.005, 20)
+        z_positions = np.linspace(bounds[4] + 0.005, bounds[5] - 0.005, 10)
 
         for y_pos in y_positions:
             for z_pos in z_positions:
-                seed_points.append([bounds[0] + 0.005, y_pos, z_pos])
+                seed_points.append([bounds[0] + 0.002, y_pos, z_pos])
 
         seed_cloud = pv.PolyData(np.array(seed_points))
 
         streamlines = mesh.streamlines_from_source(
             seed_cloud,
             vectors="U",
-            max_steps=2000,
+            max_steps=3000,
             integration_direction="forward",
         )
 
         if streamlines.n_points > 0:
             # Use tubes for better visualization
-            tubes = streamlines.tube(radius=0.0005)
+            tubes = streamlines.tube(radius=0.0003)
             plotter.add_mesh(
                 tubes,
                 color="white",
-                line_width=2,
+                line_width=1,
                 opacity=0.9,
             )
 
