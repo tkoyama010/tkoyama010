@@ -533,7 +533,7 @@ def visualize_temperature(mesh: pv.DataSet, output_path: Path) -> None:
         t_kelvin = mesh.point_data["T"]
     else:
         t_kelvin = mesh.cell_data["T"]
-        
+
     t_celsius = t_kelvin - 273.15
     mesh["T_celsius"] = t_celsius
 
@@ -544,7 +544,7 @@ def visualize_temperature(mesh: pv.DataSet, output_path: Path) -> None:
     # Add single slice at mid-plane to show internal temperature
     bounds = mesh.bounds
     z_mid = (bounds[4] + bounds[5]) / 2
-    
+
     slice_mesh = mesh.slice(normal="z", origin=[0, 0, z_mid])
     plotter.add_mesh(
         slice_mesh,
@@ -785,12 +785,14 @@ def main() -> int:
 
         # Update temperature image only
         if args.update_temperature_only:
-            logger.info("Updating temperature.png from: %s", args.update_temperature_only)
+            logger.info(
+                "Updating temperature.png from: %s", args.update_temperature_only,
+            )
             vtk_file = Path(args.update_temperature_only)
             if not vtk_file.exists():
                 msg = f"VTK file not found: {vtk_file}"
                 raise FileNotFoundError(msg)
-            
+
             mesh = pv.read(str(vtk_file))
             output_path = Path(__file__).parent.parent / "temperature.png"
             visualize_temperature(mesh, output_path)
