@@ -673,7 +673,7 @@ def main() -> int:
             if not vtk_file.exists():
                 msg = f"VTK file not found: {vtk_file}"
                 raise FileNotFoundError(msg)
-            
+
             mesh = pv.read(str(vtk_file))
             output_path = Path(__file__).parent.parent / "mesh.png"
             visualize_mesh(mesh, output_path)
