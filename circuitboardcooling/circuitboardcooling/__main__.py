@@ -525,29 +525,46 @@ def visualize_temperature(mesh: pv.DataSet, output_path: Path) -> None:
 
     plotter = pv.Plotter(off_screen=True, window_size=[1200, 900])
 
+    # Enable parallel projection
+    plotter.enable_parallel_projection()
+
     # Convert temperature to Celsius
-    t_kelvin = mesh["T"]
+    if "T" in mesh.point_data:
+        t_kelvin = mesh.point_data["T"]
+    else:
+        t_kelvin = mesh.cell_data["T"]
+        
     t_celsius = t_kelvin - 273.15
     mesh["T_celsius"] = t_celsius
 
-    # Add mesh with temperature coloring
+    # Get temperature range
+    t_min = t_celsius.min()
+    t_max = t_celsius.max()
+
+    # Add single slice at mid-plane to show internal temperature
+    bounds = mesh.bounds
+    z_mid = (bounds[4] + bounds[5]) / 2
+    
+    slice_mesh = mesh.slice(normal="z", origin=[0, 0, z_mid])
     plotter.add_mesh(
-        mesh,
+        slice_mesh,
         scalars="T_celsius",
         cmap="jet",
         show_edges=False,
-        scalar_bar_args={
-            "title": "Temperature [°C]",
-            "vertical": True,
-            "position_x": 0.85,
-            "position_y": 0.1,
-        },
+        clim=[t_min, t_max],
+        opacity=1.0,
     )
 
-    # Set view
-    plotter.camera_position = "iso"
-    plotter.camera.azimuth = 45
-    plotter.camera.elevation = 30
+    # Add scalar bar
+    plotter.add_scalar_bar(
+        title="Temperature [°C]",
+        vertical=True,
+        position_x=0.85,
+        position_y=0.1,
+    )
+
+    # Set XY plane view (top view)
+    plotter.view_xy()
 
     # Add axes
     plotter.add_axes()
@@ -725,6 +742,11 @@ def main() -> int:
         help="Update velocity.png only using existing VTK file (provide path to VTK file)",
     )
     parser.add_argument(
+        "--update-temperature-only",
+        type=str,
+        help="Update temperature.png only using existing VTK file (provide path to VTK file)",
+    )
+    parser.add_argument(
         "--convert-vtk-only",
         type=str,
         help="Convert OpenFOAM results to VTK format only (provide path to case directory)",
@@ -759,6 +781,20 @@ def main() -> int:
             output_path = Path(__file__).parent.parent / "velocity.png"
             visualize_velocity(mesh, output_path)
             logger.info("Velocity image updated successfully!")
+            return 0
+
+        # Update temperature image only
+        if args.update_temperature_only:
+            logger.info("Updating temperature.png from: %s", args.update_temperature_only)
+            vtk_file = Path(args.update_temperature_only)
+            if not vtk_file.exists():
+                msg = f"VTK file not found: {vtk_file}"
+                raise FileNotFoundError(msg)
+            
+            mesh = pv.read(str(vtk_file))
+            output_path = Path(__file__).parent.parent / "temperature.png"
+            visualize_temperature(mesh, output_path)
+            logger.info("Temperature image updated successfully!")
             return 0
 
         # Convert to VTK only
