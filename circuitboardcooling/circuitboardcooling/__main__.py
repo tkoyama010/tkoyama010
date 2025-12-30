@@ -441,15 +441,19 @@ def visualize_velocity(mesh: pv.DataSet, output_path: Path) -> None:
         # Add streamlines for flow visualization
         # Create seed points for streamlines
         bounds = mesh.bounds
-        
+
         # Generate streamlines
         streamlines = mesh.streamlines(
             vectors="U",
-            source_center=(bounds[0], (bounds[2] + bounds[3]) / 2, (bounds[4] + bounds[5]) / 2),
+            source_center=(
+                bounds[0],
+                (bounds[2] + bounds[3]) / 2,
+                (bounds[4] + bounds[5]) / 2,
+            ),
             source_radius=0.05,
             n_points=50,
         )
-        
+
         if streamlines.n_points > 0:
             plotter.add_mesh(
                 streamlines,
