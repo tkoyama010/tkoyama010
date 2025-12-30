@@ -444,7 +444,7 @@ def visualize_velocity(mesh: pv.DataSet, output_path: Path) -> None:
     velocity_data = mesh["U"]
     if velocity_data.ndim == NUMPY_DIM_2D and velocity_data.shape[1] == NUMPY_DIM_3D:
         velocity_mag = np.linalg.norm(velocity_data, axis=1)
-        mesh["velocity_data"] = velocity_data
+        mesh["velocity_magnitude"] = velocity_mag
 
         # Get max velocity for range
         max_vel = velocity_mag.max()
@@ -454,13 +454,20 @@ def visualize_velocity(mesh: pv.DataSet, output_path: Path) -> None:
         z_mid = (bounds[4] + bounds[5]) / 2
 
         slice_mesh = mesh.slice(normal="z", origin=[0, 0, z_mid])
+        
+        # Use point_data for smooth/continuous contours
+        if "velocity_magnitude" not in slice_mesh.point_data and "velocity_magnitude" in slice_mesh.cell_data:
+            slice_mesh = slice_mesh.cell_data_to_point_data()
+        
         plotter.add_mesh(
             slice_mesh,
-            scalars="velocity_data",
+            scalars="velocity_magnitude",
             cmap="jet",
             show_edges=False,
             clim=[0.0, max_vel],
             opacity=1.0,
+            interpolate_before_map=True,
+            smooth_shading=True,
         )
 
         # Add streamlines with denser seed points
@@ -546,6 +553,11 @@ def visualize_temperature(mesh: pv.DataSet, output_path: Path) -> None:
     z_mid = (bounds[4] + bounds[5]) / 2
 
     slice_mesh = mesh.slice(normal="z", origin=[0, 0, z_mid])
+    
+    # Use point_data for smooth/continuous contours
+    if "T_celsius" not in slice_mesh.point_data and "T_celsius" in slice_mesh.cell_data:
+        slice_mesh = slice_mesh.cell_data_to_point_data()
+    
     plotter.add_mesh(
         slice_mesh,
         scalars="T_celsius",
@@ -553,6 +565,8 @@ def visualize_temperature(mesh: pv.DataSet, output_path: Path) -> None:
         show_edges=False,
         clim=[t_min, t_max],
         opacity=1.0,
+        interpolate_before_map=True,
+        smooth_shading=True,
     )
 
     # Add scalar bar
