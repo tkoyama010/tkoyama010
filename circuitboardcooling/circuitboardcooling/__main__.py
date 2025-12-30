@@ -668,6 +668,11 @@ def main() -> int:
         type=str,
         help="Update velocity.png only using existing VTK file (provide path to VTK file)",
     )
+    parser.add_argument(
+        "--convert-vtk-only",
+        type=str,
+        help="Convert OpenFOAM results to VTK format only (provide path to case directory)",
+    )
 
     args = parser.parse_args()
 
@@ -698,6 +703,18 @@ def main() -> int:
             output_path = Path(__file__).parent.parent / "velocity.png"
             visualize_velocity(mesh, output_path)
             logger.info("Velocity image updated successfully!")
+            return 0
+
+        # Convert to VTK only
+        if args.convert_vtk_only:
+            logger.info("Converting to VTK from: %s", args.convert_vtk_only)
+            case_dir = Path(args.convert_vtk_only)
+            if not case_dir.exists():
+                msg = f"Case directory not found: {case_dir}"
+                raise FileNotFoundError(msg)
+            
+            convert_to_vtk(case_dir)
+            logger.info("VTK conversion completed successfully!")
             return 0
 
         # Setup case directory
