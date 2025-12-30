@@ -444,7 +444,7 @@ def visualize_velocity(mesh: pv.DataSet, output_path: Path) -> None:
     velocity_data = mesh["U"]
     if velocity_data.ndim == NUMPY_DIM_2D and velocity_data.shape[1] == NUMPY_DIM_3D:
         velocity_mag = np.linalg.norm(velocity_data, axis=1)
-        mesh["velocity_magnitude"] = velocity_mag
+        mesh["velocity_data"] = velocity_data
 
         # Get max velocity for range
         max_vel = velocity_mag.max()
@@ -456,32 +456,25 @@ def visualize_velocity(mesh: pv.DataSet, output_path: Path) -> None:
         slice_mesh = mesh.slice(normal="z", origin=[0, 0, z_mid])
         plotter.add_mesh(
             slice_mesh,
-            scalars="velocity_magnitude",
+            scalars="velocity_data",
             cmap="jet",
             show_edges=False,
             clim=[0.0, max_vel],
             opacity=1.0,
         )
 
-        # Add scalar bar only once
-        plotter.add_scalar_bar(
-            title="Velocity [m/s]",
-            vertical=True,
-            position_x=0.85,
-            position_y=0.1,
-        )
-
         # Add streamlines with denser seed points
         # Generate streamlines from inlet with more points to capture complex flow
         # Create dense seed points across the inlet
         seed_points = []
-        # Create seed points at different Y and Z positions (denser grid)
-        y_positions = np.linspace(bounds[2] + 0.005, bounds[3] - 0.005, 20)
-        z_positions = np.linspace(bounds[4] + 0.005, bounds[5] - 0.005, 10)
+        # Create seed points at different X and Y positions (denser grid)
+        x_positions = np.linspace(bounds[0], bounds[1], 20)
+        y_positions = np.linspace(bounds[2], bounds[3], 10)
+        z_position = (bounds[4] + bounds[5]) / 2.0
 
-        for y_pos in y_positions:
-            for z_pos in z_positions:
-                seed_points.append([bounds[0] + 0.002, y_pos, z_pos])
+        for x_position in x_positions:
+            for y_position in y_positions:
+                seed_points.append([x_position, y_position, z_position])
 
         seed_cloud = pv.PolyData(np.array(seed_points))
 
