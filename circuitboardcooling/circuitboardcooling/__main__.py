@@ -309,22 +309,24 @@ def convert_to_vtk(case_dir: Path) -> None:
 
     """
     logger.info("Converting OpenFOAM results to VTK format using foamlib...")
-    
+
     # Use foamlib to handle VTK conversion
     case = foamlib.FoamCase(case_dir)
-    
+
     # Get all time directories
     time_dirs = case.time_dirs()
-    
+
     if not time_dirs:
         logger.warning("No time directories found for VTK conversion")
         return
-    
+
     # foamlib can read OpenFOAM fields directly
     # For now, we still use Docker for foamToVTK as it's more reliable
     # but we use foamlib for case validation
-    logger.info(f"Found {len(time_dirs)} time directories: {[t.name for t in time_dirs[:5]]}...")
-    
+    logger.info(
+        f"Found {len(time_dirs)} time directories: {[t.name for t in time_dirs[:5]]}...",
+    )
+
     if not start_docker():
         msg = "Docker is not available and could not be started automatically."
         raise RuntimeError(msg)
@@ -334,7 +336,7 @@ def convert_to_vtk(case_dir: Path) -> None:
 
     logger.info("Running foamToVTK via Docker...")
     command = "/bin/bash -c 'source /opt/openfoam7/etc/bashrc && foamToVTK'"
-    
+
     output = client.containers.run(
         openfoam_image,
         command=command,
@@ -722,7 +724,7 @@ def _prepare_initial_conditions(case_dir: Path) -> None:
     """
     # Use foamlib to validate case structure
     case = foamlib.FoamCase(case_dir)
-    
+
     zero_orig = case_dir / "0.orig"
     zero_dir = case_dir / "0"
 
@@ -731,7 +733,7 @@ def _prepare_initial_conditions(case_dir: Path) -> None:
         logger.info("Copying initial conditions from 0.orig to 0...")
         shutil.copytree(zero_orig, zero_dir)
         logger.info("Initial conditions prepared")
-        
+
         # Verify the case structure with foamlib
         time_dirs = case.time_dirs()
         logger.debug(f"Case time directories: {[t.name for t in time_dirs]}")
