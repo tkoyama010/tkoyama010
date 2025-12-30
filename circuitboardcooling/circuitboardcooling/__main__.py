@@ -420,12 +420,16 @@ def visualize_velocity(mesh: pv.DataSet, output_path: Path) -> None:
         velocity_mag = np.linalg.norm(velocity_data, axis=1)
         mesh["velocity_magnitude"] = velocity_mag
 
-        # Add mesh with velocity magnitude coloring
+        # Get max velocity for range
+        max_vel = velocity_mag.max()
+
+        # Add mesh with velocity magnitude coloring (min=0.0)
         plotter.add_mesh(
             mesh,
             scalars="velocity_magnitude",
             cmap="jet",
             show_edges=False,
+            clim=[0.0, max_vel],
             scalar_bar_args={
                 "title": "Velocity [m/s]",
                 "vertical": True,
@@ -434,31 +438,24 @@ def visualize_velocity(mesh: pv.DataSet, output_path: Path) -> None:
             },
         )
 
-        # Add velocity vectors (glyphs)
-        # Subsample for clearer visualization
-        if mesh.n_points > 200:
-            every_n = max(1, mesh.n_points // 100)
-            indices = np.arange(0, mesh.n_points, every_n)
-            subsample = mesh.extract_points(indices)
-        else:
-            subsample = mesh
-
-        # Scale factor for arrows
-        max_vel = velocity_mag.max()
-        if max_vel > 0:
-            scale_factor = mesh.length * 0.05 / max_vel
-
-            arrows = subsample.glyph(
-                orient="U",
-                scale="velocity_magnitude",
-                factor=scale_factor,
-                geom=pv.Arrow(),
-            )
-
+        # Add streamlines for flow visualization
+        # Create seed points for streamlines
+        bounds = mesh.bounds
+        
+        # Generate streamlines
+        streamlines = mesh.streamlines(
+            vectors="U",
+            source_center=(bounds[0], (bounds[2] + bounds[3]) / 2, (bounds[4] + bounds[5]) / 2),
+            source_radius=0.05,
+            n_points=50,
+        )
+        
+        if streamlines.n_points > 0:
             plotter.add_mesh(
-                arrows,
-                color="black",
-                opacity=0.6,
+                streamlines,
+                color="white",
+                line_width=2,
+                opacity=0.8,
             )
 
     # Set XY plane view (top view)
