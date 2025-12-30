@@ -786,7 +786,8 @@ def main() -> int:
         # Update temperature image only
         if args.update_temperature_only:
             logger.info(
-                "Updating temperature.png from: %s", args.update_temperature_only,
+                "Updating temperature.png from: %s",
+                args.update_temperature_only,
             )
             vtk_file = Path(args.update_temperature_only)
             if not vtk_file.exists():
