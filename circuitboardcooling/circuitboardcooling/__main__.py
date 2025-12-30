@@ -712,7 +712,7 @@ def main() -> int:
             if not case_dir.exists():
                 msg = f"Case directory not found: {case_dir}"
                 raise FileNotFoundError(msg)
-            
+
             convert_to_vtk(case_dir)
             logger.info("VTK conversion completed successfully!")
             return 0
