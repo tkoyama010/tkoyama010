@@ -13,7 +13,7 @@ repos:
         exclude: opencae2020B02
 
   - repo: https://github.com/pycqa/isort
-    rev: 7.0.0
+    rev: 8.0.0
     hooks:
       - id: isort
         exclude: opencae2020B02
@@ -38,12 +38,12 @@ repos:
       - id: mixed-line-ending
 
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.36.1
+    rev: 0.36.2
     hooks:
       - id: check-github-workflows
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.15.0
+    rev: v0.15.2
     hooks:
       - id: ruff
         args: [--fix]
