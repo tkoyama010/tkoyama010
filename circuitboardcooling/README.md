@@ -1,0 +1,375 @@
+# circuitboardcooling
+
+OpenFOAM circuitBoardCooling tutorial runner with Docker (via Colima) and PyVista visualization.
+
+## Features
+
+- Automatic extraction of OpenFOAM circuitBoardCooling tutorial from Docker image
+- Run OpenFOAM buoyantSimpleFoam simulations in Docker containers (no local OpenFOAM installation needed)
+- **Auto-start Colima/Docker**: Automatically starts Colima if not running
+- Uses Colima as Docker runtime (free, open-source, no licensing issues)
+- Visualize temperature/velocity fields with PyVista (with parallel projection)
+- Enhanced streamline visualization with velocity magnitude coloring
+- Package-based execution with Python Docker SDK
+- Uses OpenFOAM 7 for compatibility with buoyantSimpleFoam circuitBoardCooling tutorial
+
+## Quick Start
+
+### 1. Install Colima (one-time setup)
+
+```bash
+# Install Docker CLI and Colima
+brew install docker colima
+
+# Start Colima with appropriate resources
+colima start --cpu 4 --memory 8
+```
+
+### 2. Set up environment (Optional)
+
+The script will automatically start Colima if it's not running, but you can optionally add to your `~/.zshrc` (or `~/.bashrc`) for persistent configuration:
+
+```bash
+export DOCKER_HOST=unix://$HOME/.colima/default/docker.sock
+```
+
+Then reload:
+
+```bash
+source ~/.zshrc
+```
+
+**Note**: The script automatically sets `DOCKER_HOST` when starting Colima, so this step is optional.
+
+### 3. Install the package
+
+```bash
+cd circuitboardcooling
+uv pip install -e .
+```
+
+### 4. Run the simulation
+
+```bash
+# Run full simulation with visualization
+uv run python -m circuitboardcooling
+
+# Or using the installed command
+circuitboardcooling
+```
+
+## Installation
+
+### Colima Docker Runtime
+
+**Important**: This package uses Colima instead of Docker Desktop to avoid licensing restrictions.
+
+Colima is a free, open-source container runtime for macOS (and Linux):
+
+- No licensing restrictions
+- Compatible with Docker CLI and Python Docker SDK
+- Lightweight and fast
+
+```bash
+# Install Docker CLI and Colima
+brew install docker colima
+
+# Start Colima
+colima start --cpu 4 --memory 8
+
+# Set Docker socket for Python SDK
+export DOCKER_HOST=unix://$HOME/.colima/default/docker.sock
+
+# Make it permanent (add to ~/.zshrc or ~/.bashrc)
+echo 'export DOCKER_HOST=unix://$HOME/.colima/default/docker.sock' >> ~/.zshrc
+```
+
+### Python Package
+
+```bash
+cd circuitboardcooling
+pip install -e .
+```
+
+Or with uv:
+
+```bash
+uv pip install -e .
+```
+
+## Requirements
+
+### Runtime
+
+- Colima (Docker runtime)
+- Docker CLI
+
+### Python Dependencies
+
+- Python 3.8+
+- docker (Python SDK for Docker API)
+- pyvista (for 3D visualization)
+- numpy
+
+## Usage
+
+The script automatically starts Colima if it's not running, so you don't need to manually start it.
+
+### Basic Usage
+
+Run with default settings (extracts tutorial from Docker):
+
+```bash
+python -m circuitboardcooling
+
+# or with uv
+uv run python -m circuitboardcooling
+```
+
+**Note**: The script will automatically start Colima if it's not running. If `DOCKER_HOST` is not set, it will be set automatically when Colima starts.
+
+### Command Options
+
+Use existing case directory:
+
+```bash
+python -m circuitboardcooling --case-dir /path/to/case
+```
+
+Skip simulation and only visualize:
+
+```bash
+python -m circuitboardcooling --skip-run
+```
+
+Skip visualization (headless mode):
+
+```bash
+python -m circuitboardcooling --no-viz
+```
+
+Use specific Docker image:
+
+```bash
+python -m circuitboardcooling --image openfoam/openfoam7-paraview56
+```
+
+Show mesh visualization:
+
+```bash
+# Show mesh from actual simulation
+python -m circuitboardcooling --show-mesh
+
+# Show mesh without running simulation (if VTK files exist)
+python -m circuitboardcooling --skip-run --show-mesh
+
+# Save mesh image without opening interactive window
+python -m circuitboardcooling --save-mesh-image mesh.png
+```
+
+Get help:
+
+```bash
+circuitboardcooling --help
+```
+
+### Quick Commands Reference
+
+```bash
+# Colima management
+colima start              # Start Colima
+colima stop               # Stop Colima (to save resources)
+colima status             # Check Colima status
+colima delete             # Delete Colima VM (to start fresh)
+
+# Run simulation
+python -m circuitboardcooling                    # Full simulation + viz
+python -m circuitboardcooling --skip-run         # Only visualization
+python -m circuitboardcooling --no-viz           # Only simulation
+```
+
+## How It Works
+
+1. **Setup**: Extracts the circuitBoardCooling tutorial from OpenFOAM 7 Docker image
+2. **Mesh Generation**: Runs blockMesh to create the computational mesh
+3. **Simulation**: Executes buoyantSimpleFoam solver for buoyancy-driven heat transfer
+4. **Conversion**: Converts OpenFOAM results to VTK format
+5. **Visualization**: Displays 3D temperature and velocity fields using PyVista
+
+## Visualization Features
+
+The PyVista visualization provides:
+
+### Temperature and Velocity Visualization
+
+- **Temperature distribution**:
+  - Hot colormap (blue → red)
+  - Scalar bar with temperature range in Kelvin
+- **Velocity field**:
+  - Velocity magnitude visualization
+  - Streamlines showing flow patterns
+- **Interactive controls**:
+  - Mouse drag: Rotate view
+  - Mouse wheel: Zoom
+  - Right-click drag: Pan
+  - Press 's': Save screenshot
+  - Press 'q': Quit
+
+### Mesh Visualization (--show-mesh)
+
+The `--show-mesh` option displays mesh structure:
+
+![Mesh Visualization](../mesh_visualization.png)
+
+_Left panel: Mesh wireframe with edges. Right panel: Grid points and mesh info_
+
+- **Left panel**: Full mesh wireframe with edges
+  - Fluid regions: Light blue with blue edges
+  - Baffle regions: Red with dark red edges
+  - All regions labeled
+- **Right panel**: Mesh quality metrics
+  - Cell quality visualization (volume-based)
+  - Cell distribution analysis
+  - Point cloud display
+- **Demo mode**: Shows structured grid mesh (21×11×7 points)
+  - ~1,600 cells demonstration mesh
+  - Clear grid structure visualization
+
+**Save mesh visualization to file:**
+
+```bash
+# Save mesh image from simulation results (runs simulation first)
+python -m circuitboardcooling --save-mesh-image mesh.png
+
+# Save mesh image from existing VTK files (skip simulation)
+python -m circuitboardcooling --skip-run --save-mesh-image mesh.png
+```
+
+### Temperature Visualization
+
+- Hot colormap (blue → red)
+- Scalar bar with temperature range in Kelvin
+
+### Velocity Visualization
+
+- Coolwarm colormap for velocity magnitude
+- **Enhanced streamline visualization**:
+  - Multiple seed points for comprehensive flow visualization
+  - Streamlines colored by velocity magnitude (jet colormap)
+  - 3D tube rendering for better visibility
+- **Parallel projection enabled** for accurate 3D visualization
+
+## Simulation Results
+
+### Typical Results
+
+The simulation completes with physically reasonable results for buoyancy-driven cooling:
+
+#### Temperature Distribution
+
+- Inlet temperature: ~300 K (ambient)
+- Outlet temperature: Higher due to heat pickup from heated surfaces
+- Temperature gradient shows natural convection patterns
+
+#### Velocity Field
+
+- Flow driven by buoyancy forces
+- Velocity magnitude varies based on local temperature gradients
+- Streamlines show recirculation zones near heated surfaces
+
+### Result Validation
+
+✅ **Boundary Conditions**: Properly applied temperature and pressure conditions
+✅ **Heat Transfer**: Temperature rise shows effective heat dissipation
+✅ **Flow Field**: Buoyancy-driven flow patterns as expected
+✅ **Convergence**: Residuals decrease to acceptable levels
+✅ **Physical Consistency**: Results align with expected buoyant flow behavior
+
+The results match the expected behavior for PCB cooling simulations using buoyantSimpleFoam.
+
+## About the Tutorial
+
+The circuitBoardCooling case is a buoyantSimpleFoam tutorial that simulates:
+
+- Natural convection cooling in electronic circuit boards
+- Buoyancy-driven flow
+- Heat transfer from heated surfaces to ambient air
+
+### Official Resources
+
+- **OpenFOAM Tutorial Location**: `$FOAM_TUTORIALS/heatTransfer/buoyantSimpleFoam/circuitBoardCooling` (OpenFOAM 7)
+- **GitHub Repository**: [OpenFOAM-7/circuitBoardCooling](https://github.com/OpenFOAM/OpenFOAM-7/tree/master/tutorials/heatTransfer/buoyantSimpleFoam/circuitBoardCooling)
+- **Official Documentation**:
+  - [OpenFOAM Documentation Overview](https://www.openfoam.com/documentation/overview)
+  - [Tutorial Guide](https://www.openfoam.com/documentation/tutorial-guide)
+  - [buoyantSimpleFoam User Guide](https://www.openfoam.com/documentation/guides/latest/doc/guide-applications-solvers-heat-transfer-buoyantSimpleFoam.html)
+
+### Community Resources
+
+- **Video Tutorial**: [CircuitBoard Cooling Simulation in OpenFOAM - Step-by-Step](https://www.youtube.com/watch?v=kEkKKm_iNhc)
+- **Written Guides**:
+  - [XSim: Air cooling of heating plate](https://www.xsim.info/articles/OpenFOAM/en-US/tutorials/heatTransfer-buoyantSimpleFoam-circuitBoardCooling.html)
+  - [TensorEngineering: PCB Cooling CFD Simulation](https://tensorengineering.us/pcb-cooling-cfd-simulation-using-openfoam/)
+  - [Silentdynamics: Electronic cooling simulation](https://silentdynamics.de/en/2022/01/11/electronic-cooling-simulation-using-openfoam/)
+- **Academic Tutorial**: [ResearchGate: buoyantSimpleFoam Tutorial](https://www.researchgate.net/publication/buoyantSimpleFoam)
+
+## Troubleshooting
+
+### Docker connection error
+
+```bash
+# Make sure DOCKER_HOST is set
+echo $DOCKER_HOST
+# Should output: unix://$HOME/.colima/default/docker.sock
+
+# Make sure Colima is running
+colima status
+```
+
+### Platform warning (linux/amd64 on arm64)
+
+This is expected on Apple Silicon Macs. Colima uses Rosetta 2 to run x86 images.
+
+### Visualization doesn't show
+
+Make sure you have a display available. For headless systems, use `--no-viz`.
+
+## Package Structure
+
+- Distribution name (for pip): `circuitboardcooling`
+- Import name (in code): `circuitboardcooling`
+
+```
+circuitboardcooling/
+├── README.md
+├── pyproject.toml
+└── circuitboardcooling/
+    ├── __init__.py
+    └── __main__.py
+```
+
+## Technical Details
+
+### Implementation
+
+- Uses Python Docker SDK (not CLI subprocess)
+- Tutorial path: `/opt/openfoam7/tutorials/heatTransfer/buoyantSimpleFoam/circuitBoardCooling`
+- Docker image: `openfoam/openfoam7-paraview56`
+- Docker entrypoint override for direct OpenFOAM command execution
+- Workflow:
+  1. Extract tutorial from Docker container
+  2. Run `blockMesh` (mesh generation)
+  3. Run `buoyantSimpleFoam` solver (steady-state buoyant flow)
+  4. Convert to VTK with `foamToVTK`
+  5. Visualize with PyVista (parallel projection enabled)
+
+### Why Colima?
+
+1. **No Docker Desktop License Issues**: Free and open-source
+2. **Clean Python Docker SDK API**: No subprocess management needed
+3. **Lightweight**: Lower resource usage than Docker Desktop
+4. **Compatible**: Works with standard Docker CLI and SDK
+
+## License
+
+OpenFOAM is licensed under GPL v3. Colima is licensed under MIT.
