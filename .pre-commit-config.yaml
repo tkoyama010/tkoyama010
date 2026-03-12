@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/psf/black-pre-commit-mirror
-    rev: 26.1.0
+    rev: 26.3.0
     hooks:
       - id: black
         exclude: opencae2020B02
@@ -13,7 +13,7 @@ repos:
         exclude: opencae2020B02
 
   - repo: https://github.com/pycqa/isort
-    rev: 8.0.0
+    rev: 8.0.1
     hooks:
       - id: isort
         exclude: opencae2020B02
@@ -38,12 +38,12 @@ repos:
       - id: mixed-line-ending
 
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.36.2
+    rev: 0.37.0
     hooks:
       - id: check-github-workflows
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.15.2
+    rev: v0.15.5
     hooks:
       - id: ruff
         args: [--fix]

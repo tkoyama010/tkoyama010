@@ -169,6 +169,7 @@ I'm passionate about making technical documentation accessible to Japanese speak
   <img src="https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white" alt="VS Code">
   <img src="https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white" alt="Jupyter">
   <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white" alt="Streamlit">
+  <img src="https://img.shields.io/badge/Claude_Code-CC9B7A?style=for-the-badge&logo=anthropic&logoColor=white" alt="Claude Code">
 </p>
 
 ### 🖥️ Systems & Infrastructure
