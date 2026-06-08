@@ -27,7 +27,7 @@ jobs:
           make revealjs
           cd ..
       - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v3.0
+        uses: nwtgck/actions-netlify@v4.0
         with:
           publish-dir: pyconjp2024/_build/revealjs
           production-branch: main
