@@ -1,0 +1,56 @@
+[general]
+version = "0.2.0"
+
+[problem]
+problem_name = "ahc049"
+objective = "Max"
+score_regex = '(?m)^\s*Score\s*=\s*(?P<score>\d+)\s*$'
+
+[test]
+start_seed = 0
+end_seed = 100
+threads = 0
+out_dir = "./pahcer"
+
+# ==============================
+#         COMPILE STEPS
+# ==============================
+
+# On macOS, there’s a possibility of SIGKILL or other issues occurring,
+# so it’s better to build the visualizer in advance
+# rather than running it with cargo run every time.
+
+# Compile the visuzlizer
+[[test.compile_steps]]
+program = "cargo"
+args = ["build", "--release", "--bin", "vis"]
+current_dir = "./tools"
+
+# Remove the old tester
+[[test.compile_steps]]
+program = "rm"
+args = ["-f", "./vis"]
+
+# Move the tester to the current directory
+[[test.compile_steps]]
+program = "mv"
+args = ["./tools/target/release/vis", "./vis"]
+
+# ==============================
+#           TEST STEPS
+# ==============================
+
+# Run the user's program
+[[test.test_steps]]
+program = "python3"
+args = ["./main.py"]
+stdin = "./tools/in/{SEED04}.txt"
+stdout = "./tools/out/{SEED04}.txt"
+stderr = "./tools/err/{SEED04}.txt"
+measure_time = true
+
+# Run the visualizer to calculate the score
+[[test.test_steps]]
+program = "./vis"
+args = ["./tools/in/{SEED04}.txt", "./tools/out/{SEED04}.txt"]
+measure_time = false
