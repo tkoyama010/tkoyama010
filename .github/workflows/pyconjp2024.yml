@@ -16,7 +16,7 @@ jobs:
         with:
           packages: libosmesa6-dev libgl1-mesa-dev python3-tk pandoc git-restore-mtime
           version: 3.0
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
       - uses: actions/checkout@v6
       - run: |
           cd pyconjp2024
