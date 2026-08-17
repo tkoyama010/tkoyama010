@@ -121,7 +121,7 @@ Note:
 
 [drag=45 70, drop=5 20, fit=0.5]
 @code[python](opencae2020B13/test_clip_box.py)
-@[8-10]()
+@[8-10](<>)
 
 [drag=50 70, drop=50 20]
 ![height=1000](opencae2020B13/clip_box.png)
@@ -256,7 +256,7 @@ PyVistaに新たにcameraオブジェクトを追加することにしました.
 
 [drag=45 70, drop=5 20, fit=0.5]
 @code[python](opencae2020B13/test_camera_zoom.py)
-@[10]()
+@[10](<>)
 
 [drag=50 70, drop=50 20]
 ![height=1000](opencae2020B13/test_camera_zoom.png)
@@ -273,7 +273,7 @@ Note:
 
 [drag=45 70, drop=5 20, fit=0.5]
 @code[python](opencae2020B13/test_camera_up.py)
-@[10]()
+@[10](<>)
 
 [drag=50 70, drop=50 20]
 ![height=1000](opencae2020B13/test_camera_up.png)
