@@ -27,7 +27,6 @@
                        Memory:  7GB / 16GB
 ```
 
-
 <p align="center">
   <img src="https://komarev.com/ghpvc/?username=tkoyama010&color=blueviolet&style=flat-square" alt="Profile views">
   <a href="https://github.com/tkoyama010"><img src="https://img.shields.io/github/followers/tkoyama010?label=Followers&style=flat-square&color=blue" alt="GitHub followers"></a>
