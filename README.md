@@ -8,6 +8,26 @@
 
 <h3 align="center">🐍 Pythonista | 📝 Vimmer | 🔬 Scientific Computing Enthusiast</h3>
 
+## 🖥️ neofetch
+
+```
+        #####\        tetsuo@github
+       ##     ##\      -----------
+      ##  ##  ## \     OS:      GitHub Ubuntu 24.04
+      ##  ##  ## /     Host:    GitHub Profile README
+     ##  ##  ## /      Kernel:  Linux 6.5.0
+    ##\\##  ##/##      Uptime:  since 2019
+   ##  ###  ##  ##     Shell:   zsh 5.9
+  ##   ##  ##   ##     Editor:  Neovim 0.10
+ ##    ##  ##    ##    Langs:   Python, C++, Rust, TypeScript
+##_____##__##_____##   Tools:   PyVista, NumPy, SciPy, Docker
+                       Theme:   Dracula
+                       CPU:     AMD EPYC (2 vCPU)
+                       GPU:     none
+                       Memory:  7GB / 16GB
+```
+
+
 <p align="center">
   <img src="https://komarev.com/ghpvc/?username=tkoyama010&color=blueviolet&style=flat-square" alt="Profile views">
   <a href="https://github.com/tkoyama010"><img src="https://img.shields.io/github/followers/tkoyama010?label=Followers&style=flat-square&color=blue" alt="GitHub followers"></a>
