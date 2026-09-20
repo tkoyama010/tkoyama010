@@ -1,0 +1,40 @@
+name: Build and Deploy to Netlify
+on:
+  push:
+  pull_request:
+  pull_request_target:
+    types: [labeled]
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    env:
+      PYVISTA_OFF_SCREEN: "True"
+      ALLOW_PLOTTING: true
+      SHELLOPTS: "errexit:pipefail"
+    steps:
+      - uses: awalsh128/cache-apt-pkgs-action@v1.4.3
+        with:
+          packages: pandoc git-restore-mtime
+          version: 3.0
+      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - run: |
+          cd scipydata2025
+          pip install -r requirements.txt
+          playwright install
+          make revealjs
+          cd ..
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v3.0
+        with:
+          publish-dir: scipydata2025/_build/revealjs
+          production-branch: main
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deploy from GitHub Actions"
+          enable-pull-request-comment: true
+          enable-commit-comment: false
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.SCIPYDATA2025_SITE_ID }}
+        timeout-minutes: 5
