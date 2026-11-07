@@ -414,18 +414,23 @@ var gBoard, gHoles, gDest, gPieces;
 function buildBoardSVG(){
   svg.innerHTML = "";
   gBoard = el("g", {}, svg); gHoles = el("g", {}, svg); gDest = el("g", {}, svg); gPieces = el("g", {}, svg);
-  /* star board: white centre hexagon with six pale flat corner triangles */
-  el("polygon", { points:"320,8 66,440 574,440", "class":"star-base" }, gBoard);
-  el("polygon", { points:"320,588 66,156 574,156", "class":"star-base" }, gBoard);
-  el("polygon", { points:"320,8 233,156 407,156", "class":"corner-top" }, gBoard);
-  el("polygon", { points:"574,156 407,156 490.5,298", "class":"corner-ur" }, gBoard);
-  el("polygon", { points:"574,440 490.5,298 407,440", "class":"corner-lr" }, gBoard);
-  el("polygon", { points:"320,588 407,440 233,440", "class":"corner-bottom" }, gBoard);
-  el("polygon", { points:"66,440 233,440 149.5,298", "class":"corner-ll" }, gBoard);
-  el("polygon", { points:"66,156 149.5,298 233,156", "class":"corner-ul" }, gBoard);
-  el("polygon", { points:"233,156 407,156 490.5,298 407,440 233,440 149.5,298", "class":"center-hex" }, gBoard);
-  el("polygon", { points:"320,8 66,440 574,440", "class":"star-outline" }, gBoard);
-  el("polygon", { points:"320,588 66,156 574,156", "class":"star-outline" }, gBoard);
+  /* Star board: white centre hexagon with six pale flat corner triangles.
+     Each side of the two large triangles runs midway between the two rows of
+     hole centres it separates — 15.6 from the centres on both sides, i.e. one
+     piece radius (r=15) away — so the side is tangent to the circles of the
+     pieces sitting along it instead of crossing them. (The old sides sat
+     only ~9-14 from the centres and cut through the pieces.) */
+  el("polygon", { points:"320,16.8 77,437.7 563,437.7", "class":"star-base" }, gBoard);
+  el("polygon", { points:"320,578 77,157.1 563,157.1", "class":"star-base" }, gBoard);
+  el("polygon", { points:"320,16.8 239,157.1 401,157.1", "class":"corner-top" }, gBoard);
+  el("polygon", { points:"563,157.1 401,157.1 482,297.4", "class":"corner-ur" }, gBoard);
+  el("polygon", { points:"563,437.7 482,297.4 401,437.7", "class":"corner-lr" }, gBoard);
+  el("polygon", { points:"320,578 401,437.7 239,437.7", "class":"corner-bottom" }, gBoard);
+  el("polygon", { points:"77,437.7 239,437.7 158,297.4", "class":"corner-ll" }, gBoard);
+  el("polygon", { points:"77,157.1 158,297.4 239,157.1", "class":"corner-ul" }, gBoard);
+  el("polygon", { points:"239,157.1 401,157.1 482,297.4 401,437.7 239,437.7 158,297.4", "class":"center-hex" }, gBoard);
+  el("polygon", { points:"320,16.8 77,437.7 563,437.7", "class":"star-outline" }, gBoard);
+  el("polygon", { points:"320,578 77,157.1 563,157.1", "class":"star-outline" }, gBoard);
   /* grid lines between neighbours */
   var drawn = {};
   cells.forEach(function(c){
