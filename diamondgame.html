@@ -1,642 +1,1446 @@
 <!doctype html>
 <html lang="ja">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<meta name="color-scheme" content="light" />
-<link rel="icon" href="data:," />
-<title>ダイヤモンドゲーム</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
-<style>
-  /* ===== OGS (online-go.com) style: light panels, white-centre board, flat solid pieces ===== */
-  :root{
-    color-scheme: light;
-    --bg:#ffffff; --panel:#ffffff; --panel-2:#ffffff; --panel-3:#eceae3;
-    --ink:#26241f; --ink-2:#6f6b60; --line:#d6d2c7; --line-strong:#bfbaa9;
-    --accent:#33658a; --accent-ink:#ffffff;
-    --btn-bg:#fbfaf7; --btn-hover:#f0eee6;
-    --p1:#4c8a2f; --p1-dark:#2f551b; --p1-soft:#e5efdb;
-    --p2:#c0452c; --p2-dark:#8c2c1c; --p2-soft:#f9e6e0;
-    --p3:#d9a514; --p3-dark:#8a680a; --p3-soft:#faf0cd;
-    --p4:#3f74b5; --p4-dark:#2a4f7d; --p4-soft:#dfeaf6;
-    --board-center:#ffffff; --board-line:#a3a094; --board-edge:#6f6b60;
-    --c-top:#dceccf; --c-bottom:#dceccf; --c-ul:#f7d9d3; --c-ur:#d6e6f5; --c-ll:#d6e6f5; --c-lr:#f7d9d3;
-    --hole-fill:rgba(38,36,31,.07); --hole-line:rgba(38,36,31,.32);
-    --scrim:rgba(30,28,20,.45);
-    --shadow:0 1px 2px rgba(38,36,31,.10), 0 1px 4px rgba(38,36,31,.06);
-    --shadow-lg:0 10px 32px rgba(30,28,20,.28);
-    --nav-bg:#ffffff; --nav-ink:#5d5a51; --nav-line:#e0dccf;
-  }
-  /* Backgrounds are fixed to white (#fff) per design: page and board frame/panel stay white in both system themes. Corner camp colours (--c-*) are kept as the pale colour coding. */
-  html,body{margin:0;padding:0}
-  body{
-    font-family:"Helvetica Neue","Segoe UI","Noto Sans JP",system-ui,-apple-system,"Hiragino Kaku Gothic ProN",sans-serif;
-    background:var(--bg); color:var(--ink);
-    min-height:100vh; -webkit-font-smoothing:antialiased; font-size:14px;
-  }
-  .wrap{max-width:1060px;margin:0 auto;padding:14px 14px 36px}
-  button{font:inherit}
-  button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" href="data:," />
+    <title>ダイヤモンドゲーム</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ===== OGS (online-go.com) style: light panels, white-centre board, flat solid pieces ===== */
+      :root {
+        color-scheme: light;
+        --bg: #ffffff;
+        --panel: #ffffff;
+        --panel-2: #ffffff;
+        --panel-3: #eceae3;
+        --ink: #26241f;
+        --ink-2: #6f6b60;
+        --line: #d6d2c7;
+        --line-strong: #bfbaa9;
+        --accent: #33658a;
+        --accent-ink: #ffffff;
+        --btn-bg: #fbfaf7;
+        --btn-hover: #f0eee6;
+        --p1: #4c8a2f;
+        --p1-dark: #2f551b;
+        --p1-soft: #e5efdb;
+        --p2: #c0452c;
+        --p2-dark: #8c2c1c;
+        --p2-soft: #f9e6e0;
+        --p3: #d9a514;
+        --p3-dark: #8a680a;
+        --p3-soft: #faf0cd;
+        --p4: #3f74b5;
+        --p4-dark: #2a4f7d;
+        --p4-soft: #dfeaf6;
+        --board-center: #ffffff;
+        --board-line: #a3a094;
+        --board-edge: #6f6b60;
+        --c-top: #dceccf;
+        --c-bottom: #dceccf;
+        --c-ul: #f7d9d3;
+        --c-ur: #d6e6f5;
+        --c-ll: #d6e6f5;
+        --c-lr: #f7d9d3;
+        --hole-fill: rgba(38, 36, 31, 0.07);
+        --hole-line: rgba(38, 36, 31, 0.32);
+        --scrim: rgba(30, 28, 20, 0.45);
+        --shadow:
+          0 1px 2px rgba(38, 36, 31, 0.1), 0 1px 4px rgba(38, 36, 31, 0.06);
+        --shadow-lg: 0 10px 32px rgba(30, 28, 20, 0.28);
+        --nav-bg: #ffffff;
+        --nav-ink: #5d5a51;
+        --nav-line: #e0dccf;
+      }
+      /* Backgrounds are fixed to white (#fff) per design: page and board frame/panel stay white in both system themes. Corner camp colours (--c-*) are kept as the pale colour coding. */
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family:
+          "Helvetica Neue",
+          "Segoe UI",
+          "Noto Sans JP",
+          system-ui,
+          -apple-system,
+          "Hiragino Kaku Gothic ProN",
+          sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        font-size: 14px;
+      }
+      .wrap {
+        max-width: 1060px;
+        margin: 0 auto;
+        padding: 14px 14px 36px;
+      }
+      button {
+        font: inherit;
+      }
+      button:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
 
-  /* ---------- toolbar (OGS-style slim bar) ---------- */
-  .toolbar{
-    display:flex;flex-wrap:wrap;gap:8px;align-items:center;
-    background:var(--panel);border:1px solid var(--line);border-radius:6px;
-    padding:8px 12px;box-shadow:var(--shadow);
-  }
-  .tb-lead{display:flex;align-items:center;gap:8px;font-weight:600;font-size:13.5px;margin-right:auto}
-  .tb-dot{width:11px;height:11px;border-radius:50%;background:var(--p1);flex:none}
-  /* ---------- playback controls (white rounded squares, gray icons) ---------- */
-  .navctrl{display:flex;align-items:center;gap:8px;margin-left:auto;flex-wrap:wrap}
-  .nbtn{
-    appearance:none;width:44px;height:40px;border-radius:9px;border:1px solid var(--nav-line);
-    background:var(--nav-bg);box-shadow:0 1px 3px rgba(38,36,31,.14);
-    display:grid;place-items:center;cursor:pointer;padding:0;flex:none;
-  }
-  .nbtn svg{width:22px;height:22px;fill:var(--nav-ink);display:block}
-  .nbtn:hover:not(:disabled){filter:brightness(.96)}
-  .nbtn:disabled{opacity:.32;cursor:default;box-shadow:none}
-  .nav-count{font-size:12.5px;color:var(--ink-2);font-variant-numeric:tabular-nums;white-space:nowrap}
-  @media (max-width:560px){.nbtn{width:39px;height:36px}.navctrl{gap:6px}}
-  .tbtn{
-    appearance:none;border:1px solid var(--line-strong);background:var(--btn-bg);color:var(--ink);
-    font-size:13px;font-weight:600;height:32px;padding:0 14px;border-radius:4px;cursor:pointer;white-space:nowrap;
-  }
-  .tbtn:hover{background:var(--btn-hover)}
-  .tbtn:disabled{opacity:.45;cursor:default}
-  .tbtn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
-  .tbtn.primary:hover{filter:brightness(1.08)}
+      /* ---------- toolbar (OGS-style slim bar) ---------- */
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 8px 12px;
+        box-shadow: var(--shadow);
+      }
+      .tb-lead {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+        font-size: 13.5px;
+        margin-right: auto;
+      }
+      .tb-dot {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: var(--p1);
+        flex: none;
+      }
+      /* ---------- playback controls (white rounded squares, gray icons) ---------- */
+      .navctrl {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-left: auto;
+        flex-wrap: wrap;
+      }
+      .nbtn {
+        appearance: none;
+        width: 44px;
+        height: 40px;
+        border-radius: 9px;
+        border: 1px solid var(--nav-line);
+        background: var(--nav-bg);
+        box-shadow: 0 1px 3px rgba(38, 36, 31, 0.14);
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        padding: 0;
+        flex: none;
+      }
+      .nbtn svg {
+        width: 22px;
+        height: 22px;
+        fill: var(--nav-ink);
+        display: block;
+      }
+      .nbtn:hover:not(:disabled) {
+        filter: brightness(0.96);
+      }
+      .nbtn:disabled {
+        opacity: 0.32;
+        cursor: default;
+        box-shadow: none;
+      }
+      .nav-count {
+        font-size: 12.5px;
+        color: var(--ink-2);
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+      }
+      @media (max-width: 560px) {
+        .nbtn {
+          width: 39px;
+          height: 36px;
+        }
+        .navctrl {
+          gap: 6px;
+        }
+      }
+      .tbtn {
+        appearance: none;
+        border: 1px solid var(--line-strong);
+        background: var(--btn-bg);
+        color: var(--ink);
+        font-size: 13px;
+        font-weight: 600;
+        height: 32px;
+        padding: 0 14px;
+        border-radius: 4px;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .tbtn:hover {
+        background: var(--btn-hover);
+      }
+      .tbtn:disabled {
+        opacity: 0.45;
+        cursor: default;
+      }
+      .tbtn.primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--accent-ink);
+      }
+      .tbtn.primary:hover {
+        filter: brightness(1.08);
+      }
 
-  /* ---------- layout: board left, info column right (OGS game page) ---------- */
-  .layout{display:grid;grid-template-columns:minmax(0,628px) 1fr;gap:14px;margin-top:14px;align-items:start}
-  @media (max-width:860px){.layout{grid-template-columns:1fr}}
+      /* ---------- layout: board left, info column right (OGS game page) ---------- */
+      .layout {
+        display: grid;
+        grid-template-columns: minmax(0, 628px) 1fr;
+        gap: 14px;
+        margin-top: 14px;
+        align-items: start;
+      }
+      @media (max-width: 860px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+      }
 
-  /* ---------- board frame: plain light panel around the white-centred board ---------- */
-  .board-card{
-    position:relative;padding:10px;border-radius:6px;border:1px solid var(--line-strong);
-    background:#ffffff;
-    box-shadow:var(--shadow);
-  }
-  svg#board{width:100%;height:auto;display:block;touch-action:manipulation}
-  .side{display:flex;flex-direction:column;gap:14px;min-width:0}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:6px;box-shadow:var(--shadow);padding:14px 16px}
+      /* ---------- board frame: plain light panel around the white-centred board ---------- */
+      .board-card {
+        position: relative;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid var(--line-strong);
+        background: #ffffff;
+        box-shadow: var(--shadow);
+      }
+      svg#board {
+        width: 100%;
+        height: auto;
+        display: block;
+        touch-action: manipulation;
+      }
+      .side {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        min-width: 0;
+      }
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        box-shadow: var(--shadow);
+        padding: 14px 16px;
+      }
 
-  /* ---------- player list (one panel, rows generated from the PLAYERS list) ----------
+      /* ---------- player list (one panel, rows generated from the PLAYERS list) ----------
      Each player row reads its colour from --pc, bound by a .pl-<id> class.
      To add a colour later: add a --pN set above, a .pl-<id> binding below,
      and one entry in the PLAYERS list in the script. */
-  .pl-G{--pc:var(--p1);--pc-dark:var(--p1-dark);--pc-soft:var(--p1-soft)}
-  .pl-R{--pc:var(--p2);--pc-dark:var(--p2-dark);--pc-soft:var(--p2-soft)}
-  .pl-Y{--pc:var(--p3);--pc-dark:var(--p3-dark);--pc-soft:var(--p3-soft)}
-  .pl-B{--pc:var(--p4);--pc-dark:var(--p4-dark);--pc-soft:var(--p4-soft)}
-  .players-card{padding:12px 16px 8px}
-  .players-card h3{
-    margin:0 0 4px;font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--ink-2);
-    text-transform:uppercase;display:flex;justify-content:space-between;align-items:baseline;
-  }
-  .players-card h3 .h-note{letter-spacing:0;text-transform:none;font-weight:400;font-size:12px}
-  .player{
-    display:grid;grid-template-columns:auto 1fr auto;gap:6px 12px;align-items:center;
-    padding:10px;border-radius:6px;
-  }
-  .player + .player{border-top:1px solid var(--line)}
-  .player.active{background:var(--pc-soft);box-shadow:inset 0 0 0 2px var(--pc);border-top-color:transparent}
-  .player.active + .player{border-top-color:transparent}
-  .pl-Y .turn-badge{color:#3a2c00}
-  .stone{width:30px;height:30px;border-radius:50%;flex:none}
-  .stone.g{background:var(--p1)}
-  .stone.r{background:var(--p2)}
-  .stone.b{background:var(--p4)}
-  .player .stone{background:var(--pc)}
-  .p-name{font-size:15px;font-weight:700;line-height:1.3;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-  .turn-badge{
-    display:none;font-size:11px;font-weight:700;line-height:1;padding:4px 8px;border-radius:99px;
-    background:var(--pc);color:#fff;letter-spacing:.05em;
-  }
-  .player.active .turn-badge{display:inline-block}
-  .p-sub{font-size:12px;color:var(--ink-2);margin-top:1px}
-  .p-right{text-align:right}
-  .p-score{font-size:23px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.1}
-  .p-cap{font-size:11px;color:var(--ink-2);letter-spacing:.04em}
-  .track{grid-column:1/-1;height:5px;background:var(--panel-3);border-radius:99px;overflow:hidden}
-  .track>i{display:block;height:100%;width:0%;transition:width .5s ease;background:var(--pc)}
+      .pl-G {
+        --pc: var(--p1);
+        --pc-dark: var(--p1-dark);
+        --pc-soft: var(--p1-soft);
+      }
+      .pl-R {
+        --pc: var(--p2);
+        --pc-dark: var(--p2-dark);
+        --pc-soft: var(--p2-soft);
+      }
+      .pl-Y {
+        --pc: var(--p3);
+        --pc-dark: var(--p3-dark);
+        --pc-soft: var(--p3-soft);
+      }
+      .pl-B {
+        --pc: var(--p4);
+        --pc-dark: var(--p4-dark);
+        --pc-soft: var(--p4-soft);
+      }
+      .players-card {
+        padding: 12px 16px 8px;
+      }
+      .players-card h3 {
+        margin: 0 0 4px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: var(--ink-2);
+        text-transform: uppercase;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+      .players-card h3 .h-note {
+        letter-spacing: 0;
+        text-transform: none;
+        font-weight: 400;
+        font-size: 12px;
+      }
+      .player {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 6px 12px;
+        align-items: center;
+        padding: 10px;
+        border-radius: 6px;
+      }
+      .player + .player {
+        border-top: 1px solid var(--line);
+      }
+      .player.active {
+        background: var(--pc-soft);
+        box-shadow: inset 0 0 0 2px var(--pc);
+        border-top-color: transparent;
+      }
+      .player.active + .player {
+        border-top-color: transparent;
+      }
+      .pl-Y .turn-badge {
+        color: #3a2c00;
+      }
+      .stone {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        flex: none;
+      }
+      .stone.g {
+        background: var(--p1);
+      }
+      .stone.r {
+        background: var(--p2);
+      }
+      .stone.b {
+        background: var(--p4);
+      }
+      .player .stone {
+        background: var(--pc);
+      }
+      .p-name {
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1.3;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .turn-badge {
+        display: none;
+        font-size: 11px;
+        font-weight: 700;
+        line-height: 1;
+        padding: 4px 8px;
+        border-radius: 99px;
+        background: var(--pc);
+        color: #fff;
+        letter-spacing: 0.05em;
+      }
+      .player.active .turn-badge {
+        display: inline-block;
+      }
+      .p-sub {
+        font-size: 12px;
+        color: var(--ink-2);
+        margin-top: 1px;
+      }
+      .p-right {
+        text-align: right;
+      }
+      .p-score {
+        font-size: 23px;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+        line-height: 1.1;
+      }
+      .p-cap {
+        font-size: 11px;
+        color: var(--ink-2);
+        letter-spacing: 0.04em;
+      }
+      .track {
+        grid-column: 1/-1;
+        height: 5px;
+        background: var(--panel-3);
+        border-radius: 99px;
+        overflow: hidden;
+      }
+      .track > i {
+        display: block;
+        height: 100%;
+        width: 0%;
+        transition: width 0.5s ease;
+        background: var(--pc);
+      }
 
-  .hint{font-size:12.5px;color:var(--ink-2);line-height:1.7;margin:12px 2px 0}
-  .hint b{color:var(--ink);font-weight:600}
+      .hint {
+        font-size: 12.5px;
+        color: var(--ink-2);
+        line-height: 1.7;
+        margin: 12px 2px 0;
+      }
+      .hint b {
+        color: var(--ink);
+        font-weight: 600;
+      }
 
-  /* ---------- rules ---------- */
-  details.card{padding:2px 16px}
-  details.card summary{
-    cursor:pointer;font-size:14px;font-weight:700;list-style:none;
-    display:flex;justify-content:space-between;align-items:center;padding:12px 0;
-  }
-  details.card summary::-webkit-details-marker{display:none}
-  details.card summary .chev{color:var(--ink-2);font-size:12px;transition:transform .2s ease}
-  details.card[open ] summary .chev{transform:rotate(180deg)}
-  .rules{font-size:13px;line-height:1.8;margin:0 0 12px;padding-left:1.3em;color:var(--ink-2)}
-  .rules li{margin:5px 0}
-  .rules b{color:var(--ink);font-weight:600}
-  .rules a{color:var(--accent)}
+      /* ---------- rules ---------- */
+      details.card {
+        padding: 2px 16px;
+      }
+      details.card summary {
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 700;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+      }
+      details.card summary::-webkit-details-marker {
+        display: none;
+      }
+      details.card summary .chev {
+        color: var(--ink-2);
+        font-size: 12px;
+        transition: transform 0.2s ease;
+      }
+      details.card[open] summary .chev {
+        transform: rotate(180deg);
+      }
+      .rules {
+        font-size: 13px;
+        line-height: 1.8;
+        margin: 0 0 12px;
+        padding-left: 1.3em;
+        color: var(--ink-2);
+      }
+      .rules li {
+        margin: 5px 0;
+      }
+      .rules b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .rules a {
+        color: var(--accent);
+      }
 
-  /* ---------- board SVG: white centre, pale flat corners, flat solid pieces ---------- */
-  .star-base{fill:var(--board-center)}
-  .corner-top{fill:var(--c-top)} .corner-bottom{fill:var(--c-bottom)}
-  .corner-ul{fill:var(--c-ul)} .corner-ur{fill:var(--c-ur)}
-  .corner-ll{fill:var(--c-ll)} .corner-lr{fill:var(--c-lr)}
-  .center-hex{fill:var(--board-center)}
-  .star-outline{fill:none;stroke:var(--board-edge);stroke-width:2.5;stroke-linejoin:round}
-  .gridline{stroke:var(--board-line);stroke-width:1.3;opacity:.65}
-  .hole{fill:var(--hole-fill);stroke:var(--hole-line);stroke-width:1}
-  .hole.side{opacity:.45}
-  .hit{fill:transparent;cursor:pointer}
-  .piece{cursor:pointer;transition:transform .26s cubic-bezier(.45,.1,.3,1.2)}
-  .piece .body{stroke-width:1.6}
-  .piece.g .body{fill:var(--p1);stroke:var(--p1-dark)}
-  .piece.r .body{fill:var(--p2);stroke:var(--p2-dark)}
-  .piece.b .body{fill:var(--p4);stroke:var(--p4-dark)}
-  .piece.selected .body{stroke:#ffb520;stroke-width:3.2}
-  .dest{fill:#ffb520;stroke:#6e4a00;stroke-width:1.8;cursor:pointer;animation:pulse 1s ease-in-out infinite}
-  .dest.hop{fill:#ff7a1a}
-  @keyframes pulse{0%,100%{opacity:.95}50%{opacity:.5}}
-  @media (prefers-reduced-motion: reduce){
-    .dest{animation:none}.piece{transition:none}.track>i{transition:none}
-    details.card summary .chev{transition:none}
-  }
+      /* ---------- board SVG: white centre, pale flat corners, flat solid pieces ---------- */
+      .star-base {
+        fill: var(--board-center);
+      }
+      .corner-top {
+        fill: var(--c-top);
+      }
+      .corner-bottom {
+        fill: var(--c-bottom);
+      }
+      .corner-ul {
+        fill: var(--c-ul);
+      }
+      .corner-ur {
+        fill: var(--c-ur);
+      }
+      .corner-ll {
+        fill: var(--c-ll);
+      }
+      .corner-lr {
+        fill: var(--c-lr);
+      }
+      .center-hex {
+        fill: var(--board-center);
+      }
+      .star-outline {
+        fill: none;
+        stroke: var(--board-edge);
+        stroke-width: 2.5;
+        stroke-linejoin: round;
+      }
+      .gridline {
+        stroke: var(--board-line);
+        stroke-width: 1.3;
+        opacity: 0.65;
+      }
+      .hole {
+        fill: var(--hole-fill);
+        stroke: var(--hole-line);
+        stroke-width: 1;
+      }
+      .hole.side {
+        opacity: 0.45;
+      }
+      .hit {
+        fill: transparent;
+        cursor: pointer;
+      }
+      .piece {
+        cursor: pointer;
+        transition: transform 0.26s cubic-bezier(0.45, 0.1, 0.3, 1.2);
+      }
+      .piece .body {
+        stroke-width: 1.6;
+      }
+      .piece.g .body {
+        fill: var(--p1);
+        stroke: var(--p1-dark);
+      }
+      .piece.r .body {
+        fill: var(--p2);
+        stroke: var(--p2-dark);
+      }
+      .piece.b .body {
+        fill: var(--p4);
+        stroke: var(--p4-dark);
+      }
+      .piece.selected .body {
+        stroke: #ffb520;
+        stroke-width: 3.2;
+      }
+      .dest {
+        fill: #ffb520;
+        stroke: #6e4a00;
+        stroke-width: 1.8;
+        cursor: pointer;
+        animation: pulse 1s ease-in-out infinite;
+      }
+      .dest.hop {
+        fill: #ff7a1a;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.95;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .dest {
+          animation: none;
+        }
+        .piece {
+          transition: none;
+        }
+        .track > i {
+          transition: none;
+        }
+        details.card summary .chev {
+          transition: none;
+        }
+      }
 
-  /* ---------- win dialog (flat OGS-style modal) ---------- */
-  .overlay{
-    position:absolute;inset:0;display:none;place-items:center;background:var(--scrim);
-    border-radius:6px;z-index:5;padding:18px;
-  }
-  .overlay.show{display:grid}
-  .winbox{
-    background:var(--panel);border:1px solid var(--line-strong);border-radius:6px;
-    padding:22px 24px;text-align:center;max-width:320px;width:100%;box-shadow:var(--shadow-lg);
-  }
-  .win-stones{display:flex;justify-content:center;gap:6px;margin-bottom:12px}
-  .win-stones .stone{width:22px;height:22px}
-  .winbox h2{font-size:21px;font-weight:700;margin:0 0 8px}
-  .winbox p{margin:0 0 18px;font-size:13px;color:var(--ink-2);line-height:1.65}
-  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-</style>
-</head>
-<body>
-<div class="wrap">
-
-  <!-- toolbar: playback controls replace the old undo / restart buttons -->
-  <div class="toolbar" role="group" aria-label="対局メニュー">
-    <span class="tb-lead"><span class="tb-dot" aria-hidden="true"></span>3人対戦</span>
-    <div class="navctrl" role="group" aria-label="再生コントロール">
-      <button type="button" class="nbtn" id="navFirst" title="最初へ" aria-label="最初へ"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 5h2.6v14H3.5zM21 6v12l-7.5-6zM13.5 6v12L6.8 12z"/></svg></button>
-      <button type="button" class="nbtn" id="navBack10" title="10手戻る" aria-label="10手戻る"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6v12l-7.6-6zM12.4 6v12L4.8 12z"/></svg></button>
-      <button type="button" class="nbtn" id="navBack1" title="1手戻る" aria-label="1手戻る"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 5h2.6v14H3.5zM19.5 6v12L7 12z"/></svg></button>
-      <button type="button" class="nbtn" id="navPlay" title="自動再生" aria-label="自動再生"><svg id="icoPlay" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg><svg id="icoPause" viewBox="0 0 24 24" aria-hidden="true" style="display:none"><path d="M7 5h3.4v14H7zM13.6 5H17v14h-3.4z"/></svg></button>
-      <button type="button" class="nbtn" id="navFwd1" title="1手進む" aria-label="1手進む"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 6v12L17 12zM17.9 5h2.6v14h-2.6z"/></svg></button>
-      <button type="button" class="nbtn" id="navFwd10" title="10手進む" aria-label="10手進む"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6v12l7.6-6zM11.6 6v12l7.6-6z"/></svg></button>
-      <button type="button" class="nbtn" id="navLast" title="最後へ" aria-label="最後へ"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6v12l7.5-6zM10.5 6v12l6.7-6zM17.9 5h2.6v14h-2.6z"/></svg></button>
-      <span class="nav-count" id="navCount">0 / 0手</span>
-    </div>
-  </div>
-
-  <div class="layout">
-    <!-- board -->
-    <div class="board-card">
-      <svg id="board" viewBox="0 0 640 596" role="application" aria-label="ダイヤモンドゲームの盤面"></svg>
-      <div class="overlay" id="overlay">
-        <div class="winbox" role="dialog" aria-labelledby="winTitle">
-          <div class="win-stones" aria-hidden="true"><span class="stone g"></span><span class="stone r"></span><span class="stone b"></span></div>
-          <h2 id="winTitle">緑の勝ち！</h2>
-          <p id="winText"></p>
-          <button type="button" class="tbtn primary" id="btnAgain" style="height:36px;padding:0 22px">もう一局</button>
+      /* ---------- win dialog (flat OGS-style modal) ---------- */
+      .overlay {
+        position: absolute;
+        inset: 0;
+        display: none;
+        place-items: center;
+        background: var(--scrim);
+        border-radius: 6px;
+        z-index: 5;
+        padding: 18px;
+      }
+      .overlay.show {
+        display: grid;
+      }
+      .winbox {
+        background: var(--panel);
+        border: 1px solid var(--line-strong);
+        border-radius: 6px;
+        padding: 22px 24px;
+        text-align: center;
+        max-width: 320px;
+        width: 100%;
+        box-shadow: var(--shadow-lg);
+      }
+      .win-stones {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        margin-bottom: 12px;
+      }
+      .win-stones .stone {
+        width: 22px;
+        height: 22px;
+      }
+      .winbox h2 {
+        font-size: 21px;
+        font-weight: 700;
+        margin: 0 0 8px;
+      }
+      .winbox p {
+        margin: 0 0 18px;
+        font-size: 13px;
+        color: var(--ink-2);
+        line-height: 1.65;
+      }
+      .sr {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <!-- toolbar: playback controls replace the old undo / restart buttons -->
+      <div class="toolbar" role="group" aria-label="対局メニュー">
+        <span class="tb-lead"
+          ><span class="tb-dot" aria-hidden="true"></span>3人対戦</span
+        >
+        <div class="navctrl" role="group" aria-label="再生コントロール">
+          <button
+            type="button"
+            class="nbtn"
+            id="navFirst"
+            title="最初へ"
+            aria-label="最初へ"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3.5 5h2.6v14H3.5zM21 6v12l-7.5-6zM13.5 6v12L6.8 12z" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="nbtn"
+            id="navBack10"
+            title="10手戻る"
+            aria-label="10手戻る"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 6v12l-7.6-6zM12.4 6v12L4.8 12z" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="nbtn"
+            id="navBack1"
+            title="1手戻る"
+            aria-label="1手戻る"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3.5 5h2.6v14H3.5zM19.5 6v12L7 12z" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="nbtn"
+            id="navPlay"
+            title="自動再生"
+            aria-label="自動再生"
+          >
+            <svg id="icoPlay" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8 5.5v13l11-6.5z" /></svg
+            ><svg
+              id="icoPause"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              style="display: none"
+            >
+              <path d="M7 5h3.4v14H7zM13.6 5H17v14h-3.4z" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="nbtn"
+            id="navFwd1"
+            title="1手進む"
+            aria-label="1手進む"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4.5 6v12L17 12zM17.9 5h2.6v14h-2.6z" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="nbtn"
+            id="navFwd10"
+            title="10手進む"
+            aria-label="10手進む"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 6v12l7.6-6zM11.6 6v12l7.6-6z" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="nbtn"
+            id="navLast"
+            title="最後へ"
+            aria-label="最後へ"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 6v12l7.5-6zM10.5 6v12l6.7-6zM17.9 5h2.6v14h-2.6z" />
+            </svg>
+          </button>
+          <span class="nav-count" id="navCount">0 / 0手</span>
         </div>
       </div>
-    </div>
 
-    <!-- sidebar: OGS-style player cards + game log -->
-    <div class="side">
-      <div>
-        <div class="card players-card">
-          <h3>プレイヤー <span class="h-note">手番は行の色とバッジで表示</span></h3>
-          <div id="playerList"><!-- rows are generated from the PLAYERS list in the script --></div>
+      <div class="layout">
+        <!-- board -->
+        <div class="board-card">
+          <svg
+            id="board"
+            viewBox="0 0 640 596"
+            role="application"
+            aria-label="ダイヤモンドゲームの盤面"
+          ></svg>
+          <div class="overlay" id="overlay">
+            <div class="winbox" role="dialog" aria-labelledby="winTitle">
+              <div class="win-stones" aria-hidden="true">
+                <span class="stone g"></span><span class="stone r"></span
+                ><span class="stone b"></span>
+              </div>
+              <h2 id="winTitle">緑の勝ち！</h2>
+              <p id="winText"></p>
+              <button
+                type="button"
+                class="tbtn primary"
+                id="btnAgain"
+                style="height: 36px; padding: 0 22px"
+              >
+                もう一局
+              </button>
+            </div>
+          </div>
         </div>
 
-        <p class="hint">
-          ゴール（向かい側の同色の陣地）に自分の駒を<b>全部</b>運んだら勝ち。
-          隣の駒を飛び越える<b>ジャンプ</b>は、着地先から<b>連続</b>でつなげられるよ。
-        </p>
+        <!-- sidebar: OGS-style player cards + game log -->
+        <div class="side">
+          <div>
+            <div class="card players-card">
+              <h3>
+                プレイヤー
+                <span class="h-note">手番は行の色とバッジで表示</span>
+              </h3>
+              <div id="playerList">
+                <!-- rows are generated from the PLAYERS list in the script -->
+              </div>
+            </div>
+
+            <p class="hint">
+              ゴール（向かい側の同色の陣地）に自分の駒を<b>全部</b>運んだら勝ち。
+              隣の駒を飛び越える<b>ジャンプ</b>は、着地先から<b>連続</b>でつなげられるよ。
+            </p>
+          </div>
+
+          <details class="card">
+            <summary>
+              ルール（くわしく）<span class="chev" aria-hidden="true">▾</span>
+            </summary>
+            <ul class="rules">
+              <li>
+                <b>目的：</b
+                >3人対戦。星形の盤（121穴）で、自分の駒10個をすべて向かい側の同色の陣地（ゴール）へ先に運んだプレイヤーの勝ち。駒は取られません。赤は左上→右下、青は右上→左下、緑は下→上へ進みます。
+              </li>
+              <li>
+                <b>1歩移動：</b
+                >手番に駒を1個だけ、線に沿って隣の空き穴へ1マス動かせます（6方向、後ろ向きもOK）。
+              </li>
+              <li>
+                <b>ジャンプ：</b
+                >隣に駒（敵・味方どちらでも）があり、そのすぐ向こうが空き穴なら飛び越えられます。着地先からさらに飛べる場合は<b>連続ジャンプ</b>ができ、途中の着地で止めることもできます。1歩移動とジャンプは同じ手番で混ぜられません。いちど通った穴に戻ることはできません。
+              </li>
+              <li>
+                <b>立入禁止：</b
+                >他のプレイヤーの陣地（スタート・ゴール）には入れません。自分のゴールに入った駒は、外へ出られません（ゴール内での移動はOK）。
+              </li>
+              <li>
+                出典：<a
+                  href="https://ja.wikipedia.org/wiki/%E3%83%80%E3%82%A4%E3%83%A4%E3%83%A2%E3%83%B3%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0"
+                  target="_blank"
+                  rel="noopener"
+                  >ダイヤモンドゲーム - Wikipedia</a
+                >
+              </li>
+            </ul>
+          </details>
+        </div>
       </div>
-
-      <details class="card">
-        <summary>ルール（くわしく）<span class="chev" aria-hidden="true">▾</span></summary>
-        <ul class="rules">
-          <li><b>目的：</b>3人対戦。星形の盤（121穴）で、自分の駒10個をすべて向かい側の同色の陣地（ゴール）へ先に運んだプレイヤーの勝ち。駒は取られません。赤は左上→右下、青は右上→左下、緑は下→上へ進みます。</li>
-          <li><b>1歩移動：</b>手番に駒を1個だけ、線に沿って隣の空き穴へ1マス動かせます（6方向、後ろ向きもOK）。</li>
-          <li><b>ジャンプ：</b>隣に駒（敵・味方どちらでも）があり、そのすぐ向こうが空き穴なら飛び越えられます。着地先からさらに飛べる場合は<b>連続ジャンプ</b>ができ、途中の着地で止めることもできます。1歩移動とジャンプは同じ手番で混ぜられません。いちど通った穴に戻ることはできません。</li>
-          <li><b>立入禁止：</b>他のプレイヤーの陣地（スタート・ゴール）には入れません。自分のゴールに入った駒は、外へ出られません（ゴール内での移動はOK）。</li>
-          <li>出典：<a href="https://ja.wikipedia.org/wiki/%E3%83%80%E3%82%A4%E3%83%A4%E3%83%A2%E3%83%B3%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0" target="_blank" rel="noopener">ダイヤモンドゲーム - Wikipedia</a></li>
-        </ul>
-      </details>
+      <p class="sr" id="live" aria-live="polite"></p>
     </div>
-  </div>
-  <p class="sr" id="live" aria-live="polite"></p>
-</div>
 
-<script>
-"use strict";
-/* ============================================================
+    <script>
+      "use strict";
+      /* ============================================================
    ダイヤモンドゲーム (Diamond Game / チャイニーズチェッカー系)
    星形121穴 / 3人対戦 / 駒は各10個 / 全駒同一ルール
    ============================================================ */
 
-/* ---------- board geometry ---------- */
-var ROW_COUNTS = [1,2,3,4,13,12,11,10,9,10,11,12,13,4,3,2,1];
-var SQ3 = 0.86602540378;
-var PIECE_COUNT = 10;
-var cells = [];            // {id,row,idx,x,sx,sy}
-var cellByKey = {};        // "row:x2" -> id
-(function buildCells(){
-  var id = 0;
-  for (var r = 0; r < ROW_COUNTS.length; r++){
-    var n = ROW_COUNTS[r];
-    for (var i = 0; i < n; i++){
-      var x = i - (n - 1) / 2;
-      var c = { id:id, row:r, idx:i, x:x, sx: 320 + x * 36, sy: 48 + r * 36 * SQ3 };
-      cells.push(c);
-      cellByKey[r + ":" + Math.round(x * 2)] = id;
-      id++;
-    }
-  }
-})();
-function cellAt(row, x){ var id = cellByKey[row + ":" + Math.round(x * 2)]; return id === undefined ? -1 : id; }
-/* 6 directions in (dRow, dx) */
-var DIRS = [ {dr:0,dx:1},{dr:0,dx:-1},{dr:1,dx:0.5},{dr:1,dx:-0.5},{dr:-1,dx:0.5},{dr:-1,dx:-0.5} ];
-var nbrDir = []; // nbrDir[cellId][dirIdx] = cellId or -1
-cells.forEach(function(c){
-  var arr = [];
-  DIRS.forEach(function(d){ arr.push(cellAt(c.row + d.dr, c.x + d.dx)); });
-  nbrDir.push(arr);
-});
-var nbrs = nbrDir.map(function(arr){ return arr.filter(function(v){ return v >= 0; }); });
+      /* ---------- board geometry ---------- */
+      var ROW_COUNTS = [
+        1, 2, 3, 4, 13, 12, 11, 10, 9, 10, 11, 12, 13, 4, 3, 2, 1,
+      ];
+      var SQ3 = 0.86602540378;
+      var PIECE_COUNT = 10;
+      var cells = []; // {id,row,idx,x,sx,sy}
+      var cellByKey = {}; // "row:x2" -> id
+      (function buildCells() {
+        var id = 0;
+        for (var r = 0; r < ROW_COUNTS.length; r++) {
+          var n = ROW_COUNTS[r];
+          for (var i = 0; i < n; i++) {
+            var x = i - (n - 1) / 2;
+            var c = {
+              id: id,
+              row: r,
+              idx: i,
+              x: x,
+              sx: 320 + x * 36,
+              sy: 48 + r * 36 * SQ3,
+            };
+            cells.push(c);
+            cellByKey[r + ":" + Math.round(x * 2)] = id;
+            id++;
+          }
+        }
+      })();
+      function cellAt(row, x) {
+        var id = cellByKey[row + ":" + Math.round(x * 2)];
+        return id === undefined ? -1 : id;
+      }
+      /* 6 directions in (dRow, dx) */
+      var DIRS = [
+        { dr: 0, dx: 1 },
+        { dr: 0, dx: -1 },
+        { dr: 1, dx: 0.5 },
+        { dr: 1, dx: -0.5 },
+        { dr: -1, dx: 0.5 },
+        { dr: -1, dx: -0.5 },
+      ];
+      var nbrDir = []; // nbrDir[cellId][dirIdx] = cellId or -1
+      cells.forEach(function (c) {
+        var arr = [];
+        DIRS.forEach(function (d) {
+          arr.push(cellAt(c.row + d.dr, c.x + d.dx));
+        });
+        nbrDir.push(arr);
+      });
+      var nbrs = nbrDir.map(function (arr) {
+        return arr.filter(function (v) {
+          return v >= 0;
+        });
+      });
 
-/* ---------- zones ---------- */
-function sideZone(c){
-  var row = c.row, idx = c.idx, n = ROW_COUNTS[row];
-  if (row >= 4 && row <= 7){
-    var w = 8 - row;
-    if (idx < w) return "UL";
-    if (idx >= n - w) return "UR";
-  }
-  if (row >= 9 && row <= 12){
-    var w2 = row - 8;
-    if (idx < w2) return "LL";
-    if (idx >= n - w2) return "LR";
-  }
-  return null;
-}
-function campCells(name){
-  /* name: 'top' | 'bottom' | 'UL' | 'UR' | 'LL' | 'LR' ; each camp has 10 cells */
-  var out = [];
-  cells.forEach(function(c){
-    if (name === "top"){ if (c.row <= 3) out.push(c.id); }
-    else if (name === "bottom"){ if (c.row >= 13) out.push(c.id); }
-    else if (sideZone(c) === name) out.push(c.id);
-  });
-  return out;
-}
+      /* ---------- zones ---------- */
+      function sideZone(c) {
+        var row = c.row,
+          idx = c.idx,
+          n = ROW_COUNTS[row];
+        if (row >= 4 && row <= 7) {
+          var w = 8 - row;
+          if (idx < w) return "UL";
+          if (idx >= n - w) return "UR";
+        }
+        if (row >= 9 && row <= 12) {
+          var w2 = row - 8;
+          if (idx < w2) return "LL";
+          if (idx >= n - w2) return "LR";
+        }
+        return null;
+      }
+      function campCells(name) {
+        /* name: 'top' | 'bottom' | 'UL' | 'UR' | 'LL' | 'LR' ; each camp has 10 cells */
+        var out = [];
+        cells.forEach(function (c) {
+          if (name === "top") {
+            if (c.row <= 3) out.push(c.id);
+          } else if (name === "bottom") {
+            if (c.row >= 13) out.push(c.id);
+          } else if (sideZone(c) === name) out.push(c.id);
+        });
+        return out;
+      }
 
-/* ---------- game state ---------- */
-var pieces = [];       // {pid, player:'G'|'R', cell}
-var turn = "G";
-var selected = null;   // piece object
-var destMap = {};      // cellId -> {dest, path:[cellId...], hops:n}
-var busy = false, gameOver = false;
-var positions = [];    // 着手履歴（局面の並び）: {cells:[...], turn} / positions[0] = 初期局面
-var viewPos = 0;       // いま表示している局面の番号。末尾より前なら閲覧モード（駒は動かせない）
-var winner = null;     // 勝者が決まっていればそのプレイヤーid
-var playTimer = null;  // 自動再生タイマー
-var moveNo = 0;
+      /* ---------- game state ---------- */
+      var pieces = []; // {pid, player:'G'|'R', cell}
+      var turn = "G";
+      var selected = null; // piece object
+      var destMap = {}; // cellId -> {dest, path:[cellId...], hops:n}
+      var busy = false,
+        gameOver = false;
+      var positions = []; // 着手履歴（局面の並び）: {cells:[...], turn} / positions[0] = 初期局面
+      var viewPos = 0; // いま表示している局面の番号。末尾より前なら閲覧モード（駒は動かせない）
+      var winner = null; // 勝者が決まっていればそのプレイヤーid
+      var playTimer = null; // 自動再生タイマー
+      var moveNo = 0;
 
-/* ---------- players ----------
+      /* ---------- players ----------
    The sidebar player list is generated from this list, in display order.
    To add a player colour (e.g. yellow): add one entry here with a new id,
    plus a matching .pl-<id> colour binding in the CSS. */
-var PLAYERS = [
-  { id:"G", colorName:"緑", name:"緑のプレイヤー", sub:"先手 ・ 下の陣地から上の陣地へ" },
-  { id:"R", colorName:"赤", name:"赤のプレイヤー", sub:"2番手 ・ 左上の陣地から右下の陣地へ" },
-  { id:"B", colorName:"青", name:"青のプレイヤー", sub:"3番手 ・ 右上の陣地から左下の陣地へ" }
-];
-function playerDef(id){
-  for (var i = 0; i < PLAYERS.length; i++) if (PLAYERS[i].id === id) return PLAYERS[i];
-  return PLAYERS[0];
-}
+      var PLAYERS = [
+        {
+          id: "G",
+          colorName: "緑",
+          name: "緑のプレイヤー",
+          sub: "先手 ・ 下の陣地から上の陣地へ",
+        },
+        {
+          id: "R",
+          colorName: "赤",
+          name: "赤のプレイヤー",
+          sub: "2番手 ・ 左上の陣地から右下の陣地へ",
+        },
+        {
+          id: "B",
+          colorName: "青",
+          name: "青のプレイヤー",
+          sub: "3番手 ・ 右上の陣地から左下の陣地へ",
+        },
+      ];
+      function playerDef(id) {
+        for (var i = 0; i < PLAYERS.length; i++)
+          if (PLAYERS[i].id === id) return PLAYERS[i];
+        return PLAYERS[0];
+      }
 
-/* start and goal camps per player; each colour owns both of its camps */
-var PLAYER_CAMPS = {
-  G: { start:"bottom", goal:"top" },
-  R: { start:"UL", goal:"LR" },
-  B: { start:"UR", goal:"LL" }
-};
-function goalSet(player){ return campCells(PLAYER_CAMPS[player].goal); }
-function startSet(player){ return campCells(PLAYER_CAMPS[player].start); }
-var goalCache = {}, startCache = {}, campOwner = {};
-function refreshCaches(){
-  goalCache = {}; startCache = {}; campOwner = {};
-  PLAYERS.forEach(function(pl){
-    goalCache[pl.id] = {}; goalSet(pl.id).forEach(function(id){ goalCache[pl.id][id] = true; campOwner[id] = pl.id; });
-    startCache[pl.id] = {}; startSet(pl.id).forEach(function(id){ startCache[pl.id][id] = true; campOwner[id] = pl.id; });
-  });
-}
-function nextPlayer(id){
-  for (var i = 0; i < PLAYERS.length; i++) if (PLAYERS[i].id === id) return PLAYERS[(i + 1) % PLAYERS.length].id;
-  return PLAYERS[0].id;
-}
-function occupancy(excludePid){
-  var occ = {};
-  pieces.forEach(function(p){ if (p.pid !== excludePid) occ[p.cell] = p; });
-  return occ;
-}
+      /* start and goal camps per player; each colour owns both of its camps */
+      var PLAYER_CAMPS = {
+        G: { start: "bottom", goal: "top" },
+        R: { start: "UL", goal: "LR" },
+        B: { start: "UR", goal: "LL" },
+      };
+      function goalSet(player) {
+        return campCells(PLAYER_CAMPS[player].goal);
+      }
+      function startSet(player) {
+        return campCells(PLAYER_CAMPS[player].start);
+      }
+      var goalCache = {},
+        startCache = {},
+        campOwner = {};
+      function refreshCaches() {
+        goalCache = {};
+        startCache = {};
+        campOwner = {};
+        PLAYERS.forEach(function (pl) {
+          goalCache[pl.id] = {};
+          goalSet(pl.id).forEach(function (id) {
+            goalCache[pl.id][id] = true;
+            campOwner[id] = pl.id;
+          });
+          startCache[pl.id] = {};
+          startSet(pl.id).forEach(function (id) {
+            startCache[pl.id][id] = true;
+            campOwner[id] = pl.id;
+          });
+        });
+      }
+      function nextPlayer(id) {
+        for (var i = 0; i < PLAYERS.length; i++)
+          if (PLAYERS[i].id === id) return PLAYERS[(i + 1) % PLAYERS.length].id;
+        return PLAYERS[0].id;
+      }
+      function occupancy(excludePid) {
+        var occ = {};
+        pieces.forEach(function (p) {
+          if (p.pid !== excludePid) occ[p.cell] = p;
+        });
+        return occ;
+      }
 
-/* ---------- move generation (all pieces equal) ---------- */
-function landable(piece, fromCell, destCell){
-  var owner = campOwner[destCell];
-  if (owner && owner !== piece.player) return false; // 他のプレイヤーの陣地には入れない
-  if (goalCache[piece.player][fromCell] && !goalCache[piece.player][destCell]) return false; // ゴールから出られない
-  return true;
-}
-function legalMoves(piece){
-  var occ = occupancy(piece.pid);
-  var res = {}; // dest -> {dest, path, hops}
-  var from = piece.cell;
-  /* steps */
-  nbrs[from].forEach(function(nb){
-    if (!occ[nb] && landable(piece, from, nb)) res[nb] = { dest: nb, path: [nb], hops: 0 };
-  });
-  /* hops (DFS chain): jump one adjacent piece, land on the empty cell beyond */
-  var visited = {}; visited[from] = true;
-  var stack = [{ cell: from, path: [] }];
-  while (stack.length){
-    var node = stack.pop();
-    for (var d = 0; d < 6; d++){
-      var mid = nbrDir[node.cell][d];
-      if (mid < 0 || !occ[mid]) continue;
-      var land = nbrDir[mid][d];
-      if (land < 0 || occ[land] || visited[land]) continue;
-      if (!landable(piece, from, land)) continue;
-      visited[land] = true;
-      var pth = node.path.concat([land]);
-      res[land] = { dest: land, path: pth, hops: pth.length };
-      stack.push({ cell: land, path: pth });
-    }
-  }
-  return res;
-}
-function checkWin(player){
-  return pieces.every(function(p){ return p.player !== player || goalCache[player][p.cell]; });
-}
-function goalCount(player){
-  var n = 0;
-  pieces.forEach(function(p){ if (p.player === player && goalCache[player][p.cell]) n++; });
-  return n;
-}
+      /* ---------- move generation (all pieces equal) ---------- */
+      function landable(piece, fromCell, destCell) {
+        var owner = campOwner[destCell];
+        if (owner && owner !== piece.player) return false; // 他のプレイヤーの陣地には入れない
+        if (
+          goalCache[piece.player][fromCell] &&
+          !goalCache[piece.player][destCell]
+        )
+          return false; // ゴールから出られない
+        return true;
+      }
+      function legalMoves(piece) {
+        var occ = occupancy(piece.pid);
+        var res = {}; // dest -> {dest, path, hops}
+        var from = piece.cell;
+        /* steps */
+        nbrs[from].forEach(function (nb) {
+          if (!occ[nb] && landable(piece, from, nb))
+            res[nb] = { dest: nb, path: [nb], hops: 0 };
+        });
+        /* hops (DFS chain): jump one adjacent piece, land on the empty cell beyond */
+        var visited = {};
+        visited[from] = true;
+        var stack = [{ cell: from, path: [] }];
+        while (stack.length) {
+          var node = stack.pop();
+          for (var d = 0; d < 6; d++) {
+            var mid = nbrDir[node.cell][d];
+            if (mid < 0 || !occ[mid]) continue;
+            var land = nbrDir[mid][d];
+            if (land < 0 || occ[land] || visited[land]) continue;
+            if (!landable(piece, from, land)) continue;
+            visited[land] = true;
+            var pth = node.path.concat([land]);
+            res[land] = { dest: land, path: pth, hops: pth.length };
+            stack.push({ cell: land, path: pth });
+          }
+        }
+        return res;
+      }
+      function checkWin(player) {
+        return pieces.every(function (p) {
+          return p.player !== player || goalCache[player][p.cell];
+        });
+      }
+      function goalCount(player) {
+        var n = 0;
+        pieces.forEach(function (p) {
+          if (p.player === player && goalCache[player][p.cell]) n++;
+        });
+        return n;
+      }
 
-/* ---------- SVG rendering ---------- */
-var svg = document.getElementById("board");
-var SVGNS = "http://www.w3.org/2000/svg";
-function el(tag, attrs, parent){
-  var e = document.createElementNS(SVGNS, tag);
-  Object.keys(attrs || {}).forEach(function(k){ e.setAttribute(k, attrs[k]); });
-  if (parent) parent.appendChild(e);
-  return e;
-}
-var gBoard, gHoles, gDest, gPieces;
-function buildBoardSVG(){
-  svg.innerHTML = "";
-  gBoard = el("g", {}, svg); gHoles = el("g", {}, svg); gDest = el("g", {}, svg); gPieces = el("g", {}, svg);
-  /* Star board: white centre hexagon with six pale flat corner triangles.
+      /* ---------- SVG rendering ---------- */
+      var svg = document.getElementById("board");
+      var SVGNS = "http://www.w3.org/2000/svg";
+      function el(tag, attrs, parent) {
+        var e = document.createElementNS(SVGNS, tag);
+        Object.keys(attrs || {}).forEach(function (k) {
+          e.setAttribute(k, attrs[k]);
+        });
+        if (parent) parent.appendChild(e);
+        return e;
+      }
+      var gBoard, gHoles, gDest, gPieces;
+      function buildBoardSVG() {
+        svg.innerHTML = "";
+        gBoard = el("g", {}, svg);
+        gHoles = el("g", {}, svg);
+        gDest = el("g", {}, svg);
+        gPieces = el("g", {}, svg);
+        /* Star board: white centre hexagon with six pale flat corner triangles.
      Each side of the two large triangles runs midway between the two rows of
      hole centres it separates — 15.6 from the centres on both sides, i.e. one
      piece radius (r=15) away — so the side is tangent to the circles of the
      pieces sitting along it instead of crossing them. (The old sides sat
      only ~9-14 from the centres and cut through the pieces.) */
-  el("polygon", { points:"320,16.8 77,437.7 563,437.7", "class":"star-base" }, gBoard);
-  el("polygon", { points:"320,578 77,157.1 563,157.1", "class":"star-base" }, gBoard);
-  el("polygon", { points:"320,16.8 239,157.1 401,157.1", "class":"corner-top" }, gBoard);
-  el("polygon", { points:"563,157.1 401,157.1 482,297.4", "class":"corner-ur" }, gBoard);
-  el("polygon", { points:"563,437.7 482,297.4 401,437.7", "class":"corner-lr" }, gBoard);
-  el("polygon", { points:"320,578 401,437.7 239,437.7", "class":"corner-bottom" }, gBoard);
-  el("polygon", { points:"77,437.7 239,437.7 158,297.4", "class":"corner-ll" }, gBoard);
-  el("polygon", { points:"77,157.1 158,297.4 239,157.1", "class":"corner-ul" }, gBoard);
-  el("polygon", { points:"239,157.1 401,157.1 482,297.4 401,437.7 239,437.7 158,297.4", "class":"center-hex" }, gBoard);
-  el("polygon", { points:"320,16.8 77,437.7 563,437.7", "class":"star-outline" }, gBoard);
-  el("polygon", { points:"320,578 77,157.1 563,157.1", "class":"star-outline" }, gBoard);
-  /* grid lines between neighbours */
-  var drawn = {};
-  cells.forEach(function(c){
-    nbrs[c.id].forEach(function(nb){
-      var k = Math.min(c.id, nb) + "-" + Math.max(c.id, nb);
-      if (drawn[k]) return; drawn[k] = true;
-      var o = cells[nb];
-      el("line", { x1:c.sx, y1:c.sy, x2:o.sx, y2:o.sy, "class":"gridline" }, gBoard);
-    });
-  });
-  /* holes + hit areas */
-  cells.forEach(function(c){
-    el("circle", { cx:c.sx, cy:c.sy, r:12.5, "class":"hole" }, gHoles);
-    var hit = el("circle", { cx:c.sx, cy:c.sy, r:18, "class":"hit" }, gHoles);
-    hit.addEventListener("click", function(){ onCellTap(c.id); });
-  });
-}
-var pieceEls = {}; // pid -> <g>
-function buildPieces(){
-  gPieces.innerHTML = ""; pieceEls = {};
-  pieces.forEach(function(p){
-    var c = cells[p.cell];
-    var g = el("g", { "class":"piece " + p.player.toLowerCase(), transform:"translate(" + c.sx + "," + c.sy + ")" }, gPieces);
-    el("circle", { r:15, "class":"body" }, g);
-    g.addEventListener("click", function(ev){ ev.stopPropagation(); onPieceTap(p); });
-    pieceEls[p.pid] = g;
-  });
-}
-function syncPiecePos(p){
-  var c = cells[p.cell];
-  if (!c || !pieceEls[p.pid]) return;
-  pieceEls[p.pid].setAttribute("transform", "translate(" + c.sx + "," + c.sy + ")");
-}
-function showDestinations(){
-  gDest.innerHTML = "";
-  if (!selected) return;
-  Object.keys(destMap).forEach(function(dest){
-    var c = cells[+dest];
-    var mv = destMap[dest];
-    var dot = el("circle", { cx:c.sx, cy:c.sy, r: mv.hops ? 10.5 : 8.5, "class":"dest" + (mv.hops ? " hop" : "") }, gDest);
-    dot.addEventListener("click", function(ev){ ev.stopPropagation(); onCellTap(+dest); });
-  });
-}
-function refreshPieceClasses(){
-  pieces.forEach(function(p){
-    var g = pieceEls[p.pid]; if (!g) return;
-    g.setAttribute("class", "piece " + p.player.toLowerCase() + (selected === p ? " selected" : ""));
-  });
-}
-
-/* ---------- player list (sidebar) ---------- */
-function buildPlayerList(){
-  var list = document.getElementById("playerList");
-  list.innerHTML = "";
-  PLAYERS.forEach(function(pl){
-    var row = document.createElement("div");
-    row.className = "player pl-" + pl.id;
-    row.id = "card" + pl.id;
-    row.innerHTML =
-      '<span class="stone" aria-hidden="true"></span>' +
-      '<div><div class="p-name"><span></span><span class="turn-badge">手番</span></div>' +
-      '<div class="p-sub"></div></div>' +
-      '<div class="p-right"><div class="p-score" id="score' + pl.id + '">0 / ' + PIECE_COUNT + '</div>' +
-      '<div class="p-cap">ゴール</div></div>' +
-      '<span class="track"><i id="bar' + pl.id + '"></i></span>';
-    row.querySelector(".p-name span").textContent = pl.name;
-    row.querySelector(".p-sub").textContent = pl.sub;
-    list.appendChild(row);
-  });
-}
-
-/* ---------- UI update ---------- */
-var $ = function(id){ return document.getElementById(id); };
-function updateUI(){
-  PLAYERS.forEach(function(pl){
-    var n = goalCount(pl.id);
-    var scoreEl = $("score" + pl.id), barEl = $("bar" + pl.id), cardEl = $("card" + pl.id);
-    if (scoreEl) scoreEl.textContent = n + " / " + PIECE_COUNT;
-    if (barEl) barEl.style.width = (n / PIECE_COUNT * 100) + "%";
-    if (cardEl) cardEl.classList.toggle("active", !gameOver && turn === pl.id);
-  });
-  var atEnd = viewPos === positions.length - 1;
-  var liveText;
-  if (gameOver){
-    liveText = "対局終了";
-  } else if (!atEnd){
-    liveText = viewPos + "手目の局面";
-  } else {
-    liveText = playerDef(turn).colorName + "の番です";
-  }
-  $("live").textContent = liveText;
-  /* playback controls */
-  var total = positions.length - 1;
-  $("navCount").textContent = viewPos + " / " + total + "手";
-  var navBusy = busy || !!playTimer;
-  $("navFirst").disabled = navBusy || viewPos <= 0;
-  $("navBack10").disabled = navBusy || viewPos <= 0;
-  $("navBack1").disabled = navBusy || viewPos <= 0;
-  $("navFwd1").disabled = navBusy || viewPos >= total;
-  $("navFwd10").disabled = navBusy || viewPos >= total;
-  $("navLast").disabled = navBusy || viewPos >= total;
-  $("navPlay").disabled = busy || (!playTimer && viewPos >= total);
-  $("icoPlay").style.display = playTimer ? "none" : "block";
-  $("icoPause").style.display = playTimer ? "block" : "none";
-  $("navPlay").title = playTimer ? "一時停止" : "自動再生";
-  $("navPlay").setAttribute("aria-label", playTimer ? "一時停止" : "自動再生");
-  refreshPieceClasses();
-}
-
-/* ---------- game flow ---------- */
-function wait(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
-
-/* ---------- playback navigation ---------- */
-function stopPlay(){ if (playTimer){ clearInterval(playTimer); playTimer = null; } }
-function goTo(i){
-  var total = positions.length - 1;
-  viewPos = Math.max(0, Math.min(total, i));
-  var pos = positions[viewPos];
-  if (!pos) return;
-  pos.cells.forEach(function(cell, idx){ pieces[idx].cell = cell; syncPiecePos(pieces[idx]); });
-  turn = pos.turn;
-  selected = null; destMap = {}; showDestinations();
-  gameOver = viewPos === total && !!winner;
-  $("overlay").classList.toggle("show", gameOver);
-  if (viewPos === total) stopPlay();
-  updateUI();
-}
-function togglePlay(){
-  if (playTimer){ stopPlay(); updateUI(); return; }
-  if (busy || viewPos >= positions.length - 1) return;
-  playTimer = setInterval(function(){
-    if (viewPos >= positions.length - 1){ stopPlay(); updateUI(); return; }
-    goTo(viewPos + 1);
-  }, 700);
-  updateUI();
-}
-
-async function executeMove(piece, m){
-  if (!m || cells[m.dest] === undefined) return;
-  if (viewPos !== positions.length - 1) return; // 過去の局面を見ている間は打てない
-  busy = true; selected = null; destMap = {}; showDestinations(); updateUI();
-  try {
-    if (m.hops === 0){
-      piece.cell = m.dest; syncPiecePos(piece);
-      await wait(280);
-    } else {
-      for (var i = 0; i < m.path.length; i++){
-        piece.cell = m.path[i]; syncPiecePos(piece);
-        await wait(300);
+        el(
+          "polygon",
+          { points: "320,16.8 77,437.7 563,437.7", class: "star-base" },
+          gBoard,
+        );
+        el(
+          "polygon",
+          { points: "320,578 77,157.1 563,157.1", class: "star-base" },
+          gBoard,
+        );
+        el(
+          "polygon",
+          { points: "320,16.8 239,157.1 401,157.1", class: "corner-top" },
+          gBoard,
+        );
+        el(
+          "polygon",
+          { points: "563,157.1 401,157.1 482,297.4", class: "corner-ur" },
+          gBoard,
+        );
+        el(
+          "polygon",
+          { points: "563,437.7 482,297.4 401,437.7", class: "corner-lr" },
+          gBoard,
+        );
+        el(
+          "polygon",
+          { points: "320,578 401,437.7 239,437.7", class: "corner-bottom" },
+          gBoard,
+        );
+        el(
+          "polygon",
+          { points: "77,437.7 239,437.7 158,297.4", class: "corner-ll" },
+          gBoard,
+        );
+        el(
+          "polygon",
+          { points: "77,157.1 158,297.4 239,157.1", class: "corner-ul" },
+          gBoard,
+        );
+        el(
+          "polygon",
+          {
+            points:
+              "239,157.1 401,157.1 482,297.4 401,437.7 239,437.7 158,297.4",
+            class: "center-hex",
+          },
+          gBoard,
+        );
+        el(
+          "polygon",
+          { points: "320,16.8 77,437.7 563,437.7", class: "star-outline" },
+          gBoard,
+        );
+        el(
+          "polygon",
+          { points: "320,578 77,157.1 563,157.1", class: "star-outline" },
+          gBoard,
+        );
+        /* grid lines between neighbours */
+        var drawn = {};
+        cells.forEach(function (c) {
+          nbrs[c.id].forEach(function (nb) {
+            var k = Math.min(c.id, nb) + "-" + Math.max(c.id, nb);
+            if (drawn[k]) return;
+            drawn[k] = true;
+            var o = cells[nb];
+            el(
+              "line",
+              { x1: c.sx, y1: c.sy, x2: o.sx, y2: o.sy, class: "gridline" },
+              gBoard,
+            );
+          });
+        });
+        /* holes + hit areas */
+        cells.forEach(function (c) {
+          el("circle", { cx: c.sx, cy: c.sy, r: 12.5, class: "hole" }, gHoles);
+          var hit = el(
+            "circle",
+            { cx: c.sx, cy: c.sy, r: 18, class: "hit" },
+            gHoles,
+          );
+          hit.addEventListener("click", function () {
+            onCellTap(c.id);
+          });
+        });
       }
-    }
-    moveNo++;
-    turn = nextPlayer(piece.player);
-    positions.push({ cells: pieces.map(function(p){ return p.cell; }), turn: turn });
-    viewPos = positions.length - 1;
-    if (checkWin(piece.player)){
-      winner = piece.player;
-      gameOver = true;
-      $("winTitle").textContent = playerDef(winner).colorName + "の勝ち！";
-      $("winText").textContent = moveNo + "手で決着。全ての駒をゴールへ運びきりました。お見事！";
-      $("overlay").classList.add("show");
-    }
-  } finally {
-    busy = false;
-    updateUI();
-  }
-}
-function onPieceTap(p){
-  if (busy || gameOver) return;
-  if (viewPos !== positions.length - 1) return; // 過去の局面を見ている間は駒を動かせない
-  if (p.player !== turn) return;
-  if (selected === p){ selected = null; destMap = {}; }
-  else { selected = p; destMap = legalMoves(p); }
-  showDestinations(); updateUI();
-}
-function onCellTap(cellId){
-  if (busy || gameOver || !selected) return;
-  if (viewPos !== positions.length - 1) return;
-  var m = destMap[cellId];
-  if (m) executeMove(selected, m);
-}
-function initGame(){
-  refreshCaches();
-  pieces = []; var pid = 0;
-  PLAYERS.forEach(function(pl){
-    startSet(pl.id).forEach(function(cell){ pieces.push({ pid: pid++, player:pl.id, cell: cell }); });
-  });
-  turn = "G"; selected = null; destMap = {}; busy = false; gameOver = false;
-  stopPlay(); winner = null; moveNo = 0;
-  positions = [{ cells: pieces.map(function(p){ return p.cell; }), turn: "G" }];
-  viewPos = 0;
-  $("overlay").classList.remove("show");
-  buildBoardSVG(); buildPieces(); buildPlayerList(); showDestinations(); updateUI();
-}
+      var pieceEls = {}; // pid -> <g>
+      function buildPieces() {
+        gPieces.innerHTML = "";
+        pieceEls = {};
+        pieces.forEach(function (p) {
+          var c = cells[p.cell];
+          var g = el(
+            "g",
+            {
+              class: "piece " + p.player.toLowerCase(),
+              transform: "translate(" + c.sx + "," + c.sy + ")",
+            },
+            gPieces,
+          );
+          el("circle", { r: 15, class: "body" }, g);
+          g.addEventListener("click", function (ev) {
+            ev.stopPropagation();
+            onPieceTap(p);
+          });
+          pieceEls[p.pid] = g;
+        });
+      }
+      function syncPiecePos(p) {
+        var c = cells[p.cell];
+        if (!c || !pieceEls[p.pid]) return;
+        pieceEls[p.pid].setAttribute(
+          "transform",
+          "translate(" + c.sx + "," + c.sy + ")",
+        );
+      }
+      function showDestinations() {
+        gDest.innerHTML = "";
+        if (!selected) return;
+        Object.keys(destMap).forEach(function (dest) {
+          var c = cells[+dest];
+          var mv = destMap[dest];
+          var dot = el(
+            "circle",
+            {
+              cx: c.sx,
+              cy: c.sy,
+              r: mv.hops ? 10.5 : 8.5,
+              class: "dest" + (mv.hops ? " hop" : ""),
+            },
+            gDest,
+          );
+          dot.addEventListener("click", function (ev) {
+            ev.stopPropagation();
+            onCellTap(+dest);
+          });
+        });
+      }
+      function refreshPieceClasses() {
+        pieces.forEach(function (p) {
+          var g = pieceEls[p.pid];
+          if (!g) return;
+          g.setAttribute(
+            "class",
+            "piece " +
+              p.player.toLowerCase() +
+              (selected === p ? " selected" : ""),
+          );
+        });
+      }
 
-/* ---------- controls ---------- */
-$("btnAgain").addEventListener("click", function(){ initGame(); });
-$("navFirst").addEventListener("click", function(){ stopPlay(); goTo(0); });
-$("navBack10").addEventListener("click", function(){ stopPlay(); goTo(viewPos - 10); });
-$("navBack1").addEventListener("click", function(){ stopPlay(); goTo(viewPos - 1); });
-$("navPlay").addEventListener("click", togglePlay);
-$("navFwd1").addEventListener("click", function(){ stopPlay(); goTo(viewPos + 1); });
-$("navFwd10").addEventListener("click", function(){ stopPlay(); goTo(viewPos + 10); });
-$("navLast").addEventListener("click", function(){ stopPlay(); goTo(positions.length - 1); });
+      /* ---------- player list (sidebar) ---------- */
+      function buildPlayerList() {
+        var list = document.getElementById("playerList");
+        list.innerHTML = "";
+        PLAYERS.forEach(function (pl) {
+          var row = document.createElement("div");
+          row.className = "player pl-" + pl.id;
+          row.id = "card" + pl.id;
+          row.innerHTML =
+            '<span class="stone" aria-hidden="true"></span>' +
+            '<div><div class="p-name"><span></span><span class="turn-badge">手番</span></div>' +
+            '<div class="p-sub"></div></div>' +
+            '<div class="p-right"><div class="p-score" id="score' +
+            pl.id +
+            '">0 / ' +
+            PIECE_COUNT +
+            "</div>" +
+            '<div class="p-cap">ゴール</div></div>' +
+            '<span class="track"><i id="bar' +
+            pl.id +
+            '"></i></span>';
+          row.querySelector(".p-name span").textContent = pl.name;
+          row.querySelector(".p-sub").textContent = pl.sub;
+          list.appendChild(row);
+        });
+      }
 
-initGame();
-</script>
-</body>
+      /* ---------- UI update ---------- */
+      var $ = function (id) {
+        return document.getElementById(id);
+      };
+      function updateUI() {
+        PLAYERS.forEach(function (pl) {
+          var n = goalCount(pl.id);
+          var scoreEl = $("score" + pl.id),
+            barEl = $("bar" + pl.id),
+            cardEl = $("card" + pl.id);
+          if (scoreEl) scoreEl.textContent = n + " / " + PIECE_COUNT;
+          if (barEl) barEl.style.width = (n / PIECE_COUNT) * 100 + "%";
+          if (cardEl)
+            cardEl.classList.toggle("active", !gameOver && turn === pl.id);
+        });
+        var atEnd = viewPos === positions.length - 1;
+        var liveText;
+        if (gameOver) {
+          liveText = "対局終了";
+        } else if (!atEnd) {
+          liveText = viewPos + "手目の局面";
+        } else {
+          liveText = playerDef(turn).colorName + "の番です";
+        }
+        $("live").textContent = liveText;
+        /* playback controls */
+        var total = positions.length - 1;
+        $("navCount").textContent = viewPos + " / " + total + "手";
+        var navBusy = busy || !!playTimer;
+        $("navFirst").disabled = navBusy || viewPos <= 0;
+        $("navBack10").disabled = navBusy || viewPos <= 0;
+        $("navBack1").disabled = navBusy || viewPos <= 0;
+        $("navFwd1").disabled = navBusy || viewPos >= total;
+        $("navFwd10").disabled = navBusy || viewPos >= total;
+        $("navLast").disabled = navBusy || viewPos >= total;
+        $("navPlay").disabled = busy || (!playTimer && viewPos >= total);
+        $("icoPlay").style.display = playTimer ? "none" : "block";
+        $("icoPause").style.display = playTimer ? "block" : "none";
+        $("navPlay").title = playTimer ? "一時停止" : "自動再生";
+        $("navPlay").setAttribute(
+          "aria-label",
+          playTimer ? "一時停止" : "自動再生",
+        );
+        refreshPieceClasses();
+      }
+
+      /* ---------- game flow ---------- */
+      function wait(ms) {
+        return new Promise(function (r) {
+          setTimeout(r, ms);
+        });
+      }
+
+      /* ---------- playback navigation ---------- */
+      function stopPlay() {
+        if (playTimer) {
+          clearInterval(playTimer);
+          playTimer = null;
+        }
+      }
+      function goTo(i) {
+        var total = positions.length - 1;
+        viewPos = Math.max(0, Math.min(total, i));
+        var pos = positions[viewPos];
+        if (!pos) return;
+        pos.cells.forEach(function (cell, idx) {
+          pieces[idx].cell = cell;
+          syncPiecePos(pieces[idx]);
+        });
+        turn = pos.turn;
+        selected = null;
+        destMap = {};
+        showDestinations();
+        gameOver = viewPos === total && !!winner;
+        $("overlay").classList.toggle("show", gameOver);
+        if (viewPos === total) stopPlay();
+        updateUI();
+      }
+      function togglePlay() {
+        if (playTimer) {
+          stopPlay();
+          updateUI();
+          return;
+        }
+        if (busy || viewPos >= positions.length - 1) return;
+        playTimer = setInterval(function () {
+          if (viewPos >= positions.length - 1) {
+            stopPlay();
+            updateUI();
+            return;
+          }
+          goTo(viewPos + 1);
+        }, 700);
+        updateUI();
+      }
+
+      async function executeMove(piece, m) {
+        if (!m || cells[m.dest] === undefined) return;
+        if (viewPos !== positions.length - 1) return; // 過去の局面を見ている間は打てない
+        busy = true;
+        selected = null;
+        destMap = {};
+        showDestinations();
+        updateUI();
+        try {
+          if (m.hops === 0) {
+            piece.cell = m.dest;
+            syncPiecePos(piece);
+            await wait(280);
+          } else {
+            for (var i = 0; i < m.path.length; i++) {
+              piece.cell = m.path[i];
+              syncPiecePos(piece);
+              await wait(300);
+            }
+          }
+          moveNo++;
+          turn = nextPlayer(piece.player);
+          positions.push({
+            cells: pieces.map(function (p) {
+              return p.cell;
+            }),
+            turn: turn,
+          });
+          viewPos = positions.length - 1;
+          if (checkWin(piece.player)) {
+            winner = piece.player;
+            gameOver = true;
+            $("winTitle").textContent =
+              playerDef(winner).colorName + "の勝ち！";
+            $("winText").textContent =
+              moveNo + "手で決着。全ての駒をゴールへ運びきりました。お見事！";
+            $("overlay").classList.add("show");
+          }
+        } finally {
+          busy = false;
+          updateUI();
+        }
+      }
+      function onPieceTap(p) {
+        if (busy || gameOver) return;
+        if (viewPos !== positions.length - 1) return; // 過去の局面を見ている間は駒を動かせない
+        if (p.player !== turn) return;
+        if (selected === p) {
+          selected = null;
+          destMap = {};
+        } else {
+          selected = p;
+          destMap = legalMoves(p);
+        }
+        showDestinations();
+        updateUI();
+      }
+      function onCellTap(cellId) {
+        if (busy || gameOver || !selected) return;
+        if (viewPos !== positions.length - 1) return;
+        var m = destMap[cellId];
+        if (m) executeMove(selected, m);
+      }
+      function initGame() {
+        refreshCaches();
+        pieces = [];
+        var pid = 0;
+        PLAYERS.forEach(function (pl) {
+          startSet(pl.id).forEach(function (cell) {
+            pieces.push({ pid: pid++, player: pl.id, cell: cell });
+          });
+        });
+        turn = "G";
+        selected = null;
+        destMap = {};
+        busy = false;
+        gameOver = false;
+        stopPlay();
+        winner = null;
+        moveNo = 0;
+        positions = [
+          {
+            cells: pieces.map(function (p) {
+              return p.cell;
+            }),
+            turn: "G",
+          },
+        ];
+        viewPos = 0;
+        $("overlay").classList.remove("show");
+        buildBoardSVG();
+        buildPieces();
+        buildPlayerList();
+        showDestinations();
+        updateUI();
+      }
+
+      /* ---------- controls ---------- */
+      $("btnAgain").addEventListener("click", function () {
+        initGame();
+      });
+      $("navFirst").addEventListener("click", function () {
+        stopPlay();
+        goTo(0);
+      });
+      $("navBack10").addEventListener("click", function () {
+        stopPlay();
+        goTo(viewPos - 10);
+      });
+      $("navBack1").addEventListener("click", function () {
+        stopPlay();
+        goTo(viewPos - 1);
+      });
+      $("navPlay").addEventListener("click", togglePlay);
+      $("navFwd1").addEventListener("click", function () {
+        stopPlay();
+        goTo(viewPos + 1);
+      });
+      $("navFwd10").addEventListener("click", function () {
+        stopPlay();
+        goTo(viewPos + 10);
+      });
+      $("navLast").addEventListener("click", function () {
+        stopPlay();
+        goTo(positions.length - 1);
+      });
+
+      initGame();
+    </script>
+  </body>
 </html>
